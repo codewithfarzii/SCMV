@@ -120,6 +120,7 @@ public class BrowseJavaPackage extends javax.swing.JFrame {
         jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(549, 46, 180, 40));
 
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/back.png"))); // NOI18N
+        jButton2.setBorder(null);
         jButton2.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/backRollOver.png"))); // NOI18N
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
