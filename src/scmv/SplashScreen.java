@@ -74,7 +74,9 @@ public class SplashScreen extends javax.swing.JFrame {
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 153, Short.MAX_VALUE)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 7, Short.MAX_VALUE))
         );
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 140, 620, 150));
@@ -83,11 +85,11 @@ public class SplashScreen extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Calibri", 3, 36)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(169, 224, 49));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Source Code Metrics Visualizer in Java");
+        jLabel1.setText("Source Code Metrics Visualizer of Java");
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 620, 50));
 
-        loadingbar.setBackground(new java.awt.Color(255, 255, 255));
-        loadingbar.setForeground(new java.awt.Color(51, 51, 51));
+        loadingbar.setBackground(new java.awt.Color(204, 204, 204));
+        loadingbar.setForeground(new java.awt.Color(255, 0, 102));
         jPanel1.add(loadingbar, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 360, 440, 30));
 
         jPanel3.setBackground(new java.awt.Color(31, 36, 42));

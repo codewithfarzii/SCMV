@@ -475,7 +475,8 @@ PreparedStatement pstm=null;
     }//GEN-LAST:event_jButton11ActionPerformed
 
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
-        this.dispose();
+      this.dispose();
+        new GoodBye().setVisible(true);
     }//GEN-LAST:event_jButton10ActionPerformed
 
     private void luserNameMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_luserNameMouseMoved
