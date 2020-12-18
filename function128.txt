@@ -1,0 +1,12 @@
+            String sqll= "insert into logintbl(`userName`, `userEmail`, `userPass`) VALUES (?,?,?);";
+             pstm=con.prepareStatement(sqll);
+             pstm.setString(1,uName);
+             pstm.setString(2,uEmail);
+             pstm.setString(3,uPass1); 
+             pstm.execute();
+             
+             JOptionPane.showMessageDialog(null, "Account Created Successffully!!!\nNow Login");
+             
+           
+          showLoginPanel();  
+        }

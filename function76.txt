@@ -1,0 +1,5 @@
+        userEmail.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                userEmailMouseMoved(evt);
+            }
+        });

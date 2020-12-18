@@ -1,0 +1,3 @@
+        setSize(new java.awt.Dimension(660, 576));
+        setLocationRelativeTo(null);
+    }// </editor-fold>//GEN-END:initComponents

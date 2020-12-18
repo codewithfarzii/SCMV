@@ -16,6 +16,7 @@ public class SCMV {
          ResultSet rs=null;
          PreparedStatement pstm=null;
          try{
+             Database d1,d2;
         Database db=new Database();
         con=db.openConnection();
         }catch(HeadlessException| SQLException e){

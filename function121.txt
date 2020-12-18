@@ -1,0 +1,8 @@
+             String sqll= "INSERT INTO currentusertbl (`userName`) VALUES (?);";
+             pstm=con.prepareStatement(sqll);
+             pstm.setString(1,str1);
+             pstm.execute();
+
+             this.dispose();
+             new Dashboard().setVisible(true);
+             } 

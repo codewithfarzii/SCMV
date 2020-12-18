@@ -1,0 +1,13 @@
+public int run(Bool a,float v){
+	int a;
+	Long int b;
+	switch(v)
+	case 1:
+	break;
+	case 2:
+	break;
+	case 3:
+	break;
+
+
+}

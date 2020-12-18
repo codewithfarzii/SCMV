@@ -1,0 +1,57 @@
+    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
+        // TODO add your handling code here:
+       String uName=userName.getText();
+       String uEmail=userEmail.getText();
+       String uPass1=userPass1.getText();
+       String uPass2=userPass2.getText();
+      if(uName.isEmpty()|| uEmail.isEmpty()||uPass1.isEmpty()||uPass2.isEmpty()){
+             JOptionPane.showMessageDialog(null, "All Fields Must be Filled!!!");
+      }else{
+       EmailValidator emailValidator = new EmailValidator();
+ 
+       if(!emailValidator.validate(userEmail.getText().trim())) {
+    
+           JOptionPane.showMessageDialog(null,"Invalid Email ID");   
+        
+    }else{
+       if (uPass1.length()>=6){
+           
+            if(!uPass1.matches(uPass2)){
+            JOptionPane.showMessageDialog(null, "Password does not match!!!");
+      }else{
+          // sign_up user here
+           try{
+
+        String sql= "select * from logintbl where userName=?";    
+                pstm=con.prepareStatement(sql);
+                pstm.setString(1,userName.getText());
+                rs=pstm.executeQuery();
+
+                  if(rs.next()){
+                         JOptionPane.showMessageDialog(null, "User Name is already in use!!!");
+                         userName.setText(null);
+                  }
+                  else{
+            String sqll= "insert into logintbl(`userName`, `userEmail`, `userPass`) VALUES (?,?,?);";
+             pstm=con.prepareStatement(sqll);
+             pstm.setString(1,uName);
+             pstm.setString(2,uEmail);
+             pstm.setString(3,uPass1); 
+             pstm.execute();
+             
+             JOptionPane.showMessageDialog(null, "Account Created Successffully!!!\nNow Login");
+             
+           
+          showLoginPanel();  
+        }
+            }
+        catch(Exception e){
+             JOptionPane.showMessageDialog(null,e);
+        }
+       }
+       }else{
+            JOptionPane.showMessageDialog(null, "Password must cotain 6 charaters!!!");
+       }    
+       }
+      }                                      
+    }//GEN-LAST:event_jButton8ActionPerformed

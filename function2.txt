@@ -1,0 +1,10 @@
+public int run(Bool a,float v){
+	switch(v)
+	case 1:
+	break;
+	case 2:
+	break;
+	case 3:
+	break;
+
+}
