@@ -5,9 +5,17 @@
  */
 package MainFiles;
 
+import static MainFiles.BrowseJavaPackage.fileName;
+import static MainFiles.BrowseJavaPackage.selected;
 import java.io.BufferedReader;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.StringTokenizer;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
 import scmv.GoodBye;
 
@@ -20,14 +28,87 @@ public class ClassCoupling extends javax.swing.JFrame {
     /**
      * Creates new form ClassCoupling
      */
-    DefaultTableModel modl;
-    public  static String iqraJUnaid;
+     DefaultTableModel CBOmodel;
+     public static String selected;
+     public  static String fileName;
+     public List<String> listOfCBO=new ArrayList();
+     List<String> alist= new ArrayList<String>();
+     public String selectedPackageName;
     
     public ClassCoupling() {
         initComponents();
-          modl= (DefaultTableModel)jTable2.getModel();
-                       
+                                
     }
+    public ClassCoupling(String path,String name, List<String> list,String PCKName) {
+        initComponents();
+        this.selected=path;
+        this.fileName=name;  
+        this.alist=list;
+        this.selectedPackageName=PCKName;
+        CBO();
+    }
+    
+    public void CBO(){
+        selectedFiletxt.setText(selected);
+        CBOmodel= (DefaultTableModel)CBOTable.getModel();
+        CBOmodel.setRowCount(0);
+        for(String name:alist){
+            try {                
+                System.out.println(name);
+                readFileLineByLineForPRC(selected,fileName,name);
+            } catch (FileNotFoundException ex) {
+                Logger.getLogger(ClassCoupling.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }
+ 
+    public void readFileLineByLineForPRC(String Tfname,String SelectClassName,String Cfname) throws FileNotFoundException{
+          
+            listOfCBO.removeAll(listOfCBO);
+            if(SelectClassName.matches(Cfname))
+                return;
+        
+            FileReader fr = new FileReader(Tfname);          
+            BufferedReader br=new BufferedReader(fr);
+            String str,completeLine="";
+            Boolean flag=false;
+            try {
+            while((str=br.readLine())!=null){
+            if(str.contains(Cfname+" ") || flag){
+                completeLine+=" "+str;
+                if(str.contains (";")){ 
+                flag=false; 
+                listOfCBO.add(completeLine);
+                completeLine="";
+                
+                }else
+                    flag=true;
+            }            
+                }
+            } catch (IOException ex) {
+                Logger.getLogger(ClassCoupling.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            finally{
+                try {
+                    fr.close();  
+                    countCBO(SelectClassName,Cfname);
+                } catch (IOException ex) {
+                    Logger.getLogger(ClassCoupling.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+    } 
+     public void countCBO(String selectedClassName,String TargetClassName){       
+         int count=0;
+         for(String str:listOfCBO){
+             System.out.println(str);
+             StringTokenizer tk1= new StringTokenizer(str,"=");
+             StringTokenizer tk= new StringTokenizer(tk1.nextToken(),",");
+             System.out.println(tk.countTokens());
+             count+=tk.countTokens();
+         }
+         System.out.println(count);
+         CBOmodel.addRow(new Object[]{selectedClassName,TargetClassName,count});         
+        }          
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -38,34 +119,25 @@ public class ClassCoupling extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel12 = new javax.swing.JPanel();
-        jLabel34 = new javax.swing.JLabel();
-        jTextField30 = new javax.swing.JTextField();
-        jLabel35 = new javax.swing.JLabel();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
+        jTabbedPane1 = new javax.swing.JTabbedPane();
+        jPanel1 = new javax.swing.JPanel();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        CBOTable = new javax.swing.JTable();
+        jPanel2 = new javax.swing.JPanel();
+        header = new javax.swing.JPanel();
+        jButton10 = new javax.swing.JButton();
+        jButton11 = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        jPanel3 = new javax.swing.JPanel();
+        jButton2 = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
+        selectedFiletxt = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setFocusTraversalPolicyProvider(true);
+        setUndecorated(true);
 
-        jPanel12.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jPanel12MouseClicked(evt);
-            }
-        });
-
-        jLabel34.setText("CBO");
-
-        jTextField30.setEditable(false);
-        jTextField30.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField30ActionPerformed(evt);
-            }
-        });
-
-        jLabel35.setText("(Coupling Between Object Classes)");
-
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        CBOTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -73,122 +145,172 @@ public class ClassCoupling extends javax.swing.JFrame {
                 "Name of Class", "Class Name Having Objects", "Coupled Class Objects"
             }
         ));
-        jScrollPane3.setViewportView(jTable2);
+        jScrollPane4.setViewportView(CBOTable);
 
-        javax.swing.GroupLayout jPanel12Layout = new javax.swing.GroupLayout(jPanel12);
-        jPanel12.setLayout(jPanel12Layout);
-        jPanel12Layout.setHorizontalGroup(
-            jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel12Layout.createSequentialGroup()
-                .addGap(721, 721, 721)
-                .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel12Layout.createSequentialGroup()
-                        .addComponent(jLabel34)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTextField30, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jLabel35))
-                .addContainerGap(59, Short.MAX_VALUE))
-            .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel12Layout.createSequentialGroup()
-                    .addGap(38, 38, 38)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 656, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(254, Short.MAX_VALUE)))
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 499, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(216, Short.MAX_VALUE))
         );
-        jPanel12Layout.setVerticalGroup(
-            jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel12Layout.createSequentialGroup()
-                .addGap(30, 30, 30)
-                .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel34)
-                    .addComponent(jTextField30, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel35)
-                .addContainerGap(320, Short.MAX_VALUE))
-            .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel12Layout.createSequentialGroup()
-                    .addGap(38, 38, 38)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 346, Short.MAX_VALUE)
-                    .addContainerGap()))
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(21, 21, 21)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
-        jButton1.setText("jButton1");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jTabbedPane1.addTab("CBO", jPanel1);
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 725, Short.MAX_VALUE)
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 332, Short.MAX_VALUE)
+        );
+
+        jTabbedPane1.addTab("IC", jPanel2);
+
+        header.setBackground(new java.awt.Color(0, 0, 0));
+        header.setForeground(new java.awt.Color(169, 224, 49));
+        header.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jButton10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icons8_Cancel_32px.png"))); // NOI18N
+        jButton10.setToolTipText("Close");
+        jButton10.setBorderPainted(false);
+        jButton10.setContentAreaFilled(false);
+        jButton10.setRequestFocusEnabled(false);
+        jButton10.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icons8_Cancel_30px_3.png"))); // NOI18N
+        jButton10.setVerifyInputWhenFocusTarget(false);
+        jButton10.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                jButton10ActionPerformed(evt);
             }
         });
+        header.add(jButton10, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 0, 40, 40));
+
+        jButton11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icons8_Minus_32px_1.png"))); // NOI18N
+        jButton11.setToolTipText("Minimize");
+        jButton11.setBorderPainted(false);
+        jButton11.setContentAreaFilled(false);
+        jButton11.setRequestFocusEnabled(false);
+        jButton11.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icons8_Minus_30px_3.png"))); // NOI18N
+        jButton11.setVerifyInputWhenFocusTarget(false);
+        jButton11.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton11MouseClicked(evt);
+            }
+        });
+        jButton11.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton11ActionPerformed(evt);
+            }
+        });
+        header.add(jButton11, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 0, 40, 40));
+
+        jLabel1.setFont(new java.awt.Font("Trebuchet MS", 1, 24)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(169, 224, 49));
+        jLabel1.setText(" SCMV");
+        header.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 310, 40));
+
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/back.png"))); // NOI18N
+        jButton2.setBorder(null);
+        jButton2.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/backRollOver.png"))); // NOI18N
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
+        jLabel3.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
+        jLabel3.setText("Selected Java File:");
+
+        selectedFiletxt.setEditable(false);
+        selectedFiletxt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                selectedFiletxtActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(selectedFiletxt)
+                .addContainerGap())
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(selectedFiletxt, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(0, 10, Short.MAX_VALUE))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(header, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jPanel12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jButton1)
-                        .addGap(263, 263, 263))))
+                .addContainerGap()
+                .addComponent(jTabbedPane1)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(29, 29, 29)
-                .addComponent(jButton1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
-                .addComponent(jPanel12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(header, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
-        pack();
+        setSize(new java.awt.Dimension(750, 484));
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField30ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField30ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField30ActionPerformed
+    private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
+        this.dispose();
+        new GoodBye().setVisible(true);
+    }//GEN-LAST:event_jButton10ActionPerformed
 
-    private void jPanel12MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel12MouseClicked
-        
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jPanel12MouseClicked
+    private void jButton11MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton11MouseClicked
+        this.setState(ICONIFIED);
+    }//GEN-LAST:event_jButton11MouseClicked
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-         modl.setRowCount(0);
-    }//GEN-LAST:event_jButton1ActionPerformed
- public  void coupling(){
+    private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
 
- modl.setRowCount(0);
- int sz=alist.size();
- String strr=null;
-alist.remove(iqraJUnaid);
-int i=0;
-int j=0;
-try{
-while(i<sz-1){
-String text = alist.get(i);
-j=0;
-BufferedReader reer = new BufferedReader(new FileReader(selected));
-while ((strr = reer.readLine()) != null) {
-if(strr.contains(text))
-       {
-      j=j+1;
- }
- }
- if (j!=0){
-//System.out.println(" file name : "+iqraJUnaid+ " coupled class : "+text+ " counter : "+j);
-  modl.addRow(new Object[]{iqraJUnaid,text,j});
- }
-i++;
-}}
-catch(IOException e){
-    System.out.println(e);
-  
-}
-}
-  
+    }//GEN-LAST:event_jButton11ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        this.dispose();
+        new BrowseJavaPackage(selectedPackageName).setVisible(true);
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void selectedFiletxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectedFiletxtActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_selectedFiletxtActionPerformed
+ 
   
     /**
      * @param args the command line arguments
@@ -226,12 +348,18 @@ catch(IOException e){
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel34;
-    private javax.swing.JLabel jLabel35;
-    private javax.swing.JPanel jPanel12;
-    private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JTable jTable2;
-    private javax.swing.JTextField jTextField30;
+    private javax.swing.JTable CBOTable;
+    private javax.swing.JPanel header;
+    private javax.swing.JButton jButton10;
+    private javax.swing.JButton jButton11;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JTextField selectedFiletxt;
     // End of variables declaration//GEN-END:variables
 }

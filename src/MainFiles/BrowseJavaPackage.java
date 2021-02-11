@@ -44,21 +44,24 @@ public class BrowseJavaPackage extends javax.swing.JFrame {
         Connection con=null;
         ResultSet rs=null;
         PreparedStatement pstm=null;
-    public static String selected;
+    public static String selected=null;
     public  static String fileName;
+    public String selectedPackageName;
     DefaultListModel m= new DefaultListModel();
     List<String> alist= new ArrayList<String>();
+    
     public BrowseJavaPackage() {
         initComponents();
-         
-        try{
-        Database db=new Database();
-        con=db.openConnection();
-        }catch(HeadlessException| SQLException e){
-            JOptionPane.showMessageDialog(null, "DB not connected");
-        }
+        openDBConnection(); 
+        
     }
-
+   public BrowseJavaPackage(String PCKName) {
+        initComponents();
+        selectedPackageName=PCKName;
+        openDBConnection(); 
+        selectJavaPackage();
+        
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -82,8 +85,6 @@ public class BrowseJavaPackage extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         noOfFiles = new javax.swing.JTextField();
-        jScrollPane4 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
         jButton3 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -173,7 +174,7 @@ public class BrowseJavaPackage extends javax.swing.JFrame {
         });
         jScrollPane2.setViewportView(listOfFiles);
 
-        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(11, 140, 260, 340));
+        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(41, 150, 490, 330));
 
         jLabel2.setFont(new java.awt.Font("Tempus Sans ITC", 1, 24)); // NOI18N
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -192,26 +193,14 @@ public class BrowseJavaPackage extends javax.swing.JFrame {
         });
         jPanel1.add(noOfFiles, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 100, 45, 45));
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "Name of Class", "Class Name Having Objects", "Coupled Class Objects"
-            }
-        ));
-        jScrollPane4.setViewportView(jTable2);
-
-        jPanel1.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(282, 157, 460, 320));
-
         jButton3.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
-        jButton3.setText("Count");
+        jButton3.setText("Count Metrics");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 10, 180, -1));
+        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 250, 180, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -244,7 +233,7 @@ public class BrowseJavaPackage extends javax.swing.JFrame {
     private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
 
     }//GEN-LAST:event_jButton11ActionPerformed
-
+   
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
          ClearTables();
          m.removeAllElements();
@@ -257,19 +246,9 @@ public class BrowseJavaPackage extends javax.swing.JFrame {
           chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
           chooser.showOpenDialog(this);
           File f = chooser.getCurrentDirectory();
-         String input= chooser.getSelectedFile().getAbsolutePath();
-          packageNameTxt.setText(input);
-    try {
-        listFilesAndFilesSubDirectories(input);
-    } catch (IOException ex) {
-        Logger.getLogger(BrowseJavaPackage.class.getName()).log(Level.SEVERE, null, ex);
-    }
-       listOfFiles.setModel(m);
-       int a=m.getSize();
-       noOfFiles.setText(String.valueOf(a));
-       insertClassNameToDB();
-       
-      
+          selectedPackageName= chooser.getSelectedFile().getAbsolutePath();      
+          selectJavaPackage();
+          insertClassNameToDB();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -292,24 +271,41 @@ public class BrowseJavaPackage extends javax.swing.JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
-         modl= (DefaultTableModel)jTable2.getModel();
-         modl.setRowCount(0);
-        for(String name:alist){
-            try {                
-                System.out.println(name);
-                readFileLineByLineForPRC(selected,fileName,name);
-            } catch (FileNotFoundException ex) {
-                Logger.getLogger(BrowseJavaPackage.class.getName()).log(Level.SEVERE, null, ex);
-            }
+        if(selected==null){
+             JOptionPane.showMessageDialog(null, "Please Select a File For Counting Metrics!!!");
+        }else{
+         ClassCoupling c=new ClassCoupling(selected,fileName,alist,selectedPackageName); 
+         c.setVisible(true);
+         this.dispose();
         }
-    
     }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * @param args the command line arguments
      */
     String fg;
-    public static String extractFileName( String filePathName ){
+     public void openDBConnection(){
+        try{
+        Database db=new Database();
+        con=db.openConnection();
+        }catch(HeadlessException| SQLException e){
+            JOptionPane.showMessageDialog(null, "DB not connected");
+        }
+    }
+     public void selectJavaPackage(){
+         
+          packageNameTxt.setText(selectedPackageName);
+    try {
+        listFilesAndFilesSubDirectories(selectedPackageName);
+    } catch (IOException ex) {
+        Logger.getLogger(BrowseJavaPackage.class.getName()).log(Level.SEVERE, null, ex);
+    }
+       listOfFiles.setModel(m);
+       int a=m.getSize();
+       noOfFiles.setText(String.valueOf(a));
+          
+    }
+     public static String extractFileName( String filePathName ){
     if ( filePathName == null )
       return null;
 
@@ -370,57 +366,7 @@ public class BrowseJavaPackage extends javax.swing.JFrame {
             Logger.getLogger(BrowseJavaPackage.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
-     public List<String> listOfCBO=new ArrayList();
-    public void readFileLineByLineForPRC(String Tfname,String SelectClassName,String Cfname) throws FileNotFoundException{
-          
-            listOfCBO.removeAll(listOfCBO);
-            if(SelectClassName.matches(Cfname))
-                return;
-        
-            FileReader fr = new FileReader(Tfname);          
-            BufferedReader br=new BufferedReader(fr);
-            String str,completeLine="";
-            Boolean flag=false;
-            try {
-            while((str=br.readLine())!=null){
-            if(str.contains(Cfname+" ") || flag){
-                completeLine+=" "+str;
-                if(str.contains (";")){ 
-                flag=false; 
-                listOfCBO.add(completeLine);
-                completeLine="";
-                
-                }else
-                    flag=true;
-            }            
-                }
-            } catch (IOException ex) {
-                Logger.getLogger(BrowseJavaPackage.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            finally{
-                try {
-                    fr.close();  
-                    countCBO(SelectClassName,Cfname);
-                } catch (IOException ex) {
-                    Logger.getLogger(BrowseJavaPackage.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            }
-    } 
-     public void countCBO(String selectedClassName,String TargetClassName){       
-         int count=0;
-         for(String str:listOfCBO){
-             System.out.println(str);
-             StringTokenizer tk= new StringTokenizer(str,",");
-             System.out.println(tk.countTokens());
-             count+=tk.countTokens();
-         }
-         System.out.println(count);
-         modl.addRow(new Object[]{selectedClassName,TargetClassName,count});
-         
-        }          
-  
-  
+   
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -466,8 +412,6 @@ public class BrowseJavaPackage extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JScrollPane jScrollPane4;
-    private javax.swing.JTable jTable2;
     private javax.swing.JList listOfFiles;
     private javax.swing.JTextField noOfFiles;
     private javax.swing.JTextArea packageNameTxt;
