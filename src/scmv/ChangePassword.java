@@ -185,6 +185,7 @@ PreparedStatement pstm=null;
         cPass.setFont(new java.awt.Font("Trebuchet MS", 0, 24)); // NOI18N
         cPass.setForeground(new java.awt.Color(255, 255, 255));
         cPass.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(169, 224, 49)));
+        cPass.setCaretColor(new java.awt.Color(255, 255, 255));
         cPass.setFocusCycleRoot(true);
         cPass.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -197,6 +198,7 @@ PreparedStatement pstm=null;
         newPass.setFont(new java.awt.Font("Trebuchet MS", 0, 24)); // NOI18N
         newPass.setForeground(new java.awt.Color(255, 255, 255));
         newPass.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(169, 224, 49)));
+        newPass.setCaretColor(new java.awt.Color(255, 255, 255));
         newPass.setFocusCycleRoot(true);
         signUpPanel.add(newPass, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 180, 250, 40));
 
@@ -204,6 +206,7 @@ PreparedStatement pstm=null;
         conPass.setFont(new java.awt.Font("Trebuchet MS", 0, 24)); // NOI18N
         conPass.setForeground(new java.awt.Color(255, 255, 255));
         conPass.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(169, 224, 49)));
+        conPass.setCaretColor(new java.awt.Color(255, 255, 255));
         conPass.setFocusCycleRoot(true);
         signUpPanel.add(conPass, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 250, 250, 40));
 

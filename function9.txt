@@ -1,3 +1,368 @@
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton11MouseClicked(evt);
+        jPanel1.setBorder(javax.swing.BorderFactory.createCompoundBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(51, 51, 51), new java.awt.Color(0, 102, 102), new java.awt.Color(204, 255, 204), new java.awt.Color(51, 255, 204)), javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(255, 204, 204), new java.awt.Color(204, 204, 255)), "Keys Accelerators", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Times New Roman", 2, 18), new java.awt.Color(0, 0, 51)))); // NOI18N
+    private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
+      this.dispose();
+        new GoodBye().setVisible(true);
+    }//GEN-LAST:event_jButton10ActionPerformed
+
+    private void jButton11MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton11MouseClicked
+        this.setState(ICONIFIED);
+    }//GEN-LAST:event_jButton11MouseClicked
+
+    private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
+
+    }//GEN-LAST:event_jButton11ActionPerformed
+
+    private void jPanel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel3MouseClicked
+
+    }//GEN-LAST:event_jPanel3MouseClicked
+
+    private void jPanel3MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel3MouseEntered
+
+    }//GEN-LAST:event_jPanel3MouseEntered
+
+    private void jPanel3MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel3MouseExited
+
+    }//GEN-LAST:event_jPanel3MouseExited
+
+    private void jPanel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel5MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jPanel5MouseClicked
+
+    private void jPanel5MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel5MouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jPanel5MouseEntered
+
+    private void jPanel5MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel5MouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jPanel5MouseExited
+
+    int x=190;
+    private void jLabel12MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel12MouseClicked
+
+        if(x==190){   
+             defaultVisibilites();
+        setAboutVis(true);
+            aboutSelected.setVisible(true);
+          // containerPanel.setSize(750,550);
+            Thread th=new Thread(){
+                @Override
+                public void run(){
+                    try{
+                        int i=190;
+                        for(;i>=0;i=i-50){
+                            Thread.sleep(i);
+                            drawer.setSize(i,550);
+                              
+                        }
+                        if(i<=0){
+                           drawer.setSize(0,550); 
+                           //containerPanel.setVisible(false);                           
+                        }
+                    } catch (InterruptedException ex) {
+                        Logger.getLogger(Dashboard.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+            };
+            th.start();
+            x=0;
+        }
+        showDrawer.setVisible(true);
+    }//GEN-LAST:event_jLabel12MouseClicked
+
+    private void jPanel6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel6MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jPanel6MouseClicked
+
+    private void jPanel6MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel6MouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jPanel6MouseEntered
+
+    private void jPanel6MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel6MouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jPanel6MouseExited
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        defaultVisibilites();
+        setAboutVis(false);
+        setUserIdentity();
+        userInfoPanel.setVisible(true);
+
+    }//GEN-LAST:event_jButton1ActionPerformed
+ boolean ap_set=false;
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        if(ap_set){
+            app_setting.setVisible(false);
+            ap_set=false;
+        }else{
+            app_setting.setVisible(true);
+            ap_set=true;
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jLabel13MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel13MouseClicked
+       logoutUser();
+    }//GEN-LAST:event_jLabel13MouseClicked
+
+    private void jLabel15MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel15MouseClicked
+        // TODO add your handling code here:
+       this.dispose();
+        new GoodBye().setVisible(true);
+    }//GEN-LAST:event_jLabel15MouseClicked
+
+    private void userNameMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_userNameMouseMoved
+        // TODO add your handling code here:
+    }//GEN-LAST:event_userNameMouseMoved
+
+    private void userEmailMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_userEmailMouseMoved
+        // TODO add your handling code here:
+    }//GEN-LAST:event_userEmailMouseMoved
+
+    private void jLabel18MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel18MouseClicked
+        defaultVisibilites();
+        sethelpPanelVis(true);
+    }//GEN-LAST:event_jLabel18MouseClicked
+
+    private void jPanel7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel7MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jPanel7MouseClicked
+
+    private void jPanel7MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel7MouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jPanel7MouseEntered
+
+    private void jPanel7MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel7MouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jPanel7MouseExited
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+       this.dispose();
+       new ChangePassword().setVisible(true);
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jLabel9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel9MouseClicked
+        defaultVisibilites();
+        setAccountPanelVis(true);
+    }//GEN-LAST:event_jLabel9MouseClicked
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+     int a=JOptionPane.showConfirmDialog(this, "Are You Sure You Want to Delete This Account!!!","Delete Account",JOptionPane.YES_NO_OPTION,JOptionPane.INFORMATION_MESSAGE);
+     if(a==JOptionPane.YES_OPTION)  
+     deleteAcc();
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void showDrawerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showDrawerActionPerformed
+       if(x==0){
+           // aboutPanel.setSize(x,550);
+            Thread th=new Thread(){
+          @Override 
+          public void run(){
+               try{
+                   int i=0;
+                   for(;i<=x;i=i+50){
+                       Thread.sleep(i);
+                     //  containerPanel.setSize(i,550);    
+                       drawer.setSize(i,550);    
+                   }
+                   if(i>=190){
+                   drawer.setSize(190,550);
+                //   containerPanel.setVisible(true);     
+                   // aboutPanel.setVisible(false);
+               } 
+               }catch (InterruptedException ex) { 
+                  Logger.getLogger(Dashboard.class.getName()).log(Level.SEVERE, null, ex);
+              } 
+           }
+        };
+            th.start();
+            x=190;
+        }
+       showDrawer.setVisible(false);
+    }//GEN-LAST:event_showDrawerActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+       this.dispose();
+       new BrowseJavaFile().setVisible(true);
+    }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+       this.dispose();
+       new BrowseJavaPackage().setVisible(true);
+    }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void jLabel6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel6MouseClicked
+        defaultVisibilites();
+         setHomePanelVis(true);  
+    }//GEN-LAST:event_jLabel6MouseClicked
+
+    private void formKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyPressed
+        // TODO add your handling code here:
+          System.out.println(evt.getKeyCode());
+    }//GEN-LAST:event_formKeyPressed
+
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+       try {
+            Desktop.getDesktop().open(new File("Resource/documentation.pdf"));
+        } catch (IOException ex) {
+            Logger.getLogger(Dashboard.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButton7ActionPerformed
+
+    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
+        try {
+            Desktop.getDesktop().open(new File("Resource/project final.mp4"));
+        } catch (IOException ex) {
+            Logger.getLogger(Dashboard.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButton8ActionPerformed
+
+    /**
+     * @param args the command line arguments
+     */
+    public void deleteAcc(){
+       String uName=getCurretUserName();
+        try {
+            // TODO add your handling code here:
+            pstm=con.prepareStatement("DELETE FROM `logintbl` WHERE userName=?");
+                pstm.setString(1,uName);
+               pstm.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(Dashboard.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        logoutUser();
+    }
+    public void logoutUser(){
+         try {
+            // TODO add your handling code here:
+            pstm=con.prepareStatement("delete  from currentUsertbl");
+            pstm.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(Dashboard.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        this.dispose();
+        new SignInUp().setVisible(true);
+    }
+    
+    public static void main(String args[]) {
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
             }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(Dashboard.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(Dashboard.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(Dashboard.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(Dashboard.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
+
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new Dashboard().setVisible(true);
+            }
+        });
+    }
+
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel aboutPanel;
+    private javax.swing.JLabel aboutPic;
+    private javax.swing.JLabel aboutSelected;
+    private javax.swing.JPanel accountPanel;
+    private javax.swing.JLabel accountSelected;
+    private javax.swing.JPanel app_setting;
+    public javax.swing.JPanel containerPanel;
+    private javax.swing.JPanel drawer;
+    private javax.swing.JPanel header;
+    private javax.swing.JPanel helpPanel;
+    private javax.swing.JLabel helpSelected;
+    private javax.swing.JPanel homePanel;
+    private javax.swing.JLabel homeSelected;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton10;
+    private javax.swing.JButton jButton11;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
+    private javax.swing.JButton jButton6;
+    private javax.swing.JButton jButton7;
+    private javax.swing.JButton jButton8;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel22;
+    private javax.swing.JLabel jLabel23;
+    private javax.swing.JLabel jLabel24;
+    private javax.swing.JLabel jLabel25;
+    private javax.swing.JLabel jLabel26;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel10;
+    private javax.swing.JPanel jPanel11;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel6;
+    private javax.swing.JPanel jPanel7;
+    private javax.swing.JPanel jPanel8;
+    private javax.swing.JPanel jPanel9;
+    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JButton showDrawer;
+    private javax.swing.JPanel signUpPanel;
+    private javax.swing.JTextField userEmail;
+    private javax.swing.JPanel userInfoPanel;
+    private javax.swing.JTextField userName;
+    // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void keyTyped(java.awt.event.KeyEvent e) {
+         System.out.println("A was clicked!");
+     }
+
+    @Override
+    public void keyPressed(java.awt.event.KeyEvent e) {
+//       int keyCode = e.getKeyCode();
+//        if (keyCode == KeyEvent.VK_A) {
+            System.out.println("A was pressed!");
+            
+     //   }
+     }
+
+    @Override
+    public void keyReleased(java.awt.event.KeyEvent e) {
+         System.out.println("A was rel!");
+     }
+
+    
+}

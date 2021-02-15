@@ -1,0 +1,4 @@
+     int a=JOptionPane.showConfirmDialog(this, "Are You Sure You Want to Delete This Account!!!","Delete Account",JOptionPane.YES_NO_OPTION,JOptionPane.INFORMATION_MESSAGE);
+     if(a==JOptionPane.YES_OPTION)  
+     deleteAcc();
+    }//GEN-LAST:event_jButton4ActionPerformed

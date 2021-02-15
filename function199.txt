@@ -1,0 +1,28 @@
+    private void showDrawerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showDrawerActionPerformed
+       if(x==0){
+           // aboutPanel.setSize(x,550);
+            Thread th=new Thread(){
+          @Override 
+          public void run(){
+               try{
+                   int i=0;
+                   for(;i<=x;i=i+50){
+                       Thread.sleep(i);
+                     //  containerPanel.setSize(i,550);    
+                       drawer.setSize(i,550);    
+                   }
+                   if(i>=190){
+                   drawer.setSize(190,550);
+                //   containerPanel.setVisible(true);     
+                   // aboutPanel.setVisible(false);
+               } 
+               }catch (InterruptedException ex) { 
+                  Logger.getLogger(Dashboard.class.getName()).log(Level.SEVERE, null, ex);
+              } 
+           }
+        };
+            th.start();
+            x=190;
+        }
+       showDrawer.setVisible(false);
+    }//GEN-LAST:event_showDrawerActionPerformed

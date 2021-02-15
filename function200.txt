@@ -1,0 +1,3 @@
+               }catch (InterruptedException ex) { 
+                  Logger.getLogger(Dashboard.class.getName()).log(Level.SEVERE, null, ex);
+              } 

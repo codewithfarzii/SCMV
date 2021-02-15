@@ -1,0 +1,2 @@
+            Desktop.getDesktop().open(new File("Resource/project final.mp4"));
+        } catch (IOException ex) {

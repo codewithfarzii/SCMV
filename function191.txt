@@ -1,0 +1,4 @@
+    private void jLabel18MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel18MouseClicked
+        defaultVisibilites();
+        sethelpPanelVis(true);
+    }//GEN-LAST:event_jLabel18MouseClicked

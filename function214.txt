@@ -1,0 +1,7 @@
+    public void keyPressed(java.awt.event.KeyEvent e) {
+//       int keyCode = e.getKeyCode();
+//        if (keyCode == KeyEvent.VK_A) {
+            System.out.println("A was pressed!");
+            
+     //   }
+     }

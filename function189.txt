@@ -1,0 +1,3 @@
+    private void userNameMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_userNameMouseMoved
+        // TODO add your handling code here:
+    }//GEN-LAST:event_userNameMouseMoved

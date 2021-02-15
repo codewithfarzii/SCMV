@@ -1,0 +1,3 @@
+    public void keyReleased(java.awt.event.KeyEvent e) {
+         System.out.println("A was rel!");
+     }

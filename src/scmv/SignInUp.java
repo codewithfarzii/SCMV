@@ -36,6 +36,7 @@ PreparedStatement pstm=null;
         }catch(HeadlessException| SQLException e){
             JOptionPane.showMessageDialog(null, "DB not connected");
         }
+        // luserName.requestFocus();
       showLoginPanel();
     }
        
@@ -222,9 +223,20 @@ PreparedStatement pstm=null;
         luserName.setFont(new java.awt.Font("Trebuchet MS", 0, 24)); // NOI18N
         luserName.setForeground(new java.awt.Color(255, 255, 255));
         luserName.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(169, 224, 49)));
+        luserName.setCaretColor(new java.awt.Color(255, 255, 255));
         luserName.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseMoved(java.awt.event.MouseEvent evt) {
                 luserNameMouseMoved(evt);
+            }
+        });
+        luserName.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                luserNameActionPerformed(evt);
+            }
+        });
+        luserName.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                luserNameKeyPressed(evt);
             }
         });
         loginPanel.add(luserName, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 183, 250, 35));
@@ -243,6 +255,7 @@ PreparedStatement pstm=null;
         luserPass.setFont(new java.awt.Font("Trebuchet MS", 0, 24)); // NOI18N
         luserPass.setForeground(new java.awt.Color(255, 255, 255));
         luserPass.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(169, 224, 49)));
+        luserPass.setCaretColor(new java.awt.Color(255, 255, 255));
         luserPass.setFocusCycleRoot(true);
         loginPanel.add(luserPass, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 260, 250, 35));
 
@@ -304,6 +317,7 @@ PreparedStatement pstm=null;
 
         signUpPanel.setBackground(new java.awt.Color(31, 36, 42));
         signUpPanel.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(51, 255, 0)));
+        signUpPanel.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         signUpPanel.setPreferredSize(new java.awt.Dimension(330, 535));
         signUpPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -311,9 +325,17 @@ PreparedStatement pstm=null;
         userName.setFont(new java.awt.Font("Trebuchet MS", 0, 18)); // NOI18N
         userName.setForeground(new java.awt.Color(255, 255, 255));
         userName.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(169, 224, 49)));
+        userName.setCaretColor(new java.awt.Color(255, 255, 255));
+        userName.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        userName.setDisabledTextColor(new java.awt.Color(31, 36, 42));
         userName.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseMoved(java.awt.event.MouseEvent evt) {
                 userNameMouseMoved(evt);
+            }
+        });
+        userName.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                userNameKeyPressed(evt);
             }
         });
         signUpPanel.add(userName, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 160, 250, 35));
@@ -322,9 +344,15 @@ PreparedStatement pstm=null;
         userEmail.setFont(new java.awt.Font("Trebuchet MS", 0, 18)); // NOI18N
         userEmail.setForeground(new java.awt.Color(255, 255, 255));
         userEmail.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(169, 224, 49)));
+        userEmail.setCaretColor(new java.awt.Color(255, 255, 255));
         userEmail.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseMoved(java.awt.event.MouseEvent evt) {
                 userEmailMouseMoved(evt);
+            }
+        });
+        userEmail.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                userEmailKeyPressed(evt);
             }
         });
         signUpPanel.add(userEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 230, 250, 35));
@@ -391,13 +419,20 @@ PreparedStatement pstm=null;
         userPass1.setFont(new java.awt.Font("Trebuchet MS", 0, 24)); // NOI18N
         userPass1.setForeground(new java.awt.Color(255, 255, 255));
         userPass1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(169, 224, 49)));
+        userPass1.setCaretColor(new java.awt.Color(255, 255, 255));
         userPass1.setFocusCycleRoot(true);
+        userPass1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                userPass1KeyPressed(evt);
+            }
+        });
         signUpPanel.add(userPass1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 300, 250, 35));
 
         userPass2.setBackground(new java.awt.Color(31, 36, 42));
         userPass2.setFont(new java.awt.Font("Trebuchet MS", 0, 24)); // NOI18N
         userPass2.setForeground(new java.awt.Color(255, 255, 255));
         userPass2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(169, 224, 49)));
+        userPass2.setCaretColor(new java.awt.Color(255, 255, 255));
         userPass2.setFocusCycleRoot(true);
         signUpPanel.add(userPass2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 370, 250, 35));
 
@@ -526,7 +561,8 @@ PreparedStatement pstm=null;
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-       showSignUpPanel();
+       userName.requestFocus();
+        showSignUpPanel();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void userNameMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_userNameMouseMoved
@@ -598,6 +634,42 @@ PreparedStatement pstm=null;
        }
       }                                      
     }//GEN-LAST:event_jButton8ActionPerformed
+
+    private void luserNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_luserNameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_luserNameActionPerformed
+
+    private void luserNameKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_luserNameKeyPressed
+        // TODO add your handling code here:
+        int key =evt.getKeyCode();
+        if(key==10){
+           luserPass.requestFocus();
+        }
+    }//GEN-LAST:event_luserNameKeyPressed
+
+    private void userNameKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_userNameKeyPressed
+        // TODO add your handling code here:
+         int key =evt.getKeyCode();
+        if(key==10){
+           userEmail.requestFocus();
+        }
+    }//GEN-LAST:event_userNameKeyPressed
+
+    private void userPass1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_userPass1KeyPressed
+        // TODO add your handling code here:
+         int key =evt.getKeyCode();
+        if(key==10){
+           userPass2.requestFocus();
+        }
+    }//GEN-LAST:event_userPass1KeyPressed
+
+    private void userEmailKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_userEmailKeyPressed
+        // TODO add your handling code here:
+         int key =evt.getKeyCode();
+        if(key==10){
+           userPass1.requestFocus();
+        }
+    }//GEN-LAST:event_userEmailKeyPressed
 
     /**
      * @param args the command line arguments

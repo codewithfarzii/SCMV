@@ -1,0 +1,31 @@
+    private void jLabel12MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel12MouseClicked
+
+        if(x==190){   
+             defaultVisibilites();
+        setAboutVis(true);
+            aboutSelected.setVisible(true);
+          // containerPanel.setSize(750,550);
+            Thread th=new Thread(){
+                @Override
+                public void run(){
+                    try{
+                        int i=190;
+                        for(;i>=0;i=i-50){
+                            Thread.sleep(i);
+                            drawer.setSize(i,550);
+                              
+                        }
+                        if(i<=0){
+                           drawer.setSize(0,550); 
+                           //containerPanel.setVisible(false);                           
+                        }
+                    } catch (InterruptedException ex) {
+                        Logger.getLogger(Dashboard.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+            };
+            th.start();
+            x=0;
+        }
+        showDrawer.setVisible(true);
+    }//GEN-LAST:event_jLabel12MouseClicked

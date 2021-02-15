@@ -1,0 +1,9 @@
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        if(ap_set){
+            app_setting.setVisible(false);
+            ap_set=false;
+        }else{
+            app_setting.setVisible(true);
+            ap_set=true;
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed

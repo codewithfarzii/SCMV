@@ -584,9 +584,10 @@ PreparedStatement pstm=null;
         jLabel23.setText("About ");
 
         showDrawer.setBackground(new java.awt.Color(255, 255, 255));
-        showDrawer.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/drawer.png"))); // NOI18N
+        showDrawer.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/32.png"))); // NOI18N
+        showDrawer.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 204, 204), 5));
+        showDrawer.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         showDrawer.setRequestFocusEnabled(false);
-        showDrawer.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/drawerRollOver.png"))); // NOI18N
         showDrawer.setVerifyInputWhenFocusTarget(false);
         showDrawer.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -599,16 +600,17 @@ PreparedStatement pstm=null;
         jPanel9Layout.setHorizontalGroup(
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel9Layout.createSequentialGroup()
-                .addComponent(showDrawer, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(showDrawer, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel23, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jLabel23, javax.swing.GroupLayout.DEFAULT_SIZE, 703, Short.MAX_VALUE))
         );
         jPanel9Layout.setVerticalGroup(
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel9Layout.createSequentialGroup()
-                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(showDrawer, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel23))
+                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(showDrawer, javax.swing.GroupLayout.DEFAULT_SIZE, 48, Short.MAX_VALUE)
+                    .addComponent(jLabel23, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
@@ -640,7 +642,7 @@ PreparedStatement pstm=null;
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
 
-        helpPanel.setBackground(new java.awt.Color(255, 255, 255));
+        helpPanel.setBackground(new java.awt.Color(204, 204, 255));
 
         jLabel22.setFont(new java.awt.Font("Tempus Sans ITC", 1, 36)); // NOI18N
         jLabel22.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -1053,35 +1055,6 @@ PreparedStatement pstm=null;
      deleteAcc();
     }//GEN-LAST:event_jButton4ActionPerformed
 
-    private void showDrawerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showDrawerActionPerformed
-       if(x==0){
-           // aboutPanel.setSize(x,550);
-            Thread th=new Thread(){
-          @Override 
-          public void run(){
-               try{
-                   int i=0;
-                   for(;i<=x;i=i+50){
-                       Thread.sleep(i);
-                     //  containerPanel.setSize(i,550);    
-                       drawer.setSize(i,550);    
-                   }
-                   if(i>=190){
-                   drawer.setSize(190,550);
-                //   containerPanel.setVisible(true);     
-                   // aboutPanel.setVisible(false);
-               } 
-               }catch (InterruptedException ex) { 
-                  Logger.getLogger(Dashboard.class.getName()).log(Level.SEVERE, null, ex);
-              } 
-           }
-        };
-            th.start();
-            x=190;
-        }
-       showDrawer.setVisible(false);
-    }//GEN-LAST:event_showDrawerActionPerformed
-
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
        this.dispose();
        new BrowseJavaFile().setVisible(true);
@@ -1117,6 +1090,35 @@ PreparedStatement pstm=null;
             Logger.getLogger(Dashboard.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jButton8ActionPerformed
+
+    private void showDrawerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showDrawerActionPerformed
+        if(x==0){
+            // aboutPanel.setSize(x,550);
+            Thread th=new Thread(){
+                @Override
+                public void run(){
+                    try{
+                        int i=0;
+                        for(;i<=x;i=i+50){
+                            Thread.sleep(i);
+                            //  containerPanel.setSize(i,550);
+                            drawer.setSize(i,550);
+                        }
+                        if(i>=190){
+                            drawer.setSize(190,550);
+                            //   containerPanel.setVisible(true);
+                            // aboutPanel.setVisible(false);
+                        }
+                    }catch (InterruptedException ex) {
+                        Logger.getLogger(Dashboard.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+            };
+            th.start();
+            x=190;
+        }
+        showDrawer.setVisible(false);
+    }//GEN-LAST:event_showDrawerActionPerformed
 
     /**
      * @param args the command line arguments
