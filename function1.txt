@@ -1,4 +1,34 @@
-    public void setAboutVis(boolean b){
-        aboutSelected.setVisible(b);
-        aboutPanel.setVisible(b);
-    }
+	 int a;if( ){ }if() {}
+	 
+	 /*
+	 */if(){}	 if 
+	 ( 
+	 {
+	 }if(
+	 )
+	 {
+	 }
+	 else if(){}else if(){
+	 }
+	 
+	 else
+		 if(){
+	 }else 
+		 
+	 
+	  
+	 
+	 if(
+	 )
+	 {
+	 
+	 }/**/else if
+		 {
+	 }
+	 else{
+	 }
+	 /*
+	 */else {
+	 }
+	 else{}
+}
