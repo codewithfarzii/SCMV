@@ -1,3 +1,4 @@
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
-            }
+                if( token.charAt(i) == '{' ) {
+                    openbrace=openbrace+1; 
+
+                } 

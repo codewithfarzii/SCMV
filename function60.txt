@@ -1,5 +1,44 @@
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+    private void jButton14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton14ActionPerformed
+         String uSName= getCurretUserName();
+         String uSPas="";
+          String uCPass=cPass.getText();
+          String uPass1=newPass.getText();
+          String uPass2=conPass.getText();
+         if(uCPass.isEmpty()||uPass1.isEmpty()||uPass2.isEmpty()){
+             JOptionPane.showMessageDialog(this, "All Fields Must be Filled!!!");
+      }else{
+        try {
+            String sql= "select * from logintbl where userName=?";
+            pstm=con.prepareStatement(sql);
+            pstm.setString(1,uSName);
+            rs=pstm.executeQuery();
+            if(rs.next()){
+                uSPas=rs.getString(4);
             }
-        });
+        } catch (SQLException ex) {
+            Logger.getLogger(ChangePassword.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        if(uSPas.matches(cPass.getText())){
+            if (uPass1.length()>=6){
+            if(!uPass1.matches(uPass2)){
+            JOptionPane.showMessageDialog(null, "New Password does not match!!!");
+      }else{
+                // update query here
+                try {                    
+                    pstm=con.prepareStatement("UPDATE logintbl SET userPass="+newPass.getText()+" WHERE userName=?");
+                    pstm.setString(1,uSName);
+                    pstm.executeUpdate();
+                    JOptionPane.showMessageDialog(null, "Password Updated Successfully!!!");             
+                    backToHome();
+                } catch (SQLException ex) {
+                    Logger.getLogger(ChangePassword.class.getName()).log(Level.SEVERE, null, ex);
+                }
+        }        
+       }else{
+            JOptionPane.showMessageDialog(null, "Password must cotain 6 charaters!!!");
+       }            
+        }else{
+            JOptionPane.showMessageDialog(this, "Please Enter Correct Current Password");
+        }
+    }
+    }//GEN-LAST:event_jButton14ActionPerformed

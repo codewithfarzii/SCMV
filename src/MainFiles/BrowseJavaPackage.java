@@ -274,7 +274,7 @@ public class BrowseJavaPackage extends javax.swing.JFrame {
         if(selected==null){
              JOptionPane.showMessageDialog(null, "Please Select a File For Counting Metrics!!!");
         }else{
-         ClassCoupling c=new ClassCoupling(selected,fileName,alist,selectedPackageName); 
+         JavaPackageMetrics c=new JavaPackageMetrics(selected,fileName,alist,selectedPackageName); 
          c.setVisible(true);
          this.dispose();
         }

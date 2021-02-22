@@ -157,14 +157,7 @@
               <Layout>
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="80" max="-2" attributes="0"/>
-                          <Component id="jPanel16" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="47" max="-2" attributes="0"/>
-                          <Component id="jPanel17" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="32767" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="0" attributes="0">
+                      <Group type="102" attributes="0">
                           <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="jLabel28" alignment="0" min="-2" max="-2" attributes="0"/>
@@ -173,30 +166,34 @@
                               <Component id="jLabel30" min="-2" pref="147" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="refactoringSuggestion" max="32767" attributes="0"/>
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
                               <Group type="102" attributes="0">
                                   <Group type="103" groupAlignment="1" attributes="0">
                                       <Component id="classStatustxt" min="-2" pref="170" max="-2" attributes="0"/>
                                       <Component id="classCCtxt" min="-2" pref="170" max="-2" attributes="0"/>
                                       <Component id="classNametxt" alignment="1" min="-2" pref="170" max="-2" attributes="0"/>
                                   </Group>
-                                  <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="1" attributes="0">
+                                      <Component id="jLabel33" min="-2" max="-2" attributes="0"/>
+                                      <Component id="jLabel32" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Group type="102" attributes="0">
-                                          <Component id="jLabel32" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace pref="18" max="32767" attributes="0"/>
-                                          <Component id="noOfParentClasstxt" min="-2" pref="170" max="-2" attributes="0"/>
-                                      </Group>
-                                      <Group type="102" attributes="0">
-                                          <Component id="jLabel33" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace max="32767" attributes="0"/>
-                                          <Component id="noOfChildClasstxt" min="-2" pref="170" max="-2" attributes="0"/>
-                                      </Group>
+                                      <Component id="noOfParentClasstxt" min="-2" pref="50" max="-2" attributes="0"/>
+                                      <Component id="noOfChildClasstxt" min="-2" pref="50" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
+                              <Component id="refactoringSuggestion" max="32767" attributes="0"/>
                           </Group>
-                          <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="-2" pref="100" max="-2" attributes="0"/>
+                          <Component id="jPanel16" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace pref="69" max="32767" attributes="0"/>
+                          <Component id="jPanel17" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="100" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -210,33 +207,35 @@
                                   <Group type="103" groupAlignment="3" attributes="0">
                                       <Component id="classNametxt" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
                                       <Component id="jLabel32" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="noOfParentClasstxt" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
+                                      <Component id="noOfParentClasstxt" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="3" attributes="0">
                                       <Component id="classStatustxt" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
                                       <Component id="jLabel27" alignment="3" min="-2" max="-2" attributes="0"/>
                                       <Component id="jLabel33" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="noOfChildClasstxt" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
+                                      <Component id="noOfChildClasstxt" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                           </Group>
                           <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="classCCtxt" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
-                              <Component id="jLabel28" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="1" attributes="0">
+                              <Group type="102" attributes="0">
+                                  <Group type="103" groupAlignment="3" attributes="0">
+                                      <Component id="classCCtxt" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
+                                      <Component id="jLabel28" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="jLabel30" min="-2" max="-2" attributes="0"/>
+                                      <Component id="refactoringSuggestion" min="-2" pref="25" max="-2" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
+                                  <Component id="jPanel16" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <Component id="jPanel17" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jLabel30" min="-2" max="-2" attributes="0"/>
-                              <Component id="refactoringSuggestion" min="-2" pref="25" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="jPanel17" max="32767" attributes="0"/>
-                              <Component id="jPanel16" max="32767" attributes="0"/>
-                          </Group>
-                          <EmptySpace pref="26" max="32767" attributes="0"/>
+                          <EmptySpace pref="16" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -791,14 +790,20 @@
                           <Font name="Tempus Sans ITC" size="14" style="1"/>
                         </Property>
                         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                          <StringArray count="7">
-                            <StringItem index="0" value="3D Pie Chart"/>
-                            <StringItem index="1" value="3D Line Chart"/>
-                            <StringItem index="2" value="3D Stacked Bar Chart"/>
-                            <StringItem index="3" value="2D Stacked Area Chart"/>
+                          <StringArray count="13">
+                            <StringItem index="0" value="...............Select..............."/>
+                            <StringItem index="1" value="2D Bar Chart"/>
+                            <StringItem index="2" value="2D Pie Chart"/>
+                            <StringItem index="3" value="2D Line Chart"/>
                             <StringItem index="4" value="2D Waterfall Chart"/>
-                            <StringItem index="5" value="2D Dual Axis Chart"/>
-                            <StringItem index="6" value=" "/>
+                            <StringItem index="5" value="2D Dual Chart"/>
+                            <StringItem index="6" value="2D Area Chart"/>
+                            <StringItem index="7" value="2D Stack Area Chart"/>
+                            <StringItem index="8" value="2D Stack Bar Chart"/>
+                            <StringItem index="9" value="3D Bar Chart"/>
+                            <StringItem index="10" value="3D Pie Chart"/>
+                            <StringItem index="11" value="3D Line Chart"/>
+                            <StringItem index="12" value="3D Stack Bar Chart"/>
                           </StringArray>
                         </Property>
                       </Properties>
@@ -1075,14 +1080,20 @@
                           <Font name="Tempus Sans ITC" size="14" style="1"/>
                         </Property>
                         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                          <StringArray count="7">
-                            <StringItem index="0" value="3D Pie Chart"/>
-                            <StringItem index="1" value="3D Line Chart"/>
-                            <StringItem index="2" value="3D Stacked Bar Chart"/>
-                            <StringItem index="3" value="2D Stacked Area Chart"/>
+                          <StringArray count="13">
+                            <StringItem index="0" value="...............Select..............."/>
+                            <StringItem index="1" value="2D Bar Chart"/>
+                            <StringItem index="2" value="2D Pie Chart"/>
+                            <StringItem index="3" value="2D Line Chart"/>
                             <StringItem index="4" value="2D Waterfall Chart"/>
-                            <StringItem index="5" value="2D Dual Axis Chart"/>
-                            <StringItem index="6" value=" "/>
+                            <StringItem index="5" value="2D Dual Chart"/>
+                            <StringItem index="6" value="2D Area Chart"/>
+                            <StringItem index="7" value="2D Stack Area Chart"/>
+                            <StringItem index="8" value="2D Stack Bar Chart"/>
+                            <StringItem index="9" value="3D Bar Chart"/>
+                            <StringItem index="10" value="3D Pie Chart"/>
+                            <StringItem index="11" value="3D Line Chart"/>
+                            <StringItem index="12" value="3D Stack Bar Chart"/>
                           </StringArray>
                         </Property>
                       </Properties>
@@ -1120,9 +1131,9 @@
                               <Component id="noOfWHILELOOP" alignment="0" min="-2" pref="50" max="-2" attributes="0"/>
                               <Component id="noOfFORLOOP" alignment="1" min="-2" pref="50" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace pref="61" max="32767" attributes="0"/>
-                          <Component id="jPanel13" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="58" max="-2" attributes="0"/>
+                          <Component id="jPanel15" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace pref="61" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -1131,7 +1142,7 @@
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="54" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="1" attributes="0">
-                              <Component id="jPanel13" min="-2" max="-2" attributes="0"/>
+                              <Component id="jPanel15" min="-2" max="-2" attributes="0"/>
                               <Group type="102" attributes="0">
                                   <Group type="103" groupAlignment="3" attributes="0">
                                       <Component id="noOfFORLOOP" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
@@ -1203,7 +1214,7 @@
                     <Property name="text" type="java.lang.String" value="No of While Loop"/>
                   </Properties>
                 </Component>
-                <Container class="javax.swing.JPanel" name="jPanel13">
+                <Container class="javax.swing.JPanel" name="jPanel15">
                   <Properties>
                     <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                       <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
@@ -1231,11 +1242,11 @@
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" alignment="0" attributes="0">
                                       <EmptySpace min="-2" pref="55" max="-2" attributes="0"/>
-                                      <Component id="jButton6" min="-2" pref="100" max="-2" attributes="0"/>
+                                      <Component id="jButton8" min="-2" pref="100" max="-2" attributes="0"/>
                                   </Group>
                                   <Group type="102" alignment="0" attributes="0">
                                       <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
-                                      <Component id="visualizeComboBox2" min="-2" pref="200" max="-2" attributes="0"/>
+                                      <Component id="visualizeComboBox4" min="-2" pref="200" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                               <EmptySpace pref="26" max="32767" attributes="0"/>
@@ -1246,16 +1257,16 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="visualizeComboBox2" min="-2" pref="30" max="-2" attributes="0"/>
+                              <Component id="visualizeComboBox4" min="-2" pref="30" max="-2" attributes="0"/>
                               <EmptySpace pref="13" max="32767" attributes="0"/>
-                              <Component id="jButton6" min="-2" pref="40" max="-2" attributes="0"/>
+                              <Component id="jButton8" min="-2" pref="40" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
                   </Layout>
                   <SubComponents>
-                    <Component class="javax.swing.JButton" name="jButton6">
+                    <Component class="javax.swing.JButton" name="jButton8">
                       <Properties>
                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                           <Font name="Tempus Sans ITC" size="14" style="1"/>
@@ -1263,29 +1274,35 @@
                         <Property name="text" type="java.lang.String" value="Show"/>
                       </Properties>
                       <Events>
-                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton6ActionPerformed"/>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton8ActionPerformed"/>
                       </Events>
                     </Component>
-                    <Component class="javax.swing.JComboBox" name="visualizeComboBox2">
+                    <Component class="javax.swing.JComboBox" name="visualizeComboBox4">
                       <Properties>
                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                           <Font name="Tempus Sans ITC" size="14" style="1"/>
                         </Property>
                         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                          <StringArray count="7">
-                            <StringItem index="0" value="3D Pie Chart"/>
-                            <StringItem index="1" value="3D Line Chart"/>
-                            <StringItem index="2" value="3D Stacked Bar Chart"/>
-                            <StringItem index="3" value="2D Stacked Area Chart"/>
+                          <StringArray count="13">
+                            <StringItem index="0" value="...............Select..............."/>
+                            <StringItem index="1" value="2D Bar Chart"/>
+                            <StringItem index="2" value="2D Pie Chart"/>
+                            <StringItem index="3" value="2D Line Chart"/>
                             <StringItem index="4" value="2D Waterfall Chart"/>
-                            <StringItem index="5" value="2D Dual Axis Chart"/>
-                            <StringItem index="6" value=" "/>
+                            <StringItem index="5" value="2D Dual Chart"/>
+                            <StringItem index="6" value="2D Area Chart"/>
+                            <StringItem index="7" value="2D Stack Area Chart"/>
+                            <StringItem index="8" value="2D Stack Bar Chart"/>
+                            <StringItem index="9" value="3D Bar Chart"/>
+                            <StringItem index="10" value="3D Pie Chart"/>
+                            <StringItem index="11" value="3D Line Chart"/>
+                            <StringItem index="12" value="3D Stack Bar Chart"/>
                           </StringArray>
                         </Property>
                       </Properties>
                       <Events>
-                        <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="visualizeComboBox2ItemStateChanged"/>
-                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="visualizeComboBox2ActionPerformed"/>
+                        <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="visualizeComboBox4ItemStateChanged"/>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="visualizeComboBox4ActionPerformed"/>
                       </Events>
                     </Component>
                   </SubComponents>
@@ -1337,19 +1354,28 @@
                               </Group>
                           </Group>
                           <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Component id="jLabel18" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace max="32767" attributes="0"/>
-                                  <Component id="noOfTryBlock" min="-2" pref="50" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="1" attributes="0">
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Component id="jLabel18" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace max="32767" attributes="0"/>
+                                      <Component id="noOfTryBlock" min="-2" pref="50" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" attributes="0">
+                                      <Component id="jLabel22" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
+                                      <Component id="noOfCatchBlocks" min="-2" pref="50" max="-2" attributes="0"/>
+                                  </Group>
                               </Group>
                               <Group type="102" attributes="0">
-                                  <Component id="jLabel22" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel29" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
-                                  <Component id="noOfCatchBlocks" min="-2" pref="50" max="-2" attributes="0"/>
+                                  <Component id="noOfFinallyBlocks" min="-2" pref="50" max="-2" attributes="0"/>
                               </Group>
                           </Group>
-                          <EmptySpace min="0" pref="295" max="32767" attributes="0"/>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Component id="jPanel18" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="0" pref="42" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -1357,33 +1383,40 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="noOfIFStatement" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
-                              <Component id="jLabel16" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jLabel18" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="noOfTryBlock" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="noOfElseStatement" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
-                              <Component id="jLabel20" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jLabel22" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="noOfCatchBlocks" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="noOfElseIfStatement" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
-                              <Component id="jLabel19" alignment="3" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="noOfSwitchStatement" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
-                              <Component id="jLabel17" alignment="3" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="noOfCases" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
-                              <Component id="jLabel21" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="jPanel18" min="-2" max="-2" attributes="0"/>
+                              <Group type="102" attributes="0">
+                                  <Group type="103" groupAlignment="3" attributes="0">
+                                      <Component id="noOfIFStatement" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                                      <Component id="jLabel16" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="jLabel18" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="noOfTryBlock" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="3" attributes="0">
+                                      <Component id="noOfElseStatement" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                                      <Component id="jLabel20" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="jLabel22" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="noOfCatchBlocks" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="3" attributes="0">
+                                      <Component id="noOfElseIfStatement" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                                      <Component id="jLabel19" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="jLabel29" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="noOfFinallyBlocks" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="3" attributes="0">
+                                      <Component id="noOfSwitchStatement" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                                      <Component id="jLabel17" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="3" attributes="0">
+                                      <Component id="noOfCases" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                                      <Component id="jLabel21" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
                           </Group>
                           <EmptySpace pref="33" max="32767" attributes="0"/>
                       </Group>
@@ -1482,6 +1515,112 @@
                     <Property name="text" type="java.lang.String" value="No of Catch Blocks"/>
                   </Properties>
                 </Component>
+                <Component class="javax.swing.JLabel" name="jLabel29">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="No of finally Blocks"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JTextField" name="noOfFinallyBlocks">
+                  <Properties>
+                    <Property name="editable" type="boolean" value="false"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="noOfFinallyBlocksActionPerformed"/>
+                  </Events>
+                </Component>
+                <Container class="javax.swing.JPanel" name="jPanel18">
+                  <Properties>
+                    <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                      <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
+                        <TitledBorder justification="2">
+                          <Border PropertyName="innerBorder" info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
+                            <TitledBorder title="Visualization">
+                              <Border PropertyName="innerBorder" info="org.netbeans.modules.form.compat2.border.MatteColorBorderInfo">
+                                <MatteColorBorder>
+                                  <Color PropertyName="color" blue="66" green="66" red="66" type="rgb"/>
+                                </MatteColorBorder>
+                              </Border>
+                              <Font PropertyName="font" name="Tempus Sans ITC" size="18" style="1"/>
+                            </TitledBorder>
+                          </Border>
+                          <Font PropertyName="font" name="Tempus Sans ITC" size="14" style="1"/>
+                        </TitledBorder>
+                      </Border>
+                    </Property>
+                  </Properties>
+
+                  <Layout>
+                    <DimensionLayout dim="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <EmptySpace min="-2" pref="55" max="-2" attributes="0"/>
+                                      <Component id="jButton9" min="-2" pref="100" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
+                                      <Component id="visualizeComboBox5" min="-2" pref="200" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
+                              <EmptySpace max="32767" attributes="0"/>
+                          </Group>
+                      </Group>
+                    </DimensionLayout>
+                    <DimensionLayout dim="1">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="visualizeComboBox5" min="-2" pref="30" max="-2" attributes="0"/>
+                              <EmptySpace pref="13" max="32767" attributes="0"/>
+                              <Component id="jButton9" min="-2" pref="40" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                    </DimensionLayout>
+                  </Layout>
+                  <SubComponents>
+                    <Component class="javax.swing.JButton" name="jButton9">
+                      <Properties>
+                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                          <Font name="Tempus Sans ITC" size="14" style="1"/>
+                        </Property>
+                        <Property name="text" type="java.lang.String" value="Show"/>
+                      </Properties>
+                      <Events>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton9ActionPerformed"/>
+                      </Events>
+                    </Component>
+                    <Component class="javax.swing.JComboBox" name="visualizeComboBox5">
+                      <Properties>
+                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                          <Font name="Tempus Sans ITC" size="14" style="1"/>
+                        </Property>
+                        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                          <StringArray count="13">
+                            <StringItem index="0" value="...............Select..............."/>
+                            <StringItem index="1" value="2D Bar Chart"/>
+                            <StringItem index="2" value="2D Pie Chart"/>
+                            <StringItem index="3" value="2D Line Chart"/>
+                            <StringItem index="4" value="2D Waterfall Chart"/>
+                            <StringItem index="5" value="2D Dual Chart"/>
+                            <StringItem index="6" value="2D Area Chart"/>
+                            <StringItem index="7" value="2D Stack Area Chart"/>
+                            <StringItem index="8" value="2D Stack Bar Chart"/>
+                            <StringItem index="9" value="3D Bar Chart"/>
+                            <StringItem index="10" value="3D Pie Chart"/>
+                            <StringItem index="11" value="3D Line Chart"/>
+                            <StringItem index="12" value="3D Stack Bar Chart"/>
+                          </StringArray>
+                        </Property>
+                      </Properties>
+                      <Events>
+                        <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="visualizeComboBox5ItemStateChanged"/>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="visualizeComboBox5ActionPerformed"/>
+                      </Events>
+                    </Component>
+                  </SubComponents>
+                </Container>
               </SubComponents>
             </Container>
           </SubComponents>

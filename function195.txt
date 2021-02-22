@@ -1,5 +1,9 @@
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
-       this.dispose();
-       new ChangePassword().setVisible(true);
-    }//GEN-LAST:event_jButton3ActionPerformed
+        chooser.addChoosableFileFilter(new FileNameExtensionFilter("Java files", "java"));
+        chooser.setAcceptAllFileFilterUsed(false);
+        int result = chooser.showOpenDialog(this);
+        if (result == JFileChooser.APPROVE_OPTION) {
+           File f = chooser.getSelectedFile();
+        fname = f.getAbsolutePath();
+        fileNametxt.setText(fname);
+        }
+    }

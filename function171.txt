@@ -1,3 +1,36 @@
-        setSize(new java.awt.Dimension(750, 590));
-        setLocationRelativeTo(null);
-    }// </editor-fold>//GEN-END:initComponents
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+                   countClicked=false;
+                     totalLOCtxt.setText(null);
+                     blankLinestxt.setText(null);
+                     commentedLinestxt.setText(null);
+                     physicalLinestxt.setText(null);//p
+                     logicalLinestxt.setText(null);//l
+                     openBracestxt.setText(null);
+                     closeBracestxt.setText(null);
+                     noOfINT.setText(null);
+                     noOfShortINT.setText(null);
+                     noOfLongINT.setText(null);
+                     noOfSTRING.setText(null);
+                     noOfDOUBLE.setText(null);
+                     noOfFLOAT.setText(null);
+                     noOfBOOL.setText(null);
+                     noOfCHAR.setText(null);
+                     classNametxt.setText(null);
+                     classStatustxt.setText(null);
+                     classCCtxt.setText(null);
+                     noOfChildClasstxt.setText(null);
+                     noOfParentClasstxt.setText(null);
+                     noOfIFStatement.setText(null);
+                     noOfSwitchStatement.setText(null);
+                     noOfTryBlock.setText(null);
+                     noOfFinallyBlocks.setText(null);
+                     noOfElseIfStatement.setText(null);
+                     noOfElseStatement.setText(null);
+                     noOfCases.setText(null);
+                     noOfCatchBlocks.setText(null);
+                     noOfFORLOOP.setText(null);
+                     noOfDOWHILELOOP.setText(null);
+                     noOfWHILELOOP.setText(null);
+                     fileNametxt.setText(null);  
+                     browse_file();
+    }//GEN-LAST:event_jButton3ActionPerformed

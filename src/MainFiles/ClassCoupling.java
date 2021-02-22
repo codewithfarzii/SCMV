@@ -61,7 +61,6 @@ public class ClassCoupling extends javax.swing.JFrame {
             }
         }
     }
- 
     public void readFileLineByLineForPRC(String Tfname,String SelectClassName,String Cfname) throws FileNotFoundException{
           
             listOfCBO.removeAll(listOfCBO);
@@ -97,7 +96,7 @@ public class ClassCoupling extends javax.swing.JFrame {
                 }
             }
     } 
-     public void countCBO(String selectedClassName,String TargetClassName){       
+    public void countCBO(String selectedClassName,String TargetClassName){       
          int count=0;
          for(String str:listOfCBO){
              System.out.println(str);

@@ -160,9 +160,9 @@ PreparedStatement pstm=null;
         jLabel23 = new javax.swing.JLabel();
         jLabel24 = new javax.swing.JLabel();
         jLabel25 = new javax.swing.JLabel();
-        jPanel13 = new javax.swing.JPanel();
-        jButton6 = new javax.swing.JButton();
-        visualizeComboBox2 = new javax.swing.JComboBox();
+        jPanel15 = new javax.swing.JPanel();
+        jButton8 = new javax.swing.JButton();
+        visualizeComboBox4 = new javax.swing.JComboBox();
         jPanel10 = new javax.swing.JPanel();
         noOfIFStatement = new javax.swing.JTextField();
         noOfSwitchStatement = new javax.swing.JTextField();
@@ -178,6 +178,11 @@ PreparedStatement pstm=null;
         jLabel20 = new javax.swing.JLabel();
         jLabel21 = new javax.swing.JLabel();
         jLabel22 = new javax.swing.JLabel();
+        jLabel29 = new javax.swing.JLabel();
+        noOfFinallyBlocks = new javax.swing.JTextField();
+        jPanel18 = new javax.swing.JPanel();
+        jButton9 = new javax.swing.JButton();
+        visualizeComboBox5 = new javax.swing.JComboBox();
         jButton3 = new javax.swing.JButton();
         header = new javax.swing.JPanel();
         jButton10 = new javax.swing.JButton();
@@ -374,12 +379,6 @@ PreparedStatement pstm=null;
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
-                .addGap(80, 80, 80)
-                .addComponent(jPanel16, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(47, 47, 47)
-                .addComponent(jPanel17, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(jPanel5Layout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel28)
@@ -387,24 +386,28 @@ PreparedStatement pstm=null;
                     .addComponent(jLabel27)
                     .addComponent(jLabel30, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(refactoringSuggestion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(classStatustxt, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(classCCtxt, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(classNametxt, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(50, 50, 50)
+                        .addGap(41, 41, 41)
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel33)
+                            .addComponent(jLabel32))
+                        .addGap(34, 34, 34)
                         .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel5Layout.createSequentialGroup()
-                                .addComponent(jLabel32)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
-                                .addComponent(noOfParentClasstxt, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel5Layout.createSequentialGroup()
-                                .addComponent(jLabel33)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(noOfChildClasstxt, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addGap(39, 39, 39))
+                            .addComponent(noOfParentClasstxt, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(noOfChildClasstxt, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(refactoringSuggestion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addGap(100, 100, 100)
+                .addComponent(jPanel16, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 69, Short.MAX_VALUE)
+                .addComponent(jPanel17, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(100, 100, 100))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -416,26 +419,27 @@ PreparedStatement pstm=null;
                         .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(classNametxt, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel32)
-                            .addComponent(noOfParentClasstxt, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(noOfParentClasstxt, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(15, 15, 15)
                         .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(classStatustxt, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel27)
                             .addComponent(jLabel33)
-                            .addComponent(noOfChildClasstxt, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(noOfChildClasstxt, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(15, 15, 15)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(classCCtxt, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel28))
-                .addGap(15, 15, 15)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel30)
-                    .addComponent(refactoringSuggestion, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(20, 20, 20)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel17, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel16, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(26, Short.MAX_VALUE))
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(classCCtxt, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel28))
+                        .addGap(15, 15, 15)
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel30)
+                            .addComponent(refactoringSuggestion, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(20, 20, 20)
+                        .addComponent(jPanel16, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jPanel17, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(16, Short.MAX_VALUE))
         );
 
         jPanel16.getAccessibleContext().setAccessibleName("Class Complexity Threshold Index");
@@ -516,7 +520,7 @@ PreparedStatement pstm=null;
         });
 
         visualizeComboBox.setFont(new java.awt.Font("Tempus Sans ITC", 1, 14)); // NOI18N
-        visualizeComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "3D Pie Chart", "3D Line Chart", "3D Stacked Bar Chart", "2D Stacked Area Chart", "2D Waterfall Chart", "2D Dual Axis Chart", " " }));
+        visualizeComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "...............Select...............", "2D Bar Chart", "2D Pie Chart", "2D Line Chart", "2D Waterfall Chart", "2D Dual Chart", "2D Area Chart", "2D Stack Area Chart", "2D Stack Bar Chart", "3D Bar Chart", "3D Pie Chart", "3D Line Chart", "3D Stack Bar Chart" }));
         visualizeComboBox.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 visualizeComboBoxItemStateChanged(evt);
@@ -704,7 +708,7 @@ PreparedStatement pstm=null;
         });
 
         visualizeComboBox1.setFont(new java.awt.Font("Tempus Sans ITC", 1, 14)); // NOI18N
-        visualizeComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "3D Pie Chart", "3D Line Chart", "3D Stacked Bar Chart", "2D Stacked Area Chart", "2D Waterfall Chart", "2D Dual Axis Chart", " " }));
+        visualizeComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "...............Select...............", "2D Bar Chart", "2D Pie Chart", "2D Line Chart", "2D Waterfall Chart", "2D Dual Chart", "2D Area Chart", "2D Stack Area Chart", "2D Stack Bar Chart", "3D Bar Chart", "3D Pie Chart", "3D Line Chart", "3D Stack Bar Chart" }));
         visualizeComboBox1.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 visualizeComboBox1ItemStateChanged(evt);
@@ -839,50 +843,50 @@ PreparedStatement pstm=null;
         jLabel25.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel25.setText("No of While Loop");
 
-        jPanel13.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(102, 102, 102)), "Visualization", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tempus Sans ITC", 1, 18)), "", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tempus Sans ITC", 1, 14))); // NOI18N
+        jPanel15.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(102, 102, 102)), "Visualization", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tempus Sans ITC", 1, 18)), "", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tempus Sans ITC", 1, 14))); // NOI18N
 
-        jButton6.setFont(new java.awt.Font("Tempus Sans ITC", 1, 14)); // NOI18N
-        jButton6.setText("Show");
-        jButton6.addActionListener(new java.awt.event.ActionListener() {
+        jButton8.setFont(new java.awt.Font("Tempus Sans ITC", 1, 14)); // NOI18N
+        jButton8.setText("Show");
+        jButton8.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton6ActionPerformed(evt);
+                jButton8ActionPerformed(evt);
             }
         });
 
-        visualizeComboBox2.setFont(new java.awt.Font("Tempus Sans ITC", 1, 14)); // NOI18N
-        visualizeComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "3D Pie Chart", "3D Line Chart", "3D Stacked Bar Chart", "2D Stacked Area Chart", "2D Waterfall Chart", "2D Dual Axis Chart", " " }));
-        visualizeComboBox2.addItemListener(new java.awt.event.ItemListener() {
+        visualizeComboBox4.setFont(new java.awt.Font("Tempus Sans ITC", 1, 14)); // NOI18N
+        visualizeComboBox4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "...............Select...............", "2D Bar Chart", "2D Pie Chart", "2D Line Chart", "2D Waterfall Chart", "2D Dual Chart", "2D Area Chart", "2D Stack Area Chart", "2D Stack Bar Chart", "3D Bar Chart", "3D Pie Chart", "3D Line Chart", "3D Stack Bar Chart" }));
+        visualizeComboBox4.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                visualizeComboBox2ItemStateChanged(evt);
+                visualizeComboBox4ItemStateChanged(evt);
             }
         });
-        visualizeComboBox2.addActionListener(new java.awt.event.ActionListener() {
+        visualizeComboBox4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                visualizeComboBox2ActionPerformed(evt);
+                visualizeComboBox4ActionPerformed(evt);
             }
         });
 
-        javax.swing.GroupLayout jPanel13Layout = new javax.swing.GroupLayout(jPanel13);
-        jPanel13.setLayout(jPanel13Layout);
-        jPanel13Layout.setHorizontalGroup(
-            jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel13Layout.createSequentialGroup()
-                .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel13Layout.createSequentialGroup()
+        javax.swing.GroupLayout jPanel15Layout = new javax.swing.GroupLayout(jPanel15);
+        jPanel15.setLayout(jPanel15Layout);
+        jPanel15Layout.setHorizontalGroup(
+            jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel15Layout.createSequentialGroup()
+                .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel15Layout.createSequentialGroup()
                         .addGap(55, 55, 55)
-                        .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel13Layout.createSequentialGroup()
+                        .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel15Layout.createSequentialGroup()
                         .addGap(15, 15, 15)
-                        .addComponent(visualizeComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(visualizeComboBox4, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(26, Short.MAX_VALUE))
         );
-        jPanel13Layout.setVerticalGroup(
-            jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel13Layout.createSequentialGroup()
+        jPanel15Layout.setVerticalGroup(
+            jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel15Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(visualizeComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(visualizeComboBox4, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
-                .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -901,16 +905,16 @@ PreparedStatement pstm=null;
                     .addComponent(noOfDOWHILELOOP, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(noOfWHILELOOP, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(noOfFORLOOP, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 61, Short.MAX_VALUE)
-                .addComponent(jPanel13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(58, 58, 58))
+                .addGap(58, 58, 58)
+                .addComponent(jPanel15, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(61, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addGap(54, 54, 54)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jPanel13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel15, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(noOfFORLOOP, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -991,6 +995,62 @@ PreparedStatement pstm=null;
 
         jLabel22.setText("No of Catch Blocks");
 
+        jLabel29.setText("No of finally Blocks");
+
+        noOfFinallyBlocks.setEditable(false);
+        noOfFinallyBlocks.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                noOfFinallyBlocksActionPerformed(evt);
+            }
+        });
+
+        jPanel18.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(102, 102, 102)), "Visualization", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tempus Sans ITC", 1, 18)), "", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tempus Sans ITC", 1, 14))); // NOI18N
+
+        jButton9.setFont(new java.awt.Font("Tempus Sans ITC", 1, 14)); // NOI18N
+        jButton9.setText("Show");
+        jButton9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton9ActionPerformed(evt);
+            }
+        });
+
+        visualizeComboBox5.setFont(new java.awt.Font("Tempus Sans ITC", 1, 14)); // NOI18N
+        visualizeComboBox5.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "...............Select...............", "2D Bar Chart", "2D Pie Chart", "2D Line Chart", "2D Waterfall Chart", "2D Dual Chart", "2D Area Chart", "2D Stack Area Chart", "2D Stack Bar Chart", "3D Bar Chart", "3D Pie Chart", "3D Line Chart", "3D Stack Bar Chart" }));
+        visualizeComboBox5.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                visualizeComboBox5ItemStateChanged(evt);
+            }
+        });
+        visualizeComboBox5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                visualizeComboBox5ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel18Layout = new javax.swing.GroupLayout(jPanel18);
+        jPanel18.setLayout(jPanel18Layout);
+        jPanel18Layout.setHorizontalGroup(
+            jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel18Layout.createSequentialGroup()
+                .addGroup(jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel18Layout.createSequentialGroup()
+                        .addGap(55, 55, 55)
+                        .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel18Layout.createSequentialGroup()
+                        .addGap(15, 15, 15)
+                        .addComponent(visualizeComboBox5, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel18Layout.setVerticalGroup(
+            jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel18Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(visualizeComboBox5, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
+                .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+
         javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
         jPanel10.setLayout(jPanel10Layout);
         jPanel10Layout.setHorizontalGroup(
@@ -1020,44 +1080,56 @@ PreparedStatement pstm=null;
                             .addGap(26, 26, 26)
                             .addComponent(noOfSwitchStatement, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(50, 50, 50)
-                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(jPanel10Layout.createSequentialGroup()
+                            .addComponent(jLabel18)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(noOfTryBlock, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanel10Layout.createSequentialGroup()
+                            .addComponent(jLabel22)
+                            .addGap(25, 25, 25)
+                            .addComponent(noOfCatchBlocks, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel10Layout.createSequentialGroup()
-                        .addComponent(jLabel18)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(noOfTryBlock, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel10Layout.createSequentialGroup()
-                        .addComponent(jLabel22)
+                        .addComponent(jLabel29)
                         .addGap(25, 25, 25)
-                        .addComponent(noOfCatchBlocks, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(0, 295, Short.MAX_VALUE))
+                        .addComponent(noOfFinallyBlocks, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(18, 18, 18)
+                .addComponent(jPanel18, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 42, Short.MAX_VALUE))
         );
         jPanel10Layout.setVerticalGroup(
             jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel10Layout.createSequentialGroup()
                 .addGap(40, 40, 40)
-                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(noOfIFStatement, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel16)
-                    .addComponent(jLabel18)
-                    .addComponent(noOfTryBlock, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(25, 25, 25)
-                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(noOfElseStatement, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel20)
-                    .addComponent(jLabel22)
-                    .addComponent(noOfCatchBlocks, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(25, 25, 25)
-                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(noOfElseIfStatement, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel19))
-                .addGap(25, 25, 25)
-                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(noOfSwitchStatement, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel17))
-                .addGap(25, 25, 25)
-                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(noOfCases, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel21))
+                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel18, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel10Layout.createSequentialGroup()
+                        .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(noOfIFStatement, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel16)
+                            .addComponent(jLabel18)
+                            .addComponent(noOfTryBlock, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(25, 25, 25)
+                        .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(noOfElseStatement, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel20)
+                            .addComponent(jLabel22)
+                            .addComponent(noOfCatchBlocks, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(25, 25, 25)
+                        .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(noOfElseIfStatement, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel19)
+                            .addComponent(jLabel29)
+                            .addComponent(noOfFinallyBlocks, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(25, 25, 25)
+                        .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(noOfSwitchStatement, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel17))
+                        .addGap(25, 25, 25)
+                        .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(noOfCases, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel21))))
                 .addContainerGap(33, Short.MAX_VALUE))
         );
 
@@ -1224,6 +1296,7 @@ PreparedStatement pstm=null;
             int catchno = 0;
             int swhno = 0;
             int caseno = 0;
+            int finallyno=0;
             int b_no = 0;
             int i_no = 0;
             int si_no = 0;
@@ -1270,17 +1343,30 @@ PreparedStatement pstm=null;
                       elineno++; 
             }
             if(str.contains("for")){               
-               if(calculateFOR(str))
-                   frno++;
+               frno=frno+calculateFOR(str);                   
             }
             if(str.contains("while")){               
-              if(calculateWHILE(str))
-                      whlno++;
+              whlno=whlno+calculateWHILE(str);
             }
             if(str.contains("do")){               
-               if(calculateDOWHILE(str))
-                   dono++;               
+               dono=dono+calculateDOWHILE(str);         
+            }
+            if(str.contains("switch")){               
+                swhno=swhno+calculateSWITCH(str);                            
+            }            
+            if(str.contains("case")){               
+               caseno=caseno+calculateCASE(str);               
             }  
+            if(str.contains("try")){               
+               tryno=tryno+calculateTRY(str);              
+            }  
+            if(str.contains("catch")){               
+               catchno=catchno+calculateCATCH(str);     
+            }  
+            if(str.contains("finally")){               
+               finallyno=finallyno+calculateFINALLY(str);            
+            }  
+            
                 boolean flag1 = true, flag2 = true;
                 StringTokenizer strTokens = new StringTokenizer(str);
                 while (strTokens.hasMoreTokens()) {
@@ -1359,19 +1445,7 @@ PreparedStatement pstm=null;
                      if (token.equalsIgnoreCase("?:")
                             ) {
                         trno++;
-                    } 
-                    if (token.contains("try")) {
-                        tryno++;
-                    }
-                    if (token.contains("catch")) {
-                        catchno++;
-                    }
-                    if (token.contains("switch")) {
-                        swhno++;
-                    }
-                    if (token.contains("case")) {
-                        caseno++;
-                    }
+                    }                     
                       if(token.contains("+")|
                             token.contains(".")|
                             token.contains("-")|
@@ -1548,23 +1622,16 @@ PreparedStatement pstm=null;
             noOfElseStatement.setText(Integer.toString(elseno));
             noOfCases.setText(Integer.toString(caseno));
             noOfCatchBlocks.setText(Integer.toString(catchno));
-                     //jTextField30.setText(Integer.toString(rows));
-                   // int rows = 30; 
-                    
-                    //System.out.print(rows+"/n");
-                      //DB insertion point
-                     //class_ifo 
+            noOfFinallyBlocks.setText(Integer.toString(finallyno));
+                     
             insertInLOCtbl(loc,elineno,commentno,ploc,lloc,openbrace,closebrace);
             insertInDATATYPEtbl(i_no,si_no,li_no,s_no,d_no,f_no,b_no,c_no);
             insertInLOOPtbl(frno,dono,whlno);
-                 
+            insertInCoditionalStatetbl(ifno,elseno,elseifno,swhno,caseno,tryno,catchno,finallyno);
+           
        } catch (Exception e) {
            System.out.print(e);
-       }
-                 
-                   
-                     
-                  
+       }         
         }catch (FileNotFoundException ex){
                 Logger.getLogger(BrowseJavaFile.class.getName()).log(Level.SEVERE, null, ex);
             } catch (IOException ex) {
@@ -1672,7 +1739,7 @@ PreparedStatement pstm=null;
     }//GEN-LAST:event_closeBracestxtActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-                   
+                   countClicked=false;
                      totalLOCtxt.setText(null);
                      blankLinestxt.setText(null);
                      commentedLinestxt.setText(null);
@@ -1693,6 +1760,17 @@ PreparedStatement pstm=null;
                      classCCtxt.setText(null);
                      noOfChildClasstxt.setText(null);
                      noOfParentClasstxt.setText(null);
+                     noOfIFStatement.setText(null);
+                     noOfSwitchStatement.setText(null);
+                     noOfTryBlock.setText(null);
+                     noOfFinallyBlocks.setText(null);
+                     noOfElseIfStatement.setText(null);
+                     noOfElseStatement.setText(null);
+                     noOfCases.setText(null);
+                     noOfCatchBlocks.setText(null);
+                     noOfFORLOOP.setText(null);
+                     noOfDOWHILELOOP.setText(null);
+                     noOfWHILELOOP.setText(null);
                      fileNametxt.setText(null);  
                      browse_file();
     }//GEN-LAST:event_jButton3ActionPerformed
@@ -1703,16 +1781,49 @@ PreparedStatement pstm=null;
         }
         else if(!countClicked)   {
             JOptionPane.showMessageDialog(null,"First Count Metrics!");
-        }else{
+        }
+        else{
+            if(visualizeComboBox.getSelectedItem().equals("...............Select...............")){
+                JOptionPane.showMessageDialog(null,"Please select a chart!");
+                return;
+            }           
             JavaFileCharts dt=new JavaFileCharts();
             if(visualizeComboBox.getSelectedItem().equals("2D Bar Chart")){
-//                DATA_TYPE dt= new  DATA_TYPE();
-//                dt.datatype2d_chart();   
+                dt.LOC2D_BarChart();
             }
-            else if(visualizeComboBox.getSelectedItem().equals("3D Pie Chart")){
-                dt.File3d_PieChart();
+            if(visualizeComboBox.getSelectedItem().equals("2D Pie Chart")){
+                 dt.LOC2D_PieChart();
             }
-            
+            if(visualizeComboBox.getSelectedItem().equals("2D Line Chart")){
+                dt.LOC2D_LineChart();
+            }
+            if(visualizeComboBox.getSelectedItem().equals("2D Waterfall Chart")){
+                dt.LOC2D_WaterfallChart();
+            }
+            if(visualizeComboBox.getSelectedItem().equals("2D Dual Chart")){
+                dt.LOC2D_DualChart();
+            }
+            if(visualizeComboBox.getSelectedItem().equals("2D Area Chart")){
+                dt.LOC2D_AreaChart();
+            }
+            if(visualizeComboBox.getSelectedItem().equals("2D Stack Area Chart")){
+                dt.LOC2D_StackAreaChart();
+            }
+            if(visualizeComboBox.getSelectedItem().equals("2D Stack Bar Chart")){
+                dt.LOC2D_StackBarChart();
+            }                    
+            if(visualizeComboBox.getSelectedItem().equals("3D Bar Chart")){
+                dt.LOC3D_BarChart();
+            }
+            if(visualizeComboBox.getSelectedItem().equals("3D Pie Chart")){
+                dt.LOC3D_PieChart();
+            }
+            if(visualizeComboBox.getSelectedItem().equals("3D Line Chart")){
+                dt.LOC3D_LineChart();
+            }
+            if(visualizeComboBox.getSelectedItem().equals("3D Stack Bar Chart")){
+                dt.LOC3D_StackBarChart();
+            }            
         }
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton4ActionPerformed
@@ -1726,7 +1837,55 @@ PreparedStatement pstm=null;
     }//GEN-LAST:event_visualizeComboBoxActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        // TODO add your handling code here:
+    if(fileNametxt.getText().isEmpty())   {
+            JOptionPane.showMessageDialog(null,"First Browse a File!");
+        }
+        else if(!countClicked)   {
+            JOptionPane.showMessageDialog(null,"First Count Metrics!");
+        }
+        else{
+            if(visualizeComboBox1.getSelectedItem().equals("...............Select...............")){
+                JOptionPane.showMessageDialog(null,"Please select a chart!");
+                return;
+            }           
+            JavaFileCharts dt=new JavaFileCharts();
+            if(visualizeComboBox1.getSelectedItem().equals("2D Bar Chart")){
+                dt.DT2D_BarChart();
+            }
+            if(visualizeComboBox1.getSelectedItem().equals("2D Pie Chart")){
+                 dt.DT2D_PieChart();
+            }
+            if(visualizeComboBox1.getSelectedItem().equals("2D Line Chart")){
+                dt.DT2D_LineChart();
+            }
+            if(visualizeComboBox1.getSelectedItem().equals("2D Waterfall Chart")){
+                dt.DT2D_WaterfallChart();
+            }
+            if(visualizeComboBox1.getSelectedItem().equals("2D Dual Chart")){
+                dt.DT2D_DualChart();
+            }
+            if(visualizeComboBox1.getSelectedItem().equals("2D Area Chart")){
+                dt.DT2D_AreaChart();
+            }
+            if(visualizeComboBox1.getSelectedItem().equals("2D Stack Area Chart")){
+                dt.DT2D_StackAreaChart();
+            }
+            if(visualizeComboBox1.getSelectedItem().equals("2D Stack Bar Chart")){
+                dt.DT2D_StackBarChart();
+            }                    
+            if(visualizeComboBox1.getSelectedItem().equals("3D Bar Chart")){
+                dt.DT3D_BarChart();
+            }
+            if(visualizeComboBox1.getSelectedItem().equals("3D Pie Chart")){
+                dt.DT3D_PieChart();
+            }
+            if(visualizeComboBox1.getSelectedItem().equals("3D Line Chart")){
+                dt.DT3D_LineChart();
+            }
+            if(visualizeComboBox1.getSelectedItem().equals("3D Stack Bar Chart")){
+                dt.DT3D_StackBarChart();
+            }            
+        }
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void visualizeComboBox1ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_visualizeComboBox1ItemStateChanged
@@ -1748,18 +1907,6 @@ PreparedStatement pstm=null;
     private void noOfWHILELOOPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_noOfWHILELOOPActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_noOfWHILELOOPActionPerformed
-
-    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton6ActionPerformed
-
-    private void visualizeComboBox2ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_visualizeComboBox2ItemStateChanged
-        // TODO add your handling code here:
-    }//GEN-LAST:event_visualizeComboBox2ItemStateChanged
-
-    private void visualizeComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_visualizeComboBox2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_visualizeComboBox2ActionPerformed
 
     private void noOfIFStatementActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_noOfIFStatementActionPerformed
         // TODO add your handling code here:
@@ -1788,6 +1935,130 @@ PreparedStatement pstm=null;
     private void noOfCatchBlocksActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_noOfCatchBlocksActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_noOfCatchBlocksActionPerformed
+
+    private void noOfFinallyBlocksActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_noOfFinallyBlocksActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_noOfFinallyBlocksActionPerformed
+
+    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
+         if(fileNametxt.getText().isEmpty())   {
+            JOptionPane.showMessageDialog(null,"First Browse a File!");
+        }
+        else if(!countClicked)   {
+            JOptionPane.showMessageDialog(null,"First Count Metrics!");
+        }
+        else{
+            if(visualizeComboBox4.getSelectedItem().equals("...............Select...............")){
+                JOptionPane.showMessageDialog(null,"Please select a chart!");
+                return;
+            }           
+            JavaFileCharts dt=new JavaFileCharts();
+            if(visualizeComboBox4.getSelectedItem().equals("2D Bar Chart")){
+                dt.LOOP2D_BarChart();
+            }
+            if(visualizeComboBox4.getSelectedItem().equals("2D Pie Chart")){
+                 dt.LOOP2D_PieChart();
+            }
+            if(visualizeComboBox4.getSelectedItem().equals("2D Line Chart")){
+                dt.LOOP2D_LineChart();
+            }
+            if(visualizeComboBox4.getSelectedItem().equals("2D Waterfall Chart")){
+                dt.LOOP2D_WaterfallChart();
+            }
+            if(visualizeComboBox4.getSelectedItem().equals("2D Dual Chart")){
+                dt.LOOP2D_DualChart();
+            }
+            if(visualizeComboBox4.getSelectedItem().equals("2D Area Chart")){
+                dt.LOOP2D_AreaChart();
+            }
+            if(visualizeComboBox4.getSelectedItem().equals("2D Stack Area Chart")){
+                dt.LOOP2D_StackAreaChart();
+            }
+            if(visualizeComboBox4.getSelectedItem().equals("2D Stack Bar Chart")){
+                dt.loop2d_StackBarchart();
+            }                    
+            if(visualizeComboBox4.getSelectedItem().equals("3D Bar Chart")){
+                dt.LOOP3D_BarChart();
+            }
+            if(visualizeComboBox4.getSelectedItem().equals("3D Pie Chart")){
+                dt.LOOP3D_PieChart();
+            }
+            if(visualizeComboBox4.getSelectedItem().equals("3D Line Chart")){
+                dt.LOOP2D_LineChart();
+            }
+            if(visualizeComboBox4.getSelectedItem().equals("3D Stack Bar Chart")){
+                dt.LOOP3D_StackBarChart();
+            }            
+        }
+    }//GEN-LAST:event_jButton8ActionPerformed
+
+    private void visualizeComboBox4ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_visualizeComboBox4ItemStateChanged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_visualizeComboBox4ItemStateChanged
+
+    private void visualizeComboBox4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_visualizeComboBox4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_visualizeComboBox4ActionPerformed
+
+    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
+       if(fileNametxt.getText().isEmpty())   {
+            JOptionPane.showMessageDialog(null,"First Browse a File!");
+        }
+        else if(!countClicked)   {
+            JOptionPane.showMessageDialog(null,"First Count Metrics!");
+        }
+        else{
+            if(visualizeComboBox5.getSelectedItem().equals("...............Select...............")){
+                JOptionPane.showMessageDialog(null,"Please select a chart!");
+                return;
+            }           
+            JavaFileCharts dt=new JavaFileCharts();
+            if(visualizeComboBox5.getSelectedItem().equals("2D Bar Chart")){
+                dt.CST2D_BarChart();
+            }
+            if(visualizeComboBox5.getSelectedItem().equals("2D Pie Chart")){
+                 dt.CST2D_PieChart();
+            }
+            if(visualizeComboBox5.getSelectedItem().equals("2D Line Chart")){
+                dt.CST2D_LineChart();
+            }
+            if(visualizeComboBox5.getSelectedItem().equals("2D Waterfall Chart")){
+                dt.CST2D_WaterfallChart();
+            }
+            if(visualizeComboBox5.getSelectedItem().equals("2D Dual Chart")){
+                dt.CST2D_DualChart();
+            }
+            if(visualizeComboBox5.getSelectedItem().equals("2D Area Chart")){
+                dt.CST2D_AreaChart();
+            }
+            if(visualizeComboBox5.getSelectedItem().equals("2D Stack Area Chart")){
+                dt.CST2D_StackAreaChart();
+            }
+            if(visualizeComboBox5.getSelectedItem().equals("2D Stack Bar Chart")){
+                dt.CST2D_StackBarChart();
+            }                    
+            if(visualizeComboBox5.getSelectedItem().equals("3D Bar Chart")){
+                dt.CST3D_BarChart();
+            }
+            if(visualizeComboBox5.getSelectedItem().equals("3D Pie Chart")){
+                dt.CST3D_PieChart();
+            }
+            if(visualizeComboBox5.getSelectedItem().equals("3D Line Chart")){
+                dt.CST2D_LineChart();
+            }
+            if(visualizeComboBox5.getSelectedItem().equals("3D Stack Bar Chart")){
+                dt.CST3D_StackBarChart();
+            }            
+        }
+    }//GEN-LAST:event_jButton9ActionPerformed
+
+    private void visualizeComboBox5ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_visualizeComboBox5ItemStateChanged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_visualizeComboBox5ItemStateChanged
+
+    private void visualizeComboBox5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_visualizeComboBox5ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_visualizeComboBox5ActionPerformed
 
     public void browse_file(){
         fname=null;
@@ -1832,6 +2103,7 @@ PreparedStatement pstm=null;
             }
 		return commentLines;
 	} 
+    
    // Conditional Statements Methods
     public int calculateIF() throws FileNotFoundException{
             int if_no=0;          
@@ -1846,6 +2118,7 @@ PreparedStatement pstm=null;
                         while(tk.hasMoreElements()){
                             String token=tk.nextToken();
                             if(token.contains("if")){
+                                
                                 StringTokenizer tk2= new StringTokenizer(token,"(");
                                 while(tk2.hasMoreElements()){
                                     String token2=tk2.nextToken();
@@ -1866,7 +2139,7 @@ PreparedStatement pstm=null;
                                                             String token5=tk5.nextToken();
                                                             if(token5.matches("if")){
                                                                 if_no++;
-                                                                System.out.println(token5);
+                                                                //System.out.println(token5);
                                                             }
                                                         }
                                                     }
@@ -1938,9 +2211,7 @@ PreparedStatement pstm=null;
             if(str.contains("else") || flag){
                 completeLine+=str;
                 if(str.contains ("{")){
-                    
-                
-                
+                                    
                 StringTokenizer tk= new StringTokenizer(completeLine,"}");
                 while(tk.hasMoreElements()){
                 String token=tk.nextToken();       
@@ -1990,17 +2261,219 @@ PreparedStatement pstm=null;
             }
             return else_if_no;
   }
-      
+    public int calculateSWITCH(String str){
+        int count=0;
+        StringTokenizer tk= new StringTokenizer(str);
+        
+         while(tk.hasMoreElements()){
+            String token=tk.nextToken();       
+            if(token.contains("switch")){                
+            StringTokenizer tk2= new StringTokenizer(token,"(");            
+            while(tk2.hasMoreElements()){
+            String token2=tk2.nextToken();
+            
+            if(token2.contains("switch")){           
+            StringTokenizer tk3= new StringTokenizer(token2,";");            
+            while(tk3.hasMoreElements()){
+            String token3=tk3.nextToken(); 
+            
+            if(token3.contains("switch")){
+            StringTokenizer tk4= new StringTokenizer(token3,"}"); 
+            while(tk4.hasMoreElements()){
+            String token4=tk4.nextToken(); 
+            
+            if(token4.contains("switch")){
+            StringTokenizer tk5= new StringTokenizer(token4,"/"); 
+            while(tk5.hasMoreElements()){
+            String token5=tk5.nextToken(); 
+            
+            if(token5.contains("switch")){
+            StringTokenizer tk6= new StringTokenizer(token5,"{"); 
+            while(tk6.hasMoreElements()){
+            String token6=tk6.nextToken();
+            
+            if(token6.matches("switch"))
+                 count++;
+                //System.out.println(token5);
+            } 
+            }
+            }
+            }
+            }
+            }
+            }
+            }
+            }
+            }
+        }
+         return count;
+   }       
+    public int calculateCASE(String str){
+       int count=0;
+        StringTokenizer tk= new StringTokenizer(str);
+        
+         while(tk.hasMoreElements()){
+            String token=tk.nextToken();       
+            if(token.contains("case")){                
+            StringTokenizer tk2= new StringTokenizer(token,"{");            
+            while(tk2.hasMoreElements()){
+            String token2=tk2.nextToken();
+            
+            if(token2.contains("case")){           
+            StringTokenizer tk3= new StringTokenizer(token2,";");            
+            while(tk3.hasMoreElements()){
+            String token3=tk3.nextToken(); 
+            
+            if(token3.contains("case")){
+            StringTokenizer tk4= new StringTokenizer(token3,"}"); 
+            while(tk4.hasMoreElements()){
+            String token4=tk4.nextToken(); 
+            
+            if(token4.contains("case")){
+            StringTokenizer tk5= new StringTokenizer(token4,"/"); 
+            while(tk5.hasMoreElements()){
+            String token5=tk5.nextToken(); 
+            if(token5.matches("case"))
+                 count++;
+                //System.out.println(token5);
+            } 
+            }
+            }
+            }
+            }
+            }
+            }
+            }
+            }            
+          return count;
+   }   
+    public int calculateTRY(String str){
+        int count=0;
+        StringTokenizer tk= new StringTokenizer(str);
+        
+         while(tk.hasMoreElements()){
+            String token=tk.nextToken();       
+            if(token.contains("try")){                
+            StringTokenizer tk2= new StringTokenizer(token,"{");            
+            while(tk2.hasMoreElements()){
+            String token2=tk2.nextToken();
+            
+            if(token2.contains("try")){           
+            StringTokenizer tk3= new StringTokenizer(token2,";");            
+            while(tk3.hasMoreElements()){
+            String token3=tk3.nextToken(); 
+            
+            if(token3.contains("try")){
+            StringTokenizer tk4= new StringTokenizer(token3,"}"); 
+            while(tk4.hasMoreElements()){
+            String token4=tk4.nextToken(); 
+            
+            if(token4.contains("try")){
+            StringTokenizer tk5= new StringTokenizer(token4,"/"); 
+            while(tk5.hasMoreElements()){
+            String token5=tk5.nextToken(); 
+            if(token5.matches("try"))
+                count++;
+                //System.out.println(token5);
+            } 
+            }
+            }
+            }
+            }
+            }
+            }
+            }
+        }
+         return count;
+   }   
+    public  int calculateCATCH(String str){
+        int count=0;
+        StringTokenizer tk= new StringTokenizer(str);
+        
+         while(tk.hasMoreElements()){
+            String token=tk.nextToken();       
+            if(token.contains("catch")){                
+            StringTokenizer tk2= new StringTokenizer(token,"(");            
+            while(tk2.hasMoreElements()){
+            String token2=tk2.nextToken();
+            
+            if(token2.contains("catch")){           
+            StringTokenizer tk3= new StringTokenizer(token2,";");            
+            while(tk3.hasMoreElements()){
+            String token3=tk3.nextToken(); 
+            
+            if(token3.contains("catch")){
+            StringTokenizer tk4= new StringTokenizer(token3,"}"); 
+            while(tk4.hasMoreElements()){
+            String token4=tk4.nextToken(); 
+            
+            if(token4.contains("catch")){
+            StringTokenizer tk5= new StringTokenizer(token4,"/"); 
+            while(tk5.hasMoreElements()){
+            String token5=tk5.nextToken(); 
+            if(token5.matches("catch"))
+                count++;
+                //System.out.println(token5);
+            } 
+            }
+            }
+            }
+            }
+            }
+            }
+            }
+        }
+          return count;
+   }   
+    public  int calculateFINALLY(String str){
+       int count=0;
+        StringTokenizer tk= new StringTokenizer(str);
+        
+         while(tk.hasMoreElements()){
+            String token=tk.nextToken();       
+            if(token.contains("finally")){                
+            StringTokenizer tk2= new StringTokenizer(token,"{");            
+            while(tk2.hasMoreElements()){
+            String token2=tk2.nextToken();
+            
+            if(token2.contains("finally")){           
+            StringTokenizer tk3= new StringTokenizer(token2,";");            
+            while(tk3.hasMoreElements()){
+            String token3=tk3.nextToken(); 
+            
+            if(token3.contains("finally")){
+            StringTokenizer tk4= new StringTokenizer(token3,"}"); 
+            while(tk4.hasMoreElements()){
+            String token4=tk4.nextToken(); 
+            
+            if(token4.contains("finally")){
+            StringTokenizer tk5= new StringTokenizer(token4,"/"); 
+            while(tk5.hasMoreElements()){
+            String token5=tk5.nextToken(); 
+            if(token5.matches("finally"))
+                count++;
+               // System.out.println(token5);
+            } 
+            }
+            }
+            }
+            }
+            }
+            }
+            }
+        }
+          return count;
+   }   
    
     //Loops Calculator Methods
-    public boolean calculateFOR(String str){
-        boolean flag=false;
+    public int calculateFOR(String str){        
+        int count=0;
         StringTokenizer tk= new StringTokenizer(str);
         while(tk.hasMoreElements()){
         String token=tk.nextToken(); 
             
             if(token.contains("for")){                
-            StringTokenizer tk2= new StringTokenizer(token,"(");            
+            StringTokenizer tk2= new StringTokenizer(token,"{");            
             while(tk2.hasMoreElements()){
             String token2=tk2.nextToken();
             
@@ -2018,8 +2491,14 @@ PreparedStatement pstm=null;
             StringTokenizer tk5= new StringTokenizer(token4,"/"); 
             while(tk5.hasMoreElements()){
             String token5=tk5.nextToken(); 
-            if(token5.matches("for"))
-              flag=true;
+            
+            if(token5.contains("for")){
+            StringTokenizer tk6= new StringTokenizer(token5,"("); 
+            while(tk6.hasMoreElements()){
+            String token6=tk6.nextToken(); 
+            
+            if(token6.matches("for"))
+             count++;
                 //System.out.println(token5);
             } 
             }
@@ -2029,17 +2508,19 @@ PreparedStatement pstm=null;
             }
             }
             }
+            }
+            }
         }
-       return flag;
+       return count;
    }
-    public boolean calculateWHILE(String str){
-        boolean flag=false;
+    public int calculateWHILE(String str){
+        int count=0;
             StringTokenizer tk= new StringTokenizer(str);
             while(tk.hasMoreElements()){
             String token=tk.nextToken(); 
             
             if(token.contains("while")){                
-            StringTokenizer tk2= new StringTokenizer(token,"(");            
+            StringTokenizer tk2= new StringTokenizer(token,"{");            
             while(tk2.hasMoreElements()){
             String token2=tk2.nextToken();
             
@@ -2056,9 +2537,15 @@ PreparedStatement pstm=null;
             if(token4.contains("while")){
             StringTokenizer tk5= new StringTokenizer(token4,"/"); 
             while(tk5.hasMoreElements()){
-            String token5=tk5.nextToken(); 
-            if(token5.matches("while"))
-                flag=true;
+            String token5=tk5.nextToken();
+            
+            if(token5.contains("while")){
+            StringTokenizer tk6= new StringTokenizer(token5,"("); 
+            while(tk6.hasMoreElements()){
+            String token6=tk6.nextToken();        
+            
+            if(token6.matches("while"))
+                count++;
               //  System.out.println(token5);
             } 
             }
@@ -2068,11 +2555,13 @@ PreparedStatement pstm=null;
             }
             }
             }
+            }
+            }
         }
-             return flag;     
-   }
-    public boolean calculateDOWHILE(String str){
-       boolean flag=false;
+             return count;     
+   }    
+    public int calculateDOWHILE(String str){
+       int count=0;
         StringTokenizer tk= new StringTokenizer(str);
         while(tk.hasMoreElements()){
         String token=tk.nextToken(); 
@@ -2097,7 +2586,7 @@ PreparedStatement pstm=null;
             while(tk5.hasMoreElements()){
             String token5=tk5.nextToken(); 
             if(token5.matches("do"))
-               flag=true;
+              count++
                // System.out.println(token5);
             } 
             }
@@ -2108,7 +2597,7 @@ PreparedStatement pstm=null;
             }
             }
         }
-        return flag;
+        return count;
    }
     
    // Data Base Inserting Methods
@@ -2120,6 +2609,8 @@ PreparedStatement pstm=null;
             pstm=con.prepareStatement("delete  from datatypetbl");
             pstm.executeUpdate();
             pstm=con.prepareStatement("delete  from looptbl");
+            pstm.executeUpdate();
+            pstm=con.prepareStatement("delete  from conditionalstatetbl");
             pstm.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(BrowseJavaFile.class.getName()).log(Level.SEVERE, null, ex);
@@ -2172,6 +2663,23 @@ PreparedStatement pstm=null;
     }
              
     }
+    public void insertInCoditionalStatetbl(int t_if,int t_else,int t_elseif,int t_switch,int t_case,int t_try,int t_catch,int t_finally){
+    String query= "INSERT INTO `conditionalstatetbl`(`total_if`, `total_else`, `total_else_if`, `total_switch`, `total_case`, `total_try`, `total_catch`, `total_finally`) VALUES (?,?,?,?,?,?,?,?);";
+    try {
+        pstm=con.prepareStatement(query);
+        pstm.setString(1,String.valueOf(t_if));
+        pstm.setString(2,String.valueOf(t_else));
+        pstm.setString(3,String.valueOf(t_elseif));
+        pstm.setString(4,String.valueOf(t_switch));
+        pstm.setString(5,String.valueOf(t_case));
+        pstm.setString(6,String.valueOf(t_try));
+        pstm.setString(7,String.valueOf(t_catch));
+        pstm.setString(8,String.valueOf(t_finally));
+        pstm.execute();
+    } catch (SQLException ex) {
+        Logger.getLogger(BrowseJavaFile.class.getName()).log(Level.SEVERE, null, ex);
+    }             
+    }  
     
     /**
      * @param args the command line arguments
@@ -2225,7 +2733,8 @@ PreparedStatement pstm=null;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
+    private javax.swing.JButton jButton8;
+    private javax.swing.JButton jButton9;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -2247,6 +2756,7 @@ PreparedStatement pstm=null;
     private javax.swing.JLabel jLabel26;
     private javax.swing.JLabel jLabel27;
     private javax.swing.JLabel jLabel28;
+    private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel30;
     private javax.swing.JLabel jLabel32;
@@ -2274,9 +2784,10 @@ PreparedStatement pstm=null;
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel11;
     private javax.swing.JPanel jPanel12;
-    private javax.swing.JPanel jPanel13;
+    private javax.swing.JPanel jPanel15;
     private javax.swing.JPanel jPanel16;
     private javax.swing.JPanel jPanel17;
+    private javax.swing.JPanel jPanel18;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
@@ -2295,6 +2806,7 @@ PreparedStatement pstm=null;
     private javax.swing.JTextField noOfElseStatement;
     private javax.swing.JTextField noOfFLOAT;
     private javax.swing.JTextField noOfFORLOOP;
+    private javax.swing.JTextField noOfFinallyBlocks;
     private javax.swing.JTextField noOfIFStatement;
     private javax.swing.JTextField noOfINT;
     private javax.swing.JTextField noOfLongINT;
@@ -2310,6 +2822,7 @@ PreparedStatement pstm=null;
     private javax.swing.JTextField totalLOCtxt;
     private javax.swing.JComboBox visualizeComboBox;
     private javax.swing.JComboBox visualizeComboBox1;
-    private javax.swing.JComboBox visualizeComboBox2;
+    private javax.swing.JComboBox visualizeComboBox4;
+    private javax.swing.JComboBox visualizeComboBox5;
     // End of variables declaration//GEN-END:variables
 }

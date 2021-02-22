@@ -1,4 +1,52 @@
-    private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
-      this.dispose();
-        new GoodBye().setVisible(true);
-    }//GEN-LAST:event_jButton10ActionPerformed
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        if(fileNametxt.getText().isEmpty())   {
+            JOptionPane.showMessageDialog(null,"First Browse a File!");
+        }
+        else if(!countClicked)   {
+            JOptionPane.showMessageDialog(null,"First Count Metrics!");
+        }
+        else{
+            if(visualizeComboBox.getSelectedItem().equals("...............Select...............")){
+                JOptionPane.showMessageDialog(null,"Please select a chart!");
+                return;
+            }           
+            JavaFileCharts dt=new JavaFileCharts();
+            if(visualizeComboBox.getSelectedItem().equals("2D Bar Chart")){
+                dt.LOC2D_BarChart();
+            }
+            if(visualizeComboBox.getSelectedItem().equals("2D Pie Chart")){
+                 dt.LOC2D_PieChart();
+            }
+            if(visualizeComboBox.getSelectedItem().equals("2D Line Chart")){
+                dt.LOC2D_LineChart();
+            }
+            if(visualizeComboBox.getSelectedItem().equals("2D Waterfall Chart")){
+                dt.LOC2D_WaterfallChart();
+            }
+            if(visualizeComboBox.getSelectedItem().equals("2D Dual Chart")){
+                dt.LOC2D_DualChart();
+            }
+            if(visualizeComboBox.getSelectedItem().equals("2D Area Chart")){
+                dt.LOC2D_AreaChart();
+            }
+            if(visualizeComboBox.getSelectedItem().equals("2D Stack Area Chart")){
+                dt.LOC2D_StackAreaChart();
+            }
+            if(visualizeComboBox.getSelectedItem().equals("2D Stack Bar Chart")){
+                dt.LOC2D_StackBarChart();
+            }                    
+            if(visualizeComboBox.getSelectedItem().equals("3D Bar Chart")){
+                dt.LOC3D_BarChart();
+            }
+            if(visualizeComboBox.getSelectedItem().equals("3D Pie Chart")){
+                dt.LOC3D_PieChart();
+            }
+            if(visualizeComboBox.getSelectedItem().equals("3D Line Chart")){
+                dt.LOC3D_LineChart();
+            }
+            if(visualizeComboBox.getSelectedItem().equals("3D Stack Bar Chart")){
+                dt.LOC3D_StackBarChart();
+            }            
+        }
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton4ActionPerformed

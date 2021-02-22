@@ -1,5 +1,3 @@
-        jLabel12.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel12MouseClicked(evt);
-            }
-        });
+        setSize(new java.awt.Dimension(360, 446));
+        setLocationRelativeTo(null);
+    }// </editor-fold>//GEN-END:initComponents

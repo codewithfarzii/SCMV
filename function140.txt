@@ -1,5 +1,8 @@
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
-            }
-        });
+                                    && !newToken.isEmpty(); j++) {
+                                if (newToken
+                                        .equalsIgnoreCase(allKeywords[j])) {
+                                    flag2 = false;
+                                    break;
+                                }
+                                
+                            }
