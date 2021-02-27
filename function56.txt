@@ -1,3 +1,5 @@
-        setSize(new java.awt.Dimension(360, 446));
-        setLocationRelativeTo(null);
-    }// </editor-fold>//GEN-END:initComponents
+        noOfDOUBLE.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                noOfDOUBLEActionPerformed(evt);
+            }
+        });

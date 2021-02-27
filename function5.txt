@@ -1,3 +1,11 @@
+        header.setForeground(new java.awt.Color(169, 224, 49));
+        header.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jButton10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icons8_Cancel_32px.png"))); // NOI18N
+        jButton10.setToolTipText("Close");
+        jButton10.setBorderPainted(false);
+        jButton10.setContentAreaFilled(false);
+        jButton10.setRequestFocusEnabled(false);
         jButton10.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icons8_Cancel_30px_3.png"))); // NOI18N
         jButton10.setVerifyInputWhenFocusTarget(false);
         jButton10.addActionListener(new java.awt.event.ActionListener() {
@@ -5,13 +13,12 @@
                 jButton10ActionPerformed(evt);
             }
         });
-        header.add(jButton10, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 0, 40, 40));
+        header.add(jButton10, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 0, 40, 40));
 
         jButton11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icons8_Minus_32px_1.png"))); // NOI18N
         jButton11.setToolTipText("Minimize");
         jButton11.setBorderPainted(false);
         jButton11.setContentAreaFilled(false);
-        jButton11.setFocusPainted(false);
         jButton11.setRequestFocusEnabled(false);
         jButton11.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icons8_Minus_30px_3.png"))); // NOI18N
         jButton11.setVerifyInputWhenFocusTarget(false);
@@ -25,133 +32,77 @@
                 jButton11ActionPerformed(evt);
             }
         });
-        header.add(jButton11, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 0, 40, 40));
+        header.add(jButton11, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 0, 40, 40));
 
         jLabel1.setFont(new java.awt.Font("Trebuchet MS", 1, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(169, 224, 49));
         jLabel1.setText(" SCMV");
-        header.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 220, 40));
+        header.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 310, 40));
 
-        signUpPanel.setBackground(new java.awt.Color(31, 36, 42));
-        signUpPanel.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(51, 255, 0)));
-        signUpPanel.setPreferredSize(new java.awt.Dimension(330, 535));
-        signUpPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel13.setFont(new java.awt.Font("Trebuchet MS", 1, 30)); // NOI18N
-        jLabel13.setForeground(new java.awt.Color(169, 224, 49));
-        jLabel13.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icons8_Lock_35px.png"))); // NOI18N
-        jLabel13.setText("Change Password");
-        signUpPanel.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 20, 360, 60));
-
-        jLabel14.setFont(new java.awt.Font("Trebuchet MS", 0, 16)); // NOI18N
-        jLabel14.setForeground(new java.awt.Color(169, 224, 49));
-        jLabel14.setText("Current Password");
-        signUpPanel.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 90, 150, 20));
-
-        jLabel16.setFont(new java.awt.Font("Trebuchet MS", 0, 16)); // NOI18N
-        jLabel16.setForeground(new java.awt.Color(169, 224, 49));
-        jLabel16.setText("New Password");
-        signUpPanel.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 160, 200, 20));
-
-        jLabel17.setFont(new java.awt.Font("Trebuchet MS", 0, 16)); // NOI18N
-        jLabel17.setForeground(new java.awt.Color(169, 224, 49));
-        jLabel17.setText("Confirm Password");
-        signUpPanel.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 230, 250, 20));
-
-        jButton14.setBackground(new java.awt.Color(204, 204, 204));
-        jButton14.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
-        jButton14.setForeground(new java.awt.Color(169, 224, 49));
-        jButton14.setText("Change Password");
-        jButton14.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(169, 224, 49), 1, true));
-        jButton14.setContentAreaFilled(false);
-        jButton14.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButton14.setRequestFocusEnabled(false);
-        jButton14.setVerifyInputWhenFocusTarget(false);
-        jButton14.addActionListener(new java.awt.event.ActionListener() {
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/back.png"))); // NOI18N
+        jButton2.setBorder(null);
+        jButton2.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/backRollOver.png"))); // NOI18N
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton14ActionPerformed(evt);
+                jButton2ActionPerformed(evt);
             }
         });
-        signUpPanel.add(jButton14, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 300, 180, 30));
 
-        jButton15.setBackground(new java.awt.Color(169, 224, 49));
-        jButton15.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
-        jButton15.setForeground(new java.awt.Color(169, 224, 49));
-        jButton15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icons8_Back_To_25px.png"))); // NOI18N
-        jButton15.setText("Back");
-        jButton15.setBorder(null);
-        jButton15.setContentAreaFilled(false);
-        jButton15.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButton15.setRequestFocusEnabled(false);
-        jButton15.setVerifyInputWhenFocusTarget(false);
-        jButton15.addActionListener(new java.awt.event.ActionListener() {
+        jLabel3.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
+        jLabel3.setText("Selected Java File:");
+
+        selectedFiletxt.setEditable(false);
+        selectedFiletxt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton15ActionPerformed(evt);
+                selectedFiletxtActionPerformed(evt);
             }
         });
-        signUpPanel.add(jButton15, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 340, 180, 30));
 
-        cPass.setBackground(new java.awt.Color(31, 36, 42));
-        cPass.setFont(new java.awt.Font("Trebuchet MS", 0, 24)); // NOI18N
-        cPass.setForeground(new java.awt.Color(255, 255, 255));
-        cPass.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(169, 224, 49)));
-        cPass.setCaretColor(new java.awt.Color(255, 255, 255));
-        cPass.setFocusCycleRoot(true);
-        cPass.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cPassActionPerformed(evt);
-            }
-        });
-        signUpPanel.add(cPass, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 110, 250, 40));
-
-        newPass.setBackground(new java.awt.Color(31, 36, 42));
-        newPass.setFont(new java.awt.Font("Trebuchet MS", 0, 24)); // NOI18N
-        newPass.setForeground(new java.awt.Color(255, 255, 255));
-        newPass.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(169, 224, 49)));
-        newPass.setCaretColor(new java.awt.Color(255, 255, 255));
-        newPass.setFocusCycleRoot(true);
-        signUpPanel.add(newPass, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 180, 250, 40));
-
-        conPass.setBackground(new java.awt.Color(31, 36, 42));
-        conPass.setFont(new java.awt.Font("Trebuchet MS", 0, 24)); // NOI18N
-        conPass.setForeground(new java.awt.Color(255, 255, 255));
-        conPass.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(169, 224, 49)));
-        conPass.setCaretColor(new java.awt.Color(255, 255, 255));
-        conPass.setFocusCycleRoot(true);
-        signUpPanel.add(conPass, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 250, 250, 40));
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(signUpPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(selectedFiletxt)
+                .addContainerGap())
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(signUpPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 406, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(selectedFiletxt, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(0, 10, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(header, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(header, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addContainerGap()
+                .addComponent(jTabbedPane1)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(header, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
-        setSize(new java.awt.Dimension(360, 446));
+        setSize(new java.awt.Dimension(750, 484));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents

@@ -1,3 +1,5 @@
-    private void cPassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cPassActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cPassActionPerformed
+        noOfCHAR.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                noOfCHARActionPerformed(evt);
+            }
+        });
