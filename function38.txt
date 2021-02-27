@@ -1,3 +1,4 @@
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                closeBracestxtActionPerformed(evt);
-            }
+    private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
+       this.dispose();
+        new GoodBye().setVisible(true);
+    }//GEN-LAST:event_jButton10ActionPerformed

@@ -1,13 +1,4 @@
-    public void insertInLOOPtbl(int t_for,int t_while,int t_do_while){
-             String query= "INSERT INTO `looptbl`(`total_for`, `total_while`, `total_do_while`)  VALUES (?,?,?);";
-    try {
-        pstm=con.prepareStatement(query);
-        pstm.setString(1,String.valueOf(t_for));
-        pstm.setString(2,String.valueOf(t_while));
-        pstm.setString(3,String.valueOf(t_do_while));
-        pstm.execute();
-    } catch (SQLException ex) {
-        Logger.getLogger(BrowseJavaFile.class.getName()).log(Level.SEVERE, null, ex);
-    }
-             
-    }
+    private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
+        this.dispose();
+        new GoodBye().setVisible(true);
+    }//GEN-LAST:event_jButton10ActionPerformed

@@ -1,5 +1,3 @@
-        jButton10.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton10ActionPerformed(evt);
+                openBracestxtActionPerformed(evt);
             }
-        });

@@ -1,3 +1,5 @@
-    private void noOfCHARActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_noOfCHARActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_noOfCHARActionPerformed
+        visualizeComboBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                visualizeComboBox1ActionPerformed(evt);
+            }
+        });

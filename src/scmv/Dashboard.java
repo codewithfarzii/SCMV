@@ -9,7 +9,10 @@ import ExternalJavaFiles.Database;
 import MainFiles.BrowseJavaFile;
 import MainFiles.BrowseJavaPackage;
 import com.sun.glass.events.KeyEvent;
+import java.awt.Color;
 import java.awt.Desktop;
+import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.HeadlessException;
 import java.awt.event.ActionEvent;
 import java.sql.Connection;
@@ -26,7 +29,15 @@ import java.awt.event.KeyListener;
 import java.io.File;
 import java.io.IOException;
 import javafx.scene.Scene;
+import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.KeyStroke;
+import javax.swing.SwingConstants;
+import javax.swing.UIManager;
+import javax.swing.border.Border;
+import javax.swing.border.LineBorder;
 
 /**
  *
@@ -1054,7 +1065,25 @@ PreparedStatement pstm=null;
     }//GEN-LAST:event_jLabel9MouseClicked
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-     int a=JOptionPane.showConfirmDialog(this, "Are You Sure You Want to Delete This Account!!!","Delete Account",JOptionPane.YES_NO_OPTION,JOptionPane.INFORMATION_MESSAGE);
+  //   int a=JOptionPane.showConfirmDialog(this, "Are You Sure You Want to Delete This Account!!!","Delete Account",JOptionPane.YES_NO_OPTION,JOptionPane.INFORMATION_MESSAGE);
+     ImageIcon icon = new ImageIcon("src/images/close.png");
+
+        JPanel panel = new JPanel();
+       Border blackline = BorderFactory.createLineBorder(Color.black);
+       panel.setBorder(blackline);
+        panel.setBackground(new Color(169,224,49));
+        panel.setSize(new Dimension(200, 64));
+        panel.setLayout(null);
+
+        JLabel label = new JLabel("Are you Sure You Delete this Account! ");
+        label.setBounds(0, 0, 200, 64);
+        label.setFont(new Font("Arial", Font.BOLD, 11));
+        label.setHorizontalAlignment(SwingConstants.CENTER);
+        panel.add(label);
+
+        UIManager.put("OptionPane.minimumSize",new Dimension(300, 120)); 
+        UIManager.put("RootPane.DialogBorder", new LineBorder(Color.black));
+       int a= JOptionPane.showConfirmDialog(null, panel, " Alert !", JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE);
      if(a==JOptionPane.YES_OPTION)  
      deleteAcc();
     }//GEN-LAST:event_jButton4ActionPerformed

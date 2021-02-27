@@ -1,5 +1,5 @@
-        visualizeComboBox5.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                visualizeComboBox5ItemStateChanged(evt);
+        totalLOCtxt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                totalLOCtxtActionPerformed(evt);
             }
         });

@@ -1,3 +1,7 @@
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                noOfINTActionPerformed(evt);
-            }
+               public boolean accept (File pathname){
+                   String st=pathname.getName();
+                   if(pathname.isDirectory()||st.endsWith(".java"))
+                return true;
+               else
+               return false;    
+               } });

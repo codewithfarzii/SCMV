@@ -1,3 +1,5 @@
-    private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
-
-    }//GEN-LAST:event_jButton11ActionPerformed
+        listOfFiles.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
+                listOfFilesValueChanged(evt);
+            }
+        });

@@ -7,14 +7,23 @@ package scmv;
 
 import ExternalJavaFiles.EmailValidator;
 import ExternalJavaFiles.Database;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.HeadlessException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.SwingConstants;
+import javax.swing.UIManager;
+import javax.swing.border.Border;
+import javax.swing.border.LineBorder;
 
 /**
  *
@@ -34,7 +43,25 @@ PreparedStatement pstm=null;
         Database db=new Database();
         con=db.openConnection();
         }catch(HeadlessException| SQLException e){
-            JOptionPane.showMessageDialog(null, "DB not connected");
+            //JOptionPane.showMessageDialog(null, "DB not connected");
+            ImageIcon icon = new ImageIcon("src/images/close.png");
+
+        JPanel panel = new JPanel();
+       Border blackline = BorderFactory.createLineBorder(Color.black);
+       panel.setBorder(blackline);
+        panel.setBackground(new Color(169,224,49));
+        panel.setSize(new Dimension(200, 64));
+        panel.setLayout(null);
+
+        JLabel label = new JLabel("Database Not Connected! ");
+        label.setBounds(0, 0, 200, 64);
+        label.setFont(new Font("Arial", Font.BOLD, 13));
+        label.setHorizontalAlignment(SwingConstants.CENTER);
+        panel.add(label);
+
+        UIManager.put("OptionPane.minimumSize",new Dimension(300, 120)); 
+        UIManager.put("RootPane.DialogBorder", new LineBorder(Color.black));
+        JOptionPane.showMessageDialog(null, panel, " Error !", JOptionPane.PLAIN_MESSAGE, icon);
         }
         // luserName.requestFocus();
       showLoginPanel();
@@ -520,11 +547,48 @@ PreparedStatement pstm=null;
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
           if(luserName.getText().isEmpty()){
-             JOptionPane.showMessageDialog(null, "Please Enter User Name!!!"); 
+            // JOptionPane.showMessageDialog(null, "Please Enter User Name!!!"); 
+             ImageIcon icon = new ImageIcon("src/images/close.png");
+
+        JPanel panel = new JPanel();
+       Border blackline = BorderFactory.createLineBorder(Color.black);
+       panel.setBorder(blackline);
+        panel.setBackground(new Color(169,224,49));
+        panel.setSize(new Dimension(200, 64));
+        panel.setLayout(null);
+
+        JLabel label = new JLabel("Please Enter Username! ");
+        label.setBounds(0, 0, 200, 64);
+        label.setFont(new Font("Arial", Font.BOLD, 13));
+        label.setHorizontalAlignment(SwingConstants.CENTER);
+        panel.add(label);
+
+        UIManager.put("OptionPane.minimumSize",new Dimension(300, 120)); 
+        UIManager.put("RootPane.DialogBorder", new LineBorder(Color.black));
+        JOptionPane.showMessageDialog(null, panel, " Alert !", JOptionPane.PLAIN_MESSAGE, icon);
              return;
        }
      if(luserPass.getText().isEmpty()){
-            JOptionPane.showMessageDialog(null, "Please Enter Password!!!");
+           // JOptionPane.showMessageDialog(null, "Please Enter Password!!!");
+             ImageIcon icon = new ImageIcon("src/images/close.png");
+
+        JPanel panel = new JPanel();
+       Border blackline = BorderFactory.createLineBorder(Color.black);
+       panel.setBorder(blackline);
+        panel.setBackground(new Color(169,224,49));
+        panel.setSize(new Dimension(200, 64));
+        panel.setLayout(null);
+
+        JLabel label = new JLabel("Please Enter Password! ");
+        label.setBounds(0, 0, 200, 64);
+        label.setFont(new Font("Arial", Font.BOLD, 13));
+        label.setHorizontalAlignment(SwingConstants.CENTER);
+        panel.add(label);
+
+        UIManager.put("OptionPane.minimumSize",new Dimension(300, 120)); 
+        UIManager.put("RootPane.DialogBorder", new LineBorder(Color.black));
+        JOptionPane.showMessageDialog(null, panel, " Alert !", JOptionPane.PLAIN_MESSAGE, icon);
+            
                   return;          
      }
        
@@ -550,7 +614,26 @@ PreparedStatement pstm=null;
              new Dashboard().setVisible(true);
              } 
             else{
-         JOptionPane.showMessageDialog(null,"Incorrect User Name or password!!!\nPlease Try Again with correct detail...");
+        // JOptionPane.showMessageDialog(null,"Incorrect User Name or password!!!\nPlease Try Again with correct detail...");
+         ImageIcon icon = new ImageIcon("src/images/close.png");
+
+        JPanel panel = new JPanel();
+       Border blackline = BorderFactory.createLineBorder(Color.black);
+       panel.setBorder(blackline);
+        panel.setBackground(new Color(169,224,49));
+        panel.setSize(new Dimension(200, 64));
+        panel.setLayout(null);
+
+        JLabel label = new JLabel("Invalid Username or Password! \nTry Again with Correct Details! ");
+        label.setBounds(0, 0, 200, 64);
+        label.setFont(new Font("Arial", Font.BOLD, 12));
+        label.setHorizontalAlignment(SwingConstants.CENTER);
+        panel.add(label);
+
+        UIManager.put("OptionPane.minimumSize",new Dimension(300, 120)); 
+        UIManager.put("RootPane.DialogBorder", new LineBorder(Color.black));
+        JOptionPane.showMessageDialog(null, panel, " Alert !", JOptionPane.PLAIN_MESSAGE, icon);
+            
          luserName.setText(null);
          luserPass.setText(null);
          }
@@ -584,19 +667,76 @@ PreparedStatement pstm=null;
        String uPass1=userPass1.getText();
        String uPass2=userPass2.getText();
       if(uName.isEmpty()|| uEmail.isEmpty()||uPass1.isEmpty()||uPass2.isEmpty()){
-             JOptionPane.showMessageDialog(null, "All Fields Must be Filled!!!");
+            // JOptionPane.showMessageDialog(null, "All Fields Must be Filled!!!");
+             ImageIcon icon = new ImageIcon("src/images/close.png");
+
+        JPanel panel = new JPanel();
+       Border blackline = BorderFactory.createLineBorder(Color.black);
+       panel.setBorder(blackline);
+        panel.setBackground(new Color(169,224,49));
+        panel.setSize(new Dimension(200, 64));
+        panel.setLayout(null);
+
+        JLabel label = new JLabel("All Fields Must be Filled! ");
+        label.setBounds(0, 0, 200, 64);
+        label.setFont(new Font("Arial", Font.BOLD, 13));
+        label.setHorizontalAlignment(SwingConstants.CENTER);
+        panel.add(label);
+
+        UIManager.put("OptionPane.minimumSize",new Dimension(300, 120)); 
+        UIManager.put("RootPane.DialogBorder", new LineBorder(Color.black));
+        JOptionPane.showMessageDialog(null, panel, " Alert !", JOptionPane.PLAIN_MESSAGE, icon);
+             
       }else{
        EmailValidator emailValidator = new EmailValidator();
  
        if(!emailValidator.validate(userEmail.getText().trim())) {
     
-           JOptionPane.showMessageDialog(null,"Invalid Email ID");   
+          // JOptionPane.showMessageDialog(null,"Invalid Email ID");
+            ImageIcon icon = new ImageIcon("src/images/close.png");
+
+        JPanel panel = new JPanel();
+       Border blackline = BorderFactory.createLineBorder(Color.black);
+       panel.setBorder(blackline);
+        panel.setBackground(new Color(169,224,49));
+        panel.setSize(new Dimension(200, 64));
+        panel.setLayout(null);
+
+        JLabel label = new JLabel("Invalid Email Address! ");
+        label.setBounds(0, 0, 200, 64);
+        label.setFont(new Font("Arial", Font.BOLD, 13));
+        label.setHorizontalAlignment(SwingConstants.CENTER);
+        panel.add(label);
+
+        UIManager.put("OptionPane.minimumSize",new Dimension(300, 120)); 
+        UIManager.put("RootPane.DialogBorder", new LineBorder(Color.black));
+        JOptionPane.showMessageDialog(null, panel, " Alert !", JOptionPane.PLAIN_MESSAGE, icon);
+            
         
     }else{
        if (uPass1.length()>=6){
            
             if(!uPass1.matches(uPass2)){
-            JOptionPane.showMessageDialog(null, "Password does not match!!!");
+           // JOptionPane.showMessageDialog(null, "Password does not match!!!");
+             ImageIcon icon = new ImageIcon("src/images/close.png");
+
+        JPanel panel = new JPanel();
+       Border blackline = BorderFactory.createLineBorder(Color.black);
+       panel.setBorder(blackline);
+        panel.setBackground(new Color(169,224,49));
+        panel.setSize(new Dimension(200, 64));
+        panel.setLayout(null);
+
+        JLabel label = new JLabel("Password does not Match! ");
+        label.setBounds(0, 0, 200, 64);
+        label.setFont(new Font("Arial", Font.BOLD, 13));
+        label.setHorizontalAlignment(SwingConstants.CENTER);
+        panel.add(label);
+
+        UIManager.put("OptionPane.minimumSize",new Dimension(300, 120)); 
+        UIManager.put("RootPane.DialogBorder", new LineBorder(Color.black));
+        JOptionPane.showMessageDialog(null, panel, " Alert !", JOptionPane.PLAIN_MESSAGE, icon);
+            
       }else{
           // sign_up user here
            try{
@@ -607,7 +747,26 @@ PreparedStatement pstm=null;
                 rs=pstm.executeQuery();
 
                   if(rs.next()){
-                         JOptionPane.showMessageDialog(null, "User Name is already in use!!!");
+                       //  JOptionPane.showMessageDialog(null, "User Name is already in use!!!");
+                          ImageIcon icon = new ImageIcon("src/images/close.png");
+
+        JPanel panel = new JPanel();
+       Border blackline = BorderFactory.createLineBorder(Color.black);
+       panel.setBorder(blackline);
+        panel.setBackground(new Color(169,224,49));
+        panel.setSize(new Dimension(200, 64));
+        panel.setLayout(null);
+
+        JLabel label = new JLabel("Username is Already Registred!");
+        label.setBounds(0, 0, 200, 64);
+        label.setFont(new Font("Arial", Font.BOLD, 13));
+        label.setHorizontalAlignment(SwingConstants.CENTER);
+        panel.add(label);
+
+        UIManager.put("OptionPane.minimumSize",new Dimension(300, 120)); 
+        UIManager.put("RootPane.DialogBorder", new LineBorder(Color.black));
+        JOptionPane.showMessageDialog(null, panel, " Alert !", JOptionPane.PLAIN_MESSAGE, icon);
+            
                          userName.setText(null);
                   }
                   else{
@@ -618,7 +777,25 @@ PreparedStatement pstm=null;
              pstm.setString(3,uPass1); 
              pstm.execute();
              
-             JOptionPane.showMessageDialog(null, "Account Created Successffully!!!\nNow Login");
+           //  JOptionPane.showMessageDialog(null, "Account Created Successffully!!!\nNow Login");
+             ImageIcon icon = new ImageIcon("src/images/check.png");
+
+        JPanel panel = new JPanel();
+       Border blackline = BorderFactory.createLineBorder(Color.black);
+       panel.setBorder(blackline);
+        panel.setBackground(new Color(169,224,49));
+        panel.setSize(new Dimension(200, 64));
+        panel.setLayout(null);
+
+        JLabel label = new JLabel("Account Created Successfully! ");
+        label.setBounds(0, 0, 200, 64);
+        label.setFont(new Font("Arial", Font.BOLD, 12));
+        label.setHorizontalAlignment(SwingConstants.CENTER);
+        panel.add(label);
+
+        UIManager.put("OptionPane.minimumSize",new Dimension(300, 120)); 
+        UIManager.put("RootPane.DialogBorder", new LineBorder(Color.black));
+        JOptionPane.showMessageDialog(null, panel, " Congrats !", JOptionPane.PLAIN_MESSAGE, icon);
              
            
           showLoginPanel();  
@@ -629,7 +806,26 @@ PreparedStatement pstm=null;
         }
        }
        }else{
-            JOptionPane.showMessageDialog(null, "Password must cotain 6 charaters!!!");
+           // JOptionPane.showMessageDialog(null, "Password must cotain 6 charaters!!!");
+            ImageIcon icon = new ImageIcon("src/images/close.png");
+
+        JPanel panel = new JPanel();
+       Border blackline = BorderFactory.createLineBorder(Color.black);
+       panel.setBorder(blackline);
+        panel.setBackground(new Color(169,224,49));
+        panel.setSize(new Dimension(200, 64));
+        panel.setLayout(null);
+
+        JLabel label = new JLabel("Password must Contain Six Characters! ");
+        label.setBounds(0, 0, 200, 64);
+        label.setFont(new Font("Arial", Font.BOLD, 11));
+        label.setHorizontalAlignment(SwingConstants.CENTER);
+        panel.add(label);
+
+        UIManager.put("OptionPane.minimumSize",new Dimension(300, 120)); 
+        UIManager.put("RootPane.DialogBorder", new LineBorder(Color.black));
+        JOptionPane.showMessageDialog(null, panel, " Alert !", JOptionPane.PLAIN_MESSAGE, icon);
+            
        }    
        }
       }                                      

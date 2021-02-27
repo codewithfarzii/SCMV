@@ -1,3 +1,11 @@
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                noOfCHARActionPerformed(evt);
+        jPanel12.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jPanel12MouseClicked(evt);
             }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jPanel12MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jPanel12MouseExited(evt);
+            }
+        });

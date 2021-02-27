@@ -1,12 +1,21 @@
-    public void countCBO(String selectedClassName,String TargetClassName){       
-         int count=0;
-         for(String str:listOfCBO){
-             System.out.println(str);
-             StringTokenizer tk1= new StringTokenizer(str,"=");
-             StringTokenizer tk= new StringTokenizer(tk1.nextToken(),",");
-             System.out.println(tk.countTokens());
-             count+=tk.countTokens();
-         }
-         System.out.println(count);
-         CBOmodel.addRow(new Object[]{selectedClassName,TargetClassName,count});         
-        }          
+          //  JOptionPane.showMessageDialog(null, "DB not connected");
+           ImageIcon icon = new ImageIcon("src/images/close.png");
+
+        JPanel panel = new JPanel();
+       Border blackline = BorderFactory.createLineBorder(Color.black);
+       panel.setBorder(blackline);
+        panel.setBackground(new Color(169,224,49));
+        panel.setSize(new Dimension(200, 64));
+        panel.setLayout(null);
+
+        JLabel label = new JLabel("Database not Connected! ");
+        label.setBounds(0, 0, 200, 64);
+        label.setFont(new Font("Arial", Font.BOLD, 13));
+        label.setHorizontalAlignment(SwingConstants.CENTER);
+        panel.add(label);
+
+        UIManager.put("OptionPane.minimumSize",new Dimension(300, 120)); 
+        UIManager.put("RootPane.DialogBorder", new LineBorder(Color.black));
+        JOptionPane.showMessageDialog(null, panel, " ALert !", JOptionPane.PLAIN_MESSAGE, icon);
+              
+        }

@@ -1,3 +1,5 @@
-    private void noOfShortINTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_noOfShortINTActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_noOfShortINTActionPerformed
+        jButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton7ActionPerformed(evt);
+            }
+        });

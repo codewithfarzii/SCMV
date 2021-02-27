@@ -6,6 +6,9 @@
 package MainFiles;
 
 import ExternalJavaFiles.Database;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.HeadlessException;
 import java.io.BufferedReader;
 import java.io.File;
@@ -25,8 +28,16 @@ import java.util.Scanner;
 import java.util.StringTokenizer;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.SwingConstants;
+import javax.swing.UIManager;
+import javax.swing.border.Border;
+import javax.swing.border.LineBorder;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableModel;
 import scmv.Dashboard;
@@ -57,7 +68,26 @@ PreparedStatement pstm=null;
            Database db=new Database();
            con=db.openConnection();
            }catch(HeadlessException| SQLException e){
-               JOptionPane.showMessageDialog(null, "DB not connected");
+              // JOptionPane.showMessageDialog(null, "DB not connected");
+               ImageIcon icon = new ImageIcon("src/images/close.png");
+
+        JPanel panel = new JPanel();
+       Border blackline = BorderFactory.createLineBorder(Color.black);
+       panel.setBorder(blackline);
+        panel.setBackground(new Color(169,224,49));
+        panel.setSize(new Dimension(200, 64));
+        panel.setLayout(null);
+
+        JLabel label = new JLabel("Database Not Connected! ");
+        label.setBounds(0, 0, 200, 64);
+        label.setFont(new Font("Arial", Font.BOLD, 12));
+        label.setHorizontalAlignment(SwingConstants.CENTER);
+        panel.add(label);
+
+        UIManager.put("OptionPane.minimumSize",new Dimension(300, 120)); 
+        UIManager.put("RootPane.DialogBorder", new LineBorder(Color.black));
+        JOptionPane.showMessageDialog(null, panel, " Alert !", JOptionPane.PLAIN_MESSAGE, icon);
+            
            }
     }
     
@@ -1247,7 +1277,26 @@ PreparedStatement pstm=null;
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
                                                                                  
         if(fileNametxt.getText().isEmpty()){
-                  JOptionPane.showMessageDialog(null,"First Browse a File!");
+                //  JOptionPane.showMessageDialog(null,"First Browse a File!");
+                 ImageIcon icon = new ImageIcon("src/images/close.png");
+
+        JPanel panel = new JPanel();
+       Border blackline = BorderFactory.createLineBorder(Color.black);
+       panel.setBorder(blackline);
+        panel.setBackground(new Color(169,224,49));
+        panel.setSize(new Dimension(200, 64));
+        panel.setLayout(null);
+
+        JLabel label = new JLabel("Browse a File First! ");
+        label.setBounds(0, 0, 200, 64);
+        label.setFont(new Font("Arial", Font.BOLD, 12));
+        label.setHorizontalAlignment(SwingConstants.CENTER);
+        panel.add(label);
+
+        UIManager.put("OptionPane.minimumSize",new Dimension(300, 120)); 
+        UIManager.put("RootPane.DialogBorder", new LineBorder(Color.black));
+        JOptionPane.showMessageDialog(null, panel, " Alert !", JOptionPane.PLAIN_MESSAGE, icon);
+              
         }else{ 
             clearDBtbl();           
             countClicked=true;
@@ -1777,15 +1826,72 @@ PreparedStatement pstm=null;
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         if(fileNametxt.getText().isEmpty())   {
-            JOptionPane.showMessageDialog(null,"First Browse a File!");
+         //   JOptionPane.showMessageDialog(null,"First Browse a File!");
+          ImageIcon icon = new ImageIcon("src/images/close.png");
+
+        JPanel panel = new JPanel();
+       Border blackline = BorderFactory.createLineBorder(Color.black);
+       panel.setBorder(blackline);
+        panel.setBackground(new Color(169,224,49));
+        panel.setSize(new Dimension(200, 64));
+        panel.setLayout(null);
+
+        JLabel label = new JLabel("Browse a File First! ");
+        label.setBounds(0, 0, 200, 64);
+        label.setFont(new Font("Arial", Font.BOLD, 12));
+        label.setHorizontalAlignment(SwingConstants.CENTER);
+        panel.add(label);
+
+        UIManager.put("OptionPane.minimumSize",new Dimension(300, 120)); 
+        UIManager.put("RootPane.DialogBorder", new LineBorder(Color.black));
+        JOptionPane.showMessageDialog(null, panel, " Alert !", JOptionPane.PLAIN_MESSAGE, icon);
+               
         }
         else if(!countClicked)   {
-            JOptionPane.showMessageDialog(null,"First Count Metrics!");
+          //  JOptionPane.showMessageDialog(null,"First Count Metrics!");
+           ImageIcon icon = new ImageIcon("src/images/close.png");
+
+        JPanel panel = new JPanel();
+       Border blackline = BorderFactory.createLineBorder(Color.black);
+       panel.setBorder(blackline);
+        panel.setBackground(new Color(169,224,49));
+        panel.setSize(new Dimension(200, 64));
+        panel.setLayout(null);
+
+        JLabel label = new JLabel("First Count Metrics!");
+        label.setBounds(0, 0, 200, 64);
+        label.setFont(new Font("Arial", Font.BOLD, 12));
+        label.setHorizontalAlignment(SwingConstants.CENTER);
+        panel.add(label);
+
+        UIManager.put("OptionPane.minimumSize",new Dimension(300, 120)); 
+        UIManager.put("RootPane.DialogBorder", new LineBorder(Color.black));
+        JOptionPane.showMessageDialog(null, panel, " Alert !", JOptionPane.PLAIN_MESSAGE, icon);
+            
         }
         else{
             if(visualizeComboBox.getSelectedItem().equals("...............Select...............")){
-                JOptionPane.showMessageDialog(null,"Please select a chart!");
-                return;
+              //  JOptionPane.showMessageDialog(null,"Please select a chart!");
+               ImageIcon icon = new ImageIcon("src/images/close.png");
+
+        JPanel panel = new JPanel();
+       Border blackline = BorderFactory.createLineBorder(Color.black);
+       panel.setBorder(blackline);
+        panel.setBackground(new Color(169,224,49));
+        panel.setSize(new Dimension(200, 64));
+        panel.setLayout(null);
+
+        JLabel label = new JLabel("Please Select a Chart!");
+        label.setBounds(0, 0, 200, 64);
+        label.setFont(new Font("Arial", Font.BOLD, 12));
+        label.setHorizontalAlignment(SwingConstants.CENTER);
+        panel.add(label);
+
+        UIManager.put("OptionPane.minimumSize",new Dimension(300, 120)); 
+        UIManager.put("RootPane.DialogBorder", new LineBorder(Color.black));
+        JOptionPane.showMessageDialog(null, panel, " Alert !", JOptionPane.PLAIN_MESSAGE, icon);
+             
+              return;
             }           
             JavaFileCharts dt=new JavaFileCharts();
             if(visualizeComboBox.getSelectedItem().equals("2D Bar Chart")){
@@ -1838,15 +1944,72 @@ PreparedStatement pstm=null;
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
     if(fileNametxt.getText().isEmpty())   {
-            JOptionPane.showMessageDialog(null,"First Browse a File!");
-        }
+         //   JOptionPane.showMessageDialog(null,"First Browse a File!");
+           ImageIcon icon = new ImageIcon("src/images/close.png");
+
+        JPanel panel = new JPanel();
+       Border blackline = BorderFactory.createLineBorder(Color.black);
+       panel.setBorder(blackline);
+        panel.setBackground(new Color(169,224,49));
+        panel.setSize(new Dimension(200, 64));
+        panel.setLayout(null);
+
+        JLabel label = new JLabel("First Browse a File! ");
+        label.setBounds(0, 0, 200, 64);
+        label.setFont(new Font("Arial", Font.BOLD, 12));
+        label.setHorizontalAlignment(SwingConstants.CENTER);
+        panel.add(label);
+
+        UIManager.put("OptionPane.minimumSize",new Dimension(300, 120)); 
+        UIManager.put("RootPane.DialogBorder", new LineBorder(Color.black));
+        JOptionPane.showMessageDialog(null, panel, " Alert !", JOptionPane.PLAIN_MESSAGE, icon);
+                
+    }
         else if(!countClicked)   {
-            JOptionPane.showMessageDialog(null,"First Count Metrics!");
+        //    JOptionPane.showMessageDialog(null,"First Count Metrics!");
+         ImageIcon icon = new ImageIcon("src/images/close.png");
+
+        JPanel panel = new JPanel();
+       Border blackline = BorderFactory.createLineBorder(Color.black);
+       panel.setBorder(blackline);
+        panel.setBackground(new Color(169,224,49));
+        panel.setSize(new Dimension(200, 64));
+        panel.setLayout(null);
+
+        JLabel label = new JLabel("First Count Metrics! ");
+        label.setBounds(0, 0, 200, 64);
+        label.setFont(new Font("Arial", Font.BOLD, 12));
+        label.setHorizontalAlignment(SwingConstants.CENTER);
+        panel.add(label);
+
+        UIManager.put("OptionPane.minimumSize",new Dimension(300, 120)); 
+        UIManager.put("RootPane.DialogBorder", new LineBorder(Color.black));
+        JOptionPane.showMessageDialog(null, panel, " Alert !", JOptionPane.PLAIN_MESSAGE, icon);
+            
         }
         else{
             if(visualizeComboBox1.getSelectedItem().equals("...............Select...............")){
-                JOptionPane.showMessageDialog(null,"Please select a chart!");
-                return;
+               // JOptionPane.showMessageDialog(null,"Please select a chart!");
+                ImageIcon icon = new ImageIcon("src/images/close.png");
+
+        JPanel panel = new JPanel();
+       Border blackline = BorderFactory.createLineBorder(Color.black);
+       panel.setBorder(blackline);
+        panel.setBackground(new Color(169,224,49));
+        panel.setSize(new Dimension(200, 64));
+        panel.setLayout(null);
+
+        JLabel label = new JLabel("Please Select a Chart! ");
+        label.setBounds(0, 0, 200, 64);
+        label.setFont(new Font("Arial", Font.BOLD, 12));
+        label.setHorizontalAlignment(SwingConstants.CENTER);
+        panel.add(label);
+
+        UIManager.put("OptionPane.minimumSize",new Dimension(300, 120)); 
+        UIManager.put("RootPane.DialogBorder", new LineBorder(Color.black));
+        JOptionPane.showMessageDialog(null, panel, " Alert !", JOptionPane.PLAIN_MESSAGE, icon);
+             
+               return;
             }           
             JavaFileCharts dt=new JavaFileCharts();
             if(visualizeComboBox1.getSelectedItem().equals("2D Bar Chart")){
@@ -1942,15 +2105,72 @@ PreparedStatement pstm=null;
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
          if(fileNametxt.getText().isEmpty())   {
-            JOptionPane.showMessageDialog(null,"First Browse a File!");
-        }
+          //  JOptionPane.showMessageDialog(null,"First Browse a File!");
+         ImageIcon icon = new ImageIcon("src/images/close.png");
+
+        JPanel panel = new JPanel();
+       Border blackline = BorderFactory.createLineBorder(Color.black);
+       panel.setBorder(blackline);
+        panel.setBackground(new Color(169,224,49));
+        panel.setSize(new Dimension(200, 64));
+        panel.setLayout(null);
+
+        JLabel label = new JLabel("Browse a File First! ");
+        label.setBounds(0, 0, 200, 64);
+        label.setFont(new Font("Arial", Font.BOLD, 12));
+        label.setHorizontalAlignment(SwingConstants.CENTER);
+        panel.add(label);
+
+        UIManager.put("OptionPane.minimumSize",new Dimension(300, 120)); 
+        UIManager.put("RootPane.DialogBorder", new LineBorder(Color.black));
+        JOptionPane.showMessageDialog(null, panel, " Alert !", JOptionPane.PLAIN_MESSAGE, icon);
+            
+         }
         else if(!countClicked)   {
-            JOptionPane.showMessageDialog(null,"First Count Metrics!");
+        //    JOptionPane.showMessageDialog(null,"First Count Metrics!");
+         ImageIcon icon = new ImageIcon("src/images/close.png");
+
+        JPanel panel = new JPanel();
+       Border blackline = BorderFactory.createLineBorder(Color.black);
+       panel.setBorder(blackline);
+        panel.setBackground(new Color(169,224,49));
+        panel.setSize(new Dimension(200, 64));
+        panel.setLayout(null);
+
+        JLabel label = new JLabel("Please Count Metrics! ");
+        label.setBounds(0, 0, 200, 64);
+        label.setFont(new Font("Arial", Font.BOLD, 12));
+        label.setHorizontalAlignment(SwingConstants.CENTER);
+        panel.add(label);
+
+        UIManager.put("OptionPane.minimumSize",new Dimension(300, 120)); 
+        UIManager.put("RootPane.DialogBorder", new LineBorder(Color.black));
+        JOptionPane.showMessageDialog(null, panel, " Alert !", JOptionPane.PLAIN_MESSAGE, icon);
+            
         }
         else{
             if(visualizeComboBox4.getSelectedItem().equals("...............Select...............")){
-                JOptionPane.showMessageDialog(null,"Please select a chart!");
-                return;
+               // JOptionPane.showMessageDialog(null,"Please select a chart!");
+                ImageIcon icon = new ImageIcon("src/images/close.png");
+
+        JPanel panel = new JPanel();
+       Border blackline = BorderFactory.createLineBorder(Color.black);
+       panel.setBorder(blackline);
+        panel.setBackground(new Color(169,224,49));
+        panel.setSize(new Dimension(200, 64));
+        panel.setLayout(null);
+
+        JLabel label = new JLabel("Please Select a Chart! ");
+        label.setBounds(0, 0, 200, 64);
+        label.setFont(new Font("Arial", Font.BOLD, 12));
+        label.setHorizontalAlignment(SwingConstants.CENTER);
+        panel.add(label);
+
+        UIManager.put("OptionPane.minimumSize",new Dimension(300, 120)); 
+        UIManager.put("RootPane.DialogBorder", new LineBorder(Color.black));
+        JOptionPane.showMessageDialog(null, panel, " Alert !", JOptionPane.PLAIN_MESSAGE, icon);
+             
+               return;
             }           
             JavaFileCharts dt=new JavaFileCharts();
             if(visualizeComboBox4.getSelectedItem().equals("2D Bar Chart")){
@@ -2002,15 +2222,72 @@ PreparedStatement pstm=null;
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
        if(fileNametxt.getText().isEmpty())   {
-            JOptionPane.showMessageDialog(null,"First Browse a File!");
+          //  JOptionPane.showMessageDialog(null,"First Browse a File!");
+           ImageIcon icon = new ImageIcon("src/images/close.png");
+
+        JPanel panel = new JPanel();
+       Border blackline = BorderFactory.createLineBorder(Color.black);
+       panel.setBorder(blackline);
+        panel.setBackground(new Color(169,224,49));
+        panel.setSize(new Dimension(200, 64));
+        panel.setLayout(null);
+
+        JLabel label = new JLabel("First Browse a File! ");
+        label.setBounds(0, 0, 200, 64);
+        label.setFont(new Font("Arial", Font.BOLD, 12));
+        label.setHorizontalAlignment(SwingConstants.CENTER);
+        panel.add(label);
+
+        UIManager.put("OptionPane.minimumSize",new Dimension(300, 120)); 
+        UIManager.put("RootPane.DialogBorder", new LineBorder(Color.black));
+        JOptionPane.showMessageDialog(null, panel, " Alert !", JOptionPane.PLAIN_MESSAGE, icon);
+            
         }
         else if(!countClicked)   {
-            JOptionPane.showMessageDialog(null,"First Count Metrics!");
+           // JOptionPane.showMessageDialog(null,"First Count Metrics!");
+            ImageIcon icon = new ImageIcon("src/images/close.png");
+
+        JPanel panel = new JPanel();
+       Border blackline = BorderFactory.createLineBorder(Color.black);
+       panel.setBorder(blackline);
+        panel.setBackground(new Color(169,224,49));
+        panel.setSize(new Dimension(200, 64));
+        panel.setLayout(null);
+
+        JLabel label = new JLabel("Please Count Metrics! ");
+        label.setBounds(0, 0, 200, 64);
+        label.setFont(new Font("Arial", Font.BOLD, 12));
+        label.setHorizontalAlignment(SwingConstants.CENTER);
+        panel.add(label);
+
+        UIManager.put("OptionPane.minimumSize",new Dimension(300, 120)); 
+        UIManager.put("RootPane.DialogBorder", new LineBorder(Color.black));
+        JOptionPane.showMessageDialog(null, panel, " Alert !", JOptionPane.PLAIN_MESSAGE, icon);
+            
         }
         else{
             if(visualizeComboBox5.getSelectedItem().equals("...............Select...............")){
-                JOptionPane.showMessageDialog(null,"Please select a chart!");
-                return;
+             //   JOptionPane.showMessageDialog(null,"Please select a chart!");
+              ImageIcon icon = new ImageIcon("src/images/close.png");
+
+        JPanel panel = new JPanel();
+       Border blackline = BorderFactory.createLineBorder(Color.black);
+       panel.setBorder(blackline);
+        panel.setBackground(new Color(169,224,49));
+        panel.setSize(new Dimension(200, 64));
+        panel.setLayout(null);
+
+        JLabel label = new JLabel("Please Select a Chart! ");
+        label.setBounds(0, 0, 200, 64);
+        label.setFont(new Font("Arial", Font.BOLD, 12));
+        label.setHorizontalAlignment(SwingConstants.CENTER);
+        panel.add(label);
+
+        UIManager.put("OptionPane.minimumSize",new Dimension(300, 120)); 
+        UIManager.put("RootPane.DialogBorder", new LineBorder(Color.black));
+        JOptionPane.showMessageDialog(null, panel, " Alert !", JOptionPane.PLAIN_MESSAGE, icon);
+             
+             return;
             }           
             JavaFileCharts dt=new JavaFileCharts();
             if(visualizeComboBox5.getSelectedItem().equals("2D Bar Chart")){

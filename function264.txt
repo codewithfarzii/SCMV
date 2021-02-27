@@ -1,3 +1,3 @@
-    private void noOfElseIfStatementActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_noOfElseIfStatementActionPerformed
+    private void visualizeComboBox4ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_visualizeComboBox4ItemStateChanged
         // TODO add your handling code here:
-    }//GEN-LAST:event_noOfElseIfStatementActionPerformed
+    }//GEN-LAST:event_visualizeComboBox4ItemStateChanged

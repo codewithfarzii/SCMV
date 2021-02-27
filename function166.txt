@@ -1,3 +1,5 @@
-    private void commentedLinestxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_commentedLinestxtActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_commentedLinestxtActionPerformed
+        noOfFORLOOP.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                noOfFORLOOPActionPerformed(evt);
+            }
+        });

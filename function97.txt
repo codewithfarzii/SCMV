@@ -1,5 +1,3 @@
-        noOfElseIfStatement.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                noOfElseIfStatementActionPerformed(evt);
+                classStatustxtActionPerformed(evt);
             }
-        });

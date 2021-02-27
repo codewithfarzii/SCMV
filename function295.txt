@@ -1,15 +1,14 @@
-    public void insertInCoditionalStatetbl(int t_if,int t_else,int t_elseif,int t_switch,int t_case,int t_try,int t_catch,int t_finally){
-    String query= "INSERT INTO `conditionalstatetbl`(`total_if`, `total_else`, `total_else_if`, `total_switch`, `total_case`, `total_try`, `total_catch`, `total_finally`) VALUES (?,?,?,?,?,?,?,?);";
+    String query= "    INSERT INTO `datatypetbl`(`total_int`, `total_short_int`, `total_long_int`, `total_string`, `total_double`, `total_float`, `total_bool`, `total_char`) VALUES (?,?,?,?,?,?,?,?);";
     try {
         pstm=con.prepareStatement(query);
-        pstm.setString(1,String.valueOf(t_if));
-        pstm.setString(2,String.valueOf(t_else));
-        pstm.setString(3,String.valueOf(t_elseif));
-        pstm.setString(4,String.valueOf(t_switch));
-        pstm.setString(5,String.valueOf(t_case));
-        pstm.setString(6,String.valueOf(t_try));
-        pstm.setString(7,String.valueOf(t_catch));
-        pstm.setString(8,String.valueOf(t_finally));
+        pstm.setString(1,String.valueOf(t_int));
+        pstm.setString(2,String.valueOf(t_shortint));
+        pstm.setString(3,String.valueOf(t_longint));
+        pstm.setString(4,String.valueOf(t_string));
+        pstm.setString(5,String.valueOf(t_double));
+        pstm.setString(6,String.valueOf(t_float));
+        pstm.setString(7,String.valueOf(t_bool));
+        pstm.setString(8,String.valueOf(t_char));
         pstm.execute();
     } catch (SQLException ex) {
         Logger.getLogger(BrowseJavaFile.class.getName()).log(Level.SEVERE, null, ex);

@@ -1,3 +1,16 @@
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
-            }
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+         ClearTables();
+         m.removeAllElements();
+         listOfFiles.removeAll();
+         packageNameTxt.setText(null);
+         noOfFiles.setText(null);
+         
+         // select Java package              
+          JFileChooser  chooser = new JFileChooser();
+          chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+          chooser.showOpenDialog(this);
+          File f = chooser.getCurrentDirectory();
+          selectedPackageName= chooser.getSelectedFile().getAbsolutePath();      
+          selectJavaPackage();
+          insertClassNameToDB();
+    }//GEN-LAST:event_jButton1ActionPerformed

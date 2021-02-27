@@ -1,3 +1,15 @@
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                visualizeComboBoxActionPerformed(evt);
-            }
+     public static String extractFileName( String filePathName ){
+    if ( filePathName == null )
+      return null;
+
+    int dotPos = filePathName.lastIndexOf( '.' );
+    int slashPos = filePathName.lastIndexOf( '\\' );
+    if ( slashPos == -1 )
+      slashPos = filePathName.lastIndexOf( '/' );
+    if ( dotPos > slashPos )
+    {
+      return filePathName.substring( slashPos > 0 ? slashPos + 1 : 0,
+          dotPos );
+    }
+    return filePathName.substring( slashPos > 0 ? slashPos + 1 : 0 );  
+  }

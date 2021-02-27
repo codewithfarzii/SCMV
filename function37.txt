@@ -1,5 +1,3 @@
-        closeBracestxt.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                closeBracestxtActionPerformed(evt);
-            }
-        });
+        setSize(new java.awt.Dimension(750, 540));
+        setLocationRelativeTo(null);
+    }// </editor-fold>//GEN-END:initComponents

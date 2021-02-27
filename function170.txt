@@ -1,3 +1,5 @@
-    private void closeBracestxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_closeBracestxtActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_closeBracestxtActionPerformed
+        noOfWHILELOOP.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                noOfWHILELOOPActionPerformed(evt);
+            }
+        });

@@ -1,3 +1,5 @@
-        setSize(new java.awt.Dimension(750, 529));
-        setLocationRelativeTo(null);
-    }// </editor-fold>//GEN-END:initComponents
+        visualizeComboBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                visualizeComboBoxActionPerformed(evt);
+            }
+        });

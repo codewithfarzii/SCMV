@@ -1,3 +1,5 @@
-    private void logicalLinestxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logicalLinestxtActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_logicalLinestxtActionPerformed
+        noOfDOWHILELOOP.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                noOfDOWHILELOOPActionPerformed(evt);
+            }
+        });

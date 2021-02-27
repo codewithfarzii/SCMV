@@ -1,3 +1,5 @@
-    private void noOfElseIfStatementActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_noOfElseIfStatementActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_noOfElseIfStatementActionPerformed
+        noOfIFStatement.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                noOfIFStatementActionPerformed(evt);
+            }
+        });

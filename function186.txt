@@ -1,3 +1,5 @@
-    private void noOfCasesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_noOfCasesActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_noOfCasesActionPerformed
+        noOfSwitchStatement.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                noOfSwitchStatementActionPerformed(evt);
+            }
+        });

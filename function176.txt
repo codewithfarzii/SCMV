@@ -1,3 +1,5 @@
-    private void visualizeComboBox1ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_visualizeComboBox1ItemStateChanged
-        // TODO add your handling code here:
-    }//GEN-LAST:event_visualizeComboBox1ItemStateChanged
+        jButton8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton8ActionPerformed(evt);
+            }
+        });

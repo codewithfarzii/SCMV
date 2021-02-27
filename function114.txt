@@ -1,5 +1,5 @@
-        visualizeComboBox5.addActionListener(new java.awt.event.ActionListener() {
+        blankLinestxt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                visualizeComboBox5ActionPerformed(evt);
+                blankLinestxtActionPerformed(evt);
             }
         });

@@ -1,3 +1,3 @@
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                noOfSTRINGActionPerformed(evt);
+            public void run() {
+                new BrowseJavaPackage().setVisible(true);
             }

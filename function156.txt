@@ -1,3 +1,5 @@
-    private void noOfFLOATActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_noOfFLOATActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_noOfFLOATActionPerformed
+        visualizeComboBox1.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                visualizeComboBox1ItemStateChanged(evt);
+            }
+        });

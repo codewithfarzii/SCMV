@@ -1,4 +1,3 @@
-     public void setlocVis(boolean b){
-        locSelected.setVisible(b);
-       locPanel.setVisible(b);
-    }
+    private void noOfFinallyBlocksActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_noOfFinallyBlocksActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_noOfFinallyBlocksActionPerformed
