@@ -441,55 +441,6 @@ public JavaFileCharts(){
                           hy.setVisible(true);
                            hy.setSize(900,500);
        }           
-        public void LOC2D_RingChart() {
-                  DefaultPieDataset dfgg= new DefaultPieDataset();
-                          dfgg.setValue("LOC",loc);
-                          dfgg.setValue("Commented lines",cline);
-                          dfgg.setValue("Blank lines",bline);
-                          dfgg.setValue("Logical lines",lline);
-                          dfgg.setValue("Physical lines",pline);
-                          dfgg.setValue("Open Braces",obrace);
-                          dfgg.setValue("Closes Braces",cbrace); 
-                         JFreeChart jfc= ChartFactory.createRingChart("LOC 2D Ring Chart", dfgg, true, true, false);
-                          PiePlot plot = (PiePlot)jfc.getPlot();
-                            PieSectionLabelGenerator gen = new StandardPieSectionLabelGenerator("{0}: {1} ({2})", new DecimalFormat("0"), new DecimalFormat("0%"));
-              plot.setLabelGenerator(gen);
-              plot.setExplodePercent(i, 0.10);
-              plot.setLabelFont(new Font("SansSerif", Font.PLAIN, 12));
-              plot.setNoDataMessage("No data available");
-              plot.setCircular(false);
-              plot.setLabelGap(0.02);
-                          ChartFrame hy;
-                      hy = new ChartFrame("2D Ring Chart Visualization of LOC",jfc);
-                          hy.setVisible(true);
-                           hy.setSize(900,500);                    
-       }
-        public void LOC2D_BubbleChart() {
-                    DefaultXYZDataset defaultxyzdataset = new DefaultXYZDataset(); 
-                      double s1[] = {loc,cline};
-                      double s2[] = {bline,lline};
-                      double s3[] = {pline,obrace};
-                      double ss[][] = {s1,s2,s3};
-                     defaultxyzdataset.addSeries("series 1", ss);
-
-                         JFreeChart jfc= ChartFactory.createBubbleChart("LOC 2D Bubble Chart", "LOC", "LOC",defaultxyzdataset , PlotOrientation.VERTICAL, true, true, true);
-                          XYPlot plot = jfc.getXYPlot();
-                          plot.setForegroundAlpha( 0.65F );                 
-                      XYItemRenderer xyitemrenderer = plot.getRenderer( );
-                      xyitemrenderer.setSeriesPaint( 0 , Color.blue );                 
-                      NumberAxis numberaxis = ( NumberAxis )plot.getDomainAxis( );                 
-                      numberaxis.setLowerMargin( 0.2 );                 
-                      numberaxis.setUpperMargin( 0.5 );                 
-                      NumberAxis numberaxis1 = ( NumberAxis )plot.getRangeAxis( );                 
-                      numberaxis1.setLowerMargin( 0.8 );                 
-                      numberaxis1.setUpperMargin( 0.9 );
-                          plot.setRangeGridlinePaint(Color.CYAN);
-                          plot.setNoDataMessage("No data available");
-                          ChartFrame hy;
-                      hy = new ChartFrame("2D Bubble Chart Visualization of LOC",jfc);
-                          hy.setVisible(true);
-                          hy.setSize(900,500);
-       }
         
                     // Data Types 2D Charts
         public void DT2D_PieChart(){
