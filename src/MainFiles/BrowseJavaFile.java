@@ -2586,7 +2586,7 @@ PreparedStatement pstm=null;
             while(tk5.hasMoreElements()){
             String token5=tk5.nextToken(); 
             if(token5.matches("do"))
-              count++
+              count++;
                // System.out.println(token5);
             } 
             }

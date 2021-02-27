@@ -25,7 +25,7 @@ public class SignInUp extends javax.swing.JFrame {
     /**
      * Creates new form SignInUp
      */
-    Connection con=null;
+Connection con=null;
 ResultSet rs=null;
 PreparedStatement pstm=null;
     public SignInUp() {
