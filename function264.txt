@@ -1,39 +1,14 @@
-    public int calculateDOWHILE(String str){
-       int count=0;
-        StringTokenizer tk= new StringTokenizer(str);
-        while(tk.hasMoreElements()){
-        String token=tk.nextToken(); 
+        panel.setSize(new Dimension(200, 64));
+        panel.setLayout(null);
+
+        JLabel label = new JLabel("Please Count Metrics! ");
+        label.setBounds(0, 0, 200, 64);
+        label.setFont(new Font("Arial", Font.BOLD, 12));
+        label.setHorizontalAlignment(SwingConstants.CENTER);
+        panel.add(label);
+
+        UIManager.put("OptionPane.minimumSize",new Dimension(300, 120)); 
+        UIManager.put("RootPane.DialogBorder", new LineBorder(Color.black));
+        JOptionPane.showMessageDialog(null, panel, " Alert !", JOptionPane.PLAIN_MESSAGE, icon);
             
-            if(token.contains("do")){                
-            StringTokenizer tk2= new StringTokenizer(token,"{");            
-            while(tk2.hasMoreElements()){
-            String token2=tk2.nextToken();
-            
-            if(token2.contains("do")){           
-            StringTokenizer tk3= new StringTokenizer(token2,";");            
-            while(tk3.hasMoreElements()){
-            String token3=tk3.nextToken(); 
-            
-            if(token3.contains("do")){
-            StringTokenizer tk4= new StringTokenizer(token3,"}"); 
-            while(tk4.hasMoreElements()){
-            String token4=tk4.nextToken(); 
-            
-            if(token4.contains("do")){
-            StringTokenizer tk5= new StringTokenizer(token4,"/"); 
-            while(tk5.hasMoreElements()){
-            String token5=tk5.nextToken(); 
-            if(token5.matches("do"))
-              count++;
-               // System.out.println(token5);
-            } 
-            }
-            }
-            }
-            }
-            }
-            }
-            }
         }
-        return count;
-   }

@@ -1,5 +1,3 @@
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Dashboard().setVisible(true);
-            }
-        });
+    private void logicalLinestxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logicalLinestxtActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_logicalLinestxtActionPerformed

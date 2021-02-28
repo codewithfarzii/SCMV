@@ -1,3 +1,5 @@
+        noOfFLOATV.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton7ActionPerformed(evt);
+                noOfFLOATVActionPerformed(evt);
             }
+        });

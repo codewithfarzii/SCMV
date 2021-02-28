@@ -1,7 +1,8 @@
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        defaultVisibilites();
-        setAboutVis(false);
-        setUserIdentity();
-        userInfoPanel.setVisible(true);
-
-    }//GEN-LAST:event_jButton1ActionPerformed
+                                    && !newToken.isEmpty(); j++) {
+                                if (newToken
+                                        .equalsIgnoreCase(allKeywords[j])) {
+                                    flag2 = false;
+                                    break;
+                                }
+                                
+                            }

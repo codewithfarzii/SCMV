@@ -1,4 +1,3 @@
-    private void jLabel6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel6MouseClicked
-        defaultVisibilites();
-         setHomePanelVis(true);  
-    }//GEN-LAST:event_jLabel6MouseClicked
+    private void noOfCHARActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_noOfCHARActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_noOfCHARActionPerformed

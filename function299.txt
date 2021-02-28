@@ -1,12 +1,9 @@
-             String query= "INSERT INTO `looptbl`(`total_for`, `total_while`, `total_do_while`)  VALUES (?,?,?);";
-    try {
-        pstm=con.prepareStatement(query);
-        pstm.setString(1,String.valueOf(t_for));
-        pstm.setString(2,String.valueOf(t_while));
-        pstm.setString(3,String.valueOf(t_do_while));
-        pstm.execute();
-    } catch (SQLException ex) {
-        Logger.getLogger(BrowseJavaFile.class.getName()).log(Level.SEVERE, null, ex);
-    }
-             
+        chooser.addChoosableFileFilter(new FileNameExtensionFilter("Java files", "java"));
+        chooser.setAcceptAllFileFilterUsed(false);
+        int result = chooser.showOpenDialog(this);
+        if (result == JFileChooser.APPROVE_OPTION) {
+           File f = chooser.getSelectedFile();
+        fname = f.getAbsolutePath();
+        fileNametxt.setText(fname);
+        }
     }

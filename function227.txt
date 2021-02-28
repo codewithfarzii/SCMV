@@ -1,7 +1,7 @@
         panel.setSize(new Dimension(200, 64));
         panel.setLayout(null);
 
-        JLabel label = new JLabel("Please Count Metrics! ");
+        JLabel label = new JLabel("Please Select a Chart!");
         label.setBounds(0, 0, 200, 64);
         label.setFont(new Font("Arial", Font.BOLD, 12));
         label.setHorizontalAlignment(SwingConstants.CENTER);
@@ -10,5 +10,6 @@
         UIManager.put("OptionPane.minimumSize",new Dimension(300, 120)); 
         UIManager.put("RootPane.DialogBorder", new LineBorder(Color.black));
         JOptionPane.showMessageDialog(null, panel, " Alert !", JOptionPane.PLAIN_MESSAGE, icon);
-            
-        }
+             
+              return;
+            }           

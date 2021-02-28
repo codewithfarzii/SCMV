@@ -1,4 +1,3 @@
-    private void formKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyPressed
+    private void classNametxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_classNametxtActionPerformed
         // TODO add your handling code here:
-          System.out.println(evt.getKeyCode());
-    }//GEN-LAST:event_formKeyPressed
+    }//GEN-LAST:event_classNametxtActionPerformed

@@ -1,7 +1,3 @@
-    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-       try {
-            Desktop.getDesktop().open(new File("Resource/documentation.pdf"));
-        } catch (IOException ex) {
-            Logger.getLogger(Dashboard.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }//GEN-LAST:event_jButton7ActionPerformed
+    private void classStatustxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_classStatustxtActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_classStatustxtActionPerformed

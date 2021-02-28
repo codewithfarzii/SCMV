@@ -1,4 +1,3 @@
-    private void jLabel9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel9MouseClicked
-        defaultVisibilites();
-        setAccountPanelVis(true);
-    }//GEN-LAST:event_jLabel9MouseClicked
+    private void noOfINTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_noOfINTActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_noOfINTActionPerformed

@@ -1,28 +1,53 @@
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
+     public int INT_calculate(String str){
+        
+       int count=0;
+        StringTokenizer tk= new StringTokenizer(str);
+        
+         while(tk.hasMoreElements()){
+            String token=tk.nextToken();       
+            if(token.contains("int")){                
+            StringTokenizer tk2= new StringTokenizer(token,";");            
+            while(tk2.hasMoreElements()){
+            String token2=tk2.nextToken();
+            
+            if(token2.contains("int")){           
+            StringTokenizer tk3= new StringTokenizer(token2,"(");            
+            while(tk3.hasMoreElements()){
+            String token3=tk3.nextToken(); 
+            
+            if(token3.contains("int")){
+            StringTokenizer tk4= new StringTokenizer(token3,"{"); 
+            while(tk4.hasMoreElements()){
+            String token4=tk4.nextToken(); 
+            
+            if(token4.contains("int")){
+            StringTokenizer tk5= new StringTokenizer(token4,"}"); 
+            while(tk5.hasMoreElements()){
+            String token5=tk5.nextToken(); 
+            
+            if(token5.contains("int")){
+            StringTokenizer tk6= new StringTokenizer(token5,","); 
+            while(tk6.hasMoreElements()){
+            String token6=tk6.nextToken(); 
+            
+            if(token6.contains("int")){
+            StringTokenizer tk7= new StringTokenizer(token6,"*/"); 
+            while(tk7.hasMoreElements()){
+            String token7=tk7.nextToken(); 
+                if(token7.matches("int"))                  
+                    count++;           
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(JavaPackageMetrics.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(JavaPackageMetrics.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(JavaPackageMetrics.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(JavaPackageMetrics.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            }            
+            }
+            }
+            } 
+            }
+            }
+            }
+            }
+            }
+            }
+            }
         }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new JavaPackageMetrics().setVisible(true);
-            }
-        });
-    }
+          return count;
+   }

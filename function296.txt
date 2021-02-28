@@ -1,17 +1,3 @@
-    public void insertInLOCtbl(int loc,int bline,int cline,int pline,int lline,int obrace,int cbrace){
-             String query= "INSERT INTO `loctbl`(`loc`, `bLines`, `cLines`, `pLines`, `lLines`, `oBraces`, `cBraces`) VALUES (?,?,?,?,?,?,?);";
-    try {
-        pstm=con.prepareStatement(query);
-        pstm.setString(1,String.valueOf(loc));
-        pstm.setString(2,String.valueOf(bline));
-        pstm.setString(3,String.valueOf(cline));
-        pstm.setString(4,String.valueOf(pline));
-        pstm.setString(5,String.valueOf(lline));
-        pstm.setString(6,String.valueOf(obrace));
-        pstm.setString(7,String.valueOf(cbrace));
-        pstm.execute();
-    } catch (SQLException ex) {
-        Logger.getLogger(BrowseJavaFile.class.getName()).log(Level.SEVERE, null, ex);
-    }
-             
-    }
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton6ActionPerformed

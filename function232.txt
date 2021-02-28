@@ -1,3 +1,62 @@
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+    if(fileNametxt.getText().isEmpty())   {
+         //   JOptionPane.showMessageDialog(null,"First Browse a File!");
+           ImageIcon icon = new ImageIcon("src/images/close.png");
+
+        JPanel panel = new JPanel();
+       Border blackline = BorderFactory.createLineBorder(Color.black);
+       panel.setBorder(blackline);
+        panel.setBackground(new Color(169,224,49));
+        panel.setSize(new Dimension(200, 64));
+        panel.setLayout(null);
+
+        JLabel label = new JLabel("First Browse a File! ");
+        label.setBounds(0, 0, 200, 64);
+        label.setFont(new Font("Arial", Font.BOLD, 12));
+        label.setHorizontalAlignment(SwingConstants.CENTER);
+        panel.add(label);
+
+        UIManager.put("OptionPane.minimumSize",new Dimension(300, 120)); 
+        UIManager.put("RootPane.DialogBorder", new LineBorder(Color.black));
+        JOptionPane.showMessageDialog(null, panel, " Alert !", JOptionPane.PLAIN_MESSAGE, icon);
+                
+    }
+        else if(!countClicked)   {
+        //    JOptionPane.showMessageDialog(null,"First Count Metrics!");
+         ImageIcon icon = new ImageIcon("src/images/close.png");
+
+        JPanel panel = new JPanel();
+       Border blackline = BorderFactory.createLineBorder(Color.black);
+       panel.setBorder(blackline);
+        panel.setBackground(new Color(169,224,49));
+        panel.setSize(new Dimension(200, 64));
+        panel.setLayout(null);
+
+        JLabel label = new JLabel("First Count Metrics! ");
+        label.setBounds(0, 0, 200, 64);
+        label.setFont(new Font("Arial", Font.BOLD, 12));
+        label.setHorizontalAlignment(SwingConstants.CENTER);
+        panel.add(label);
+
+        UIManager.put("OptionPane.minimumSize",new Dimension(300, 120)); 
+        UIManager.put("RootPane.DialogBorder", new LineBorder(Color.black));
+        JOptionPane.showMessageDialog(null, panel, " Alert !", JOptionPane.PLAIN_MESSAGE, icon);
+            
+        }
+        else{
+            if(visualizeComboBox1.getSelectedItem().equals("...............Select...............")){
+               // JOptionPane.showMessageDialog(null,"Please select a chart!");
+                ImageIcon icon = new ImageIcon("src/images/close.png");
+
+        JPanel panel = new JPanel();
+       Border blackline = BorderFactory.createLineBorder(Color.black);
+       panel.setBorder(blackline);
+        panel.setBackground(new Color(169,224,49));
+        panel.setSize(new Dimension(200, 64));
+        panel.setLayout(null);
+
+        JLabel label = new JLabel("Please Select a Chart! ");
+        label.setBounds(0, 0, 200, 64);
         label.setFont(new Font("Arial", Font.BOLD, 12));
         label.setHorizontalAlignment(SwingConstants.CENTER);
         panel.add(label);
@@ -8,3 +67,42 @@
              
                return;
             }           
+            JavaFileCharts dt=new JavaFileCharts();
+            if(visualizeComboBox1.getSelectedItem().equals("2D Bar Chart")){
+                dt.DT2D_BarChart();
+            }
+            if(visualizeComboBox1.getSelectedItem().equals("2D Pie Chart")){
+                 dt.DT2D_PieChart();
+            }
+            if(visualizeComboBox1.getSelectedItem().equals("2D Line Chart")){
+                dt.DT2D_LineChart();
+            }
+            if(visualizeComboBox1.getSelectedItem().equals("2D Waterfall Chart")){
+                dt.DT2D_WaterfallChart();
+            }
+            if(visualizeComboBox1.getSelectedItem().equals("2D Dual Chart")){
+                dt.DT2D_DualChart();
+            }
+            if(visualizeComboBox1.getSelectedItem().equals("2D Area Chart")){
+                dt.DT2D_AreaChart();
+            }
+            if(visualizeComboBox1.getSelectedItem().equals("2D Stack Area Chart")){
+                dt.DT2D_StackAreaChart();
+            }
+            if(visualizeComboBox1.getSelectedItem().equals("2D Stack Bar Chart")){
+                dt.DT2D_StackBarChart();
+            }                    
+            if(visualizeComboBox1.getSelectedItem().equals("3D Bar Chart")){
+                dt.DT3D_BarChart();
+            }
+            if(visualizeComboBox1.getSelectedItem().equals("3D Pie Chart")){
+                dt.DT3D_PieChart();
+            }
+            if(visualizeComboBox1.getSelectedItem().equals("3D Line Chart")){
+                dt.DT3D_LineChart();
+            }
+            if(visualizeComboBox1.getSelectedItem().equals("3D Stack Bar Chart")){
+                dt.DT3D_StackBarChart();
+            }            
+        }
+    }//GEN-LAST:event_jButton5ActionPerformed

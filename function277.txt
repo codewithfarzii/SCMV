@@ -1,6 +1,5 @@
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new BrowseJavaFile().setVisible(true);
-                
-            }
-        });
+        UIManager.put("OptionPane.minimumSize",new Dimension(300, 120)); 
+        UIManager.put("RootPane.DialogBorder", new LineBorder(Color.black));
+        JOptionPane.showMessageDialog(null, panel, " Alert !", JOptionPane.PLAIN_MESSAGE, icon);
+            
+        }

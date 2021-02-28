@@ -1,5 +1,5 @@
-          //  JOptionPane.showMessageDialog(null,"First Browse a File!");
-         ImageIcon icon = new ImageIcon("src/images/close.png");
+          //  JOptionPane.showMessageDialog(null,"First Count Metrics!");
+           ImageIcon icon = new ImageIcon("src/images/close.png");
 
         JPanel panel = new JPanel();
        Border blackline = BorderFactory.createLineBorder(Color.black);
@@ -8,7 +8,7 @@
         panel.setSize(new Dimension(200, 64));
         panel.setLayout(null);
 
-        JLabel label = new JLabel("Browse a File First! ");
+        JLabel label = new JLabel("First Count Metrics!");
         label.setBounds(0, 0, 200, 64);
         label.setFont(new Font("Arial", Font.BOLD, 12));
         label.setHorizontalAlignment(SwingConstants.CENTER);
@@ -18,4 +18,4 @@
         UIManager.put("RootPane.DialogBorder", new LineBorder(Color.black));
         JOptionPane.showMessageDialog(null, panel, " Alert !", JOptionPane.PLAIN_MESSAGE, icon);
             
-         }
+        }

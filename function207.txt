@@ -1,2 +1,3 @@
-            Desktop.getDesktop().open(new File("Resource/project final.mp4"));
-        } catch (IOException ex) {
+    private void noOfChildClasstxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_noOfChildClasstxtActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_noOfChildClasstxtActionPerformed

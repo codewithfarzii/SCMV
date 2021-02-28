@@ -1,9 +1,47 @@
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        if(ap_set){
-            app_setting.setVisible(false);
-            ap_set=false;
-        }else{
-            app_setting.setVisible(true);
-            ap_set=true;
-        }
-    }//GEN-LAST:event_jButton2ActionPerformed
+                                if (flag2 && (newToken.contains("(") || newTokenizer
+                                        .nextToken()
+                                        .startsWith("(") )) {
+                                   // System.out.println("function name is  "+ newToken);
+                                    int gft=1;
+                                   if(str.contains(newToken)&&str.contains(";")){
+                                        gft++;}
+                                    int parameters;
+                                    String newString = str.substring(str.indexOf(newToken));
+                                    if (newString.contains("()") || newString.contains("( )") || newString.contains("(  )")) {
+                                        parameters = 0;
+                                    } else {
+                                        parameters = (newString.split(",")).length;
+                                        
+                                    }
+                                    //System.out.println("no of arguments are ... " + parameters);
+                                    funno++;
+              
+                                    readerInner = reader;
+                                    boolean open = true;
+                                    String funLine;
+                                    int lineOfFunction = 0, openBraceCounter = 1;
+                                    try (FileWriter fw = new FileWriter("function" + funno + ".txt")) {
+                                        fw.write(str + "\r\n");
+                                        while ((funLine = readerInner.readLine()) != null && open) {
+                                            
+                                            int k = 0;
+                                            while (k < funLine.length()) {
+                                                if (funLine.charAt(k) == '{') {
+                                                    openBraceCounter++;
+                                                }
+                                                if (funLine.charAt(k) == '}') {
+                                                    openBraceCounter--;
+                                                }
+                                                if (openBraceCounter < 1) {
+                                                    open = false;
+                                                    break;
+                                                }
+                                                k++;
+                                            }
+                                            fw.write(funLine + "\r\n");
+                                            lineOfFunction++;
+                                            
+                                        }
+                                    }
+                                    }
+                            }

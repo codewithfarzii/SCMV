@@ -1,3 +1,4 @@
-    private void userEmailMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_userEmailMouseMoved
-        // TODO add your handling code here:
-    }//GEN-LAST:event_userEmailMouseMoved
+                if( token.charAt(i) == '{' ) {
+                    openbrace=openbrace+1; 
+
+                } 

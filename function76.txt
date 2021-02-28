@@ -1,3 +1,3 @@
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel15MouseClicked(evt);
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                visualizeComboBox1ActionPerformed(evt);
             }

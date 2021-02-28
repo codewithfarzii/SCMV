@@ -1,6 +1,3 @@
-        UIManager.put("OptionPane.minimumSize",new Dimension(300, 120)); 
-        UIManager.put("RootPane.DialogBorder", new LineBorder(Color.black));
-       int a= JOptionPane.showConfirmDialog(null, panel, " Alert !", JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE);
-     if(a==JOptionPane.YES_OPTION)  
-     deleteAcc();
-    }//GEN-LAST:event_jButton4ActionPerformed
+    private void noOfDOUBLEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_noOfDOUBLEActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_noOfDOUBLEActionPerformed

@@ -1,3 +1,5 @@
-            public void mouseMoved(java.awt.event.MouseEvent evt) {
-                userNameMouseMoved(evt);
+        noOfSwitchStatement.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                noOfSwitchStatementActionPerformed(evt);
             }
+        });

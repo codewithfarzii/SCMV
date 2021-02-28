@@ -1,7 +1,7 @@
         panel.setSize(new Dimension(200, 64));
         panel.setLayout(null);
 
-        JLabel label = new JLabel("First Browse a File! ");
+        JLabel label = new JLabel("First Count Metrics! ");
         label.setBounds(0, 0, 200, 64);
         label.setFont(new Font("Arial", Font.BOLD, 12));
         label.setHorizontalAlignment(SwingConstants.CENTER);

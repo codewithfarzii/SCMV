@@ -1,16 +1,3 @@
-    String query= "INSERT INTO `conditionalstatetbl`(`total_if`, `total_else`, `total_else_if`, `total_switch`, `total_case`, `total_try`, `total_catch`, `total_finally`) VALUES (?,?,?,?,?,?,?,?);";
-    try {
-        pstm=con.prepareStatement(query);
-        pstm.setString(1,String.valueOf(t_if));
-        pstm.setString(2,String.valueOf(t_else));
-        pstm.setString(3,String.valueOf(t_elseif));
-        pstm.setString(4,String.valueOf(t_switch));
-        pstm.setString(5,String.valueOf(t_case));
-        pstm.setString(6,String.valueOf(t_try));
-        pstm.setString(7,String.valueOf(t_catch));
-        pstm.setString(8,String.valueOf(t_finally));
-        pstm.execute();
-    } catch (SQLException ex) {
-        Logger.getLogger(BrowseJavaFile.class.getName()).log(Level.SEVERE, null, ex);
-    }             
-    }  
+    private void visualizeComboBox4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_visualizeComboBox4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_visualizeComboBox4ActionPerformed

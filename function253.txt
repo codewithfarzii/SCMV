@@ -1,20 +1,3 @@
-            line = ((String)itr.next());
-            //remove strings within quotes, do not forget about escape sequences
-            line.replaceAll("\\."," ");
-            line.replaceAll("\\\"[^\\\"]*\\\""," ");
-            //special case of multiline comments
-            if (line.matches(".*[/][*].*") || MULTILINE) {
-                    MULTILINE = true;
-                    commentLines++;
-                    //termination of multi line comments
-                    if (line.matches(".*[*][/].*")){
-                            MULTILINE = false;
-                        }
-                    continue;
-		}
-            //check using regular expression if the line contains any comments 
-            if (line.matches(".*//.*") || line.matches(".*[/][*].*[*][/].*")){
-                    commentLines++;
-                    continue;
-            }
-            }
+    private void noOfElseIfStatementActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_noOfElseIfStatementActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_noOfElseIfStatementActionPerformed
