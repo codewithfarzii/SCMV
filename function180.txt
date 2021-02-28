@@ -1,5 +1,3 @@
-        visualizeComboBox4.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                visualizeComboBox4ItemStateChanged(evt);
-            }
-        });
+    private void jPanel5MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel5MouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jPanel5MouseExited

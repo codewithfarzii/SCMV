@@ -1,3 +1,7 @@
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                visualizeComboBox5ItemStateChanged(evt);
-            }
+    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
+        try {
+            Desktop.getDesktop().open(new File("Resource/project final.mp4"));
+        } catch (IOException ex) {
+            Logger.getLogger(Dashboard.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButton8ActionPerformed

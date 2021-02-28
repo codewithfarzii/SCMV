@@ -1,3 +1,5 @@
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                noOfDOUBLEActionPerformed(evt);
+                jButton4ActionPerformed(evt);
             }
+        });

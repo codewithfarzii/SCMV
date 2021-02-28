@@ -1,3 +1,61 @@
-    private void noOfCHARActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_noOfCHARActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_noOfCHARActionPerformed
+    public int calculateELSEIF() throws FileNotFoundException{            
+        int  else_if_no=0; 
+            FileReader fr = new FileReader(fname);          
+            BufferedReader br=new BufferedReader(fr);
+            String str,completeLine="";
+            Boolean flag=false;
+            try {
+            while((str=br.readLine())!=null){
+            if(str.contains("else") || flag){
+                completeLine+=str;
+                if(str.contains ("{")){
+                                    
+                StringTokenizer tk= new StringTokenizer(completeLine,"}");
+                while(tk.hasMoreElements()){
+                String token=tk.nextToken();       
+                 
+                if(token.contains("else")){
+                StringTokenizer tk2= new StringTokenizer(token,"(");
+                while(tk2.hasMoreElements()){
+                String token2=tk2.nextToken();
+                
+                if(token2.contains("else")){
+                StringTokenizer tk3= new StringTokenizer(token2,"/");
+                while(tk3.hasMoreElements()){
+                String token3=tk3.nextToken();
+                
+                if(token3.contains("else")){
+                StringTokenizer tk4= new StringTokenizer(token3);
+                while(tk4.hasMoreElements()){
+                String token4=tk4.nextToken();
+                if(token4.matches("else"))
+                    if(tk4.nextToken().matches("if")){
+                   else_if_no++;
+                        //System.out.println(token3);
+                   break;
+               }
+                }
+                }
+                }
+                }
+                completeLine="";
+                }
+                }
+                }
+                }else
+                    flag=true;
+            }            
+                }
+                       
+            } catch (IOException ex) {
+                Logger.getLogger(BrowseJavaFile.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            finally{
+                try {
+                    fr.close();                    
+                } catch (IOException ex) {
+                    Logger.getLogger(BrowseJavaFile.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            return else_if_no;
+  }

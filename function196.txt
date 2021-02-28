@@ -1,5 +1,4 @@
-        noOfCatchBlocks.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                noOfCatchBlocksActionPerformed(evt);
-            }
-        });
+    private void jLabel9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel9MouseClicked
+        defaultVisibilites();
+        setAccountPanelVis(true);
+    }//GEN-LAST:event_jLabel9MouseClicked

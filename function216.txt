@@ -1,3 +1,7 @@
-    private void jPanel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel3MouseClicked
-
-    }//GEN-LAST:event_jPanel3MouseClicked
+    public void keyPressed(java.awt.event.KeyEvent e) {
+//       int keyCode = e.getKeyCode();
+//        if (keyCode == KeyEvent.VK_A) {
+            System.out.println("A was pressed!");
+            
+     //   }
+     }

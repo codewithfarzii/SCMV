@@ -1,3 +1,3 @@
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                noOfWHILELOOPActionPerformed(evt);
-            }
+        setSize(new java.awt.Dimension(750, 590));
+        setLocationRelativeTo(null);
+    }// </editor-fold>//GEN-END:initComponents

@@ -1,4 +1,6 @@
-     public void setClassInfoVis(boolean b){
-        classInfoSelected.setVisible(b);
-        classInfoPanel.setVisible(b);
-    }
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new BrowseJavaFile().setVisible(true);
+                
+            }
+        });

@@ -1,5 +1,2 @@
-        visualizeComboBox5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                visualizeComboBox5ActionPerformed(evt);
-            }
-        });
+            Desktop.getDesktop().open(new File("Resource/project final.mp4"));
+        } catch (IOException ex) {

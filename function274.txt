@@ -1,44 +1,32 @@
-    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
-        
-            if(visualizeComboBox5.getSelectedItem().equals("...............Select...............")){
-                JOptionPane.showMessageDialog(null,"Please select a chart!");
-                return;
+    public static void main(String args[]) {
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
             }
-            JavaFileCharts dt=new JavaFileCharts();
-            if(visualizeComboBox5.getSelectedItem().equals("2D Bar Chart")){
-                dt.CST2D_BarChart();
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(BrowseJavaFile.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(BrowseJavaFile.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(BrowseJavaFile.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(BrowseJavaFile.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
+
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new BrowseJavaFile().setVisible(true);
+                
             }
-            if(visualizeComboBox5.getSelectedItem().equals("2D Pie Chart")){
-                dt.CST2D_PieChart();
-            }
-            if(visualizeComboBox5.getSelectedItem().equals("2D Line Chart")){
-                dt.CST2D_LineChart();
-            }
-            if(visualizeComboBox5.getSelectedItem().equals("2D Waterfall Chart")){
-                dt.CST2D_WaterfallChart();
-            }
-            if(visualizeComboBox5.getSelectedItem().equals("2D Dual Chart")){
-                dt.CST2D_DualChart();
-            }
-            if(visualizeComboBox5.getSelectedItem().equals("2D Area Chart")){
-                dt.CST2D_AreaChart();
-            }
-            if(visualizeComboBox5.getSelectedItem().equals("2D Stack Area Chart")){
-                dt.CST2D_StackAreaChart();
-            }
-            if(visualizeComboBox5.getSelectedItem().equals("2D Stack Bar Chart")){
-                dt.CST2D_StackBarChart();
-            }
-            if(visualizeComboBox5.getSelectedItem().equals("3D Bar Chart")){
-                dt.CST3D_BarChart();
-            }
-            if(visualizeComboBox5.getSelectedItem().equals("3D Pie Chart")){
-                dt.CST3D_PieChart();
-            }
-            if(visualizeComboBox5.getSelectedItem().equals("3D Line Chart")){
-                dt.CST2D_LineChart();
-            }
-            if(visualizeComboBox5.getSelectedItem().equals("3D Stack Bar Chart")){
-                dt.CST3D_StackBarChart();
-            }        
-    }//GEN-LAST:event_jButton9ActionPerformed
+        });
+    }

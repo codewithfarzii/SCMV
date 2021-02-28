@@ -52,12 +52,17 @@ public class BrowseJavaPackage extends javax.swing.JFrame {
     
     public BrowseJavaPackage() {
         initComponents();
-        openDBConnection(); 
+        openDBConnection();
+        selected=null;
+        fileName=null;
+        selectedPackageName=null;
         
     }
    public BrowseJavaPackage(String PCKName) {
         initComponents();
         selectedPackageName=PCKName;
+        selected=null;
+        fileName=null;
         openDBConnection(); 
         selectJavaPackage();
         
@@ -244,11 +249,17 @@ public class BrowseJavaPackage extends javax.swing.JFrame {
          // select Java package              
           JFileChooser  chooser = new JFileChooser();
           chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
-          chooser.showOpenDialog(this);
+          int result= chooser.showOpenDialog(this);
           File f = chooser.getCurrentDirectory();
+         
+          
+          if (result == JFileChooser.APPROVE_OPTION) {
+          
           selectedPackageName= chooser.getSelectedFile().getAbsolutePath();      
           selectJavaPackage();
           insertClassNameToDB();
+          }
+         
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed

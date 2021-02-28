@@ -1,3 +1,3 @@
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                noOfSwitchStatementActionPerformed(evt);
-            }
+    private void jLabel13MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel13MouseClicked
+       logoutUser();
+    }//GEN-LAST:event_jLabel13MouseClicked

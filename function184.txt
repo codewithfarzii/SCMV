@@ -1,5 +1,3 @@
-        noOfIFStatement.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                noOfIFStatementActionPerformed(evt);
-            }
-        });
+    private void jPanel6MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel6MouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jPanel6MouseExited

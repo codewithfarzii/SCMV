@@ -1,5 +1,5 @@
-        noOfINT.addActionListener(new java.awt.event.ActionListener() {
+        jButton8.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                noOfINTActionPerformed(evt);
+                jButton8ActionPerformed(evt);
             }
         });

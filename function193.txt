@@ -1,3 +1,3 @@
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                noOfElseStatementActionPerformed(evt);
-            }
+    private void jPanel7MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel7MouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jPanel7MouseEntered

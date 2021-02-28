@@ -1,5 +1,3 @@
-        noOfChildClasstxt.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                noOfChildClasstxtActionPerformed(evt);
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                userEmailMouseMoved(evt);
             }
-        });

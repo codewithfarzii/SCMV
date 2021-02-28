@@ -1,4 +1,4 @@
-     public void setlocVis(boolean b){
-        locSelected.setVisible(b);
-       locPanel.setVisible(b);
-    }
+            public void run() {
+                new BrowseJavaFile().setVisible(true);
+                
+            }

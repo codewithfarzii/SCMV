@@ -249,6 +249,32 @@ public void CBO(){
                  if(flag)
                       elineno++; 
             }
+                    if(str.contains("int")){               
+              i_no=i_no+INT_calculate(str);
+            }
+            if(str.contains("short")){               
+              si_no=si_no+SHORT_INT_calculate(str);
+            }
+            if(str.contains("long")){               
+              li_no=li_no+LONG_INT_calculate(str);
+            }
+            if(str.contains("float")){               
+              f_no=f_no+FLOAT_calculate(str);
+            }
+            if(str.contains("double")){               
+              d_no=d_no+DOUBLE_calculate(str);
+            }
+            if(str.contains("String")){               
+              s_no=s_no+STRING_calculate(str);
+            }
+            if(str.contains("char")){               
+              c_no=c_no+CHAR_calculate(str);
+            }
+            if(str.contains("boolean")){               
+              b_no=b_no+BOOL_calculate(str);
+            }
+            i_no= i_no-si_no;
+            i_no= i_no-li_no;
             if(str.contains("for")){               
                frno=frno+calculateFOR(str);                   
             }
@@ -315,40 +341,6 @@ public void CBO(){
                         child++;
                     }
                     
-                    if (token.equalsIgnoreCase("int")
-                            || token.equalsIgnoreCase("Int")
-                            ) {
-                        i_no++;
-                    }
-                     if (token.equalsIgnoreCase("long")
-                         ) {
-                        li_no++;
-                    }
-                    if (token.equalsIgnoreCase("short")
-                         ) {
-                        si_no++;
-                    }
-                    if (token.equalsIgnoreCase("boolean")
-                            ) {
-                        b_no++;
-                    }
-                    if (token.equalsIgnoreCase("String")
-                            ) {
-                        s_no++;
-                    }
-                    if (token.equalsIgnoreCase("double")
-                            ) {
-                        d_no++;
-                    }
-                    if (token.equalsIgnoreCase("char")
-                            ) {
-                        c_no++;
-                    }
-                   
-                    if (token.equalsIgnoreCase("float")
-                            ) {
-                        f_no++;
-                    }
                      if (token.equalsIgnoreCase("?:")
                             ) {
                         trno++;
@@ -2597,6 +2589,432 @@ public void CBO(){
 		return commentLines;
 	} 
     
+      // Data Types Calculation
+     public int INT_calculate(String str){
+        
+       int count=0;
+        StringTokenizer tk= new StringTokenizer(str);
+        
+         while(tk.hasMoreElements()){
+            String token=tk.nextToken();       
+            if(token.contains("int")){                
+            StringTokenizer tk2= new StringTokenizer(token,";");            
+            while(tk2.hasMoreElements()){
+            String token2=tk2.nextToken();
+            
+            if(token2.contains("int")){           
+            StringTokenizer tk3= new StringTokenizer(token2,"(");            
+            while(tk3.hasMoreElements()){
+            String token3=tk3.nextToken(); 
+            
+            if(token3.contains("int")){
+            StringTokenizer tk4= new StringTokenizer(token3,"{"); 
+            while(tk4.hasMoreElements()){
+            String token4=tk4.nextToken(); 
+            
+            if(token4.contains("int")){
+            StringTokenizer tk5= new StringTokenizer(token4,"}"); 
+            while(tk5.hasMoreElements()){
+            String token5=tk5.nextToken(); 
+            
+            if(token5.contains("int")){
+            StringTokenizer tk6= new StringTokenizer(token5,","); 
+            while(tk6.hasMoreElements()){
+            String token6=tk6.nextToken(); 
+            
+            if(token6.contains("int")){
+            StringTokenizer tk7= new StringTokenizer(token6,"*/"); 
+            while(tk7.hasMoreElements()){
+            String token7=tk7.nextToken(); 
+                if(token7.matches("int"))                  
+                    count++;           
+            }
+            }            
+            }
+            }
+            } 
+            }
+            }
+            }
+            }
+            }
+            }
+            }
+        }
+          return count;
+   }
+     public int SHORT_INT_calculate(String str){
+        
+       int count=0;
+        StringTokenizer tk= new StringTokenizer(str);
+        
+         while(tk.hasMoreElements()){
+            String token=tk.nextToken();       
+            if(token.contains("short")){                
+            StringTokenizer tk2= new StringTokenizer(token,";");            
+            while(tk2.hasMoreElements()){
+            String token2=tk2.nextToken();
+            
+            if(token2.contains("short")){           
+            StringTokenizer tk3= new StringTokenizer(token2,"(");            
+            while(tk3.hasMoreElements()){
+            String token3=tk3.nextToken(); 
+            
+            if(token3.contains("short")){
+            StringTokenizer tk4= new StringTokenizer(token3,"{"); 
+            while(tk4.hasMoreElements()){
+            String token4=tk4.nextToken(); 
+            
+            if(token4.contains("short")){
+            StringTokenizer tk5= new StringTokenizer(token4,"}"); 
+            while(tk5.hasMoreElements()){
+            String token5=tk5.nextToken(); 
+            
+            if(token5.contains("short")){
+            StringTokenizer tk6= new StringTokenizer(token5,","); 
+            while(tk6.hasMoreElements()){
+            String token6=tk6.nextToken(); 
+            
+            if(token6.contains("short")){
+            StringTokenizer tk7= new StringTokenizer(token6,"*/"); 
+            while(tk7.hasMoreElements()){
+            String token7=tk7.nextToken(); 
+                if(token7.matches("short"))                  
+                    count++;           
+            }
+            }            
+            }
+            }
+            } 
+            }
+            }
+            }
+            }
+            }
+            }
+            }
+        }
+          return count;
+   }
+     public int LONG_INT_calculate(String str){
+        
+       int count=0;
+        StringTokenizer tk= new StringTokenizer(str);
+        
+         while(tk.hasMoreElements()){
+            String token=tk.nextToken();       
+            if(token.contains("long")){                
+            StringTokenizer tk2= new StringTokenizer(token,";");            
+            while(tk2.hasMoreElements()){
+            String token2=tk2.nextToken();
+            
+            if(token2.contains("long")){           
+            StringTokenizer tk3= new StringTokenizer(token2,"(");            
+            while(tk3.hasMoreElements()){
+            String token3=tk3.nextToken(); 
+            
+            if(token3.contains("long")){
+            StringTokenizer tk4= new StringTokenizer(token3,"{"); 
+            while(tk4.hasMoreElements()){
+            String token4=tk4.nextToken(); 
+            
+            if(token4.contains("long")){
+            StringTokenizer tk5= new StringTokenizer(token4,"}"); 
+            while(tk5.hasMoreElements()){
+            String token5=tk5.nextToken(); 
+            
+            if(token5.contains("long")){
+            StringTokenizer tk6= new StringTokenizer(token5,","); 
+            while(tk6.hasMoreElements()){
+            String token6=tk6.nextToken(); 
+            
+            if(token6.contains("long")){
+            StringTokenizer tk7= new StringTokenizer(token6,"*/"); 
+            while(tk7.hasMoreElements()){
+            String token7=tk7.nextToken(); 
+                if(token7.matches("long"))                  
+                    count++;           
+            }
+            }            
+            }
+            }
+            } 
+            }
+            }
+            }
+            }
+            }
+            }
+            }
+        }
+          return count;
+   }
+     public int STRING_calculate(String str){
+        
+       int count=0;
+        StringTokenizer tk= new StringTokenizer(str);
+        
+         while(tk.hasMoreElements()){
+            String token=tk.nextToken();       
+            if(token.contains("String")){                
+            StringTokenizer tk2= new StringTokenizer(token,";");            
+            while(tk2.hasMoreElements()){
+            String token2=tk2.nextToken();
+            
+            if(token2.contains("String")){           
+            StringTokenizer tk3= new StringTokenizer(token2,"(");            
+            while(tk3.hasMoreElements()){
+            String token3=tk3.nextToken(); 
+            
+            if(token3.contains("String")){
+            StringTokenizer tk4= new StringTokenizer(token3,"{"); 
+            while(tk4.hasMoreElements()){
+            String token4=tk4.nextToken(); 
+            
+            if(token4.contains("String")){
+            StringTokenizer tk5= new StringTokenizer(token4,"}"); 
+            while(tk5.hasMoreElements()){
+            String token5=tk5.nextToken(); 
+            
+            if(token5.contains("String")){
+            StringTokenizer tk6= new StringTokenizer(token5,","); 
+            while(tk6.hasMoreElements()){
+            String token6=tk6.nextToken(); 
+            
+            if(token6.contains("String")){
+            StringTokenizer tk7= new StringTokenizer(token6,"*/"); 
+            while(tk7.hasMoreElements()){
+            String token7=tk7.nextToken(); 
+                if(token7.matches("String"))                  
+                    count++;           
+            }
+            }            
+            }
+            }
+            } 
+            }
+            }
+            }
+            }
+            }
+            }
+            }
+        }
+          return count;
+   }
+     public int DOUBLE_calculate(String str){
+        
+       int count=0;
+        StringTokenizer tk= new StringTokenizer(str);
+        
+         while(tk.hasMoreElements()){
+            String token=tk.nextToken();       
+            if(token.contains("double")){                
+            StringTokenizer tk2= new StringTokenizer(token,";");            
+            while(tk2.hasMoreElements()){
+            String token2=tk2.nextToken();
+            
+            if(token2.contains("double")){           
+            StringTokenizer tk3= new StringTokenizer(token2,"(");            
+            while(tk3.hasMoreElements()){
+            String token3=tk3.nextToken(); 
+            
+            if(token3.contains("double")){
+            StringTokenizer tk4= new StringTokenizer(token3,"{"); 
+            while(tk4.hasMoreElements()){
+            String token4=tk4.nextToken(); 
+            
+            if(token4.contains("double")){
+            StringTokenizer tk5= new StringTokenizer(token4,"}"); 
+            while(tk5.hasMoreElements()){
+            String token5=tk5.nextToken(); 
+            
+            if(token5.contains("double")){
+            StringTokenizer tk6= new StringTokenizer(token5,","); 
+            while(tk6.hasMoreElements()){
+            String token6=tk6.nextToken(); 
+            
+            if(token6.contains("double")){
+            StringTokenizer tk7= new StringTokenizer(token6,"*/"); 
+            while(tk7.hasMoreElements()){
+            String token7=tk7.nextToken(); 
+                if(token7.matches("double"))                  
+                    count++;           
+            }
+            }            
+            }
+            }
+            } 
+            }
+            }
+            }
+            }
+            }
+            }
+            }
+        }
+          return count;
+   }
+     public int FLOAT_calculate(String str){
+        
+       int count=0;
+        StringTokenizer tk= new StringTokenizer(str);
+        
+         while(tk.hasMoreElements()){
+            String token=tk.nextToken();       
+            if(token.contains("float")){                
+            StringTokenizer tk2= new StringTokenizer(token,";");            
+            while(tk2.hasMoreElements()){
+            String token2=tk2.nextToken();
+            
+            if(token2.contains("float")){           
+            StringTokenizer tk3= new StringTokenizer(token2,"(");            
+            while(tk3.hasMoreElements()){
+            String token3=tk3.nextToken(); 
+            
+            if(token3.contains("float")){
+            StringTokenizer tk4= new StringTokenizer(token3,"{"); 
+            while(tk4.hasMoreElements()){
+            String token4=tk4.nextToken(); 
+            
+            if(token4.contains("float")){
+            StringTokenizer tk5= new StringTokenizer(token4,"}"); 
+            while(tk5.hasMoreElements()){
+            String token5=tk5.nextToken(); 
+            
+            if(token5.contains("float")){
+            StringTokenizer tk6= new StringTokenizer(token5,","); 
+            while(tk6.hasMoreElements()){
+            String token6=tk6.nextToken(); 
+            
+            if(token6.contains("float")){
+            StringTokenizer tk7= new StringTokenizer(token6,"*/"); 
+            while(tk7.hasMoreElements()){
+            String token7=tk7.nextToken(); 
+                if(token7.matches("float"))                  
+                    count++;           
+            }
+            }            
+            }
+            }
+            } 
+            }
+            }
+            }
+            }
+            }
+            }
+            }
+        }
+          return count;
+   }
+     public int BOOL_calculate(String str){
+        
+       int count=0;
+        StringTokenizer tk= new StringTokenizer(str);
+        
+         while(tk.hasMoreElements()){
+            String token=tk.nextToken();       
+            if(token.contains("boolean")){                
+            StringTokenizer tk2= new StringTokenizer(token,";");            
+            while(tk2.hasMoreElements()){
+            String token2=tk2.nextToken();
+            
+            if(token2.contains("boolean")){           
+            StringTokenizer tk3= new StringTokenizer(token2,"(");            
+            while(tk3.hasMoreElements()){
+            String token3=tk3.nextToken(); 
+            
+            if(token3.contains("boolean")){
+            StringTokenizer tk4= new StringTokenizer(token3,"{"); 
+            while(tk4.hasMoreElements()){
+            String token4=tk4.nextToken(); 
+            
+            if(token4.contains("boolean")){
+            StringTokenizer tk5= new StringTokenizer(token4,"}"); 
+            while(tk5.hasMoreElements()){
+            String token5=tk5.nextToken(); 
+            
+            if(token5.contains("boolean")){
+            StringTokenizer tk6= new StringTokenizer(token5,","); 
+            while(tk6.hasMoreElements()){
+            String token6=tk6.nextToken(); 
+            
+            if(token6.contains("boolean")){
+            StringTokenizer tk7= new StringTokenizer(token6,"*/"); 
+            while(tk7.hasMoreElements()){
+            String token7=tk7.nextToken(); 
+                if(token7.matches("boolean"))                  
+                    count++;           
+            }
+            }            
+            }
+            }
+            } 
+            }
+            }
+            }
+            }
+            }
+            }
+            }
+        }
+          return count;
+   }
+     public int CHAR_calculate(String str){
+        
+       int count=0;
+        StringTokenizer tk= new StringTokenizer(str);
+       
+         while(tk.hasMoreElements()){
+            String token=tk.nextToken();       
+            if(token.contains("char")){                
+            StringTokenizer tk2= new StringTokenizer(token,";");            
+            while(tk2.hasMoreElements()){
+            String token2=tk2.nextToken();
+            
+            if(token2.contains("char")){           
+            StringTokenizer tk3= new StringTokenizer(token2,"(");            
+            while(tk3.hasMoreElements()){
+            String token3=tk3.nextToken(); 
+            
+            if(token3.contains("char")){
+            StringTokenizer tk4= new StringTokenizer(token3,"{"); 
+            while(tk4.hasMoreElements()){
+            String token4=tk4.nextToken(); 
+            
+            if(token4.contains("char")){
+            StringTokenizer tk5= new StringTokenizer(token4,"}"); 
+            while(tk5.hasMoreElements()){
+            String token5=tk5.nextToken(); 
+            
+            if(token5.contains("char")){
+            StringTokenizer tk6= new StringTokenizer(token5,","); 
+            while(tk6.hasMoreElements()){
+            String token6=tk6.nextToken(); 
+            
+            if(token6.contains("char")){
+            StringTokenizer tk7= new StringTokenizer(token6,"*/"); 
+            while(tk7.hasMoreElements()){
+            String token7=tk7.nextToken(); 
+                if(token7.matches("char"))                  
+                    count++;           
+            }
+            }            
+            }
+            }
+            } 
+            }
+            }
+            }
+            }
+            }
+            }
+            }
+        }
+          return count;
+   }
+     
    // Conditional Statements Methods
     public int calculateIF() throws FileNotFoundException{
             int if_no=0;          
@@ -2627,7 +3045,7 @@ public void CBO(){
                                                     String token4=tk4.nextToken();
                                                     
                                                     if(token4.contains("if")){
-                                                        StringTokenizer tk5= new StringTokenizer(token4,"/");
+                                                        StringTokenizer tk5= new StringTokenizer(token4,"*/");
                                                         while(tk5.hasMoreElements()){
                                                             String token5=tk5.nextToken();
                                                             if(token5.matches("if")){
@@ -2674,7 +3092,7 @@ public void CBO(){
                                         String token3=tk3.nextToken();
                                         
                                         if(token3.contains("else")){
-                                            StringTokenizer tk4= new StringTokenizer(token3,"/");
+                                            StringTokenizer tk4= new StringTokenizer(token3,"*/");
                                             while(tk4.hasMoreElements()){
                                                 String token4=tk4.nextToken();                                                
                                                 if(token4.matches("else"))
@@ -2715,7 +3133,7 @@ public void CBO(){
                 String token2=tk2.nextToken();
                 
                 if(token2.contains("else")){
-                StringTokenizer tk3= new StringTokenizer(token2,"/");
+                StringTokenizer tk3= new StringTokenizer(token2,"*/");
                 while(tk3.hasMoreElements()){
                 String token3=tk3.nextToken();
                 
@@ -2776,7 +3194,7 @@ public void CBO(){
             String token4=tk4.nextToken(); 
             
             if(token4.contains("switch")){
-            StringTokenizer tk5= new StringTokenizer(token4,"/"); 
+            StringTokenizer tk5= new StringTokenizer(token4,"*/"); 
             while(tk5.hasMoreElements()){
             String token5=tk5.nextToken(); 
             
@@ -2823,7 +3241,7 @@ public void CBO(){
             String token4=tk4.nextToken(); 
             
             if(token4.contains("case")){
-            StringTokenizer tk5= new StringTokenizer(token4,"/"); 
+            StringTokenizer tk5= new StringTokenizer(token4,"*/"); 
             while(tk5.hasMoreElements()){
             String token5=tk5.nextToken(); 
             if(token5.matches("case"))
@@ -2862,7 +3280,7 @@ public void CBO(){
             String token4=tk4.nextToken(); 
             
             if(token4.contains("try")){
-            StringTokenizer tk5= new StringTokenizer(token4,"/"); 
+            StringTokenizer tk5= new StringTokenizer(token4,"*/"); 
             while(tk5.hasMoreElements()){
             String token5=tk5.nextToken(); 
             if(token5.matches("try"))
@@ -2901,7 +3319,7 @@ public void CBO(){
             String token4=tk4.nextToken(); 
             
             if(token4.contains("catch")){
-            StringTokenizer tk5= new StringTokenizer(token4,"/"); 
+            StringTokenizer tk5= new StringTokenizer(token4,"*/"); 
             while(tk5.hasMoreElements()){
             String token5=tk5.nextToken(); 
             if(token5.matches("catch"))
@@ -2940,7 +3358,7 @@ public void CBO(){
             String token4=tk4.nextToken(); 
             
             if(token4.contains("finally")){
-            StringTokenizer tk5= new StringTokenizer(token4,"/"); 
+            StringTokenizer tk5= new StringTokenizer(token4,"*/"); 
             while(tk5.hasMoreElements()){
             String token5=tk5.nextToken(); 
             if(token5.matches("finally"))
@@ -2958,7 +3376,7 @@ public void CBO(){
           return count;
    }   
    
-    //Loops Calculator Methods
+    //Loops Calculator
     public int calculateFOR(String str){        
         int count=0;
         StringTokenizer tk= new StringTokenizer(str);
@@ -2981,7 +3399,7 @@ public void CBO(){
             String token4=tk4.nextToken(); 
             
             if(token4.contains("for")){
-            StringTokenizer tk5= new StringTokenizer(token4,"/"); 
+            StringTokenizer tk5= new StringTokenizer(token4,"*/"); 
             while(tk5.hasMoreElements()){
             String token5=tk5.nextToken(); 
             
@@ -3028,7 +3446,7 @@ public void CBO(){
             String token4=tk4.nextToken(); 
             
             if(token4.contains("while")){
-            StringTokenizer tk5= new StringTokenizer(token4,"/"); 
+            StringTokenizer tk5= new StringTokenizer(token4,"*/"); 
             while(tk5.hasMoreElements()){
             String token5=tk5.nextToken();
             
@@ -3075,7 +3493,7 @@ public void CBO(){
             String token4=tk4.nextToken(); 
             
             if(token4.contains("do")){
-            StringTokenizer tk5= new StringTokenizer(token4,"/"); 
+            StringTokenizer tk5= new StringTokenizer(token4,"*/"); 
             while(tk5.hasMoreElements()){
             String token5=tk5.nextToken(); 
             if(token5.matches("do"))

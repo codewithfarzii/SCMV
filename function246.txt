@@ -1,44 +1,15 @@
-    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        
-            if(visualizeComboBox.getSelectedItem().equals("...............Select...............")){
-                JOptionPane.showMessageDialog(null,"Please select a chart!");
-                return;
-            }
-            JavaFileCharts dt=new JavaFileCharts();
-            if(visualizeComboBox.getSelectedItem().equals("2D Bar Chart")){
-                dt.LOC2D_BarChart();
-            }
-            if(visualizeComboBox.getSelectedItem().equals("2D Pie Chart")){
-                dt.LOC2D_PieChart();
-            }
-            if(visualizeComboBox.getSelectedItem().equals("2D Line Chart")){
-                dt.LOC2D_LineChart();
-            }
-            if(visualizeComboBox.getSelectedItem().equals("2D Waterfall Chart")){
-                dt.LOC2D_WaterfallChart();
-            }
-            if(visualizeComboBox.getSelectedItem().equals("2D Dual Chart")){
-                dt.LOC2D_DualChart();
-            }
-            if(visualizeComboBox.getSelectedItem().equals("2D Area Chart")){
-                dt.LOC2D_AreaChart();
-            }
-            if(visualizeComboBox.getSelectedItem().equals("2D Stack Area Chart")){
-                dt.LOC2D_StackAreaChart();
-            }
-            if(visualizeComboBox.getSelectedItem().equals("2D Stack Bar Chart")){
-                dt.LOC2D_StackBarChart();
-            }
-            if(visualizeComboBox.getSelectedItem().equals("3D Bar Chart")){
-                dt.LOC3D_BarChart();
-            }
-            if(visualizeComboBox.getSelectedItem().equals("3D Pie Chart")){
-                dt.LOC3D_PieChart();
-            }
-            if(visualizeComboBox.getSelectedItem().equals("3D Line Chart")){
-                dt.LOC3D_LineChart();
-            }
-            if(visualizeComboBox.getSelectedItem().equals("3D Stack Bar Chart")){
-                dt.LOC3D_StackBarChart();
-            }
-    }//GEN-LAST:event_jButton6ActionPerformed
+        panel.setSize(new Dimension(200, 64));
+        panel.setLayout(null);
+
+        JLabel label = new JLabel("Please Select a Chart! ");
+        label.setBounds(0, 0, 200, 64);
+        label.setFont(new Font("Arial", Font.BOLD, 12));
+        label.setHorizontalAlignment(SwingConstants.CENTER);
+        panel.add(label);
+
+        UIManager.put("OptionPane.minimumSize",new Dimension(300, 120)); 
+        UIManager.put("RootPane.DialogBorder", new LineBorder(Color.black));
+        JOptionPane.showMessageDialog(null, panel, " Alert !", JOptionPane.PLAIN_MESSAGE, icon);
+             
+             return;
+            }           

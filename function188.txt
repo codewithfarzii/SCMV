@@ -1,5 +1,5 @@
-        noOfTryBlock.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                noOfTryBlockActionPerformed(evt);
-            }
-        });
+    private void jLabel15MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel15MouseClicked
+        // TODO add your handling code here:
+       this.dispose();
+        new GoodBye().setVisible(true);
+    }//GEN-LAST:event_jLabel15MouseClicked

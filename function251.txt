@@ -1,3 +1,9 @@
-    private void noOfLongINTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_noOfLongINTActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_noOfLongINTActionPerformed
+        chooser.addChoosableFileFilter(new FileNameExtensionFilter("Java files", "java"));
+        chooser.setAcceptAllFileFilterUsed(false);
+        int result = chooser.showOpenDialog(this);
+        if (result == JFileChooser.APPROVE_OPTION) {
+           File f = chooser.getSelectedFile();
+        fname = f.getAbsolutePath();
+        fileNametxt.setText(fname);
+        }
+    }

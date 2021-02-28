@@ -1,3 +1,5 @@
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                noOfLongINTActionPerformed(evt);
+                jButton3ActionPerformed(evt);
             }
+        });
