@@ -265,12 +265,16 @@ PreparedStatement pstm=null;
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
 
+        jPanel1.setBackground(new java.awt.Color(204, 204, 255));
+
         fileNametxt.setColumns(20);
         fileNametxt.setRows(5);
         jScrollPane3.setViewportView(fileNametxt);
 
+        jButton1.setBackground(new java.awt.Color(255, 255, 255));
         jButton1.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
         jButton1.setText("Count Metrics");
+        jButton1.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(169, 224, 49), 4), javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2)));
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -285,8 +289,11 @@ PreparedStatement pstm=null;
             }
         });
 
+        jTabbedPane1.setBackground(new java.awt.Color(204, 204, 255));
         jTabbedPane1.setMaximumSize(new java.awt.Dimension(900, 500));
         jTabbedPane1.setMinimumSize(new java.awt.Dimension(900, 500));
+
+        jPanel5.setBackground(new java.awt.Color(204, 204, 255));
 
         jLabel26.setText("Class Name");
 
@@ -321,6 +328,7 @@ PreparedStatement pstm=null;
         refactoringSuggestion.setForeground(new java.awt.Color(255, 51, 51));
         refactoringSuggestion.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
+        jPanel16.setBackground(new java.awt.Color(255, 255, 255));
         jPanel16.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createEtchedBorder(), javax.swing.BorderFactory.createTitledBorder(null, "Cyclomatic Complexity Threshold Index", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Times New Roman", 3, 12)))); // NOI18N
 
         jLabel48.setText("High");
@@ -392,6 +400,7 @@ PreparedStatement pstm=null;
 
         jLabel33.setText("No of Child Class");
 
+        jPanel17.setBackground(new java.awt.Color(255, 255, 255));
         jPanel17.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createEtchedBorder(), javax.swing.BorderFactory.createTitledBorder(null, "Class Complexity Threshold Index", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Times New Roman", 3, 12)))); // NOI18N
 
         jLabel54.setText("Large Class");
@@ -519,6 +528,8 @@ PreparedStatement pstm=null;
 
         jTabbedPane1.addTab("Class Info", jPanel5);
 
+        jPanel2.setBackground(new java.awt.Color(204, 204, 255));
+
         totalLOCtxt.setEditable(false);
         totalLOCtxt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -582,10 +593,13 @@ PreparedStatement pstm=null;
 
         jLabel34.setText("Close Braces");
 
+        jPanel11.setBackground(new java.awt.Color(255, 255, 255));
         jPanel11.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(102, 102, 102)), "Visualization", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tempus Sans ITC", 1, 18)), "", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tempus Sans ITC", 1, 14))); // NOI18N
 
+        jButton4.setBackground(new java.awt.Color(255, 255, 255));
         jButton4.setFont(new java.awt.Font("Tempus Sans ITC", 1, 14)); // NOI18N
         jButton4.setText("Show");
+        jButton4.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(169, 224, 49), 4), javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0))));
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton4ActionPerformed(evt);
@@ -698,6 +712,8 @@ PreparedStatement pstm=null;
 
         jTabbedPane1.addTab("LOC", jPanel2);
 
+        jPanel9.setBackground(new java.awt.Color(204, 204, 255));
+
         noOfINT.setEditable(false);
         noOfINT.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -770,10 +786,13 @@ PreparedStatement pstm=null;
 
         jLabel15.setText("No of Char");
 
+        jPanel12.setBackground(new java.awt.Color(255, 255, 255));
         jPanel12.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(102, 102, 102)), "Visualization", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tempus Sans ITC", 1, 18)), "", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tempus Sans ITC", 1, 14))); // NOI18N
 
+        jButton5.setBackground(new java.awt.Color(255, 255, 255));
         jButton5.setFont(new java.awt.Font("Tempus Sans ITC", 1, 14)); // NOI18N
         jButton5.setText("Show");
+        jButton5.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(169, 224, 49), 4), javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0))));
         jButton5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton5ActionPerformed(evt);
@@ -886,6 +905,8 @@ PreparedStatement pstm=null;
 
         jTabbedPane1.addTab("Data Types", jPanel9);
 
+        jPanel4.setBackground(new java.awt.Color(204, 204, 255));
+
         noOfFORLOOP.setEditable(false);
         noOfFORLOOP.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -916,10 +937,13 @@ PreparedStatement pstm=null;
         jLabel25.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel25.setText("No of While Loop");
 
+        jPanel15.setBackground(new java.awt.Color(255, 255, 255));
         jPanel15.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(102, 102, 102)), "Visualization", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tempus Sans ITC", 1, 18)), "", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tempus Sans ITC", 1, 14))); // NOI18N
 
+        jButton8.setBackground(new java.awt.Color(255, 255, 255));
         jButton8.setFont(new java.awt.Font("Tempus Sans ITC", 1, 14)); // NOI18N
         jButton8.setText("Show");
+        jButton8.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(169, 224, 49), 4), javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0))));
         jButton8.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton8ActionPerformed(evt);
@@ -1005,6 +1029,8 @@ PreparedStatement pstm=null;
 
         jTabbedPane1.addTab("Loop Statements", jPanel4);
 
+        jPanel10.setBackground(new java.awt.Color(204, 204, 255));
+
         noOfIFStatement.setEditable(false);
         noOfIFStatement.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1077,10 +1103,13 @@ PreparedStatement pstm=null;
             }
         });
 
+        jPanel18.setBackground(new java.awt.Color(255, 255, 255));
         jPanel18.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(102, 102, 102)), "Visualization", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tempus Sans ITC", 1, 18)), "", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tempus Sans ITC", 1, 14))); // NOI18N
 
+        jButton9.setBackground(new java.awt.Color(255, 255, 255));
         jButton9.setFont(new java.awt.Font("Tempus Sans ITC", 1, 14)); // NOI18N
         jButton9.setText("Show");
+        jButton9.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(169, 224, 49), 4), javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0))));
         jButton9.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton9ActionPerformed(evt);
@@ -1208,6 +1237,8 @@ PreparedStatement pstm=null;
 
         jTabbedPane1.addTab("Conditional Statements", jPanel10);
 
+        jPanel13.setBackground(new java.awt.Color(204, 204, 255));
+
         noOfINTV.setEditable(false);
         noOfINTV.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1300,10 +1331,13 @@ PreparedStatement pstm=null;
         jLabel45.setFont(new java.awt.Font("Tempus Sans ITC", 1, 14)); // NOI18N
         jLabel45.setText("No. of Variables");
 
+        jPanel14.setBackground(new java.awt.Color(255, 255, 255));
         jPanel14.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(102, 102, 102)), "Visualization", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tempus Sans ITC", 1, 18)), "", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tempus Sans ITC", 1, 14))); // NOI18N
 
+        jButton6.setBackground(new java.awt.Color(255, 255, 255));
         jButton6.setFont(new java.awt.Font("Tempus Sans ITC", 1, 14)); // NOI18N
         jButton6.setText("Show");
+        jButton6.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(169, 224, 49), 4), javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0))));
         jButton6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton6ActionPerformed(evt);
@@ -1413,7 +1447,6 @@ PreparedStatement pstm=null;
                     .addComponent(jLabel43)
                     .addComponent(jLabel44)
                     .addComponent(jLabel45))
-                .addGap(18, 18, 18)
                 .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel13Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
@@ -1445,17 +1478,19 @@ PreparedStatement pstm=null;
                                 .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(noOfSTRINGV, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel37))
-                                .addContainerGap(49, Short.MAX_VALUE))
+                                .addContainerGap(67, Short.MAX_VALUE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel13Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jPanel14, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addContainerGap())))))
         );
 
         jTabbedPane1.addTab("Variables Created", jPanel13);
 
+        jButton3.setBackground(new java.awt.Color(255, 255, 255));
         jButton3.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
         jButton3.setText("Browse File");
+        jButton3.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(169, 224, 49), 4), javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2)));
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);

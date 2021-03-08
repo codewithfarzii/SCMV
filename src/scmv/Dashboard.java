@@ -146,7 +146,6 @@ PreparedStatement pstm=null;
         jLabel20 = new javax.swing.JLabel();
         containerPanel = new javax.swing.JPanel();
         drawer = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         homeSelected = new javax.swing.JLabel();
@@ -170,6 +169,7 @@ PreparedStatement pstm=null;
         jLabel11 = new javax.swing.JLabel();
         helpSelected = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
         userInfoPanel = new javax.swing.JPanel();
         signUpPanel = new javax.swing.JPanel();
         userName = new javax.swing.JTextField();
@@ -273,15 +273,6 @@ PreparedStatement pstm=null;
         drawer.setPreferredSize(new java.awt.Dimension(190, 500));
         drawer.setRequestFocusEnabled(false);
         drawer.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel2.setBackground(new java.awt.Color(153, 153, 153));
-        jLabel2.setFont(new java.awt.Font("Trebuchet MS", 1, 24)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 51, 51));
-        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("SCMV");
-        jLabel2.setToolTipText("");
-        jLabel2.setAlignmentX(5.0F);
-        drawer.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 190, 73));
 
         jPanel3.setBackground(new java.awt.Color(42, 39, 41));
         jPanel3.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -497,6 +488,16 @@ PreparedStatement pstm=null;
 
         drawer.add(jPanel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 229, 190, 50));
 
+        jLabel2.setBackground(new java.awt.Color(153, 153, 153));
+        jLabel2.setFont(new java.awt.Font("Segoe UI Black", 1, 24)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(204, 255, 51));
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icons8_DOT_100px.png"))); // NOI18N
+        jLabel2.setText("SCMV");
+        jLabel2.setToolTipText("");
+        jLabel2.setAlignmentX(5.0F);
+        drawer.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 190, 80));
+
         userInfoPanel.setBackground(new java.awt.Color(204, 204, 204));
         userInfoPanel.setPreferredSize(new java.awt.Dimension(740, 550));
 
@@ -583,10 +584,10 @@ PreparedStatement pstm=null;
                 .addContainerGap(352, Short.MAX_VALUE))
         );
 
-        aboutPanel.setBackground(new java.awt.Color(255, 255, 255));
+        aboutPanel.setBackground(new java.awt.Color(204, 204, 255));
         aboutPanel.setPreferredSize(new java.awt.Dimension(288, 550));
 
-        aboutPic.setBackground(new java.awt.Color(255, 51, 51));
+        aboutPic.setBackground(new java.awt.Color(255, 255, 255));
         aboutPic.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/aboutDetails.png"))); // NOI18N
         aboutPic.setVerticalAlignment(javax.swing.SwingConstants.TOP);
 
@@ -625,6 +626,7 @@ PreparedStatement pstm=null;
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
+        jLabel26.setBackground(new java.awt.Color(255, 255, 255));
         jLabel26.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel26.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/spec.png"))); // NOI18N
 
@@ -719,7 +721,7 @@ PreparedStatement pstm=null;
                 .addContainerGap(207, Short.MAX_VALUE))
         );
 
-        accountPanel.setBackground(new java.awt.Color(255, 255, 255));
+        accountPanel.setBackground(new java.awt.Color(204, 204, 255));
         accountPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jButton3.setFont(new java.awt.Font("Tempus Sans ITC", 1, 24)); // NOI18N
@@ -759,7 +761,7 @@ PreparedStatement pstm=null;
 
         accountPanel.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 0, 350, -1));
 
-        homePanel.setBackground(new java.awt.Color(255, 255, 255));
+        homePanel.setBackground(new java.awt.Color(204, 204, 255));
         homePanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jButton5.setFont(new java.awt.Font("Tempus Sans ITC", 1, 24)); // NOI18N
@@ -900,7 +902,7 @@ PreparedStatement pstm=null;
                 .addContainerGap())
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
-                    .addComponent(containerPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 750, Short.MAX_VALUE)
+                    .addComponent(containerPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 785, Short.MAX_VALUE)
                     .addContainerGap()))
         );
         layout.setVerticalGroup(
