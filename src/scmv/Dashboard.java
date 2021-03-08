@@ -596,8 +596,9 @@ PreparedStatement pstm=null;
         jLabel23.setText("About ");
 
         showDrawer.setBackground(new java.awt.Color(255, 255, 255));
-        showDrawer.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/32.png"))); // NOI18N
-        showDrawer.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 204, 204), 5));
+        showDrawer.setForeground(new java.awt.Color(255, 255, 255));
+        showDrawer.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/menu_24.png"))); // NOI18N
+        showDrawer.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(169, 224, 49)));
         showDrawer.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         showDrawer.setRequestFocusEnabled(false);
         showDrawer.setVerifyInputWhenFocusTarget(false);
@@ -615,13 +616,13 @@ PreparedStatement pstm=null;
                 .addGap(18, 18, 18)
                 .addComponent(showDrawer, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel23, javax.swing.GroupLayout.DEFAULT_SIZE, 703, Short.MAX_VALUE))
+                .addComponent(jLabel23, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel9Layout.setVerticalGroup(
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel9Layout.createSequentialGroup()
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(showDrawer, javax.swing.GroupLayout.DEFAULT_SIZE, 48, Short.MAX_VALUE)
+                    .addComponent(showDrawer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel23, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(0, 0, Short.MAX_VALUE))
         );
@@ -647,7 +648,7 @@ PreparedStatement pstm=null;
                 .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(aboutPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(aboutPanelLayout.createSequentialGroup()
-                        .addComponent(aboutPic, javax.swing.GroupLayout.DEFAULT_SIZE, 923, Short.MAX_VALUE)
+                        .addComponent(aboutPic, javax.swing.GroupLayout.DEFAULT_SIZE, 567, Short.MAX_VALUE)
                         .addContainerGap())
                     .addGroup(aboutPanelLayout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
