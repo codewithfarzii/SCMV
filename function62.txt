@@ -1,5 +1,3 @@
-        noOfFLOAT.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                noOfFLOATActionPerformed(evt);
+            public void run() {
+                new BrowseJavaPackage().setVisible(true);
             }
-        });

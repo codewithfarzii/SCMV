@@ -1,3 +1,5 @@
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                noOfDOUBLEActionPerformed(evt);
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new BrowseJavaPackage().setVisible(true);
             }
+        });

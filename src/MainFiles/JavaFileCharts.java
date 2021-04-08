@@ -186,7 +186,7 @@ public JavaFileCharts(){
  } 
         public void LOC3D_LineChart(){
                     DefaultCategoryDataset dfg= new DefaultCategoryDataset();
-                    dfg.setValue(loc,"LOC", "LOC");
+                   // dfg.setValue(loc,"LOC", "LOC");
                     dfg.setValue(bline,"LOC", "Blank lines");
                     dfg.setValue(cline,"LOC", "Commented lines");
                     dfg.setValue(pline,"LOC", "Physical lines");
@@ -199,12 +199,12 @@ public JavaFileCharts(){
                      plot.setBackgroundPaint(new Color(0xEE, 0xEE, 0xFF));
                     ChartFrame hy;
                 hy = new ChartFrame("3D Line Chart Visualization of LOC",jfc);
-                    hy.setVisible(true);
+                    hy.setVisible(true);                    
                      hy.setSize(900,500);
  }
         public void LOC3D_StackBarChart() {
           DefaultCategoryDataset dfg= new DefaultCategoryDataset();
-                    dfg.setValue(loc,"LOC", "LOC");
+                   // dfg.setValue(loc,"LOC", "LOC");
                     dfg.setValue(bline,"LOC", "Blank lines");
                     dfg.setValue(cline,"LOC", "Commented lines");
                     dfg.setValue(pline,"LOC", "Physical lines");
@@ -223,7 +223,7 @@ public JavaFileCharts(){
  }
         public void LOC3D_PieChart(){
                       DefaultPieDataset dfgg= new DefaultPieDataset();
-                          dfgg.setValue("LOC",loc);
+                       //   dfgg.setValue("LOC",loc);
                           dfgg.setValue("Commented lines",cline);
                           dfgg.setValue("Blank lines",bline);
                           dfgg.setValue("Logical lines",lline);
@@ -249,7 +249,7 @@ public JavaFileCharts(){
                     // LOC 2D Charts
         public void LOC2D_PieChart(){
                       DefaultPieDataset dfgg= new DefaultPieDataset();
-                          dfgg.setValue("LOC",loc);
+                         // dfgg.setValue("LOC",loc);
                           dfgg.setValue("Commented lines",cline);
                           dfgg.setValue("Blank lines",bline);
                           dfgg.setValue("Logical lines",lline);
@@ -291,7 +291,7 @@ public JavaFileCharts(){
    }
         public void LOC2D_LineChart(){
                     DefaultCategoryDataset dfg= new DefaultCategoryDataset();
-                    dfg.setValue(loc,"LOC", "LOC");
+                  //  dfg.setValue(loc,"LOC", "LOC");
                     dfg.setValue(bline,"LOC", "Blank lines");
                     dfg.setValue(cline,"LOC", "Commented lines");
                     dfg.setValue(pline,"LOC", "Physical lines");
@@ -308,7 +308,7 @@ public JavaFileCharts(){
      }     
         public void LOC2D_WaterfallChart(){
                           DefaultCategoryDataset dfg= new DefaultCategoryDataset();
-                          dfg.setValue(loc,"LOC", "LOC");
+                       //   dfg.setValue(loc,"LOC", "LOC");
                           dfg.setValue(bline,"LOC", "Blank lines");
                           dfg.setValue(cline,"LOC", "Commented lines");
                           dfg.setValue(pline,"LOC", "Physical lines");
@@ -337,7 +337,7 @@ public JavaFileCharts(){
               final String category7 = "Close Braces";
 
                   DefaultCategoryDataset dfg1= new DefaultCategoryDataset();
-                          dfg1.setValue(loc,series1, category1);
+                      //    dfg1.setValue(loc,series1, category1);
                           dfg1.setValue(cline,series1, category2);
                           dfg1.setValue(bline,series1, category3);
                           dfg1.setValue(lline,series1, category4);
@@ -346,7 +346,7 @@ public JavaFileCharts(){
                           dfg1.setValue(cbrace,series1, category7);
 
                   DefaultCategoryDataset dfg2= new DefaultCategoryDataset();
-                          dfg2.setValue(loc,series2, category1);
+                       //   dfg2.setValue(loc,series2, category1);
                           dfg2.setValue(cline,series2, category2);
                           dfg2.setValue(bline,series2, category3);
                           dfg2.setValue(lline,series2, category4);
@@ -388,7 +388,7 @@ public JavaFileCharts(){
        }
         public void LOC2D_AreaChart() {
                       DefaultCategoryDataset dfg= new DefaultCategoryDataset();
-                          dfg.setValue(loc,"LOC", "LOC");
+                        //  dfg.setValue(loc,"LOC", "LOC");
                           dfg.setValue(bline,"LOC", "Blank lines");
                           dfg.setValue(cline,"LOC", "Commented lines");
                           dfg.setValue(pline,"LOC", "Physical lines");
@@ -406,7 +406,7 @@ public JavaFileCharts(){
        }   
         public void LOC2D_StackAreaChart() {
                         DefaultCategoryDataset dfg= new DefaultCategoryDataset();
-                          dfg.setValue(loc,"LOC", "LOC");
+                        //  dfg.setValue(loc,"LOC", "LOC");
                           dfg.setValue(bline,"LOC", "Blank lines");
                           dfg.setValue(cline,"LOC", "Commented lines");
                           dfg.setValue(pline,"LOC", "Physical lines");
@@ -425,7 +425,7 @@ public JavaFileCharts(){
        }        
         public void LOC2D_StackBarChart() {
                        DefaultCategoryDataset dfg= new DefaultCategoryDataset();
-                          dfg.setValue(loc,"LOC", "LOC");
+                       //   dfg.setValue(loc,"LOC", "LOC");
                           dfg.setValue(bline,"LOC", "Blank lines");
                           dfg.setValue(cline,"LOC", "Commented lines");
                           dfg.setValue(pline,"LOC", "Physical lines");

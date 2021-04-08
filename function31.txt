@@ -1,5 +1,5 @@
-        blankLinestxt.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                blankLinestxtActionPerformed(evt);
+        listOfFiles.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
+                listOfFilesValueChanged(evt);
             }
         });

@@ -24,7 +24,7 @@ public class GoodBye extends javax.swing.JFrame {
     public GoodBye() {
         initComponents();
 System.exit(0);    
-// exit();
+//exit();
            
     }
     int k=10;

@@ -1,3 +1,25 @@
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                noOfShortINTActionPerformed(evt);
+    public void listFilesAndFilesSubDirectories(String directoryName) throws IOException{
+        File directory = new File(directoryName);
+
+        //get all the files from a directory
+        File[] fList = directory.listFiles(new FileFilter(){
+               public boolean accept (File pathname){
+                   String st=pathname.getName();
+                   if(pathname.isDirectory()||st.endsWith(".java"))
+                return true;
+               else
+               return false;    
+               } });
+        
+        for (File file : fList){
+            if (file.isFile()){
+            String ad=file.getCanonicalPath();
+                   m.addElement(ad);
+                   fg=extractFileName(ad);
+                   alist.add(fg);  
+            }    
+            else if (file.isDirectory()){
+                listFilesAndFilesSubDirectories(file.getAbsolutePath());
             }
+        }
+    }

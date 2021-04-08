@@ -1,3 +1,6 @@
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                noOfFLOATActionPerformed(evt);
-            }
+                     plot.setBackgroundPaint(new Color(0xEE, 0xEE, 0xFF));
+                    ChartFrame hy;
+                hy = new ChartFrame("3D Stack Bar Chart Visualization of Conditional Statements",jfc);
+                    hy.setVisible(true);
+                     hy.setSize(900,500);
+}

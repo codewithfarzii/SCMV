@@ -1,3 +1,11 @@
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                noOfLongINTActionPerformed(evt);
-            }
+         String query="INSERT INTO `classnamestbl`(`c_name`) VALUES (?);";
+            try {             
+                pstm=con.prepareStatement(query);
+                for(String name: alist){
+                pstm.setString(1,name);            
+                pstm.execute();
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(BrowseJavaPackage.class.getName()).log(Level.SEVERE, null, ex);
+            }       
+    }

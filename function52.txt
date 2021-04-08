@@ -1,5 +1,3 @@
-        noOfINT.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                noOfINTActionPerformed(evt);
-            }
-        });
+    private void noOfFilesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_noOfFilesActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_noOfFilesActionPerformed

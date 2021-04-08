@@ -248,12 +248,21 @@ PreparedStatement pstm=null;
 
         luserName.setBackground(new java.awt.Color(31, 36, 42));
         luserName.setFont(new java.awt.Font("Trebuchet MS", 0, 24)); // NOI18N
-        luserName.setForeground(new java.awt.Color(255, 255, 255));
-        luserName.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(169, 224, 49)));
+        luserName.setForeground(java.awt.Color.gray);
+        luserName.setText(" username");
+        luserName.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(169, 224, 49), 2, true));
         luserName.setCaretColor(new java.awt.Color(255, 255, 255));
         luserName.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseMoved(java.awt.event.MouseEvent evt) {
                 luserNameMouseMoved(evt);
+            }
+        });
+        luserName.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                luserNameFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                luserNameFocusLost(evt);
             }
         });
         luserName.addActionListener(new java.awt.event.ActionListener() {
@@ -264,6 +273,9 @@ PreparedStatement pstm=null;
         luserName.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 luserNameKeyPressed(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                luserNameKeyTyped(evt);
             }
         });
         loginPanel.add(luserName, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 183, 250, 35));
@@ -280,10 +292,21 @@ PreparedStatement pstm=null;
 
         luserPass.setBackground(new java.awt.Color(31, 36, 42));
         luserPass.setFont(new java.awt.Font("Trebuchet MS", 0, 24)); // NOI18N
-        luserPass.setForeground(new java.awt.Color(255, 255, 255));
-        luserPass.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(169, 224, 49)));
+        luserPass.setForeground(java.awt.Color.gray);
+        luserPass.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        luserPass.setText("password");
+        luserPass.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(169, 224, 49), 2, true));
         luserPass.setCaretColor(new java.awt.Color(255, 255, 255));
+        luserPass.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         luserPass.setFocusCycleRoot(true);
+        luserPass.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                luserPassFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                luserPassFocusLost(evt);
+            }
+        });
         loginPanel.add(luserPass, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 260, 250, 35));
 
         jButton7.setBackground(new java.awt.Color(152, 201, 45));
@@ -866,6 +889,42 @@ PreparedStatement pstm=null;
            userPass1.requestFocus();
         }
     }//GEN-LAST:event_userEmailKeyPressed
+
+    private void luserNameKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_luserNameKeyTyped
+        // TODO add your handling code here:
+      
+    }//GEN-LAST:event_luserNameKeyTyped
+
+    private void luserNameFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_luserNameFocusGained
+        
+          if (luserName.getText().equals(" username")) {
+            luserName.setText("");
+            luserName.setForeground(Color.WHITE);
+        }
+    }//GEN-LAST:event_luserNameFocusGained
+
+    private void luserNameFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_luserNameFocusLost
+        // TODO add your handling code here:
+        if (luserName.getText().isEmpty()) {
+            luserName.setForeground(Color.GRAY);
+            luserName.setText(" username");
+        }
+    }//GEN-LAST:event_luserNameFocusLost
+
+    private void luserPassFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_luserPassFocusGained
+        
+        if (luserPass.getText().equals("password")) {
+            luserPass.setText("");
+            luserPass.setForeground(Color.WHITE);
+        }
+    }//GEN-LAST:event_luserPassFocusGained
+
+    private void luserPassFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_luserPassFocusLost
+         if (luserPass.getText().isEmpty()) {
+            luserPass.setForeground(Color.GRAY);
+            luserPass.setText("password");
+        }
+    }//GEN-LAST:event_luserPassFocusLost
 
     /**
      * @param args the command line arguments

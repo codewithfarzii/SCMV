@@ -1,5 +1,5 @@
-        noOfChildClasstxt.addActionListener(new java.awt.event.ActionListener() {
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                noOfChildClasstxtActionPerformed(evt);
+                jButton2ActionPerformed(evt);
             }
         });

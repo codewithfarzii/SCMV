@@ -1,5 +1,4 @@
-        visualizeComboBox.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                visualizeComboBoxActionPerformed(evt);
-            }
-        });
+    private void listOfFilesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listOfFilesMouseClicked
+       selected=listOfFiles.getSelectedValue().toString();
+       fileName=extractFileName(selected);    
+    }//GEN-LAST:event_listOfFilesMouseClicked
