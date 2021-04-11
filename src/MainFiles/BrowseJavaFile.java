@@ -202,6 +202,7 @@ PreparedStatement pstm=null;
         jPanel12 = new javax.swing.JPanel();
         jButton5 = new javax.swing.JButton();
         visualizeComboBox1 = new javax.swing.JComboBox();
+        jSeparator2 = new javax.swing.JSeparator();
         jPanel4 = new javax.swing.JPanel();
         noOfFORLOOP = new javax.swing.JTextField();
         noOfDOWHILELOOP = new javax.swing.JTextField();
@@ -858,6 +859,9 @@ PreparedStatement pstm=null;
                 .addContainerGap())
         );
 
+        jSeparator2.setBackground(new java.awt.Color(0, 0, 0));
+        jSeparator2.setOrientation(javax.swing.SwingConstants.VERTICAL);
+
         javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
         jPanel9.setLayout(jPanel9Layout);
         jPanel9Layout.setHorizontalGroup(
@@ -875,7 +879,9 @@ PreparedStatement pstm=null;
                     .addComponent(noOfShortINT, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(noOfLongINT, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(noOfSTRING, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(50, 50, 50)
+                .addGap(23, 23, 23)
+                .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 9, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel15)
                     .addComponent(jLabel14)
@@ -895,37 +901,42 @@ PreparedStatement pstm=null;
         jPanel9Layout.setVerticalGroup(
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel9Layout.createSequentialGroup()
-                .addGap(36, 36, 36)
-                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(noOfINT, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(noOfDOUBLE, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel8)
-                    .addComponent(jLabel12))
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel9Layout.createSequentialGroup()
-                        .addGap(27, 27, 27)
+                        .addGap(36, 36, 36)
                         .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(noOfShortINT, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(noOfFLOAT, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel9)
-                            .addComponent(jLabel13))
-                        .addGap(32, 32, 32)
+                            .addComponent(noOfINT, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(noOfDOUBLE, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel8)
+                            .addComponent(jLabel12))
+                        .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel9Layout.createSequentialGroup()
+                                .addGap(27, 27, 27)
+                                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(noOfShortINT, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(noOfFLOAT, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel9)
+                                    .addComponent(jLabel13))
+                                .addGap(32, 32, 32)
+                                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(noOfLongINT, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(noOfBOOL, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel10)
+                                    .addComponent(jLabel14))
+                                .addGap(34, 34, 34))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel9Layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jPanel12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
                         .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(noOfLongINT, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(noOfBOOL, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel10)
-                            .addComponent(jLabel14))
-                        .addGap(34, 34, 34))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel9Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPanel12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
-                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(noOfSTRING, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(noOfCHAR, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel11)
-                    .addComponent(jLabel15))
-                .addContainerGap(74, Short.MAX_VALUE))
+                            .addComponent(noOfSTRING, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(noOfCHAR, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel11)
+                            .addComponent(jLabel15)))
+                    .addGroup(jPanel9Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(17, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Data Types", jPanel9);
@@ -1765,6 +1776,7 @@ PreparedStatement pstm=null;
             }
                 if(str.contains("int")){               
               i_no=i_no+INT_calculate(str);
+             // System.out.println("int--> "+i_no);
             }
             if(str.contains("short")){               
               si_no=si_no+SHORT_INT_calculate(str);
@@ -1786,9 +1798,7 @@ PreparedStatement pstm=null;
             }
             if(str.contains("boolean")){               
               b_no=b_no+BOOL_calculate(str);
-            }
-            i_no= i_no-si_no;
-            i_no= i_no-li_no;
+            }           
             
                 
             if(str.contains("for")){               
@@ -1855,13 +1865,7 @@ PreparedStatement pstm=null;
                        // classname = str.substring(index, lastinx);
                         //classno++;
                         child++;
-                    }                    
-                    
-                     if (token.equalsIgnoreCase("long")
-                         ) {
-                        li_no++;
-                    }
-                    
+                    } 
                      if (token.equalsIgnoreCase("?:")
                             ) {
                         trno++;
@@ -1986,6 +1990,7 @@ PreparedStatement pstm=null;
            else
                s1="Small Class";
         String cc;
+       // System.out.println("trno --> "+trno);
           int coc=ifno+elseno+elseifno+caseno+swhno+tryno+catchno+trno+dono+whlno+frno;
            if(coc>50){
                cc="High";
@@ -2004,8 +2009,9 @@ PreparedStatement pstm=null;
            tryno=catchno;
             str = reader.readLine();
             Scanner scan = new Scanner(fr);
-            reader.close();   
-           
+            reader.close();               
+            i_no= i_no-si_no;
+            i_no= i_no-li_no;
            // LOC INFO
             totalLOCtxt.setText(Integer.toString(loc));
             blankLinestxt.setText(Integer.toString(elineno));
@@ -2017,7 +2023,7 @@ PreparedStatement pstm=null;
             // DATA TYPES INFO
             noOfINT.setText(Integer.toString(i_no));
             noOfShortINT.setText(Integer.toString(si_no));
-            noOfLongINT.setText(Integer.toString(li_no));
+            noOfLongINT.setText(Integer.toString(li_no));            
             noOfSTRING.setText(Integer.toString(s_no));
             noOfDOUBLE.setText(Integer.toString(d_no));
             noOfFLOAT.setText(Integer.toString(f_no));
@@ -2829,40 +2835,40 @@ PreparedStatement pstm=null;
             }           
             JavaFileCharts dt=new JavaFileCharts();
             if(visualizeComboBox2.getSelectedItem().equals("2D Bar Chart")){
-                dt.DT2D_BarChart();
+                dt.DTV2D_BarChart();
             }
             if(visualizeComboBox2.getSelectedItem().equals("2D Pie Chart")){
-                 dt.DT2D_PieChart();
+                 dt.DTV2D_PieChart();
             }
             if(visualizeComboBox2.getSelectedItem().equals("2D Line Chart")){
-                dt.DT2D_LineChart();
+                dt.DTV2D_LineChart();
             }
             if(visualizeComboBox2.getSelectedItem().equals("2D Waterfall Chart")){
-                dt.DT2D_WaterfallChart();
+                dt.DTV2D_WaterfallChart();
             }
             if(visualizeComboBox2.getSelectedItem().equals("2D Dual Chart")){
-                dt.DT2D_DualChart();
+                dt.DTV2D_DualChart();
             }
             if(visualizeComboBox2.getSelectedItem().equals("2D Area Chart")){
-                dt.DT2D_AreaChart();
+                dt.DTV2D_AreaChart();
             }
             if(visualizeComboBox2.getSelectedItem().equals("2D Stack Area Chart")){
-                dt.DT2D_StackAreaChart();
+                dt.DTV2D_StackAreaChart();
             }
             if(visualizeComboBox2.getSelectedItem().equals("2D Stack Bar Chart")){
-                dt.DT2D_StackBarChart();
+                dt.DTV2D_StackBarChart();
             }                    
             if(visualizeComboBox2.getSelectedItem().equals("3D Bar Chart")){
-                dt.DT3D_BarChart();
+                dt.DTV3D_BarChart();
             }
             if(visualizeComboBox2.getSelectedItem().equals("3D Pie Chart")){
-                dt.DT3D_PieChart();
+                dt.DTV3D_PieChart();
             }
             if(visualizeComboBox2.getSelectedItem().equals("3D Line Chart")){
-                dt.DT3D_LineChart();
+                dt.DTV3D_LineChart();
             }
             if(visualizeComboBox2.getSelectedItem().equals("3D Stack Bar Chart")){
-                dt.DT3D_StackBarChart();
+                dt.DTV3D_StackBarChart();
             }            
         }
     }//GEN-LAST:event_jButton6ActionPerformed
@@ -2982,12 +2988,12 @@ PreparedStatement pstm=null;
         }
         calculateDTVFromBrace();
         calculateDTVFromPHY();
-        System.out.println("int --> "+INT_Count);
-        System.out.println("short int --> "+SHORT_INT_Count);
-        System.out.println("long int --> "+LONG_INT_Count);
-        System.out.println("bool --> "+BOOL_Count);
-        System.out.println("double --> "+DOUBLE_Count);
-        System.out.println("Float --> "+FLOAT_Count);
+//        System.out.println("int --> "+INT_Count);
+//        System.out.println("short int --> "+SHORT_INT_Count);
+//        System.out.println("long int --> "+LONG_INT_Count);
+//        System.out.println("bool --> "+BOOL_Count);
+//        System.out.println("double --> "+DOUBLE_Count);
+//        System.out.println("Float --> "+FLOAT_Count);
     }
     public static void calculateDTVFromPHY(){
         for(String str:listOfPhyLines){
@@ -4158,6 +4164,8 @@ PreparedStatement pstm=null;
             pstm.executeUpdate();
             pstm=con.prepareStatement("delete  from conditionalstatetbl");
             pstm.executeUpdate();
+            pstm=con.prepareStatement("delete  from variablestbl");
+            pstm.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(BrowseJavaFile.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -4373,6 +4381,7 @@ PreparedStatement pstm=null;
     private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JSeparator jSeparator2;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTextField logicalLinestxt;
     private javax.swing.JTextField noOfBOOL;

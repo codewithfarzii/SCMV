@@ -53,6 +53,7 @@ ResultSet rs=null;
 PreparedStatement pstm=null;
 int loc, bline, cline, pline, lline, obrace, cbrace;
 int t_int, t_shortint, t_longint, t_string, t_double, t_float, t_bool, t_char;
+int t_int_v, t_shortint_v, t_longint_v, t_string_v, t_double_v, t_float_v, t_bool_v, t_char_v;
 int t_for,t_while,t_do_while;
 int t_if,t_else,t_elseif,t_switch,t_case,t_try,t_catch,t_finally;
 public JavaFileCharts(){   
@@ -66,6 +67,7 @@ public JavaFileCharts(){
     getValuesFromDATATYPEtbl();
     getValuesFromLOOPtbl();
     getValuesFromConditionalStatetbl();
+    getValuesFromVariablestbl();
    }
 
     // getting data from DB Tabels
@@ -160,6 +162,33 @@ public JavaFileCharts(){
             t_catch= Integer.parseInt(g);
             String h=rs.getString("total_finally");
             t_finally= Integer.parseInt(h);
+        }
+    } catch (SQLException ex) {
+        Logger.getLogger(JavaFileCharts.class.getName()).log(Level.SEVERE, null, ex);
+    }
+}
+    public void getValuesFromVariablestbl(){
+    try {
+        String query= "SELECT * FROM `variablestbl`";
+        pstm=con.prepareStatement(query);
+        rs=pstm.executeQuery();
+        if(rs.next()){
+            String a=rs.getString("total_intv");
+            t_int_v= Integer.parseInt(a);
+            String b=rs.getString("total_short_intv");
+            t_shortint_v= Integer.parseInt(b);
+            String c=rs.getString("total_long_intv");
+            t_longint_v= Integer.parseInt(c);
+            String d=rs.getString("total_stringv");
+            t_string_v= Integer.parseInt(d);
+            String e=rs.getString("total_doublev");
+            t_double_v= Integer.parseInt(e);
+            String f=rs.getString("total_floatv");
+            t_float_v= Integer.parseInt(f);
+            String g=rs.getString("total_boolv");
+            t_bool_v= Integer.parseInt(g);
+            String h=rs.getString("total_charv");
+            t_char_v= Integer.parseInt(h);
         }
     } catch (SQLException ex) {
         Logger.getLogger(JavaFileCharts.class.getName()).log(Level.SEVERE, null, ex);
@@ -453,7 +482,7 @@ public JavaFileCharts(){
                     dfgg.setValue("BOOL",t_bool);
                     dfgg.setValue("STRING",t_string);
                     dfgg.setValue("CHAR",t_char);
-                   JFreeChart jfc= ChartFactory.createPieChart("Data Types 2D Pie Char", dfgg, true, true, false);
+                   JFreeChart jfc= ChartFactory.createPieChart("Data Types 2D Pie Chart", dfgg, true, true, false);
                       PiePlot plot = (PiePlot)jfc.getPlot();
                       PieSectionLabelGenerator gen = new StandardPieSectionLabelGenerator(
             "{0}: {1} ({2})", new DecimalFormat("0"), new DecimalFormat("0%"));
@@ -488,14 +517,14 @@ public JavaFileCharts(){
 }
         public void DT2D_LineChart(){
            DefaultCategoryDataset dfg= new DefaultCategoryDataset();
-                    dfg.setValue(t_int,"INT", "INT");
-                    dfg.setValue(t_double,"DOUBLE", "DOUBLE");
-                    dfg.setValue(t_float,"FLOAT", "FLOAT");
-                    dfg.setValue(t_longint,"LONG_INT", "LONG INT");
-                    dfg.setValue(t_shortint,"SHORT_INT", "SHORT INT");
-                    dfg.setValue(t_bool,"BOOL", "BOOL");
-                    dfg.setValue(t_string,"STRING", "STRING");
-                    dfg.setValue(t_char,"CHAR", "CHAR");
+                    dfg.setValue(t_int,"Data Types", "int");                    
+                    dfg.setValue(t_longint,"Data Types", "long");
+                    dfg.setValue(t_shortint,"Data Types", "short int");
+                    dfg.setValue(t_double,"Data Types", "double");
+                    dfg.setValue(t_float,"Data Types", "float");
+                    dfg.setValue(t_bool,"Data Types", "boolean");
+                    dfg.setValue(t_string,"Data Types", "String");
+                    dfg.setValue(t_char,"Data Types", "char");
                    JFreeChart jfc= ChartFactory.createLineChart("Data Types 2D Line Chart","Metrics","Max Values",dfg,PlotOrientation.VERTICAL,true, true, false);
                     CategoryPlot plot=jfc.getCategoryPlot();
                     plot.setRangeGridlinePaint(Color.CYAN);
@@ -730,6 +759,295 @@ public JavaFileCharts(){
                          hy.setSize(900,500);
      }
         
+        
+        // Variabels Created 2D charts
+        public void DTV2D_PieChart(){           
+                  DefaultPieDataset dfgg= new DefaultPieDataset();
+                    dfgg.setValue("No. of int Variables",t_int_v);
+                    dfgg.setValue("No. of long int Variables",t_longint_v);
+                    dfgg.setValue("No. of short int Variables",t_shortint_v);
+                    dfgg.setValue("No. of double Variables",t_double_v);
+                    dfgg.setValue("No. of float Variables",t_float_v);                    
+                    dfgg.setValue("No. of boolean Variables",t_bool_v);
+                    dfgg.setValue("No. of String Variables",t_string_v);
+                    dfgg.setValue("No. of char Variables",t_char_v);
+                   JFreeChart jfc= ChartFactory.createPieChart("2D Pie Chart", dfgg, true, true, false);
+                      PiePlot plot = (PiePlot)jfc.getPlot();
+                      PieSectionLabelGenerator gen = new StandardPieSectionLabelGenerator(
+            "{0}: {1} ({2})", new DecimalFormat("0"), new DecimalFormat("0%"));
+        plot.setLabelGenerator(gen);
+        plot.setExplodePercent(String.valueOf(t_int), 0.10);
+        plot.setLabelFont(new Font("SansSerif", Font.PLAIN, 12));
+        plot.setNoDataMessage("No data available");
+        plot.setCircular(false);
+        plot.setLabelGap(0.02);
+                    ChartFrame hy;
+                hy = new ChartFrame("2D Pie Chart Visualization of Primitive Data Types Variables Created",jfc);
+                    hy.setVisible(true);
+                     hy.setSize(900,500);
+ }
+        public void DTV2D_BarChart(){      
+                 DefaultCategoryDataset dfg= new DefaultCategoryDataset();
+                   
+                    dfg.setValue(t_int_v,"No. of int Variables Created", "int");
+                     dfg.setValue(t_longint_v,"No. of long int Variables Created", "long int");
+                    dfg.setValue(t_shortint_v,"No. of short int Variables Created INT", "short int");
+                    dfg.setValue(t_double_v,"No. of double Variables Created", "double");
+                    dfg.setValue(t_float_v,"No. of float Variables Created", "float");                   
+                    dfg.setValue(t_bool_v,"No. of boolean Variables Created", "boolean");
+                    dfg.setValue(t_string_v,"No. of String Variables Created", "String");
+                    dfg.setValue(t_char_v,"No. of char Variables Created", "char");
+              JFreeChart jfc= ChartFactory.createBarChart("2D Bar Chart","Metrics","Max Values", dfg, PlotOrientation.VERTICAL, false, true, false);
+              CategoryPlot plot=jfc.getCategoryPlot();
+              plot.setRangeGridlinePaint(Color.CYAN);
+              ChartFrame hy;
+              hy = new ChartFrame("2D Bar Chart Visualization of Primitive Data Types Variables Created",jfc);
+              hy.setVisible(true);
+              hy.setSize(900,500);
+}
+        public void DTV2D_LineChart(){
+           DefaultCategoryDataset dfg= new DefaultCategoryDataset();
+                     dfg.setValue(t_int_v,"Variables Created", "int");
+                    dfg.setValue(t_longint_v,"Variables Created", "long int");
+                    dfg.setValue(t_shortint_v,"Variables Created", "short int");
+                    dfg.setValue(t_double_v,"Variables Created", "double");
+                    dfg.setValue(t_float_v,"Variables Created", "float");                   
+                    dfg.setValue(t_bool_v,"Variables Created", "boolean");
+                    dfg.setValue(t_string_v,"Variables Created", "String");
+                    dfg.setValue(t_char_v,"Variables Created", "char");
+                   JFreeChart jfc= ChartFactory.createLineChart("2D Line Chart","Metrics","Max Values",dfg,PlotOrientation.HORIZONTAL,true, true, false);
+                    CategoryPlot plot=jfc.getCategoryPlot();
+                    plot.setRangeGridlinePaint(Color.CYAN);
+                    ChartFrame hy;
+                hy = new ChartFrame("2D Line Chart Visualization of Primitive Data Types Variables Created",jfc);
+                    hy.setVisible(true);
+                     hy.setSize(900,500);
+          }
+        public void DTV2D_WaterfallChart(){                 
+                    DefaultCategoryDataset dfg= new DefaultCategoryDataset();
+                    dfg.setValue(t_int_v,"Variables Created", "int");
+                    dfg.setValue(t_longint_v,"Variables Created", "long int");
+                    dfg.setValue(t_shortint_v,"Variables Created", "short int");
+                    dfg.setValue(t_double_v,"Variables Created", "double");
+                    dfg.setValue(t_float_v,"Variables Created", "float");                   
+                    dfg.setValue(t_bool_v,"Variables Created", "boolean");
+                    dfg.setValue(t_string_v,"Variables Created", "String");
+                    dfg.setValue(t_char_v,"Variables Created", "char");
+                   JFreeChart jfc= ChartFactory.createWaterfallChart("2D Waterfall Chart","Metrics","Max  Values", dfg, PlotOrientation.VERTICAL, true, true, true);
+                    CategoryPlot plot=jfc.getCategoryPlot();
+                    plot.setRangeGridlinePaint(Color.BLUE);
+                     plot.setBackgroundPaint(new Color(0xEE, 0xEE, 0xFF));
+                    ChartFrame hy;
+                hy = new ChartFrame("2D Waterfall Chart Visualization of Primitive Data Types Variables Created",jfc);
+                    hy.setVisible(true);
+                     hy.setSize(900,500);
+ }
+        public void DTV2D_DualChart(){               
+                // row keys...
+            final String series1 = "Series 1";
+            final String series2 = "Series 2";
+            // column keys...
+            final String category1 = "int";
+            final String category2 = "long int";
+            final String category3 = "short int";
+            final String category4 = "double";
+            final String category5 = "float";            
+            final String category6 = "boolean";
+            final String category7 = "string";
+            final String category8 = "char";        
+            DefaultCategoryDataset dfg1= new DefaultCategoryDataset();
+                    dfg1.setValue(t_int_v,series1, category1);
+                    dfg1.setValue(t_longint_v,series1, category2);
+                    dfg1.setValue(t_shortint_v,series1, category3);
+                    dfg1.setValue(t_double_v,series1, category4);
+                    dfg1.setValue(t_float_v,series1, category5);                    
+                    dfg1.setValue(t_bool_v,series1, category6);
+                    dfg1.setValue(t_string_v,series1, category7);
+                    dfg1.setValue(t_char_v,series1, category8);
+           DefaultCategoryDataset dfg2= new DefaultCategoryDataset();
+                    dfg2.setValue(t_int_v,series2, category1);
+                    dfg2.setValue(t_longint_v,series2, category2);
+                    dfg2.setValue(t_shortint_v,series2, category3);
+                    dfg2.setValue(t_double_v,series2, category4);
+                    dfg2.setValue(t_float_v,series2, category5);                    
+                    dfg2.setValue(t_bool_v,series2, category6);
+                    dfg2.setValue(t_string_v,series2, category7);
+                     dfg1.setValue(t_char_v,series2, category8);
+                   JFreeChart jfc= ChartFactory.createBarChart("2D Dual Axis Chart","Metrics","Max Value",dfg1, PlotOrientation.VERTICAL, true, true, true);
+                   final CategoryPlot plot=jfc.getCategoryPlot();
+                    plot.setRangeGridlinePaint(Color.BLUE);
+                     plot.setBackgroundPaint(new Color(0xEE, 0xEE, 0xFF));
+                     plot.setDomainAxisLocation(AxisLocation.BOTTOM_OR_LEFT);
+         plot.setRangeAxisLocation(AxisLocation.TOP_OR_LEFT);        
+         plot.setDomainAxisLocation(AxisLocation.BOTTOM_OR_RIGHT);
+         final CategoryAxis domainAxis = plot.getDomainAxis();
+        domainAxis.setCategoryLabelPositions(CategoryLabelPositions.STANDARD);
+      
+        final CategoryItemRenderer renderer1 = plot.getRenderer();
+          renderer1.setSeriesPaint(0, Color.red);
+        renderer1.setSeriesPaint(1, Color.yellow);
+        renderer1.setSeriesPaint(2, Color.green);  
+     
+       final ValueAxis axis2 = new NumberAxis3D("Secondary Dataset");
+        plot.setRangeAxis(1, axis2);
+        plot.setDataset(1, dfg2);
+        plot.mapDatasetToRangeAxis(1, 1);
+        final LineAndShapeRenderer renderer2 = new LineAndShapeRenderer();
+        renderer2.setToolTipGenerator(new StandardCategoryToolTipGenerator());
+        plot.setRenderer(1, renderer2);
+        plot.setDatasetRenderingOrder(DatasetRenderingOrder.REVERSE);       
+                    plot.setDomainAxisLocation(AxisLocation.BOTTOM_OR_RIGHT);
+                    ChartFrame hy;
+                hy = new ChartFrame("2D Dual Chart Visualization of Primitive Data Types Variables Created",jfc);
+                    hy.setVisible(true);
+                     hy.setSize(900,500);
+ }
+        public void DTV2D_AreaChart() {
+                 
+                DefaultCategoryDataset dfg= new DefaultCategoryDataset();
+                   dfg.setValue(t_int_v,"No. of int Variables Created", "int");
+                     dfg.setValue(t_longint_v,"No. of long int Variables Created", "long int");
+                    dfg.setValue(t_shortint_v,"No. of short int Variables Created INT", "short int");
+                    dfg.setValue(t_double_v,"No. of double Variables Created", "double");
+                    dfg.setValue(t_float_v,"No. of float Variables Created", "float");                   
+                    dfg.setValue(t_bool_v,"No. of boolean Variables Created", "boolean");
+                    dfg.setValue(t_string_v,"No. of String Variables Created", "String");
+                    dfg.setValue(t_char_v,"No. of char Variables Created", "char");
+
+                    JFreeChart jfc= ChartFactory.createAreaChart("2D Area Chart","Metrics","Max Values", dfg, PlotOrientation.VERTICAL, true, true, true);
+                    CategoryPlot plot=jfc.getCategoryPlot();
+                    plot.setRangeGridlinePaint(Color.CYAN);
+                    plot.setNoDataMessage("No data available");
+                    ChartFrame hy;
+                hy = new ChartFrame("2D Area Chart Visualization of Primitive Data Types Variables Created",jfc);
+                    hy.setVisible(true);
+                     hy.setSize(900,500);
+ }
+        public void DTV2D_StackAreaChart() {
+              DefaultCategoryDataset dfg= new DefaultCategoryDataset();
+                  dfg.setValue(t_int_v,"No. of int Variables Created", "int");
+                     dfg.setValue(t_longint_v,"No. of long int Variables Created", "long int");
+                    dfg.setValue(t_shortint_v,"No. of short int Variables Created INT", "short int");
+                    dfg.setValue(t_double_v,"No. of double Variables Created", "double");
+                    dfg.setValue(t_float_v,"No. of float Variables Created", "float");                   
+                    dfg.setValue(t_bool_v,"No. of boolean Variables Created", "boolean");
+                    dfg.setValue(t_string_v,"No. of String Variables Created", "String");
+                    dfg.setValue(t_char_v,"No. of char Variables Created", "char");
+                    
+                   JFreeChart jfc= ChartFactory.createStackedAreaChart("2D Stacked Area Chart", "Metrics", "Max Values", dfg, PlotOrientation.VERTICAL, true, true, true);
+                    CategoryPlot plot=jfc.getCategoryPlot();
+                    plot.setRangeGridlinePaint(Color.BLUE);
+                     plot.setBackgroundPaint(new Color(0xEE, 0xEE, 0xFF));
+                    plot.setNoDataMessage("No data available");
+                    ChartFrame hy;
+                hy = new ChartFrame("2D Stack Area Chart Visualization of Primitive Data Types Variables Created",jfc);
+                    hy.setVisible(true);
+                     hy.setSize(900,500); 
+ }
+        public void DTV2D_StackBarChart() {
+               DefaultCategoryDataset dfg= new DefaultCategoryDataset();
+                  dfg.setValue(t_int_v,"No. of int Variables Created", "int");
+                     dfg.setValue(t_longint_v,"No. of long int Variables Created", "long int");
+                    dfg.setValue(t_shortint_v,"No. of short int Variables Created INT", "short int");
+                    dfg.setValue(t_double_v,"No. of double Variables Created", "double");
+                    dfg.setValue(t_float_v,"No. of float Variables Created", "float");                   
+                    dfg.setValue(t_bool_v,"No. of boolean Variables Created", "boolean");
+                    dfg.setValue(t_string_v,"No. of String Variables Created", "String");
+                    dfg.setValue(t_char_v,"No. of char Variables Created", "char");
+                   JFreeChart jfc= ChartFactory.createStackedBarChart("2D Stacked Bar Chart","Metrics","Max Values", dfg, PlotOrientation.VERTICAL, true, true, true);
+                    CategoryPlot plot=jfc.getCategoryPlot();
+                    plot.setRangeGridlinePaint(Color.BLUE);
+                     plot.setBackgroundPaint(new Color(0xEE, 0xEE, 0xFF));
+                    plot.setNoDataMessage("No data available");
+                    ChartFrame hy;
+                hy = new ChartFrame("2D Stack Bar Chart Visualization of Primitive Data Types Variables Created",jfc);
+                    hy.setVisible(true);
+                     hy.setSize(900,500);
+ }
+        
+                    // Variables Created 3D Charts
+        public void DTV3D_PieChart(){
+                        DefaultPieDataset dfgg= new DefaultPieDataset();
+                        dfgg.setValue("No. of int Variables",t_int_v);
+                    dfgg.setValue("No. of long int Variables",t_longint_v);
+                    dfgg.setValue("No. of short int Variables",t_shortint_v);
+                    dfgg.setValue("No. of double Variables",t_double_v);
+                    dfgg.setValue("No. of float Variables",t_float_v);                    
+                    dfgg.setValue("No. of boolean Variables",t_bool_v);
+                    dfgg.setValue("No. of String Variables",t_string_v);
+                    dfgg.setValue("No. of char Variables",t_char_v);
+                       JFreeChart jfc= ChartFactory.createPieChart3D("3D Pie Chart", dfgg, true, true, false);
+                       PiePlot3D plot = (PiePlot3D)jfc.getPlot();
+                       PieSectionLabelGenerator gen = new StandardPieSectionLabelGenerator(
+                "{0}: {1} ({2})", new DecimalFormat("0"), new DecimalFormat("0%"));
+            plot.setLabelGenerator(gen);
+            plot.setExplodePercent(String.valueOf(t_int), 0.10);
+            plot.setLabelFont(new Font("SansSerif", Font.PLAIN, 12));
+            plot.setNoDataMessage("No data available");
+            plot.setCircular(false);
+            plot.setLabelGap(0.02);
+                        ChartFrame hy;
+                    hy = new ChartFrame("3D Pie Chart Visualization of Primitive Data Types Variables Created",jfc);
+                        hy.setVisible(true);
+                         hy.setSize(900,500);
+     }
+        public void DTV3D_BarChart(){
+                DefaultCategoryDataset dfg= new DefaultCategoryDataset();
+                        dfg.setValue(t_int_v,"No. of int Variables Created", "int");
+                     dfg.setValue(t_longint_v,"No. of long int Variables Created", "long int");
+                    dfg.setValue(t_shortint_v,"No. of short int Variables Created INT", "short int");
+                    dfg.setValue(t_double_v,"No. of double Variables Created", "double");
+                    dfg.setValue(t_float_v,"No. of float Variables Created", "float");                   
+                    dfg.setValue(t_bool_v,"No. of boolean Variables Created", "boolean");
+                    dfg.setValue(t_string_v,"No. of String Variables Created", "String");
+                    dfg.setValue(t_char_v,"No. of char Variables Created", "char");
+                       JFreeChart jfc= ChartFactory.createBarChart3D("3D Bar Chart","Metrics","Max Values", dfg,PlotOrientation.VERTICAL, true, true,true);
+                        CategoryPlot plot=jfc.getCategoryPlot();
+                        plot.setRangeGridlinePaint(Color.CYAN);
+                        ChartFrame hy;
+                    hy = new ChartFrame("3D Bar Chart Visualization of Primitive Data Types Variables Created",jfc);
+                        hy.setVisible(true);
+                         hy.setSize(900,500);
+     }
+        public void DTV3D_LineChart(){       
+                DefaultCategoryDataset dfg= new DefaultCategoryDataset();
+                    dfg.setValue(t_int_v,"Variables Created", "int");
+                    dfg.setValue(t_longint_v,"Variables Created", "long int");
+                    dfg.setValue(t_shortint_v,"Variables Created", "short int");
+                    dfg.setValue(t_double_v,"Variables Created", "double");
+                    dfg.setValue(t_float_v,"Variables Created", "float");                   
+                    dfg.setValue(t_bool_v,"Variables Created", "boolean");
+                    dfg.setValue(t_string_v,"Variables Created", "String");
+                    dfg.setValue(t_char_v,"Variables Created", "char");
+                       JFreeChart jfc= ChartFactory.createLineChart3D("3D Line Chart", "Metrics","Max Values",dfg,PlotOrientation.VERTICAL,true, true, false);
+                        CategoryPlot plot=jfc.getCategoryPlot();
+                        plot.setRangeGridlinePaint(Color.BLUE);
+                         plot.setBackgroundPaint(new Color(0xEE, 0xEE, 0xFF));
+                        ChartFrame hy;
+                    hy = new ChartFrame("3D Line Chart Visualization of Primitive Data Types Variables Created",jfc);
+                        hy.setVisible(true);
+                         hy.setSize(900,500);
+     }
+        public void DTV3D_StackBarChart() {            
+                  DefaultCategoryDataset dfg= new DefaultCategoryDataset();
+                       dfg.setValue(t_int_v,"No. of int Variables Created", "int");
+                     dfg.setValue(t_longint_v,"No. of long int Variables Created", "long int");
+                    dfg.setValue(t_shortint_v,"No. of short int Variables Created INT", "short int");
+                    dfg.setValue(t_double_v,"No. of double Variables Created", "double");
+                    dfg.setValue(t_float_v,"No. of float Variables Created", "float");                   
+                    dfg.setValue(t_bool_v,"No. of boolean Variables Created", "boolean");
+                    dfg.setValue(t_string_v,"No. of String Variables Created", "String");
+                    dfg.setValue(t_char_v,"No. of char Variables Created", "char");
+                       JFreeChart jfc= ChartFactory.createStackedBarChart3D("3D Stacked Bar Chart", "Metrics", "Max Values", dfg, PlotOrientation.VERTICAL, true, true, true);
+                        CategoryPlot plot=jfc.getCategoryPlot();
+                        plot.setRangeGridlinePaint(Color.BLUE);
+                         plot.setBackgroundPaint(new Color(0xEE, 0xEE, 0xFF));
+                        plot.setNoDataMessage("No data available");
+                        ChartFrame hy;
+                    hy = new ChartFrame("3D Stack Bar Chart Visualization of Primitive Data Types Variables Created",jfc);
+                        hy.setVisible(true);
+                         hy.setSize(900,500);
+     }
                     // Loop Statements 2D Charts
         public void LOOP2D_BarChart() {
                   DefaultCategoryDataset dfg= new DefaultCategoryDataset();
