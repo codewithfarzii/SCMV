@@ -1,3 +1,7 @@
-    private void jButton11MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton11MouseClicked
-        this.setState(ICONIFIED);
-    }//GEN-LAST:event_jButton11MouseClicked
+    private void userPass1KeyPressed(java.awt.event.KeyEvent evt) {                                     
+        // TODO add your handling code here:
+         int key =evt.getKeyCode();
+        if(key==10){
+           userPass2.requestFocus();
+        }
+    }                                    

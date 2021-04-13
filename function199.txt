@@ -1,3 +1,6 @@
-    private void noOfSTRINGActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_noOfSTRINGActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_noOfSTRINGActionPerformed
+    private void luserPassFocusLost(java.awt.event.FocusEvent evt) {                                    
+         if (luserPass.getText().isEmpty()) {
+            luserPass.setForeground(Color.GRAY);
+            luserPass.setText("password");
+        }
+    }                                   

@@ -1,4 +1,30 @@
-                            (token.contains(">") && !token.contains("Hashtable") && !token.contains("HashSet") && !token.contains("Array") && !token.contains("Abstract"))|
-                openbrace=closebrace;
-                reader.reset();
-            }
+            String sqll= "insert into logintbl(`userName`, `userEmail`, `userPass`) VALUES (?,?,?);";
+             pstm=con.prepareStatement(sqll);
+             pstm.setString(1,uName);
+             pstm.setString(2,uEmail);
+             pstm.setString(3,uPass1); 
+             pstm.execute();
+             
+           //  JOptionPane.showMessageDialog(null, "Account Created Successffully!!!\nNow Login");
+             ImageIcon icon = new ImageIcon("src/images/check.png");
+
+        JPanel panel = new JPanel();
+       Border blackline = BorderFactory.createLineBorder(Color.black);
+       panel.setBorder(blackline);
+        panel.setBackground(new Color(169,224,49));
+        panel.setSize(new Dimension(200, 64));
+        panel.setLayout(null);
+
+        JLabel label = new JLabel("Account Created Successfully! ");
+        label.setBounds(0, 0, 200, 64);
+        label.setFont(new Font("Arial", Font.BOLD, 12));
+        label.setHorizontalAlignment(SwingConstants.CENTER);
+        panel.add(label);
+
+        UIManager.put("OptionPane.minimumSize",new Dimension(300, 120)); 
+        UIManager.put("RootPane.DialogBorder", new LineBorder(Color.black));
+        JOptionPane.showMessageDialog(null, panel, " Congrats !", JOptionPane.PLAIN_MESSAGE, icon);
+             
+           
+          showLoginPanel();  
+        }

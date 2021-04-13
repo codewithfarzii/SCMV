@@ -1,4 +1,8 @@
-    private void listOfFilesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listOfFilesMouseClicked
-       selected=listOfFiles.getSelectedValue().toString();
-       fileName=extractFileName(selected);    
-    }//GEN-LAST:event_listOfFilesMouseClicked
+        luserName.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                luserNameKeyPressed(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                luserNameKeyTyped(evt);
+            }
+        });

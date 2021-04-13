@@ -1,8 +1,7 @@
-                                    && !newToken.isEmpty(); j++) {
-                                if (newToken
-                                        .equalsIgnoreCase(allKeywords[j])) {
-                                    flag2 = false;
-                                    break;
-                                }
-                                
-                            }
+        UIManager.put("OptionPane.minimumSize",new Dimension(300, 120)); 
+        UIManager.put("RootPane.DialogBorder", new LineBorder(Color.black));
+        JOptionPane.showMessageDialog(null, panel, " Congrats !", JOptionPane.PLAIN_MESSAGE, icon);
+             
+           
+          showLoginPanel();  
+        }

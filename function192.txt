@@ -1,4 +1,7 @@
-    private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
-     this.dispose();
-        new GoodBye().setVisible(true);
-    }//GEN-LAST:event_jButton10ActionPerformed
+    private void userNameKeyPressed(java.awt.event.KeyEvent evt) {                                    
+        // TODO add your handling code here:
+         int key =evt.getKeyCode();
+        if(key==10){
+           userEmail.requestFocus();
+        }
+    }                                   

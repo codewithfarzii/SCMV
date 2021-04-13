@@ -1,5 +1,3 @@
-        noOfBOOL.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                noOfBOOLActionPerformed(evt);
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                luserPassFocusLost(evt);
             }
-        });

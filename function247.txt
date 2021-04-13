@@ -1,3 +1,2 @@
-    private void noOfFORLOOPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_noOfFORLOOPActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_noOfFORLOOPActionPerformed
+             // System.out.println("int--> "+i_no);
+            }

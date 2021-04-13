@@ -56,6 +56,7 @@ int t_int, t_shortint, t_longint, t_string, t_double, t_float, t_bool, t_char;
 int t_int_v, t_shortint_v, t_longint_v, t_string_v, t_double_v, t_float_v, t_bool_v, t_char_v;
 int t_for,t_while,t_do_while;
 int t_if,t_else,t_elseif,t_switch,t_case,t_try,t_catch,t_finally;
+ 
 public JavaFileCharts(){   
     try{
            Database db=new Database();
@@ -194,8 +195,229 @@ public JavaFileCharts(){
         Logger.getLogger(JavaFileCharts.class.getName()).log(Level.SEVERE, null, ex);
     }
 }
-        
-                    // LOC 3D Charts
+       
+             // Class Coupling 2D Charts
+        public void CC2D_BarChart(){              
+
+       try {
+           DefaultCategoryDataset dfg= new DefaultCategoryDataset();
+           String query= "SELECT * FROM `total_class_obj`";
+           pstm=con.prepareStatement(query);
+           rs=pstm.executeQuery();
+           while(rs.next()){
+               String selectedClassName="",objClassName="";
+               int noOfObj=0;
+
+               selectedClassName=rs.getString("selected_class");
+               objClassName=rs.getString("obj_class");
+               String a=rs.getString("no_objects");
+               noOfObj= Integer.parseInt(a);
+
+               dfg.setValue(noOfObj,selectedClassName,objClassName);
+                }
+               JFreeChart jfc= ChartFactory.createBarChart("2D Bar Chart","Classes Name","No. of Objects Created", dfg, PlotOrientation.HORIZONTAL, false, true, false);
+               CategoryPlot plot=jfc.getCategoryPlot();
+               plot.setRangeGridlinePaint(Color.CYAN);
+               ChartFrame hy;
+               hy = new ChartFrame("2D Bar Chart Visualization of Coupling Between Class Objects",jfc);
+               hy.setVisible(true);
+               hy.setSize(900,500);        
+
+            } catch (SQLException ex) {
+               Logger.getLogger(JavaFileCharts.class.getName()).log(Level.SEVERE, null, ex);
+           }
+       }
+        public void CC2D_LineChart(){
+               try {
+                   DefaultCategoryDataset dfg= new DefaultCategoryDataset();
+                   String query= "SELECT * FROM `total_class_obj`";
+                   pstm=con.prepareStatement(query);
+                   rs=pstm.executeQuery();
+                   while(rs.next()){
+                       String selectedClassName="",objClassName="";
+                       int noOfObj=0;
+
+                       selectedClassName=rs.getString("selected_class");
+                       objClassName=rs.getString("obj_class");
+                       String a=rs.getString("no_objects");
+                       noOfObj= Integer.parseInt(a);
+
+                       dfg.setValue(noOfObj,selectedClassName,objClassName);
+                   }
+           JFreeChart jfc= ChartFactory.createLineChart("2D Line Chart","Classes Name","No. of Objects Created",dfg,PlotOrientation.HORIZONTAL,true, true, false);
+           CategoryPlot plot=jfc.getCategoryPlot();
+           plot.setRangeGridlinePaint(Color.CYAN);
+           ChartFrame hy;
+           hy = new ChartFrame("2D Line Chart Visualization of Coupling Between Class Objects",jfc);
+           hy.setVisible(true);
+           hy.setSize(900,500);
+       } catch (SQLException ex) {
+           Logger.getLogger(JavaFileCharts.class.getName()).log(Level.SEVERE, null, ex);
+       }
+        }     
+        public void CC2D_PieChart(){
+            try {
+                DefaultPieDataset dfg= new DefaultPieDataset();
+                String query= "SELECT * FROM `total_class_obj`";
+                pstm=con.prepareStatement(query);
+                rs=pstm.executeQuery();
+                 String selectedClassName="";
+                while(rs.next()){
+                   String objClassName="";
+                    int noOfObj=0;
+
+                    selectedClassName=rs.getString("selected_class");
+                    objClassName=rs.getString("obj_class");
+                    String a=rs.getString("no_objects");
+                    noOfObj= Integer.parseInt(a);
+
+                    dfg.setValue(objClassName,noOfObj);
+                }
+        JFreeChart jfc= ChartFactory.createPieChart("2D Pie Char of '"+selectedClassName+"' Coupling with other Classes", dfg, true, true, false);
+        PiePlot plot = (PiePlot)jfc.getPlot();
+        PieSectionLabelGenerator gen = new StandardPieSectionLabelGenerator(
+                "{0}: {1} ({2})", new DecimalFormat("0"), new DecimalFormat("0%"));
+        plot.setLabelGenerator(gen);
+        plot.setExplodePercent(String.valueOf(180), 0.10);
+        plot.setLabelFont(new Font("SansSerif", Font.PLAIN, 12));
+        plot.setNoDataMessage("No data available");
+        plot.setCircular(false);
+        plot.setLabelGap(0.02);
+        ChartFrame hy;
+        hy = new ChartFrame("2D Pie Chart Visualization of Coupling Between Class Objects",jfc);
+        hy.setVisible(true);
+        hy.setSize(900,500);        
+    } catch (SQLException ex) {
+        Logger.getLogger(JavaFileCharts.class.getName()).log(Level.SEVERE, null, ex);
+    }
+ }
+        public void CC2D_AreaChart() {
+            try {
+               DefaultCategoryDataset dfg= new DefaultCategoryDataset();
+                String query= "SELECT * FROM `total_class_obj`";
+                pstm=con.prepareStatement(query);
+                rs=pstm.executeQuery();
+                while(rs.next()){
+                    String selectedClassName="",objClassName="";
+                    int noOfObj=0;
+
+                    selectedClassName=rs.getString("selected_class");
+                    objClassName=rs.getString("obj_class");
+                    String a=rs.getString("no_objects");
+                    noOfObj= Integer.parseInt(a);
+
+                    dfg.setValue(noOfObj,selectedClassName,objClassName);
+                }
+        JFreeChart jfc= ChartFactory.createAreaChart("2D Area Chart","Classes Name","No. of Objects Created", dfg, PlotOrientation.VERTICAL, true, true, true);
+        CategoryPlot plot=jfc.getCategoryPlot();
+        plot.setRangeGridlinePaint(Color.CYAN);
+        plot.setNoDataMessage("No data available");
+        ChartFrame hy;
+        hy = new ChartFrame("2D Area Chart Visualization of Coupling Between Class Objects",jfc);
+        hy.setVisible(true);                    
+        hy.setSize(900,500);
+    } catch (SQLException ex) {
+        Logger.getLogger(JavaFileCharts.class.getName()).log(Level.SEVERE, null, ex);
+    }
+       }   
+      
+            // Class Coupling 3D Charts
+        public void CC3D_BarChart(){
+      try {
+          DefaultCategoryDataset dfg= new DefaultCategoryDataset();
+          String query= "SELECT * FROM `total_class_obj`";
+          pstm=con.prepareStatement(query);
+          rs=pstm.executeQuery();
+          while(rs.next()){
+              String selectedClassName="",objClassName="";
+              int noOfObj=0;
+
+              selectedClassName=rs.getString("selected_class");
+              objClassName=rs.getString("obj_class");
+              String a=rs.getString("no_objects");
+              noOfObj= Integer.parseInt(a);
+
+              dfg.setValue(noOfObj,selectedClassName,objClassName);
+          }
+          JFreeChart jfc= ChartFactory.createBarChart3D("3D Bar Chart","Classes Name","No. of Objects Created", dfg,PlotOrientation.HORIZONTAL, true, true,true);
+          CategoryPlot plot=jfc.getCategoryPlot();
+          plot.setRangeGridlinePaint(Color.CYAN);
+          ChartFrame hy;
+          hy = new ChartFrame("3D Bar Chart Visualization of Coupling Between Class Objects",jfc);
+          hy.setVisible(true);
+          hy.setSize(900,500);
+      } catch (SQLException ex) {
+          Logger.getLogger(JavaFileCharts.class.getName()).log(Level.SEVERE, null, ex);
+      }
+   } 
+        public void CC3D_LineChart(){
+      try {
+              DefaultCategoryDataset dfg= new DefaultCategoryDataset();
+              String query= "SELECT * FROM `total_class_obj`";
+              pstm=con.prepareStatement(query);
+              rs=pstm.executeQuery();
+              while(rs.next()){
+                  String selectedClassName="",objClassName="";
+                  int noOfObj=0;
+
+                  selectedClassName=rs.getString("selected_class");
+                  objClassName=rs.getString("obj_class");
+                  String a=rs.getString("no_objects");
+                  noOfObj= Integer.parseInt(a);
+
+                  dfg.setValue(noOfObj,selectedClassName,objClassName);
+          }
+          JFreeChart jfc= ChartFactory.createLineChart3D("3D Line Chart","Classes Name","No. of Objects Created",dfg,PlotOrientation.HORIZONTAL,true, true, false);
+          CategoryPlot plot=jfc.getCategoryPlot();
+          plot.setRangeGridlinePaint(Color.BLUE);
+          plot.setBackgroundPaint(new Color(0xEE, 0xEE, 0xFF));
+          ChartFrame hy;
+          hy = new ChartFrame("3D Line Chart Visualization of Coupling Between Class Objects",jfc);
+          hy.setVisible(true);
+          hy.setSize(900,500);
+      } catch (SQLException ex) {
+          Logger.getLogger(JavaFileCharts.class.getName()).log(Level.SEVERE, null, ex);
+      }
+   }
+        public void CC3D_PieChart(){
+              try {
+                  DefaultPieDataset dfg= new DefaultPieDataset();
+                  String query= "SELECT * FROM `total_class_obj`";
+                  pstm=con.prepareStatement(query);
+                  rs=pstm.executeQuery();
+                       String selectedClassName="";
+                  while(rs.next()){
+                      String objClassName="";
+                      int noOfObj=0;
+
+                      selectedClassName=rs.getString("selected_class");
+                      objClassName=rs.getString("obj_class");
+                      String a=rs.getString("no_objects");
+                      noOfObj= Integer.parseInt(a);
+
+                      dfg.setValue(objClassName,noOfObj);
+                  }
+          JFreeChart jfc= ChartFactory.createPieChart3D("3D Pie Chart of '"+selectedClassName+"' Coupling with other Classes", dfg, true, true, false);
+          PiePlot3D plot = (PiePlot3D)jfc.getPlot();
+          PieSectionLabelGenerator gen = new StandardPieSectionLabelGenerator(
+                  "{0}: {1} ({2})", new DecimalFormat("0"), new DecimalFormat("0%"));
+          plot.setLabelGenerator(gen);
+          plot.setExplodePercent(String.valueOf(180), 0.10);
+
+          plot.setLabelFont(new Font("SansSerif", Font.PLAIN, 12));
+          plot.setNoDataMessage("No data available");
+          plot.setCircular(false);
+          plot.setLabelGap(0.02);
+          ChartFrame hy;
+          hy = new ChartFrame("3D Pie Chart Visualization of Coupling Between Class Objects",jfc);
+          hy.setVisible(true);
+          hy.setSize(900,500);      
+      } catch (SQLException ex) {
+          Logger.getLogger(JavaFileCharts.class.getName()).log(Level.SEVERE, null, ex);
+      }
+   }
+            
+            // LOC 3D Charts
         public void LOC3D_BarChart(){
                     DefaultCategoryDataset dfg= new DefaultCategoryDataset();
                     dfg.setValue(loc,"LOC", "LOC");
@@ -776,7 +998,7 @@ public JavaFileCharts(){
                       PieSectionLabelGenerator gen = new StandardPieSectionLabelGenerator(
             "{0}: {1} ({2})", new DecimalFormat("0"), new DecimalFormat("0%"));
         plot.setLabelGenerator(gen);
-        plot.setExplodePercent(String.valueOf(t_int), 0.10);
+        plot.setExplodePercent(String.valueOf(t_int_v), 0.10);
         plot.setLabelFont(new Font("SansSerif", Font.PLAIN, 12));
         plot.setNoDataMessage("No data available");
         plot.setCircular(false);
@@ -981,7 +1203,7 @@ public JavaFileCharts(){
                        PieSectionLabelGenerator gen = new StandardPieSectionLabelGenerator(
                 "{0}: {1} ({2})", new DecimalFormat("0"), new DecimalFormat("0%"));
             plot.setLabelGenerator(gen);
-            plot.setExplodePercent(String.valueOf(t_int), 0.10);
+            plot.setExplodePercent(String.valueOf(t_int_v), 0.10);
             plot.setLabelFont(new Font("SansSerif", Font.PLAIN, 12));
             plot.setNoDataMessage("No data available");
             plot.setCircular(false);
@@ -1048,6 +1270,8 @@ public JavaFileCharts(){
                         hy.setVisible(true);
                          hy.setSize(900,500);
      }
+        
+        
                     // Loop Statements 2D Charts
         public void LOOP2D_BarChart() {
                   DefaultCategoryDataset dfg= new DefaultCategoryDataset();

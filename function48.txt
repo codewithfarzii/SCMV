@@ -1,22 +1,5 @@
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-         ClearTables();
-         m.removeAllElements();
-         listOfFiles.removeAll();
-         packageNameTxt.setText(null);
-         noOfFiles.setText(null);
-         
-         // select Java package              
-          JFileChooser  chooser = new JFileChooser();
-          chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
-          int result= chooser.showOpenDialog(this);
-          File f = chooser.getCurrentDirectory();
-         
-          
-          if (result == JFileChooser.APPROVE_OPTION) {
-          
-          selectedPackageName= chooser.getSelectedFile().getAbsolutePath();      
-          selectJavaPackage();
-          insertClassNameToDB();
-          }
-         
-    }//GEN-LAST:event_jButton1ActionPerformed
+        luserName.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                luserNameActionPerformed(evt);
+            }
+        });

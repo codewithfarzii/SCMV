@@ -1,3 +1,5 @@
-    private void visualizeComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_visualizeComboBoxActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_visualizeComboBoxActionPerformed
+        jButton10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton10ActionPerformed(evt);
+            }
+        });

@@ -1,10 +1,4 @@
-	int run(){int a;
-		int b;
-		/*
-		*/int a;
-		short int a;
-		long int a,b,c;
-		
-		try{
-		}
-	}
+        UIManager.put("OptionPane.minimumSize",new Dimension(300, 120)); 
+        UIManager.put("RootPane.DialogBorder", new LineBorder(Color.black));
+        JOptionPane.showMessageDialog(null, panel, " Error !", JOptionPane.PLAIN_MESSAGE, icon);
+        }

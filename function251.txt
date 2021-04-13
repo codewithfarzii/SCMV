@@ -1,3 +1,4 @@
-    private void noOfSwitchStatementActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_noOfSwitchStatementActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_noOfSwitchStatementActionPerformed
+                            (token.contains("<") && !token.contains("Hashtable") && !token.contains("HashSet") && !token.contains("Array") && !token.contains("Abstract"))|
+                openbrace=closebrace;
+                reader.reset();
+            }

@@ -1,3 +1,8 @@
-            public void run() {
-                new BrowseJavaPackage().setVisible(true);
+        luserPass.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                luserPassFocusGained(evt);
             }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                luserPassFocusLost(evt);
+            }
+        });

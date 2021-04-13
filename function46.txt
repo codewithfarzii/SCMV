@@ -1,3 +1,3 @@
-    private void jButton11MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton11MouseClicked
-        this.setState(ICONIFIED);
-    }//GEN-LAST:event_jButton11MouseClicked
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                luserNameFocusGained(evt);
+            }

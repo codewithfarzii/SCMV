@@ -1,3 +1,5 @@
-    private void classCCtxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_classCCtxtActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_classCCtxtActionPerformed
+        noOfFinallyBlocks.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                noOfFinallyBlocksActionPerformed(evt);
+            }
+        });

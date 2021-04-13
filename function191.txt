@@ -1,3 +1,7 @@
-        }catch (FileNotFoundException ex){
-                Logger.getLogger(BrowseJavaFile.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (IOException ex) {
+    private void luserNameKeyPressed(java.awt.event.KeyEvent evt) {                                     
+        // TODO add your handling code here:
+        int key =evt.getKeyCode();
+        if(key==10){
+           luserPass.requestFocus();
+        }
+    }                                    

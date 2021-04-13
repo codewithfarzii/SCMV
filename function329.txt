@@ -1,12 +1,14 @@
-             String query= "INSERT INTO `looptbl`(`total_for`, `total_while`, `total_do_while`)  VALUES (?,?,?);";
-    try {
-        pstm=con.prepareStatement(query);
-        pstm.setString(1,String.valueOf(t_for));
-        pstm.setString(2,String.valueOf(t_while));
-        pstm.setString(3,String.valueOf(t_do_while));
-        pstm.execute();
-    } catch (SQLException ex) {
-        Logger.getLogger(BrowseJavaFile.class.getName()).log(Level.SEVERE, null, ex);
-    }
-             
-    }
+        panel.setSize(new Dimension(200, 64));
+        panel.setLayout(null);
+
+        JLabel label = new JLabel("Browse a File First! ");
+        label.setBounds(0, 0, 200, 64);
+        label.setFont(new Font("Arial", Font.BOLD, 12));
+        label.setHorizontalAlignment(SwingConstants.CENTER);
+        panel.add(label);
+
+        UIManager.put("OptionPane.minimumSize",new Dimension(300, 120)); 
+        UIManager.put("RootPane.DialogBorder", new LineBorder(Color.black));
+        JOptionPane.showMessageDialog(null, panel, " Alert !", JOptionPane.PLAIN_MESSAGE, icon);
+            
+         }

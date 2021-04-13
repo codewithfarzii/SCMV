@@ -1,3 +1,9 @@
-                                        parameters = (newString.split(",")).length;
-                                        
-                                    }
+        label.setFont(new Font("Arial", Font.BOLD, 11));
+        label.setHorizontalAlignment(SwingConstants.CENTER);
+        panel.add(label);
+
+        UIManager.put("OptionPane.minimumSize",new Dimension(300, 120)); 
+        UIManager.put("RootPane.DialogBorder", new LineBorder(Color.black));
+        JOptionPane.showMessageDialog(null, panel, " Alert !", JOptionPane.PLAIN_MESSAGE, icon);
+            
+       }    

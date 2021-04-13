@@ -1,0 +1,3 @@
+    private void noOfDOUBLEVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_noOfDOUBLEVActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_noOfDOUBLEVActionPerformed

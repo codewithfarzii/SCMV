@@ -1,3 +1,7 @@
-    private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
-
-    }//GEN-LAST:event_jButton11ActionPerformed
+    private void userEmailKeyPressed(java.awt.event.KeyEvent evt) {                                     
+        // TODO add your handling code here:
+         int key =evt.getKeyCode();
+        if(key==10){
+           userPass1.requestFocus();
+        }
+    }                                    

@@ -1,3 +1,7 @@
-    private void noOfShortINTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_noOfShortINTActionPerformed
+    private void luserNameFocusLost(java.awt.event.FocusEvent evt) {                                    
         // TODO add your handling code here:
-    }//GEN-LAST:event_noOfShortINTActionPerformed
+        if (luserName.getText().isEmpty()) {
+            luserName.setForeground(Color.GRAY);
+            luserName.setText(" username");
+        }
+    }                                   

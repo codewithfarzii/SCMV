@@ -1,3 +1,5 @@
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
-            }
+        }catch (Exception ex)
+        {
+             JOptionPane.showMessageDialog(null,ex);
+         }
+    }                                        

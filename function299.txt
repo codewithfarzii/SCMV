@@ -1,9 +1,3 @@
-        chooser.addChoosableFileFilter(new FileNameExtensionFilter("Java files", "java"));
-        chooser.setAcceptAllFileFilterUsed(false);
-        int result = chooser.showOpenDialog(this);
-        if (result == JFileChooser.APPROVE_OPTION) {
-           File f = chooser.getSelectedFile();
-        fname = f.getAbsolutePath();
-        fileNametxt.setText(fname);
-        }
-    }
+    private void visualizeComboBoxItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_visualizeComboBoxItemStateChanged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_visualizeComboBoxItemStateChanged

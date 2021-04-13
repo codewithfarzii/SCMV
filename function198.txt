@@ -1,3 +1,7 @@
-    private void noOfLongINTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_noOfLongINTActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_noOfLongINTActionPerformed
+    private void luserPassFocusGained(java.awt.event.FocusEvent evt) {                                      
+        
+        if (luserPass.getText().equals("password")) {
+            luserPass.setText("");
+            luserPass.setForeground(Color.WHITE);
+        }
+    }                                     

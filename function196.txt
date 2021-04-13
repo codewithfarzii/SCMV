@@ -1,3 +1,7 @@
-    private void noOfINTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_noOfINTActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_noOfINTActionPerformed
+    private void luserNameFocusGained(java.awt.event.FocusEvent evt) {                                      
+        
+          if (luserName.getText().equals(" username")) {
+            luserName.setText("");
+            luserName.setForeground(Color.WHITE);
+        }
+    }                                     

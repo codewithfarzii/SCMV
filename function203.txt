@@ -1,3 +1,5 @@
-    private void noOfCHARActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_noOfCHARActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_noOfCHARActionPerformed
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new SignInUp().setVisible(true);
+            }
+        });

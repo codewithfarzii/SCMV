@@ -6,13 +6,15 @@
 package MainFiles;
 
 import ExternalJavaFiles.Database;
-import static MainFiles.BrowseJavaFile.fname;
-import static MainFiles.BrowseJavaFile.hyu;
-import static MainFiles.ClassCoupling.fileName;
-import static MainFiles.ClassCoupling.selected;
+import com.sun.javafx.font.FontFactory;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.HeadlessException;
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -28,8 +30,20 @@ import java.util.Scanner;
 import java.util.StringTokenizer;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.SwingConstants;
+import javax.swing.UIManager;
+import javax.swing.border.Border;
+import javax.swing.border.LineBorder;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.text.Document;
 import scmv.GoodBye;
 
 /**
@@ -51,6 +65,24 @@ public class JavaPackageMetrics extends javax.swing.JFrame {
      List<String> alist= new ArrayList<String>();
      public String selectedPackageName;
      public  static String fileName;
+           static int INT_Count=0;
+           static int SHORT_INT_Count=0;
+           static int LONG_INT_Count=0;
+           static int STRING_Count=0;
+           static int BOOL_Count=0;
+           static int FLOAT_Count=0;
+           static int DOUBLE_Count=0;
+           static int CHAR_Count=0;
+        public static List<String> listOfPhyLines=new ArrayList();
+        public static List<String> listOfBraceLines=new ArrayList();
+        public static List<String> INT_Lines=new ArrayList();
+        public static List<String> SHORT_INT_Lines=new ArrayList();
+        public static List<String> LONG_INT_Lines=new ArrayList();
+        public static List<String> CHAR_Lines=new ArrayList();
+        public static List<String> BOOL_Lines=new ArrayList();
+        public static List<String> FLOAT_Lines=new ArrayList();
+        public static List<String> DOUBLE_Lines=new ArrayList();
+        public static List<String> STRING_Lines=new ArrayList();
    
      public JavaPackageMetrics() {
         initComponents();
@@ -69,6 +101,16 @@ public class JavaPackageMetrics extends javax.swing.JFrame {
         fileNametxt.setText(selected);
         defaultVisibilites();
         setClassInfoVis(true);
+                    listOfPhyLines.clear();
+                    listOfBraceLines.clear();
+                    INT_Lines.clear();
+                    SHORT_INT_Lines.clear();
+                    LONG_INT_Lines.clear();
+                    BOOL_Lines.clear();
+                    DOUBLE_Lines.clear();
+                    CHAR_Lines.clear();
+                    FLOAT_Lines.clear();
+                    STRING_Lines.clear();
         clearDBtbl(); 
         countMetrics();
         CBO();
@@ -82,13 +124,13 @@ public class JavaPackageMetrics extends javax.swing.JFrame {
                JOptionPane.showMessageDialog(null, "DB not connected");
            }
     }
-    // Coupling Methods
-public void CBO(){
+        // Coupling Methods
+    public void CBO(){
         CBOmodel= (DefaultTableModel)CBOTable.getModel();
         CBOmodel.setRowCount(0);
         for(String name:alist){
             try {                
-                System.out.println(name);
+               // System.out.println("class name--> "+name);
                 readFileLineByLineForPRC(selected,fileName,name);
             } catch (FileNotFoundException ex) {
                 Logger.getLogger(ClassCoupling.class.getName()).log(Level.SEVERE, null, ex);
@@ -133,18 +175,18 @@ public void CBO(){
     public void countCBO(String selectedClassName,String TargetClassName){       
          int count=0;
          for(String str:listOfCBO){
-             System.out.println(str);
+            // System.out.println("line--> "+str);
              StringTokenizer tk1= new StringTokenizer(str,"=");
              StringTokenizer tk= new StringTokenizer(tk1.nextToken(),",");
-             System.out.println(tk.countTokens());
+            // System.out.println(tk.countTokens());
              count+=tk.countTokens();
          }
-         System.out.println(count);
-         CBOmodel.addRow(new Object[]{selectedClassName,TargetClassName,count});         
+      //   System.out.println("obj--> "+count);
+         CBOmodel.addRow(new Object[]{selectedClassName,TargetClassName,count});  
+         insertToClassObjectstbl(selectedClassName,TargetClassName,count);
         }          
     
-    
-    
+        
     DefaultTableModel model;   
     public static String Table_click1;
     public static String Table_click2;
@@ -180,6 +222,7 @@ public void CBO(){
             "true", "false"};        
         
             try {   
+                readFileLineByLineForDTV();
             FileReader fr = new FileReader(fname);
             hyu=fname;
             BufferedReader reader = new BufferedReader(fr);
@@ -221,8 +264,10 @@ public void CBO(){
             
             ifno= calculateIF();
             elseno = calculateELSE();
-            elseifno= calculateELSEIF();                  
+            elseifno= calculateELSEIF();   
+            if(ifno>0)
             ifno=ifno-elseifno;
+            if(elseno>0)
             elseno=elseno-elseifno;
             List<String> lines =  new LinkedList<String>() {};
            
@@ -273,7 +318,9 @@ public void CBO(){
             if(str.contains("boolean")){               
               b_no=b_no+BOOL_calculate(str);
             }
+            if(i_no>0)
             i_no= i_no-si_no;
+            if(i_no>0)
             i_no= i_no-li_no;
             if(str.contains("for")){               
                frno=frno+calculateFOR(str);                   
@@ -480,7 +527,6 @@ public void CBO(){
            
            commentno= calcComments(lines);
            int ploc=loc-(commentno+elineno);
-           tryno=catchno;
             str = reader.readLine();
             Scanner scan = new Scanner(fr);
             reader.close();   
@@ -509,6 +555,7 @@ public void CBO(){
             noOfChildClasstxt.setText(Integer.toString(child));
             noOfParentClasstxt.setText(Integer.toString(pc));
             // Loop Statements INFO
+           if(whlno>0)
             whlno=whlno-dono;
             noOfFORLOOP.setText(Integer.toString(frno));
             noOfDOWHILELOOP.setText(Integer.toString(dono));
@@ -522,11 +569,22 @@ public void CBO(){
             noOfCases.setText(Integer.toString(caseno));
             noOfCatchBlocks.setText(Integer.toString(catchno));
             noOfFinallyBlocks.setText(Integer.toString(finallyno));
+             //     Varaibles Created
+            noOfINTV.setText(Integer.toString(INT_Count));
+            noOfShortINTV.setText(Integer.toString(SHORT_INT_Count));
+            noOfLongINTV.setText(Integer.toString(LONG_INT_Count));
+            noOfSTRINGV.setText(Integer.toString(STRING_Count));
+            noOfDOUBLEV.setText(Integer.toString(DOUBLE_Count));
+            noOfFLOATV.setText(Integer.toString(FLOAT_Count));
+            noOfBOOLV.setText(Integer.toString(BOOL_Count));
+            noOfCHARV.setText(Integer.toString(CHAR_Count));  
                      
             insertInLOCtbl(loc,elineno,commentno,ploc,lloc,openbrace,closebrace);
             insertInDATATYPEtbl(i_no,si_no,li_no,s_no,d_no,f_no,b_no,c_no);
             insertInLOOPtbl(frno,dono,whlno);
             insertInCoditionalStatetbl(ifno,elseno,elseifno,swhno,caseno,tryno,catchno,finallyno);
+            insertInVariablestbl(INT_Count,SHORT_INT_Count,LONG_INT_Count,STRING_Count,DOUBLE_Count,FLOAT_Count,BOOL_Count,CHAR_Count);
+         
            
        } catch (Exception e) {
            System.out.print(e);
@@ -641,6 +699,31 @@ public void CBO(){
         jPanel14 = new javax.swing.JPanel();
         jButton7 = new javax.swing.JButton();
         visualizeComboBox1 = new javax.swing.JComboBox();
+        jPanel24 = new javax.swing.JPanel();
+        noOfINTV = new javax.swing.JTextField();
+        noOfShortINTV = new javax.swing.JTextField();
+        noOfLongINTV = new javax.swing.JTextField();
+        noOfSTRINGV = new javax.swing.JTextField();
+        noOfDOUBLEV = new javax.swing.JTextField();
+        noOfFLOATV = new javax.swing.JTextField();
+        noOfBOOLV = new javax.swing.JTextField();
+        noOfCHARV = new javax.swing.JTextField();
+        jLabel40 = new javax.swing.JLabel();
+        jLabel41 = new javax.swing.JLabel();
+        jLabel42 = new javax.swing.JLabel();
+        jLabel43 = new javax.swing.JLabel();
+        jLabel44 = new javax.swing.JLabel();
+        jLabel45 = new javax.swing.JLabel();
+        jLabel46 = new javax.swing.JLabel();
+        jLabel47 = new javax.swing.JLabel();
+        jLabel60 = new javax.swing.JLabel();
+        jLabel61 = new javax.swing.JLabel();
+        jLabel62 = new javax.swing.JLabel();
+        jLabel63 = new javax.swing.JLabel();
+        jPanel25 = new javax.swing.JPanel();
+        jButton12 = new javax.swing.JButton();
+        visualizeComboBox2 = new javax.swing.JComboBox();
+        jSeparator1 = new javax.swing.JSeparator();
         jPanel8 = new javax.swing.JPanel();
         jLabel23 = new javax.swing.JLabel();
         ccPanel = new javax.swing.JPanel();
@@ -685,6 +768,9 @@ public void CBO(){
         jScrollPane4 = new javax.swing.JScrollPane();
         CBOTable = new javax.swing.JTable();
         jPanel23 = new javax.swing.JPanel();
+        jButton13 = new javax.swing.JButton();
+        visualizeComboBox6 = new javax.swing.JComboBox();
+        jButton14 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -1334,32 +1420,41 @@ public void CBO(){
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(100, 100, 100)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel5)
-                    .addComponent(jLabel6)
-                    .addComponent(jLabel7)
-                    .addComponent(jLabel8)
-                    .addComponent(jLabel4))
-                .addGap(25, 25, 25)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(totalLOCtxt, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(logicalLinestxt, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(commentedLinestxt, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(physicalLinestxt, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(blankLinestxt, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(50, 50, 50)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(100, 100, 100)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel9, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel34))
-                        .addGap(81, 81, 81)
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel6)
+                            .addComponent(jLabel7)
+                            .addComponent(jLabel4))
+                        .addGap(25, 25, 25)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(openBracestxt, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(closeBracestxt, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(83, Short.MAX_VALUE))
+                            .addComponent(totalLOCtxt, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(physicalLinestxt, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(commentedLinestxt, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(blankLinestxt, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(54, 54, 54)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel9, javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(jLabel34))
+                                        .addGap(60, 60, 60)
+                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(openBracestxt, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(closeBracestxt, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addGap(1, 1, 1)
+                                        .addComponent(jLabel8)
+                                        .addGap(53, 53, 53)
+                                        .addComponent(logicalLinestxt, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(213, 213, 213)
+                        .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(137, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1368,32 +1463,33 @@ public void CBO(){
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(totalLOCtxt, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4)
-                    .addComponent(jLabel9)
-                    .addComponent(openBracestxt, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel8)
+                    .addComponent(logicalLinestxt, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(20, 20, 20)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(blankLinestxt, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5)
-                    .addComponent(jLabel34)
-                    .addComponent(closeBracestxt, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(blankLinestxt, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel5))
                         .addGap(20, 20, 20)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(commentedLinestxt, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel6))
-                        .addGap(20, 20, 20)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(physicalLinestxt, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel7))
-                        .addGap(20, 20, 20)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel8)
-                            .addComponent(logicalLinestxt, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jLabel6)))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(37, 37, 37)
-                        .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(159, Short.MAX_VALUE))
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel9)
+                            .addComponent(openBracestxt, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(20, 20, 20)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel34)
+                            .addComponent(closeBracestxt, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(20, 20, 20)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(physicalLinestxt, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel7))
+                .addGap(38, 38, 38)
+                .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(58, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("LOC", jPanel2);
@@ -1596,6 +1692,252 @@ public void CBO(){
 
         jTabbedPane1.addTab("Data Types", jPanel9);
 
+        noOfINTV.setEditable(false);
+        noOfINTV.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                noOfINTVActionPerformed(evt);
+            }
+        });
+
+        noOfShortINTV.setEditable(false);
+        noOfShortINTV.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                noOfShortINTVActionPerformed(evt);
+            }
+        });
+
+        noOfLongINTV.setEditable(false);
+        noOfLongINTV.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                noOfLongINTVActionPerformed(evt);
+            }
+        });
+
+        noOfSTRINGV.setEditable(false);
+        noOfSTRINGV.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                noOfSTRINGVActionPerformed(evt);
+            }
+        });
+
+        noOfDOUBLEV.setEditable(false);
+        noOfDOUBLEV.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                noOfDOUBLEVActionPerformed(evt);
+            }
+        });
+
+        noOfFLOATV.setEditable(false);
+        noOfFLOATV.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                noOfFLOATVActionPerformed(evt);
+            }
+        });
+
+        noOfBOOLV.setEditable(false);
+        noOfBOOLV.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                noOfBOOLVActionPerformed(evt);
+            }
+        });
+
+        noOfCHARV.setEditable(false);
+        noOfCHARV.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                noOfCHARVActionPerformed(evt);
+            }
+        });
+
+        jLabel40.setFont(new java.awt.Font("Tempus Sans ITC", 1, 14)); // NOI18N
+        jLabel40.setText("int");
+
+        jLabel41.setFont(new java.awt.Font("Tempus Sans ITC", 1, 14)); // NOI18N
+        jLabel41.setText("short int");
+
+        jLabel42.setFont(new java.awt.Font("Tempus Sans ITC", 1, 14)); // NOI18N
+        jLabel42.setText("long int");
+
+        jLabel43.setFont(new java.awt.Font("Tempus Sans ITC", 1, 14)); // NOI18N
+        jLabel43.setText("String");
+
+        jLabel44.setFont(new java.awt.Font("Tempus Sans ITC", 1, 14)); // NOI18N
+        jLabel44.setText("double");
+
+        jLabel45.setFont(new java.awt.Font("Tempus Sans ITC", 1, 14)); // NOI18N
+        jLabel45.setText("float");
+
+        jLabel46.setFont(new java.awt.Font("Tempus Sans ITC", 1, 14)); // NOI18N
+        jLabel46.setText("boolean");
+
+        jLabel47.setFont(new java.awt.Font("Tempus Sans ITC", 1, 14)); // NOI18N
+        jLabel47.setText("char");
+
+        jLabel60.setFont(new java.awt.Font("Tempus Sans ITC", 1, 14)); // NOI18N
+        jLabel60.setText("Data Types");
+
+        jLabel61.setFont(new java.awt.Font("Tempus Sans ITC", 1, 14)); // NOI18N
+        jLabel61.setText("No. of Variables");
+
+        jLabel62.setFont(new java.awt.Font("Tempus Sans ITC", 1, 14)); // NOI18N
+        jLabel62.setText("Data Types");
+
+        jLabel63.setFont(new java.awt.Font("Tempus Sans ITC", 1, 14)); // NOI18N
+        jLabel63.setText("No. of Variables");
+
+        jPanel25.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(102, 102, 102)), "Visualization", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tempus Sans ITC", 1, 18)), "", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tempus Sans ITC", 1, 14))); // NOI18N
+
+        jButton12.setBackground(new java.awt.Color(255, 255, 255));
+        jButton12.setFont(new java.awt.Font("Tempus Sans ITC", 1, 14)); // NOI18N
+        jButton12.setText("Show");
+        jButton12.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(169, 224, 49), 4), javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0))));
+        jButton12.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton12ActionPerformed(evt);
+            }
+        });
+
+        visualizeComboBox2.setFont(new java.awt.Font("Tempus Sans ITC", 1, 14)); // NOI18N
+        visualizeComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "...............Select...............", "2D Bar Chart", "2D Pie Chart", "2D Line Chart", "2D Waterfall Chart", "2D Dual Chart", "2D Area Chart", "2D Stack Area Chart", "2D Stack Bar Chart", "3D Bar Chart", "3D Pie Chart", "3D Line Chart", "3D Stack Bar Chart" }));
+        visualizeComboBox2.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                visualizeComboBox2ItemStateChanged(evt);
+            }
+        });
+        visualizeComboBox2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                visualizeComboBox2ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel25Layout = new javax.swing.GroupLayout(jPanel25);
+        jPanel25.setLayout(jPanel25Layout);
+        jPanel25Layout.setHorizontalGroup(
+            jPanel25Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel25Layout.createSequentialGroup()
+                .addGap(15, 15, 15)
+                .addComponent(visualizeComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(26, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel25Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton12, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(70, 70, 70))
+        );
+        jPanel25Layout.setVerticalGroup(
+            jPanel25Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel25Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(visualizeComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
+                .addComponent(jButton12, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+
+        jSeparator1.setBackground(new java.awt.Color(0, 0, 0));
+        jSeparator1.setOrientation(javax.swing.SwingConstants.VERTICAL);
+
+        javax.swing.GroupLayout jPanel24Layout = new javax.swing.GroupLayout(jPanel24);
+        jPanel24.setLayout(jPanel24Layout);
+        jPanel24Layout.setHorizontalGroup(
+            jPanel24Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel24Layout.createSequentialGroup()
+                .addGap(120, 120, 120)
+                .addGroup(jPanel24Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel24Layout.createSequentialGroup()
+                        .addGroup(jPanel24Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPanel24Layout.createSequentialGroup()
+                                .addComponent(jLabel40)
+                                .addGap(31, 31, 31))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel24Layout.createSequentialGroup()
+                                .addGroup(jPanel24Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(jLabel41, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel42, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel43, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(12, 12, 12)))
+                        .addGap(49, 49, 49)
+                        .addGroup(jPanel24Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(noOfShortINTV, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(noOfINTV, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(noOfLongINTV, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(noOfSTRINGV, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(38, 38, 38))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel24Layout.createSequentialGroup()
+                        .addComponent(jLabel60)
+                        .addGap(26, 26, 26)
+                        .addComponent(jLabel61)))
+                .addGap(11, 11, 11)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 9, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel24Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel24Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(jPanel24Layout.createSequentialGroup()
+                            .addGap(23, 23, 23)
+                            .addGroup(jPanel24Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel46)
+                                .addComponent(jLabel45)
+                                .addComponent(jLabel44)
+                                .addGroup(jPanel24Layout.createSequentialGroup()
+                                    .addComponent(jLabel47)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(noOfCHARV, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGroup(jPanel24Layout.createSequentialGroup()
+                            .addGap(129, 129, 129)
+                            .addGroup(jPanel24Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(noOfDOUBLEV, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(noOfFLOATV, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(noOfBOOLV, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(jPanel24Layout.createSequentialGroup()
+                        .addComponent(jLabel62)
+                        .addGap(30, 30, 30)
+                        .addComponent(jLabel63)))
+                .addContainerGap(113, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel24Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel25, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(203, 203, 203))
+        );
+        jPanel24Layout.setVerticalGroup(
+            jPanel24Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel24Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel24Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel24Layout.createSequentialGroup()
+                        .addGroup(jPanel24Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel60)
+                            .addComponent(jLabel61)
+                            .addComponent(jLabel62)
+                            .addComponent(jLabel63))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel24Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(noOfINTV, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel40)
+                            .addComponent(jLabel44)
+                            .addComponent(noOfDOUBLEV, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(30, 30, 30)
+                        .addGroup(jPanel24Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(noOfShortINTV, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel41)
+                            .addComponent(noOfFLOATV, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel45))
+                        .addGap(30, 30, 30)
+                        .addGroup(jPanel24Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(noOfLongINTV, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel42)
+                            .addComponent(noOfBOOLV, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel46))
+                        .addGap(30, 30, 30)
+                        .addGroup(jPanel24Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(noOfSTRINGV, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel43)
+                            .addComponent(jLabel47)
+                            .addComponent(noOfCHARV, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
+                .addComponent(jPanel25, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+
+        jTabbedPane1.addTab("Variables Created", jPanel24);
+
         jPanel8.setBackground(new java.awt.Color(153, 153, 153));
 
         jLabel23.setBackground(new java.awt.Color(153, 153, 153));
@@ -1698,7 +2040,6 @@ public void CBO(){
         jLabel29.setFont(new java.awt.Font("Tempus Sans ITC", 1, 14)); // NOI18N
         jLabel29.setText("No. of while Loop");
 
-        jPanel15.setBackground(new java.awt.Color(255, 255, 255));
         jPanel15.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(102, 102, 102)), "Visualization", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tempus Sans ITC", 1, 18)), "", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tempus Sans ITC", 1, 14))); // NOI18N
 
         jButton8.setFont(new java.awt.Font("Tempus Sans ITC", 1, 14)); // NOI18N
@@ -1735,7 +2076,7 @@ public void CBO(){
                     .addGroup(jPanel15Layout.createSequentialGroup()
                         .addGap(69, 69, 69)
                         .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(26, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel15Layout.setVerticalGroup(
             jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1752,39 +2093,39 @@ public void CBO(){
         jPanel10Layout.setHorizontalGroup(
             jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel10Layout.createSequentialGroup()
-                .addGap(130, 130, 130)
-                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel24)
-                    .addComponent(jLabel25)
-                    .addComponent(jLabel29))
-                .addGap(40, 40, 40)
-                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(noOfDOWHILELOOP, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(noOfWHILELOOP, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(noOfFORLOOP, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(58, 58, 58)
-                .addComponent(jPanel15, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(220, 220, 220)
+                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jPanel15, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel10Layout.createSequentialGroup()
+                        .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel24)
+                            .addComponent(jLabel25)
+                            .addComponent(jLabel29))
+                        .addGap(40, 40, 40)
+                        .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(noOfDOWHILELOOP, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(noOfWHILELOOP, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(noOfFORLOOP, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(251, Short.MAX_VALUE))
         );
         jPanel10Layout.setVerticalGroup(
             jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel10Layout.createSequentialGroup()
                 .addGap(54, 54, 54)
-                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jPanel15, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel10Layout.createSequentialGroup()
-                        .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(noOfFORLOOP, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel24))
-                        .addGap(27, 27, 27)
-                        .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(noOfDOWHILELOOP, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel25))
-                        .addGap(34, 34, 34)
-                        .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(noOfWHILELOOP, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel29))))
-                .addContainerGap(236, Short.MAX_VALUE))
+                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(noOfFORLOOP, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel24))
+                .addGap(27, 27, 27)
+                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(noOfDOWHILELOOP, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel25))
+                .addGap(34, 34, 34)
+                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(noOfWHILELOOP, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel29))
+                .addGap(38, 38, 38)
+                .addComponent(jPanel15, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(61, Short.MAX_VALUE))
         );
 
         jTabbedPane2.addTab("Loop Statements", jPanel10);
@@ -1869,7 +2210,6 @@ public void CBO(){
             }
         });
 
-        jPanel20.setBackground(new java.awt.Color(255, 255, 255));
         jPanel20.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(102, 102, 102)), "Visualization", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tempus Sans ITC", 1, 18)), "", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tempus Sans ITC", 1, 14))); // NOI18N
 
         jButton9.setFont(new java.awt.Font("Tempus Sans ITC", 1, 14)); // NOI18N
@@ -1923,47 +2263,50 @@ public void CBO(){
         jPanel19Layout.setHorizontalGroup(
             jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel19Layout.createSequentialGroup()
-                .addGap(70, 70, 70)
-                .addGroup(jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel19Layout.createSequentialGroup()
-                        .addGroup(jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel18)
-                            .addComponent(jLabel35))
-                        .addGap(37, 37, 37)
-                        .addGroup(jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(noOfElseStatement, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(noOfIFStatement, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addGroup(jPanel19Layout.createSequentialGroup()
-                            .addComponent(jLabel21)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(noOfElseIfStatement, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(jPanel19Layout.createSequentialGroup()
-                            .addComponent(jLabel36)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(noOfCases, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel19Layout.createSequentialGroup()
-                            .addComponent(jLabel19)
-                            .addGap(26, 26, 26)
-                            .addComponent(noOfSwitchStatement, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(50, 50, 50)
                 .addGroup(jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addGroup(jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(jPanel19Layout.createSequentialGroup()
+                        .addGap(70, 70, 70)
+                        .addGroup(jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(jPanel19Layout.createSequentialGroup()
-                                .addComponent(jLabel20)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(noOfTryBlock, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel18)
+                                    .addComponent(jLabel35))
+                                .addGap(37, 37, 37)
+                                .addGroup(jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(noOfElseStatement, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(noOfIFStatement, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addGroup(jPanel19Layout.createSequentialGroup()
+                                    .addComponent(jLabel21)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(noOfElseIfStatement, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel19Layout.createSequentialGroup()
+                                    .addComponent(jLabel19)
+                                    .addGap(26, 26, 26)
+                                    .addComponent(noOfSwitchStatement, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(59, 59, 59)
+                        .addGroup(jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addGroup(jPanel19Layout.createSequentialGroup()
+                                    .addComponent(jLabel20)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(noOfTryBlock, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(jPanel19Layout.createSequentialGroup()
+                                    .addComponent(jLabel37)
+                                    .addGap(25, 25, 25)
+                                    .addComponent(noOfCatchBlocks, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(jPanel19Layout.createSequentialGroup()
+                                    .addComponent(jLabel36)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(noOfCases, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(jPanel19Layout.createSequentialGroup()
-                                .addComponent(jLabel37)
-                                .addGap(25, 25, 25)
-                                .addComponent(noOfCatchBlocks, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGroup(jPanel19Layout.createSequentialGroup()
-                            .addComponent(jLabel38)
-                            .addGap(25, 25, 25)
-                            .addComponent(noOfFinallyBlocks, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(jPanel20, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 95, Short.MAX_VALUE))
+                                .addComponent(jLabel38)
+                                .addGap(18, 18, 18)
+                                .addComponent(noOfFinallyBlocks, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(jPanel19Layout.createSequentialGroup()
+                        .addGap(209, 209, 209)
+                        .addComponent(jPanel20, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(0, 127, Short.MAX_VALUE))
         );
         jPanel19Layout.setVerticalGroup(
             jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1972,32 +2315,37 @@ public void CBO(){
                 .addGroup(jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(noOfIFStatement, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel18)
-                    .addComponent(jLabel20)
-                    .addComponent(noOfTryBlock, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(25, 25, 25)
-                .addGroup(jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(noOfElseStatement, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel35)
-                    .addComponent(jLabel37)
-                    .addComponent(noOfCatchBlocks, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(25, 25, 25)
-                .addGroup(jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(noOfElseIfStatement, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel21)
-                    .addComponent(jLabel38)
-                    .addComponent(noOfFinallyBlocks, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(noOfCases, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel36))
                 .addGap(25, 25, 25)
                 .addGroup(jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel19Layout.createSequentialGroup()
                         .addGroup(jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(noOfSwitchStatement, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel19))
+                            .addComponent(noOfElseStatement, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel35))
                         .addGap(25, 25, 25)
                         .addGroup(jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(noOfCases, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel36)))
-                    .addComponent(jPanel20, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(99, Short.MAX_VALUE))
+                            .addComponent(noOfElseIfStatement, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel21))
+                        .addGap(25, 25, 25)
+                        .addGroup(jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(noOfSwitchStatement, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel19)))
+                    .addGroup(jPanel19Layout.createSequentialGroup()
+                        .addGroup(jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel20)
+                            .addComponent(noOfTryBlock, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(25, 25, 25)
+                        .addGroup(jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel37)
+                            .addComponent(noOfCatchBlocks, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(25, 25, 25)
+                        .addGroup(jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel38)
+                            .addComponent(noOfFinallyBlocks, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
+                .addComponent(jPanel20, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(32, 32, 32))
         );
 
         jTabbedPane2.addTab("Conditional Statements", jPanel19);
@@ -2060,37 +2408,93 @@ public void CBO(){
         ));
         jScrollPane4.setViewportView(CBOTable);
 
-        javax.swing.GroupLayout jPanel22Layout = new javax.swing.GroupLayout(jPanel22);
-        jPanel22.setLayout(jPanel22Layout);
-        jPanel22Layout.setHorizontalGroup(
-            jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel22Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 660, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(21, Short.MAX_VALUE))
-        );
-        jPanel22Layout.setVerticalGroup(
-            jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel22Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 384, Short.MAX_VALUE)
-                .addContainerGap())
-        );
+        jPanel23.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(102, 102, 102)), "Visualization", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tempus Sans ITC", 1, 18)), "", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tempus Sans ITC", 1, 14))); // NOI18N
 
-        jTabbedPane3.addTab("CBO", jPanel22);
+        jButton13.setFont(new java.awt.Font("Tempus Sans ITC", 1, 14)); // NOI18N
+        jButton13.setText("Show");
+        jButton13.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(169, 224, 49), 4), javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0))));
+        jButton13.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton13ActionPerformed(evt);
+            }
+        });
+
+        visualizeComboBox6.setFont(new java.awt.Font("Tempus Sans ITC", 1, 14)); // NOI18N
+        visualizeComboBox6.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "...............Select...............", "2D Bar Chart", "2D Pie Chart", "2D Line Chart", "2D Area Chart", "3D Bar Chart", "3D Pie Chart", "3D Line Chart" }));
+        visualizeComboBox6.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                visualizeComboBox6ItemStateChanged(evt);
+            }
+        });
+        visualizeComboBox6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                visualizeComboBox6ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel23Layout = new javax.swing.GroupLayout(jPanel23);
         jPanel23.setLayout(jPanel23Layout);
         jPanel23Layout.setHorizontalGroup(
             jPanel23Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 691, Short.MAX_VALUE)
+            .addGroup(jPanel23Layout.createSequentialGroup()
+                .addGroup(jPanel23Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel23Layout.createSequentialGroup()
+                        .addGap(55, 55, 55)
+                        .addComponent(jButton13, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel23Layout.createSequentialGroup()
+                        .addGap(15, 15, 15)
+                        .addComponent(visualizeComboBox6, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(26, Short.MAX_VALUE))
         );
         jPanel23Layout.setVerticalGroup(
             jPanel23Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 406, Short.MAX_VALUE)
+            .addGroup(jPanel23Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(visualizeComboBox6, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
+                .addComponent(jButton13, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
-        jTabbedPane3.addTab("IC", jPanel23);
+        jButton14.setText("jButton14");
+        jButton14.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton14ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel22Layout = new javax.swing.GroupLayout(jPanel22);
+        jPanel22.setLayout(jPanel22Layout);
+        jPanel22Layout.setHorizontalGroup(
+            jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel22Layout.createSequentialGroup()
+                .addGroup(jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel22Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 660, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel22Layout.createSequentialGroup()
+                        .addGap(215, 215, 215)
+                        .addComponent(jPanel23, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(60, 60, 60)
+                        .addComponent(jButton14)))
+                .addContainerGap(21, Short.MAX_VALUE))
+        );
+        jPanel22Layout.setVerticalGroup(
+            jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel22Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 246, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel22Layout.createSequentialGroup()
+                        .addComponent(jPanel23, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel22Layout.createSequentialGroup()
+                        .addComponent(jButton14)
+                        .addGap(61, 61, 61))))
+        );
+
+        jTabbedPane3.addTab("CBO", jPanel22);
 
         javax.swing.GroupLayout couplingPanelLayout = new javax.swing.GroupLayout(couplingPanel);
         couplingPanel.setLayout(couplingPanelLayout);
@@ -2111,8 +2515,8 @@ public void CBO(){
             .addGroup(couplingPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(couplingPanelLayout.createSequentialGroup()
                     .addGap(95, 95, 95)
-                    .addComponent(jTabbedPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 434, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(21, Short.MAX_VALUE)))
+                    .addComponent(jTabbedPane3)
+                    .addContainerGap()))
         );
 
         containerPanel.add(couplingPanel);
@@ -2569,6 +2973,170 @@ public void CBO(){
     private void visualizeComboBox5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_visualizeComboBox5ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_visualizeComboBox5ActionPerformed
+
+    private void noOfINTVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_noOfINTVActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_noOfINTVActionPerformed
+
+    private void noOfShortINTVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_noOfShortINTVActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_noOfShortINTVActionPerformed
+
+    private void noOfLongINTVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_noOfLongINTVActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_noOfLongINTVActionPerformed
+
+    private void noOfSTRINGVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_noOfSTRINGVActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_noOfSTRINGVActionPerformed
+
+    private void noOfDOUBLEVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_noOfDOUBLEVActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_noOfDOUBLEVActionPerformed
+
+    private void noOfFLOATVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_noOfFLOATVActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_noOfFLOATVActionPerformed
+
+    private void noOfBOOLVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_noOfBOOLVActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_noOfBOOLVActionPerformed
+
+    private void noOfCHARVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_noOfCHARVActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_noOfCHARVActionPerformed
+
+    private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
+             if(visualizeComboBox2.getSelectedItem().equals("...............Select...............")){
+                // JOptionPane.showMessageDialog(null,"Please select a chart!");
+                ImageIcon icon = new ImageIcon("src/images/close.png");
+                JPanel panel = new JPanel();
+                Border blackline = BorderFactory.createLineBorder(Color.black);
+                panel.setBorder(blackline);
+                panel.setBackground(new Color(169,224,49));
+                panel.setSize(new Dimension(200, 64));
+                panel.setLayout(null);
+
+                JLabel label = new JLabel("Please Select a Chart! ");
+                label.setBounds(0, 0, 200, 64);
+                label.setFont(new Font("Arial", Font.BOLD, 12));
+                label.setHorizontalAlignment(SwingConstants.CENTER);
+                panel.add(label);
+
+                UIManager.put("OptionPane.minimumSize",new Dimension(300, 120));
+                UIManager.put("RootPane.DialogBorder", new LineBorder(Color.black));
+                JOptionPane.showMessageDialog(null, panel, " Alert !", JOptionPane.PLAIN_MESSAGE, icon);
+
+                return;
+            }
+            
+            JavaFileCharts dt=new JavaFileCharts();
+            if(visualizeComboBox2.getSelectedItem().equals("2D Bar Chart")){
+                dt.DTV2D_BarChart();
+            }
+            if(visualizeComboBox2.getSelectedItem().equals("2D Pie Chart")){
+                dt.DTV2D_PieChart();
+            }
+            if(visualizeComboBox2.getSelectedItem().equals("2D Line Chart")){
+                dt.DTV2D_LineChart();
+            }
+            if(visualizeComboBox2.getSelectedItem().equals("2D Waterfall Chart")){
+                dt.DTV2D_WaterfallChart();
+            }
+            if(visualizeComboBox2.getSelectedItem().equals("2D Dual Chart")){
+                dt.DTV2D_DualChart();
+            }
+            if(visualizeComboBox2.getSelectedItem().equals("2D Area Chart")){
+                dt.DTV2D_AreaChart();
+            }
+            if(visualizeComboBox2.getSelectedItem().equals("2D Stack Area Chart")){
+                dt.DTV2D_StackAreaChart();
+            }
+            if(visualizeComboBox2.getSelectedItem().equals("2D Stack Bar Chart")){
+                dt.DTV2D_StackBarChart();
+            }
+            if(visualizeComboBox2.getSelectedItem().equals("3D Bar Chart")){
+                dt.DTV3D_BarChart();
+            }
+            if(visualizeComboBox2.getSelectedItem().equals("3D Pie Chart")){
+                dt.DTV3D_PieChart();
+            }
+            if(visualizeComboBox2.getSelectedItem().equals("3D Line Chart")){
+                dt.DTV3D_LineChart();
+            }
+            if(visualizeComboBox2.getSelectedItem().equals("3D Stack Bar Chart")){
+                dt.DTV3D_StackBarChart();
+            }        
+    }//GEN-LAST:event_jButton12ActionPerformed
+
+    private void visualizeComboBox2ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_visualizeComboBox2ItemStateChanged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_visualizeComboBox2ItemStateChanged
+
+    private void visualizeComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_visualizeComboBox2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_visualizeComboBox2ActionPerformed
+
+    private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
+        if(visualizeComboBox6.getSelectedItem().equals("...............Select...............")){
+               // JOptionPane.showMessageDialog(null,"Please select a chart!");
+                ImageIcon icon = new ImageIcon("src/images/close.png");
+
+        JPanel panel = new JPanel();
+       Border blackline = BorderFactory.createLineBorder(Color.black);
+       panel.setBorder(blackline);
+        panel.setBackground(new Color(169,224,49));
+        panel.setSize(new Dimension(200, 64));
+        panel.setLayout(null);
+
+        JLabel label = new JLabel("Please Select a Chart! ");
+        label.setBounds(0, 0, 200, 64);
+        label.setFont(new Font("Arial", Font.BOLD, 12));
+        label.setHorizontalAlignment(SwingConstants.CENTER);
+        panel.add(label);
+
+        UIManager.put("OptionPane.minimumSize",new Dimension(300, 120)); 
+        UIManager.put("RootPane.DialogBorder", new LineBorder(Color.black));
+        JOptionPane.showMessageDialog(null, panel, " Alert !", JOptionPane.PLAIN_MESSAGE, icon);
+             
+               return;
+            }
+         JavaFileCharts dt=new JavaFileCharts();
+            if(visualizeComboBox6.getSelectedItem().equals("2D Bar Chart")){
+                dt.CC2D_BarChart();
+            }
+            if(visualizeComboBox6.getSelectedItem().equals("2D Pie Chart")){
+                dt.CC2D_PieChart();
+            }
+            if(visualizeComboBox6.getSelectedItem().equals("2D Line Chart")){
+                dt.CC2D_LineChart();
+            }
+            if(visualizeComboBox6.getSelectedItem().equals("2D Area Chart")){
+                dt.CC2D_AreaChart();
+            }
+            if(visualizeComboBox6.getSelectedItem().equals("3D Bar Chart")){
+                dt.CC3D_BarChart();
+            }
+            if(visualizeComboBox6.getSelectedItem().equals("3D Pie Chart")){
+                dt.CC3D_PieChart();
+            }
+            if(visualizeComboBox6.getSelectedItem().equals("3D Line Chart")){
+                dt.CC3D_LineChart();
+            }      
+    }//GEN-LAST:event_jButton13ActionPerformed
+
+    private void visualizeComboBox6ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_visualizeComboBox6ItemStateChanged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_visualizeComboBox6ItemStateChanged
+
+    private void visualizeComboBox6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_visualizeComboBox6ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_visualizeComboBox6ActionPerformed
+
+    private void jButton14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton14ActionPerformed
+                 
+       
+    }//GEN-LAST:event_jButton14ActionPerformed
 
      public void defaultVisibilites(){   
         
@@ -3417,6 +3985,7 @@ public void CBO(){
           return count;
    }   
    
+    
     //Loops Calculator
     public int calculateFOR(String str){        
         int count=0;
@@ -3552,6 +4121,311 @@ public void CBO(){
         return count;
    }
     
+     // Variables Counting
+    public static void readFileLineByLineForDTV() throws FileNotFoundException{  
+                    listOfPhyLines.clear();
+                    listOfBraceLines.clear();
+                    INT_Lines.clear();
+                    SHORT_INT_Lines.clear();
+                    LONG_INT_Lines.clear();
+                    BOOL_Lines.clear();
+                    DOUBLE_Lines.clear();
+                    CHAR_Lines.clear();
+                    FLOAT_Lines.clear();
+                    STRING_Lines.clear();
+                    INT_Count=0;
+                    SHORT_INT_Count=0;
+                    LONG_INT_Count=0;
+                    STRING_Count=0;
+                    BOOL_Count=0;
+                    FLOAT_Count=0;
+                    DOUBLE_Count=0;
+                    CHAR_Count=0;
+       try {          
+            FileReader fr = new FileReader(fname);
+            BufferedReader br=new BufferedReader(fr);
+            String str,completeLine="";
+            boolean flag=false;
+            boolean brace_flag=false;
+            int ch;
+            while((ch=br.read())!=-1){
+               // System.out.println(String.valueOf((char)ch)+" : "+ch);
+                if(ch==40 || brace_flag){
+                    if(ch==40){
+                    listOfPhyLines.add(completeLine);
+                    completeLine="";
+                    }
+                    brace_flag=true;
+                    if(ch==10 || ch==9)
+                        completeLine+=" ";
+                        else
+                    completeLine+=String.valueOf((char)ch);
+                }                
+                else{    
+                    if(ch==10 || ch==9)
+                        completeLine+=" ";
+                    else
+                    completeLine+=String.valueOf((char)ch);
+                if(ch==59){
+                    listOfPhyLines.add(completeLine);
+                    completeLine="";
+                }                
+                }
+                if(ch==41){
+                  brace_flag=false;
+                  listOfBraceLines.add(completeLine);
+                  //System.out.println(completeLine);
+                  completeLine="";
+                }
+               // System.out.println(completeLine+":"+ch);
+            }
+        } catch (IOException ex) {
+            Logger.getLogger(BrowseJavaFile.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        calculateDTVFromBrace();
+        calculateDTVFromPHY();
+//        System.out.println("int --> "+INT_Count);
+//        System.out.println("short int --> "+SHORT_INT_Count);
+//        System.out.println("long int --> "+LONG_INT_Count);
+//        System.out.println("bool --> "+BOOL_Count);
+//        System.out.println("double --> "+DOUBLE_Count);
+//        System.out.println("Float --> "+FLOAT_Count);
+    }
+    public static void calculateDTVFromPHY(){
+        for(String str:listOfPhyLines){
+            
+            if(str.contains(";"))
+            {
+                if(str.contains("String"))
+                {
+                    boolean flag=false;
+                    String line="";
+                   //  System.out.println(str);
+                 StringTokenizer tk= new StringTokenizer(str);        
+                 while(tk.hasMoreElements())
+                 {                                
+                   String token=tk.nextToken();
+                   if(token.contains("String")||flag)
+                   {
+                    line+=token+" ";
+                     flag=true;
+                   }
+                 }
+                 STRING_Lines.add(line);
+                }
+                if(str.contains("double"))
+                {
+                    boolean flag=false;
+                    String line="";
+                   //  System.out.println(str);
+                 StringTokenizer tk= new StringTokenizer(str);        
+                 while(tk.hasMoreElements())
+                 {                                
+                   String token=tk.nextToken();
+                   if(token.contains("double")||flag)
+                   {
+                    line+=token+" ";
+                     flag=true;
+                   }
+                 }
+                 DOUBLE_Lines.add(line);
+                }
+                if(str.contains("float"))
+                {
+                    boolean flag=false;
+                    String line="";
+                   //  System.out.println(str);
+                 StringTokenizer tk= new StringTokenizer(str);        
+                 while(tk.hasMoreElements())
+                 {                                
+                   String token=tk.nextToken();
+                   if(token.contains("float")||flag)
+                   {
+                    line+=token+" ";
+                     flag=true;
+                   }
+                 }
+                 FLOAT_Lines.add(line);
+                }
+                if(str.contains("boolean"))
+                {
+                    boolean flag=false;
+                    String line="";
+                   //  System.out.println(str);
+                 StringTokenizer tk= new StringTokenizer(str);        
+                 while(tk.hasMoreElements())
+                 {                                
+                   String token=tk.nextToken();
+                   if(token.contains("boolean")||flag)
+                   {
+                    line+=token+" ";
+                     flag=true;
+                   }
+                 }
+                 BOOL_Lines.add(line);
+                }
+                if(str.contains("char"))
+                {
+                    boolean flag=false;
+                    String line="";
+                   //  System.out.println(str);
+                 StringTokenizer tk= new StringTokenizer(str);        
+                 while(tk.hasMoreElements())
+                 {                                
+                   String token=tk.nextToken();
+                   if(token.contains("char")||flag)
+                   {
+                    line+=token+" ";
+                     flag=true;
+                   }
+                 }
+                 CHAR_Lines.add(line);
+                }
+                if(str.contains("long"))
+                {
+                    boolean flag=false;
+                    String line="";
+                   //  System.out.println(str);
+                 StringTokenizer tk= new StringTokenizer(str);        
+                 while(tk.hasMoreElements())
+                 {                                
+                   String token=tk.nextToken();
+                   if(token.contains("long")||flag)
+                   {
+                    line+=token+" ";
+                     flag=true;
+                   }
+                 }
+                 LONG_INT_Lines.add(line);
+                }
+                else if(str.contains("short"))
+                {
+                    boolean flag=false;
+                    String line="";
+                    StringTokenizer tk= new StringTokenizer(str);
+                    while(tk.hasMoreElements())
+                    {
+                        String token=tk.nextToken();
+                        if(token.contains("short")||flag)
+                        {
+                            line+=token+" ";
+                            flag=true;
+                        }
+                    }
+                    SHORT_INT_Lines.add(line);
+                }else
+                {
+                    boolean flag=false;
+                    String line="";
+                    StringTokenizer tk= new StringTokenizer(str);
+                    while(tk.hasMoreElements())
+                    {
+                        String token=tk.nextToken();
+                        if(token.contains("int")||flag)
+                        {
+                            line+=token+" ";
+                            flag=true;
+                        }
+                    }
+                    INT_Lines.add(line);
+                } 
+            }
+       
+        } 
+       for(String str:INT_Lines){
+        countDTVFromToken(str);
+       }
+        for(String str:SHORT_INT_Lines){
+        countDTVFromToken(str);
+       }
+        for(String str:LONG_INT_Lines){
+        countDTVFromToken(str);
+       }
+        for(String str:CHAR_Lines){
+        countDTVFromToken(str);
+       }
+        for(String str:DOUBLE_Lines){
+        countDTVFromToken(str);
+       }
+        for(String str:BOOL_Lines){
+        countDTVFromToken(str);
+       }
+        for(String str:FLOAT_Lines){
+        countDTVFromToken(str);
+       }
+        for(String str:STRING_Lines){
+        countDTVFromToken(str);
+       }
+    }  
+    public static void calculateDTVFromBrace(){
+        for(String str:listOfBraceLines){
+            if(str.contains(";"))
+            {                
+                StringTokenizer tk= new StringTokenizer(str,";");        
+                while(tk.hasMoreElements())
+                {                                   
+                   String token=tk.nextToken();
+                    countDTVFromToken(token);
+                }
+            }
+            else{
+                StringTokenizer tk= new StringTokenizer(str,",");        
+                while(tk.hasMoreElements())
+                {                    
+                   String token=tk.nextToken(); 
+                   countDTVFromToken(token);
+                }
+            }
+        }       
+    }        
+    public static void countDTVFromToken(String str){
+               
+         if(str.contains("double"))
+        {          
+              StringTokenizer tk= new StringTokenizer(str,",");            
+              DOUBLE_Count+=tk.countTokens();       
+        }
+          if(str.contains("float"))
+        {          
+              StringTokenizer tk= new StringTokenizer(str,",");            
+              FLOAT_Count+=tk.countTokens();       
+        }
+           if(str.contains("char"))
+        {          
+              StringTokenizer tk= new StringTokenizer(str,",");            
+              CHAR_Count+=tk.countTokens();       
+        }
+            if(str.contains("boolean"))
+        {          
+              StringTokenizer tk= new StringTokenizer(str,",");            
+              BOOL_Count+=tk.countTokens();       
+        }
+             if(str.contains("String"))
+        {          
+              StringTokenizer tk= new StringTokenizer(str,",");            
+              STRING_Count+=tk.countTokens();       
+        }
+              if(str.contains("int"))
+        {        
+            if(str.contains("long"))
+            { 
+              StringTokenizer tk= new StringTokenizer(str,",");            
+              LONG_INT_Count+=tk.countTokens();       
+             }
+            else if(str.contains("short"))
+            { 
+              StringTokenizer tk= new StringTokenizer(str,",");            
+              SHORT_INT_Count+=tk.countTokens();       
+             }
+            else{
+                StringTokenizer tk= new StringTokenizer(str,",");            
+                INT_Count+=tk.countTokens();    
+            }
+        } 
+    } 
+    
+    
+    
    // Data Base Inserting Methods
     public void clearDBtbl(){
         try {
@@ -3563,6 +4437,10 @@ public void CBO(){
             pstm=con.prepareStatement("delete  from looptbl");
             pstm.executeUpdate();
             pstm=con.prepareStatement("delete  from conditionalstatetbl");
+            pstm.executeUpdate();
+            pstm=con.prepareStatement("delete  from variablestbl");
+            pstm.executeUpdate();
+             pstm=con.prepareStatement("delete  from total_class_obj");
             pstm.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(BrowseJavaFile.class.getName()).log(Level.SEVERE, null, ex);
@@ -3632,8 +4510,35 @@ public void CBO(){
         Logger.getLogger(BrowseJavaFile.class.getName()).log(Level.SEVERE, null, ex);
     }             
     }  
-    
-      
+    public void insertInVariablestbl(int t_int,int t_shortint,int t_longint,int t_string,int t_double,int t_float,int t_bool,int t_char){
+    String query= " INSERT INTO `variablestbl`(`total_intv`, `total_short_intv`, `total_long_intv`, `total_stringv`, `total_doublev`, `total_floatv`, `total_boolv`, `total_charv`) VALUES (?,?,?,?,?,?,?,?);";
+    try {
+        pstm=con.prepareStatement(query);
+        pstm.setString(1,String.valueOf(t_int));
+        pstm.setString(2,String.valueOf(t_shortint));
+        pstm.setString(3,String.valueOf(t_longint));
+        pstm.setString(4,String.valueOf(t_string));
+        pstm.setString(5,String.valueOf(t_double));
+        pstm.setString(6,String.valueOf(t_float));
+        pstm.setString(7,String.valueOf(t_bool));
+        pstm.setString(8,String.valueOf(t_char));
+        pstm.execute();
+    } catch (SQLException ex) {
+        Logger.getLogger(BrowseJavaFile.class.getName()).log(Level.SEVERE, null, ex);
+    }             
+    }  
+    public void insertToClassObjectstbl(String SelectedClass,String ObjectedClass,int noOfObj){
+    String query= "INSERT INTO `total_class_obj`(`selected_class`, `obj_class`, `no_objects`) VALUES (?,?,?);";
+    try {
+        pstm=con.prepareStatement(query);
+        pstm.setString(1,String.valueOf(SelectedClass));
+        pstm.setString(2,String.valueOf(ObjectedClass));
+        pstm.setString(3,String.valueOf(noOfObj));
+        pstm.execute();
+    } catch (SQLException ex) {
+        Logger.getLogger(BrowseJavaFile.class.getName()).log(Level.SEVERE, null, ex);
+    }             
+    }        
     /**
      * @param args the command line arguments
      */
@@ -3690,6 +4595,9 @@ public void CBO(){
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton11;
+    private javax.swing.JButton jButton12;
+    private javax.swing.JButton jButton13;
+    private javax.swing.JButton jButton14;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
@@ -3732,6 +4640,14 @@ public void CBO(){
     private javax.swing.JLabel jLabel38;
     private javax.swing.JLabel jLabel39;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel40;
+    private javax.swing.JLabel jLabel41;
+    private javax.swing.JLabel jLabel42;
+    private javax.swing.JLabel jLabel43;
+    private javax.swing.JLabel jLabel44;
+    private javax.swing.JLabel jLabel45;
+    private javax.swing.JLabel jLabel46;
+    private javax.swing.JLabel jLabel47;
     private javax.swing.JLabel jLabel48;
     private javax.swing.JLabel jLabel49;
     private javax.swing.JLabel jLabel5;
@@ -3746,6 +4662,10 @@ public void CBO(){
     private javax.swing.JLabel jLabel58;
     private javax.swing.JLabel jLabel59;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel60;
+    private javax.swing.JLabel jLabel61;
+    private javax.swing.JLabel jLabel62;
+    private javax.swing.JLabel jLabel63;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
@@ -3765,6 +4685,8 @@ public void CBO(){
     private javax.swing.JPanel jPanel21;
     private javax.swing.JPanel jPanel22;
     private javax.swing.JPanel jPanel23;
+    private javax.swing.JPanel jPanel24;
+    private javax.swing.JPanel jPanel25;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
@@ -3773,6 +4695,7 @@ public void CBO(){
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTabbedPane jTabbedPane2;
     private javax.swing.JTabbedPane jTabbedPane3;
@@ -3780,23 +4703,31 @@ public void CBO(){
     private javax.swing.JLabel locSelected;
     private javax.swing.JTextField logicalLinestxt;
     private javax.swing.JTextField noOfBOOL;
+    private javax.swing.JTextField noOfBOOLV;
     private javax.swing.JTextField noOfCHAR;
+    private javax.swing.JTextField noOfCHARV;
     private javax.swing.JTextField noOfCases;
     private javax.swing.JTextField noOfCatchBlocks;
     private javax.swing.JTextField noOfChildClasstxt;
     private javax.swing.JTextField noOfDOUBLE;
+    private javax.swing.JTextField noOfDOUBLEV;
     private javax.swing.JTextField noOfDOWHILELOOP;
     private javax.swing.JTextField noOfElseIfStatement;
     private javax.swing.JTextField noOfElseStatement;
     private javax.swing.JTextField noOfFLOAT;
+    private javax.swing.JTextField noOfFLOATV;
     private javax.swing.JTextField noOfFORLOOP;
     private javax.swing.JTextField noOfFinallyBlocks;
     private javax.swing.JTextField noOfIFStatement;
     private javax.swing.JTextField noOfINT;
+    private javax.swing.JTextField noOfINTV;
     private javax.swing.JTextField noOfLongINT;
+    private javax.swing.JTextField noOfLongINTV;
     private javax.swing.JTextField noOfParentClasstxt;
     private javax.swing.JTextField noOfSTRING;
+    private javax.swing.JTextField noOfSTRINGV;
     private javax.swing.JTextField noOfShortINT;
+    private javax.swing.JTextField noOfShortINTV;
     private javax.swing.JTextField noOfSwitchStatement;
     private javax.swing.JTextField noOfTryBlock;
     private javax.swing.JTextField noOfWHILELOOP;
@@ -3806,7 +4737,9 @@ public void CBO(){
     private javax.swing.JTextField totalLOCtxt;
     private javax.swing.JComboBox visualizeComboBox;
     private javax.swing.JComboBox visualizeComboBox1;
+    private javax.swing.JComboBox visualizeComboBox2;
     private javax.swing.JComboBox visualizeComboBox4;
     private javax.swing.JComboBox visualizeComboBox5;
+    private javax.swing.JComboBox visualizeComboBox6;
     // End of variables declaration//GEN-END:variables
 }

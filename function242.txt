@@ -1,7 +1,16 @@
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+                                                                                 
+        if(fileNametxt.getText().isEmpty()){
+                //  JOptionPane.showMessageDialog(null,"First Browse a File!");
+                 ImageIcon icon = new ImageIcon("src/images/close.png");
+        JPanel panel = new JPanel();
+        Border blackline = BorderFactory.createLineBorder(Color.black);
+        panel.setBorder(blackline);
+        panel.setBackground(new Color(169,224,49));
         panel.setSize(new Dimension(200, 64));
         panel.setLayout(null);
 
-        JLabel label = new JLabel("Please Select a Chart! ");
+        JLabel label = new JLabel("Browse a File First! ");
         label.setBounds(0, 0, 200, 64);
         label.setFont(new Font("Arial", Font.BOLD, 12));
         label.setHorizontalAlignment(SwingConstants.CENTER);
@@ -10,6 +19,417 @@
         UIManager.put("OptionPane.minimumSize",new Dimension(300, 120)); 
         UIManager.put("RootPane.DialogBorder", new LineBorder(Color.black));
         JOptionPane.showMessageDialog(null, panel, " Alert !", JOptionPane.PLAIN_MESSAGE, icon);
-             
-               return;
+              
+        }else{
+                    listOfPhyLines.clear();
+                    listOfBraceLines.clear();
+                    INT_Lines.clear();
+                    SHORT_INT_Lines.clear();
+                    LONG_INT_Lines.clear();
+                    BOOL_Lines.clear();
+                    DOUBLE_Lines.clear();
+                    CHAR_Lines.clear();
+                    FLOAT_Lines.clear();
+                    STRING_Lines.clear();
+            clearDBtbl();           
+            countClicked=true;
+            String[] allKeywords = {
+            "abstract", "continue", "for", "new", "switch", "assert", "default",
+            "goto", "package", "synchronized", "boolean", "do", "if",
+            "private", "this", "break", "double", "implements",
+            "protected", "throw", "byte", "else", "import", "public",
+            "throws", "case", "enum", "instanceof", "return", "transient",
+            "catch", "extends", "int", "short", "try", "String", "char",
+            "final", "interface", "static", "void", "class", "finally",
+            "long", "strictfp", "volatile", "const", "float", "native",
+            "super", "while", "null", "true", "false"};
+
+            String[] wdKeywords = {
+            "abstract", "continue", "for", "new", "switch", "assert", "default",
+            "goto", "package", "synchronized", "do", "if", "private",
+            "this", "break", "implements", "protected", "throw", "else",
+            "import", "public", "throws", "case", "enum", "instanceof",
+            "return", "transient", "catch", "extends", "try", "final",
+            "interface", "static", "class", "finally", "strictfp",
+            "volatile", "const", "native", "super", "while", "null",
+            "true", "false"};        
+        
+            try {   
+            FileReader fr = new FileReader(fname);
+            hyu=fname;
+            BufferedReader reader = new BufferedReader(fr);
+            BufferedReader readerInner;
+            String classname = null;
+            String str = null;
+            int classno = 0;
+            int pass_by_value=0;
+            int pass_by_reference=0;
+            int funno = 0;
+            int commentno = 0;
+            int openbrace = 0;
+            int closebrace = 0;
+            int loc = 0;
+            int elineno=0;
+            int lloc=0;
+            int ifno = 0;
+            int elseno = 0;
+            int elseifno = 0;
+            int tryno = 0;
+            int catchno = 0;
+            int swhno = 0;
+            int caseno = 0;
+            int finallyno=0;
+            int b_no = 0;
+            int i_no = 0;
+            int si_no = 0;
+            int li_no = 0;
+            int s_no = 0;
+            int f_no = 0;
+            int d_no = 0;
+            int c_no = 0;
+            int trno=0;
+            int dono=0;
+            int whlno=0;
+            int frno=0;
+            int pc=0;
+            int child=0;
+            
+            readFileLineByLineForDTV();
+            
+            ifno= calculateIF();
+            elseno = calculateELSE();
+            elseifno= calculateELSEIF();                  
+            if(ifno>0)
+            ifno=ifno-elseifno;
+            if(elseno>0)
+            elseno=elseno-elseifno;
+            List<String> lines =  new LinkedList<String>() {};
+           
+             while ((str = reader.readLine()) != null) {
+                reader.mark(100000000);
+                loc++;                           // Lines of Code ++
+                lines.add(str);
+                
+                if (str.isEmpty()) {            
+                        elineno++;               // emptyLine ++
+                    }else{
+                boolean flag=true;
+                 for(int a=0;a<str.length();a++){                     
+                 char ch=str.charAt(a);
+                 int c=ch;
+                
+                if(c==9 || c==32 )  
+                     continue;
+                else{
+                 flag=false;
+                 break;                 
+                }
+            }
+                 if(flag)
+                      elineno++; 
+            }
+                if(str.contains("int")){               
+              i_no=i_no+INT_calculate(str);
+             // System.out.println("int--> "+i_no);
+            }
+            if(str.contains("short")){               
+              si_no=si_no+SHORT_INT_calculate(str);
+            }
+            if(str.contains("long")){               
+              li_no=li_no+LONG_INT_calculate(str);
+            }
+            if(str.contains("float")){               
+              f_no=f_no+FLOAT_calculate(str);
+            }
+            if(str.contains("double")){               
+              d_no=d_no+DOUBLE_calculate(str);
+            }
+            if(str.contains("String")){               
+              s_no=s_no+STRING_calculate(str);
+            }
+            if(str.contains("char")){               
+              c_no=c_no+CHAR_calculate(str);
+            }
+            if(str.contains("boolean")){               
+              b_no=b_no+BOOL_calculate(str);
             }           
+            
+                
+            if(str.contains("for")){               
+               frno=frno+calculateFOR(str);                   
+            }            
+            if(str.contains("while")){               
+              whlno=whlno+calculateWHILE(str);
+            }
+            if(str.contains("do")){               
+               dono=dono+calculateDOWHILE(str);         
+            }
+            if(str.contains("switch")){               
+                swhno=swhno+calculateSWITCH(str);                            
+            }            
+            if(str.contains("case")){               
+               caseno=caseno+calculateCASE(str);               
+            }  
+            if(str.contains("try")){               
+               tryno=tryno+calculateTRY(str);              
+            }  
+            if(str.contains("catch")){               
+               catchno=catchno+calculateCATCH(str);     
+            }  
+            if(str.contains("finally")){               
+               finallyno=finallyno+calculateFINALLY(str);            
+            }  
+            
+                boolean flag1 = true, flag2 = true;
+                StringTokenizer strTokens = new StringTokenizer(str);
+                while (strTokens.hasMoreTokens()) {
+                    String token = strTokens.nextToken();
+                    
+                    flag1 = flag2 = true;
+                    for (String wdKeyword : wdKeywords) {
+                        if (token.equalsIgnoreCase(wdKeyword)) {
+                            flag1 = false;
+                            break;
+                        }
+                    }
+                    
+                    if (token.equalsIgnoreCase("class")) {
+                        
+                        int index = str.indexOf("class");
+                        index += 6;
+                        int lastinx = str.indexOf(" ", index);
+                        classname = str.substring(index, lastinx);
+                        
+                        classno++;
+                    }
+                      if (str.contains("class")&&token.contains("public")) {
+                        
+                       // int index = str.indexOf("class");
+                       // index += 6;
+                        //int lastinx = str.indexOf(" ", index);
+                        //classname = str.substring(index, lastinx);
+                        //classno++;
+                        pc++;
+                    }
+                     if (str.contains("extends")&&token.contains("public")) {
+                        
+                        int index = str.indexOf("extends");
+                        index += 8;
+                        int lastinx = str.indexOf(" ", index);
+                       // classname = str.substring(index, lastinx);
+                        //classno++;
+                        child++;
+                    } 
+                     if (token.equalsIgnoreCase("?:")
+                            ) {
+                        trno++;
+                    }                     
+                      if(token.contains("+")|
+                            token.contains(".")|
+                            token.contains("-")|
+                            token.contains("*")|
+                            (token.contains("/") && !token.contains("//"))|
+                            token.contains("%")|
+                            token.contains(">=")|
+                            token.contains("=")|
+                            token.contains("<=")|
+                            (token.contains(">") && !token.contains("Hashtable") && !token.contains("HashSet") && !token.contains("Array") && !token.contains("Abstract"))|
+                            (token.contains("<") && !token.contains("Hashtable") && !token.contains("HashSet") && !token.contains("Array") && !token.contains("Abstract"))|
+                            token.contains("&")|
+                            token.contains("|")|
+                            token.contains("while")|
+                            token.contains("for")|
+                            token.contains("if")|
+                            token.contains("super")|
+                            token.contains("return")|
+                            token.contains("catch")|
+                            token.contains("break")|
+                            token.contains("continue")|
+                            token.contains("goto")|
+                            token.contains("else if")  ){
+                              lloc=lloc+1;
+                    }
+                    if (flag1 && strTokens.hasMoreTokens()) {
+                        
+                        try {
+                            StringTokenizer newTokenizer = strTokens;
+                            String newToken = newTokenizer.nextToken();
+                            for (int j = 0; (j < allKeywords.length)
+                                    && !newToken.isEmpty(); j++) {
+                                if (newToken
+                                        .equalsIgnoreCase(allKeywords[j])) {
+                                    flag2 = false;
+                                    break;
+                                }
+                                
+                            }
+                            
+                            if (newTokenizer.hasMoreTokens()) {
+                                if (flag2 && (newToken.contains("(") || newTokenizer
+                                        .nextToken()
+                                        .startsWith("(") )) {
+                                   // System.out.println("function name is  "+ newToken);
+                                    int gft=1;
+                                   if(str.contains(newToken)&&str.contains(";")){
+                                        gft++;}
+                                    int parameters;
+                                    String newString = str.substring(str.indexOf(newToken));
+                                    if (newString.contains("()") || newString.contains("( )") || newString.contains("(  )")) {
+                                        parameters = 0;
+                                    } else {
+                                        parameters = (newString.split(",")).length;
+                                        
+                                    }
+                                    //System.out.println("no of arguments are ... " + parameters);
+                                    funno++;
+              
+                                    readerInner = reader;
+                                    boolean open = true;
+                                    String funLine;
+                                    int lineOfFunction = 0, openBraceCounter = 1;
+                                    try (FileWriter fw = new FileWriter("function" + funno + ".txt")) {
+                                        fw.write(str + "\r\n");
+                                        while ((funLine = readerInner.readLine()) != null && open) {
+                                            
+                                            int k = 0;
+                                            while (k < funLine.length()) {
+                                                if (funLine.charAt(k) == '{') {
+                                                    openBraceCounter++;
+                                                }
+                                                if (funLine.charAt(k) == '}') {
+                                                    openBraceCounter--;
+                                                }
+                                                if (openBraceCounter < 1) {
+                                                    open = false;
+                                                    break;
+                                                }
+                                                k++;
+                                            }
+                                            fw.write(funLine + "\r\n");
+                                            lineOfFunction++;
+                                            
+                                        }
+                                    }
+                                    }
+                            }
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                    if(token.isEmpty()){
+                 elineno= elineno+1;
+              }
+                for( int i=0; i<token.length(); i++ ) {
+                if( token.charAt(i) == '{' ) {
+                    openbrace=openbrace+1; 
+
+                } 
+                  else  if(token.charAt(i)=='}'){
+                              closebrace=closebrace+1;
+                        }
+               
+             
+              }
+                }// end of inner while(tokens)
+                // System.out.println(str);
+                openbrace=closebrace;
+                reader.reset();
+            }
+       try {
+        String s1;
+           if(loc >=200)
+               s1="Large Class";
+           else if(loc >=100 && loc<200)
+               s1="Average Class";
+           else
+               s1="Small Class";
+        String cc;
+       // System.out.println("trno --> "+trno);
+        if(whlno>0)
+            whlno=whlno-dono;
+          int coc=ifno+elseno+elseifno+caseno+swhno+tryno+catchno+trno+dono+whlno+frno;
+           if(coc>50){
+               cc="High";
+               refactoringSuggestion.setText("Should Derive New Class!");}
+           else if(coc>=20 && coc<50){
+               cc="Medium";
+           refactoringSuggestion.setText("Class is Fine!");
+           }
+           else
+           {  cc="low";
+           refactoringSuggestion.setText("Adjustable Class!");
+           }
+           
+           commentno= calcComments(lines);
+           int ploc=loc-(commentno+elineno);
+           //tryno=catchno;
+            str = reader.readLine();
+            Scanner scan = new Scanner(fr);
+            reader.close(); 
+            if(i_no>0)
+            i_no= i_no-si_no;
+             if(i_no>0)
+            i_no= i_no-li_no;
+            
+           // LOC INFO
+            totalLOCtxt.setText(Integer.toString(loc));
+            blankLinestxt.setText(Integer.toString(elineno));
+            commentedLinestxt.setText(Integer.toString(commentno));
+            physicalLinestxt.setText(Integer.toString(ploc));//p
+            logicalLinestxt.setText(Integer.toString(lloc));//l
+            openBracestxt.setText(Integer.toString(openbrace));
+            closeBracestxt.setText(Integer.toString(closebrace));
+            // DATA TYPES INFO
+            noOfINT.setText(Integer.toString(i_no));
+            noOfShortINT.setText(Integer.toString(si_no));
+            noOfLongINT.setText(Integer.toString(li_no));            
+            noOfSTRING.setText(Integer.toString(s_no));
+            noOfDOUBLE.setText(Integer.toString(d_no));
+            noOfFLOAT.setText(Integer.toString(f_no));
+            noOfBOOL.setText(Integer.toString(b_no));
+            noOfCHAR.setText(Integer.toString(c_no));            
+            // Class_INFO
+            classNametxt.setText(classname);
+            classStatustxt.setText(s1);
+            classCCtxt.setText(cc);            
+            noOfChildClasstxt.setText(Integer.toString(child));
+            noOfParentClasstxt.setText(Integer.toString(pc));
+            // Loop Statements INFO           
+            noOfFORLOOP.setText(Integer.toString(frno));
+            noOfDOWHILELOOP.setText(Integer.toString(dono));
+            noOfWHILELOOP.setText(Integer.toString(whlno));
+            // Conditional Statements INFO            
+            noOfIFStatement.setText(Integer.toString(ifno));
+            noOfSwitchStatement.setText(Integer.toString(swhno));
+            noOfTryBlock.setText(Integer.toString(tryno));
+            noOfElseIfStatement.setText(Integer.toString(elseifno));
+            noOfElseStatement.setText(Integer.toString(elseno));
+            noOfCases.setText(Integer.toString(caseno));
+            noOfCatchBlocks.setText(Integer.toString(catchno));
+            noOfFinallyBlocks.setText(Integer.toString(finallyno));
+             //     Varaibles Created
+            noOfINTV.setText(Integer.toString(INT_Count));
+            noOfShortINTV.setText(Integer.toString(SHORT_INT_Count));
+            noOfLongINTV.setText(Integer.toString(LONG_INT_Count));
+            noOfSTRINGV.setText(Integer.toString(STRING_Count));
+            noOfDOUBLEV.setText(Integer.toString(DOUBLE_Count));
+            noOfFLOATV.setText(Integer.toString(FLOAT_Count));
+            noOfBOOLV.setText(Integer.toString(BOOL_Count));
+            noOfCHARV.setText(Integer.toString(CHAR_Count));     
+                     
+            insertInLOCtbl(loc,elineno,commentno,ploc,lloc,openbrace,closebrace);
+            insertInDATATYPEtbl(i_no,si_no,li_no,s_no,d_no,f_no,b_no,c_no);
+            insertInLOOPtbl(frno,dono,whlno);
+            insertInCoditionalStatetbl(ifno,elseno,elseifno,swhno,caseno,tryno,catchno,finallyno);
+            insertInVariablestbl(INT_Count,SHORT_INT_Count,LONG_INT_Count,STRING_Count,DOUBLE_Count,FLOAT_Count,BOOL_Count,CHAR_Count);
+           
+       } catch (Exception e) {
+           System.out.print(e);
+       }         
+        }catch (FileNotFoundException ex){
+                Logger.getLogger(BrowseJavaFile.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (IOException ex) {
+                Logger.getLogger(BrowseJavaFile.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }                                
+    }//GEN-LAST:event_jButton1ActionPerformed

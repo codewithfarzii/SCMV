@@ -1,3 +1,2071 @@
+        jButton9.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(169, 224, 49), 4), javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0))));
+    boolean countClicked=false;
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+                                                                                 
+        if(fileNametxt.getText().isEmpty()){
+                //  JOptionPane.showMessageDialog(null,"First Browse a File!");
+                 ImageIcon icon = new ImageIcon("src/images/close.png");
+        JPanel panel = new JPanel();
+        Border blackline = BorderFactory.createLineBorder(Color.black);
+        panel.setBorder(blackline);
+        panel.setBackground(new Color(169,224,49));
+        panel.setSize(new Dimension(200, 64));
+        panel.setLayout(null);
+
+        JLabel label = new JLabel("Browse a File First! ");
+        label.setBounds(0, 0, 200, 64);
+        label.setFont(new Font("Arial", Font.BOLD, 12));
+        label.setHorizontalAlignment(SwingConstants.CENTER);
+        panel.add(label);
+
+        UIManager.put("OptionPane.minimumSize",new Dimension(300, 120)); 
+        UIManager.put("RootPane.DialogBorder", new LineBorder(Color.black));
+        JOptionPane.showMessageDialog(null, panel, " Alert !", JOptionPane.PLAIN_MESSAGE, icon);
+              
+        }else{
+                    listOfPhyLines.clear();
+                    listOfBraceLines.clear();
+                    INT_Lines.clear();
+                    SHORT_INT_Lines.clear();
+                    LONG_INT_Lines.clear();
+                    BOOL_Lines.clear();
+                    DOUBLE_Lines.clear();
+                    CHAR_Lines.clear();
+                    FLOAT_Lines.clear();
+                    STRING_Lines.clear();
+            clearDBtbl();           
+            countClicked=true;
+            String[] allKeywords = {
+            "abstract", "continue", "for", "new", "switch", "assert", "default",
+            "goto", "package", "synchronized", "boolean", "do", "if",
+            "private", "this", "break", "double", "implements",
+            "protected", "throw", "byte", "else", "import", "public",
+            "throws", "case", "enum", "instanceof", "return", "transient",
+            "catch", "extends", "int", "short", "try", "String", "char",
+            "final", "interface", "static", "void", "class", "finally",
+            "long", "strictfp", "volatile", "const", "float", "native",
+            "super", "while", "null", "true", "false"};
+
+            String[] wdKeywords = {
+            "abstract", "continue", "for", "new", "switch", "assert", "default",
+            "goto", "package", "synchronized", "do", "if", "private",
+            "this", "break", "implements", "protected", "throw", "else",
+            "import", "public", "throws", "case", "enum", "instanceof",
+            "return", "transient", "catch", "extends", "try", "final",
+            "interface", "static", "class", "finally", "strictfp",
+            "volatile", "const", "native", "super", "while", "null",
+            "true", "false"};        
+        
+            try {   
+            FileReader fr = new FileReader(fname);
+            hyu=fname;
+            BufferedReader reader = new BufferedReader(fr);
+            BufferedReader readerInner;
+            String classname = null;
+            String str = null;
+            int classno = 0;
+            int pass_by_value=0;
+            int pass_by_reference=0;
+            int funno = 0;
+            int commentno = 0;
+            int openbrace = 0;
+            int closebrace = 0;
+            int loc = 0;
+            int elineno=0;
+            int lloc=0;
+            int ifno = 0;
+            int elseno = 0;
+            int elseifno = 0;
+            int tryno = 0;
+            int catchno = 0;
+            int swhno = 0;
+            int caseno = 0;
+            int finallyno=0;
+            int b_no = 0;
+            int i_no = 0;
+            int si_no = 0;
+            int li_no = 0;
+            int s_no = 0;
+            int f_no = 0;
+            int d_no = 0;
+            int c_no = 0;
+            int trno=0;
+            int dono=0;
+            int whlno=0;
+            int frno=0;
+            int pc=0;
+            int child=0;
+            
+            readFileLineByLineForDTV();
+            
+            ifno= calculateIF();
+            elseno = calculateELSE();
+            elseifno= calculateELSEIF();                  
+            if(ifno>0)
+            ifno=ifno-elseifno;
+            if(elseno>0)
+            elseno=elseno-elseifno;
+            List<String> lines =  new LinkedList<String>() {};
+           
+             while ((str = reader.readLine()) != null) {
+                reader.mark(100000000);
+                loc++;                           // Lines of Code ++
+                lines.add(str);
+                
+                if (str.isEmpty()) {            
+                        elineno++;               // emptyLine ++
+                    }else{
+                boolean flag=true;
+                 for(int a=0;a<str.length();a++){                     
+                 char ch=str.charAt(a);
+                 int c=ch;
+                
+                if(c==9 || c==32 )  
+                     continue;
+                else{
+                 flag=false;
+                 break;                 
+                }
+            }
+                 if(flag)
+                      elineno++; 
+            }
+                if(str.contains("int")){               
+              i_no=i_no+INT_calculate(str);
+             // System.out.println("int--> "+i_no);
+            }
+            if(str.contains("short")){               
+              si_no=si_no+SHORT_INT_calculate(str);
+            }
+            if(str.contains("long")){               
+              li_no=li_no+LONG_INT_calculate(str);
+            }
+            if(str.contains("float")){               
+              f_no=f_no+FLOAT_calculate(str);
+            }
+            if(str.contains("double")){               
+              d_no=d_no+DOUBLE_calculate(str);
+            }
+            if(str.contains("String")){               
+              s_no=s_no+STRING_calculate(str);
+            }
+            if(str.contains("char")){               
+              c_no=c_no+CHAR_calculate(str);
+            }
+            if(str.contains("boolean")){               
+              b_no=b_no+BOOL_calculate(str);
+            }           
+            
+                
+            if(str.contains("for")){               
+               frno=frno+calculateFOR(str);                   
+            }            
+            if(str.contains("while")){               
+              whlno=whlno+calculateWHILE(str);
+            }
+            if(str.contains("do")){               
+               dono=dono+calculateDOWHILE(str);         
+            }
+            if(str.contains("switch")){               
+                swhno=swhno+calculateSWITCH(str);                            
+            }            
+            if(str.contains("case")){               
+               caseno=caseno+calculateCASE(str);               
+            }  
+            if(str.contains("try")){               
+               tryno=tryno+calculateTRY(str);              
+            }  
+            if(str.contains("catch")){               
+               catchno=catchno+calculateCATCH(str);     
+            }  
+            if(str.contains("finally")){               
+               finallyno=finallyno+calculateFINALLY(str);            
+            }  
+            
+                boolean flag1 = true, flag2 = true;
+                StringTokenizer strTokens = new StringTokenizer(str);
+                while (strTokens.hasMoreTokens()) {
+                    String token = strTokens.nextToken();
+                    
+                    flag1 = flag2 = true;
+                    for (String wdKeyword : wdKeywords) {
+                        if (token.equalsIgnoreCase(wdKeyword)) {
+                            flag1 = false;
+                            break;
+                        }
+                    }
+                    
+                    if (token.equalsIgnoreCase("class")) {
+                        
+                        int index = str.indexOf("class");
+                        index += 6;
+                        int lastinx = str.indexOf(" ", index);
+                        classname = str.substring(index, lastinx);
+                        
+                        classno++;
+                    }
+                      if (str.contains("class")&&token.contains("public")) {
+                        
+                       // int index = str.indexOf("class");
+                       // index += 6;
+                        //int lastinx = str.indexOf(" ", index);
+                        //classname = str.substring(index, lastinx);
+                        //classno++;
+                        pc++;
+                    }
+                     if (str.contains("extends")&&token.contains("public")) {
+                        
+                        int index = str.indexOf("extends");
+                        index += 8;
+                        int lastinx = str.indexOf(" ", index);
+                       // classname = str.substring(index, lastinx);
+                        //classno++;
+                        child++;
+                    } 
+                     if (token.equalsIgnoreCase("?:")
+                            ) {
+                        trno++;
+                    }                     
+                      if(token.contains("+")|
+                            token.contains(".")|
+                            token.contains("-")|
+                            token.contains("*")|
+                            (token.contains("/") && !token.contains("//"))|
+                            token.contains("%")|
+                            token.contains(">=")|
+                            token.contains("=")|
+                            token.contains("<=")|
+                            (token.contains(">") && !token.contains("Hashtable") && !token.contains("HashSet") && !token.contains("Array") && !token.contains("Abstract"))|
+                            (token.contains("<") && !token.contains("Hashtable") && !token.contains("HashSet") && !token.contains("Array") && !token.contains("Abstract"))|
+                            token.contains("&")|
+                            token.contains("|")|
+                            token.contains("while")|
+                            token.contains("for")|
+                            token.contains("if")|
+                            token.contains("super")|
+                            token.contains("return")|
+                            token.contains("catch")|
+                            token.contains("break")|
+                            token.contains("continue")|
+                            token.contains("goto")|
+                            token.contains("else if")  ){
+                              lloc=lloc+1;
+                    }
+                    if (flag1 && strTokens.hasMoreTokens()) {
+                        
+                        try {
+                            StringTokenizer newTokenizer = strTokens;
+                            String newToken = newTokenizer.nextToken();
+                            for (int j = 0; (j < allKeywords.length)
+                                    && !newToken.isEmpty(); j++) {
+                                if (newToken
+                                        .equalsIgnoreCase(allKeywords[j])) {
+                                    flag2 = false;
+                                    break;
+                                }
+                                
+                            }
+                            
+                            if (newTokenizer.hasMoreTokens()) {
+                                if (flag2 && (newToken.contains("(") || newTokenizer
+                                        .nextToken()
+                                        .startsWith("(") )) {
+                                   // System.out.println("function name is  "+ newToken);
+                                    int gft=1;
+                                   if(str.contains(newToken)&&str.contains(";")){
+                                        gft++;}
+                                    int parameters;
+                                    String newString = str.substring(str.indexOf(newToken));
+                                    if (newString.contains("()") || newString.contains("( )") || newString.contains("(  )")) {
+                                        parameters = 0;
+                                    } else {
+                                        parameters = (newString.split(",")).length;
+                                        
+                                    }
+                                    //System.out.println("no of arguments are ... " + parameters);
+                                    funno++;
+              
+                                    readerInner = reader;
+                                    boolean open = true;
+                                    String funLine;
+                                    int lineOfFunction = 0, openBraceCounter = 1;
+                                    try (FileWriter fw = new FileWriter("function" + funno + ".txt")) {
+                                        fw.write(str + "\r\n");
+                                        while ((funLine = readerInner.readLine()) != null && open) {
+                                            
+                                            int k = 0;
+                                            while (k < funLine.length()) {
+                                                if (funLine.charAt(k) == '{') {
+                                                    openBraceCounter++;
+                                                }
+                                                if (funLine.charAt(k) == '}') {
+                                                    openBraceCounter--;
+                                                }
+                                                if (openBraceCounter < 1) {
+                                                    open = false;
+                                                    break;
+                                                }
+                                                k++;
+                                            }
+                                            fw.write(funLine + "\r\n");
+                                            lineOfFunction++;
+                                            
+                                        }
+                                    }
+                                    }
+                            }
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                    if(token.isEmpty()){
+                 elineno= elineno+1;
+              }
+                for( int i=0; i<token.length(); i++ ) {
+                if( token.charAt(i) == '{' ) {
+                    openbrace=openbrace+1; 
+
+                } 
+                  else  if(token.charAt(i)=='}'){
+                              closebrace=closebrace+1;
+                        }
+               
+             
+              }
+                }// end of inner while(tokens)
+                // System.out.println(str);
+                openbrace=closebrace;
+                reader.reset();
+            }
+       try {
+        String s1;
+           if(loc >=200)
+               s1="Large Class";
+           else if(loc >=100 && loc<200)
+               s1="Average Class";
+           else
+               s1="Small Class";
+        String cc;
+       // System.out.println("trno --> "+trno);
+        if(whlno>0)
+            whlno=whlno-dono;
+          int coc=ifno+elseno+elseifno+caseno+swhno+tryno+catchno+trno+dono+whlno+frno;
+           if(coc>50){
+               cc="High";
+               refactoringSuggestion.setText("Should Derive New Class!");}
+           else if(coc>=20 && coc<50){
+               cc="Medium";
+           refactoringSuggestion.setText("Class is Fine!");
+           }
+           else
+           {  cc="low";
+           refactoringSuggestion.setText("Adjustable Class!");
+           }
+           
+           commentno= calcComments(lines);
+           int ploc=loc-(commentno+elineno);
+           //tryno=catchno;
+            str = reader.readLine();
+            Scanner scan = new Scanner(fr);
+            reader.close(); 
+            if(i_no>0)
+            i_no= i_no-si_no;
+             if(i_no>0)
+            i_no= i_no-li_no;
+            
+           // LOC INFO
+            totalLOCtxt.setText(Integer.toString(loc));
+            blankLinestxt.setText(Integer.toString(elineno));
+            commentedLinestxt.setText(Integer.toString(commentno));
+            physicalLinestxt.setText(Integer.toString(ploc));//p
+            logicalLinestxt.setText(Integer.toString(lloc));//l
+            openBracestxt.setText(Integer.toString(openbrace));
+            closeBracestxt.setText(Integer.toString(closebrace));
+            // DATA TYPES INFO
+            noOfINT.setText(Integer.toString(i_no));
+            noOfShortINT.setText(Integer.toString(si_no));
+            noOfLongINT.setText(Integer.toString(li_no));            
+            noOfSTRING.setText(Integer.toString(s_no));
+            noOfDOUBLE.setText(Integer.toString(d_no));
+            noOfFLOAT.setText(Integer.toString(f_no));
+            noOfBOOL.setText(Integer.toString(b_no));
+            noOfCHAR.setText(Integer.toString(c_no));            
+            // Class_INFO
+            classNametxt.setText(classname);
+            classStatustxt.setText(s1);
+            classCCtxt.setText(cc);            
+            noOfChildClasstxt.setText(Integer.toString(child));
+            noOfParentClasstxt.setText(Integer.toString(pc));
+            // Loop Statements INFO           
+            noOfFORLOOP.setText(Integer.toString(frno));
+            noOfDOWHILELOOP.setText(Integer.toString(dono));
+            noOfWHILELOOP.setText(Integer.toString(whlno));
+            // Conditional Statements INFO            
+            noOfIFStatement.setText(Integer.toString(ifno));
+            noOfSwitchStatement.setText(Integer.toString(swhno));
+            noOfTryBlock.setText(Integer.toString(tryno));
+            noOfElseIfStatement.setText(Integer.toString(elseifno));
+            noOfElseStatement.setText(Integer.toString(elseno));
+            noOfCases.setText(Integer.toString(caseno));
+            noOfCatchBlocks.setText(Integer.toString(catchno));
+            noOfFinallyBlocks.setText(Integer.toString(finallyno));
+             //     Varaibles Created
+            noOfINTV.setText(Integer.toString(INT_Count));
+            noOfShortINTV.setText(Integer.toString(SHORT_INT_Count));
+            noOfLongINTV.setText(Integer.toString(LONG_INT_Count));
+            noOfSTRINGV.setText(Integer.toString(STRING_Count));
+            noOfDOUBLEV.setText(Integer.toString(DOUBLE_Count));
+            noOfFLOATV.setText(Integer.toString(FLOAT_Count));
+            noOfBOOLV.setText(Integer.toString(BOOL_Count));
+            noOfCHARV.setText(Integer.toString(CHAR_Count));     
+                     
+            insertInLOCtbl(loc,elineno,commentno,ploc,lloc,openbrace,closebrace);
+            insertInDATATYPEtbl(i_no,si_no,li_no,s_no,d_no,f_no,b_no,c_no);
+            insertInLOOPtbl(frno,dono,whlno);
+            insertInCoditionalStatetbl(ifno,elseno,elseifno,swhno,caseno,tryno,catchno,finallyno);
+            insertInVariablestbl(INT_Count,SHORT_INT_Count,LONG_INT_Count,STRING_Count,DOUBLE_Count,FLOAT_Count,BOOL_Count,CHAR_Count);
+           
+       } catch (Exception e) {
+           System.out.print(e);
+       }         
+        }catch (FileNotFoundException ex){
+                Logger.getLogger(BrowseJavaFile.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (IOException ex) {
+                Logger.getLogger(BrowseJavaFile.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }                                
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
+     this.dispose();
+        new GoodBye().setVisible(true);
+    }//GEN-LAST:event_jButton10ActionPerformed
+
+    private void jButton11MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton11MouseClicked
+        this.setState(ICONIFIED);
+    }//GEN-LAST:event_jButton11MouseClicked
+
+    private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
+
+    }//GEN-LAST:event_jButton11ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+       this.dispose();
+       new Dashboard().setVisible(true);
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void noOfINTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_noOfINTActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_noOfINTActionPerformed
+
+    private void noOfShortINTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_noOfShortINTActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_noOfShortINTActionPerformed
+
+    private void noOfLongINTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_noOfLongINTActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_noOfLongINTActionPerformed
+
+    private void noOfSTRINGActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_noOfSTRINGActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_noOfSTRINGActionPerformed
+
+    private void noOfDOUBLEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_noOfDOUBLEActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_noOfDOUBLEActionPerformed
+
+    private void noOfFLOATActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_noOfFLOATActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_noOfFLOATActionPerformed
+
+    private void noOfBOOLActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_noOfBOOLActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_noOfBOOLActionPerformed
+
+    private void noOfCHARActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_noOfCHARActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_noOfCHARActionPerformed
+
+    private void classNametxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_classNametxtActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_classNametxtActionPerformed
+
+    private void classStatustxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_classStatustxtActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_classStatustxtActionPerformed
+
+    private void classCCtxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_classCCtxtActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_classCCtxtActionPerformed
+
+    private void noOfChildClasstxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_noOfChildClasstxtActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_noOfChildClasstxtActionPerformed
+
+    private void noOfParentClasstxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_noOfParentClasstxtActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_noOfParentClasstxtActionPerformed
+
+    private void totalLOCtxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_totalLOCtxtActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_totalLOCtxtActionPerformed
+
+    private void blankLinestxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_blankLinestxtActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_blankLinestxtActionPerformed
+
+    private void commentedLinestxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_commentedLinestxtActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_commentedLinestxtActionPerformed
+
     private void physicalLinestxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_physicalLinestxtActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_physicalLinestxtActionPerformed
+
+    private void logicalLinestxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logicalLinestxtActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_logicalLinestxtActionPerformed
+
+    private void openBracestxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_openBracestxtActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_openBracestxtActionPerformed
+
+    private void closeBracestxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_closeBracestxtActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_closeBracestxtActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+                     countClicked=false;
+                     totalLOCtxt.setText(null);
+                     blankLinestxt.setText(null);
+                     commentedLinestxt.setText(null);
+                     physicalLinestxt.setText(null);//p
+                     logicalLinestxt.setText(null);//l
+                     openBracestxt.setText(null);
+                     closeBracestxt.setText(null);
+                     noOfINT.setText(null);
+                     noOfShortINT.setText(null);
+                     noOfLongINT.setText(null);
+                     noOfSTRING.setText(null);
+                     noOfDOUBLE.setText(null);
+                     noOfFLOAT.setText(null);
+                     noOfBOOL.setText(null);
+                     noOfCHAR.setText(null);
+                     noOfINTV.setText(null);
+                     noOfShortINTV.setText(null);
+                     noOfLongINTV.setText(null);
+                     noOfSTRINGV.setText(null);
+                     noOfDOUBLEV.setText(null);
+                     noOfFLOATV.setText(null);
+                     noOfBOOLV.setText(null);
+                     noOfCHARV.setText(null);
+                     classNametxt.setText(null);
+                     classStatustxt.setText(null);
+                     classCCtxt.setText(null);
+                     noOfChildClasstxt.setText(null);
+                     noOfParentClasstxt.setText(null);
+                     noOfIFStatement.setText(null);
+                     noOfSwitchStatement.setText(null);
+                     noOfTryBlock.setText(null);
+                     noOfFinallyBlocks.setText(null);
+                     noOfElseIfStatement.setText(null);
+                     noOfElseStatement.setText(null);
+                     noOfCases.setText(null);
+                     noOfCatchBlocks.setText(null);
+                     noOfFORLOOP.setText(null);
+                     noOfDOWHILELOOP.setText(null);
+                     noOfWHILELOOP.setText(null);
+                     fileNametxt.setText(null);  
+                     browse_file();
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        if(fileNametxt.getText().isEmpty())   {
+         //   JOptionPane.showMessageDialog(null,"First Browse a File!");
+          ImageIcon icon = new ImageIcon("src/images/close.png");
+
+        JPanel panel = new JPanel();
+       Border blackline = BorderFactory.createLineBorder(Color.black);
+       panel.setBorder(blackline);
+        panel.setBackground(new Color(169,224,49));
+        panel.setSize(new Dimension(200, 64));
+        panel.setLayout(null);
+
+        JLabel label = new JLabel("Browse a File First! ");
+        label.setBounds(0, 0, 200, 64);
+        label.setFont(new Font("Arial", Font.BOLD, 12));
+        label.setHorizontalAlignment(SwingConstants.CENTER);
+        panel.add(label);
+
+        UIManager.put("OptionPane.minimumSize",new Dimension(300, 120)); 
+        UIManager.put("RootPane.DialogBorder", new LineBorder(Color.black));
+        JOptionPane.showMessageDialog(null, panel, " Alert !", JOptionPane.PLAIN_MESSAGE, icon);
+               
+        }
+        else if(!countClicked)   {
+          //  JOptionPane.showMessageDialog(null,"First Count Metrics!");
+           ImageIcon icon = new ImageIcon("src/images/close.png");
+
+        JPanel panel = new JPanel();
+       Border blackline = BorderFactory.createLineBorder(Color.black);
+       panel.setBorder(blackline);
+        panel.setBackground(new Color(169,224,49));
+        panel.setSize(new Dimension(200, 64));
+        panel.setLayout(null);
+
+        JLabel label = new JLabel("First Count Metrics!");
+        label.setBounds(0, 0, 200, 64);
+        label.setFont(new Font("Arial", Font.BOLD, 12));
+        label.setHorizontalAlignment(SwingConstants.CENTER);
+        panel.add(label);
+
+        UIManager.put("OptionPane.minimumSize",new Dimension(300, 120)); 
+        UIManager.put("RootPane.DialogBorder", new LineBorder(Color.black));
+        JOptionPane.showMessageDialog(null, panel, " Alert !", JOptionPane.PLAIN_MESSAGE, icon);
+            
+        }
+        else{
+            if(visualizeComboBox.getSelectedItem().equals("...............Select...............")){
+              //  JOptionPane.showMessageDialog(null,"Please select a chart!");
+               ImageIcon icon = new ImageIcon("src/images/close.png");
+
+        JPanel panel = new JPanel();
+       Border blackline = BorderFactory.createLineBorder(Color.black);
+       panel.setBorder(blackline);
+        panel.setBackground(new Color(169,224,49));
+        panel.setSize(new Dimension(200, 64));
+        panel.setLayout(null);
+
+        JLabel label = new JLabel("Please Select a Chart!");
+        label.setBounds(0, 0, 200, 64);
+        label.setFont(new Font("Arial", Font.BOLD, 12));
+        label.setHorizontalAlignment(SwingConstants.CENTER);
+        panel.add(label);
+
+        UIManager.put("OptionPane.minimumSize",new Dimension(300, 120)); 
+        UIManager.put("RootPane.DialogBorder", new LineBorder(Color.black));
+        JOptionPane.showMessageDialog(null, panel, " Alert !", JOptionPane.PLAIN_MESSAGE, icon);
+             
+              return;
+            }           
+            JavaFileCharts dt=new JavaFileCharts();
+            if(visualizeComboBox.getSelectedItem().equals("2D Bar Chart")){
+                dt.LOC2D_BarChart();
+            }
+            if(visualizeComboBox.getSelectedItem().equals("2D Pie Chart")){
+                 dt.LOC2D_PieChart();
+            }
+            if(visualizeComboBox.getSelectedItem().equals("2D Line Chart")){
+                dt.LOC2D_LineChart();
+            }
+            if(visualizeComboBox.getSelectedItem().equals("2D Waterfall Chart")){
+                dt.LOC2D_WaterfallChart();
+            }
+            if(visualizeComboBox.getSelectedItem().equals("2D Dual Chart")){
+                dt.LOC2D_DualChart();
+            }
+            if(visualizeComboBox.getSelectedItem().equals("2D Area Chart")){
+                dt.LOC2D_AreaChart();
+            }
+            if(visualizeComboBox.getSelectedItem().equals("2D Stack Area Chart")){
+                dt.LOC2D_StackAreaChart();
+            }
+            if(visualizeComboBox.getSelectedItem().equals("2D Stack Bar Chart")){
+                dt.LOC2D_StackBarChart();
+            }                    
+            if(visualizeComboBox.getSelectedItem().equals("3D Bar Chart")){
+                dt.LOC3D_BarChart();
+            }
+            if(visualizeComboBox.getSelectedItem().equals("3D Pie Chart")){
+                dt.LOC3D_PieChart();
+            }
+            if(visualizeComboBox.getSelectedItem().equals("3D Line Chart")){
+                dt.LOC3D_LineChart();
+            }
+            if(visualizeComboBox.getSelectedItem().equals("3D Stack Bar Chart")){
+                dt.LOC3D_StackBarChart();
+            }            
+        }
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void visualizeComboBoxItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_visualizeComboBoxItemStateChanged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_visualizeComboBoxItemStateChanged
+
+    private void visualizeComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_visualizeComboBoxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_visualizeComboBoxActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+    if(fileNametxt.getText().isEmpty())   {
+         //   JOptionPane.showMessageDialog(null,"First Browse a File!");
+           ImageIcon icon = new ImageIcon("src/images/close.png");
+
+        JPanel panel = new JPanel();
+       Border blackline = BorderFactory.createLineBorder(Color.black);
+       panel.setBorder(blackline);
+        panel.setBackground(new Color(169,224,49));
+        panel.setSize(new Dimension(200, 64));
+        panel.setLayout(null);
+
+        JLabel label = new JLabel("First Browse a File! ");
+        label.setBounds(0, 0, 200, 64);
+        label.setFont(new Font("Arial", Font.BOLD, 12));
+        label.setHorizontalAlignment(SwingConstants.CENTER);
+        panel.add(label);
+
+        UIManager.put("OptionPane.minimumSize",new Dimension(300, 120)); 
+        UIManager.put("RootPane.DialogBorder", new LineBorder(Color.black));
+        JOptionPane.showMessageDialog(null, panel, " Alert !", JOptionPane.PLAIN_MESSAGE, icon);
+                
+    }
+        else if(!countClicked)   {
+        //    JOptionPane.showMessageDialog(null,"First Count Metrics!");
+         ImageIcon icon = new ImageIcon("src/images/close.png");
+
+        JPanel panel = new JPanel();
+       Border blackline = BorderFactory.createLineBorder(Color.black);
+       panel.setBorder(blackline);
+        panel.setBackground(new Color(169,224,49));
+        panel.setSize(new Dimension(200, 64));
+        panel.setLayout(null);
+
+        JLabel label = new JLabel("First Count Metrics! ");
+        label.setBounds(0, 0, 200, 64);
+        label.setFont(new Font("Arial", Font.BOLD, 12));
+        label.setHorizontalAlignment(SwingConstants.CENTER);
+        panel.add(label);
+
+        UIManager.put("OptionPane.minimumSize",new Dimension(300, 120)); 
+        UIManager.put("RootPane.DialogBorder", new LineBorder(Color.black));
+        JOptionPane.showMessageDialog(null, panel, " Alert !", JOptionPane.PLAIN_MESSAGE, icon);
+            
+        }
+        else{
+            if(visualizeComboBox1.getSelectedItem().equals("...............Select...............")){
+               // JOptionPane.showMessageDialog(null,"Please select a chart!");
+                ImageIcon icon = new ImageIcon("src/images/close.png");
+
+        JPanel panel = new JPanel();
+       Border blackline = BorderFactory.createLineBorder(Color.black);
+       panel.setBorder(blackline);
+        panel.setBackground(new Color(169,224,49));
+        panel.setSize(new Dimension(200, 64));
+        panel.setLayout(null);
+
+        JLabel label = new JLabel("Please Select a Chart! ");
+        label.setBounds(0, 0, 200, 64);
+        label.setFont(new Font("Arial", Font.BOLD, 12));
+        label.setHorizontalAlignment(SwingConstants.CENTER);
+        panel.add(label);
+
+        UIManager.put("OptionPane.minimumSize",new Dimension(300, 120)); 
+        UIManager.put("RootPane.DialogBorder", new LineBorder(Color.black));
+        JOptionPane.showMessageDialog(null, panel, " Alert !", JOptionPane.PLAIN_MESSAGE, icon);
+             
+               return;
+            }           
+            JavaFileCharts dt=new JavaFileCharts();
+            if(visualizeComboBox1.getSelectedItem().equals("2D Bar Chart")){
+                dt.DT2D_BarChart();
+            }
+            if(visualizeComboBox1.getSelectedItem().equals("2D Pie Chart")){
+                 dt.DT2D_PieChart();
+            }
+            if(visualizeComboBox1.getSelectedItem().equals("2D Line Chart")){
+                dt.DT2D_LineChart();
+            }
+            if(visualizeComboBox1.getSelectedItem().equals("2D Waterfall Chart")){
+                dt.DT2D_WaterfallChart();
+            }
+            if(visualizeComboBox1.getSelectedItem().equals("2D Dual Chart")){
+                dt.DT2D_DualChart();
+            }
+            if(visualizeComboBox1.getSelectedItem().equals("2D Area Chart")){
+                dt.DT2D_AreaChart();
+            }
+            if(visualizeComboBox1.getSelectedItem().equals("2D Stack Area Chart")){
+                dt.DT2D_StackAreaChart();
+            }
+            if(visualizeComboBox1.getSelectedItem().equals("2D Stack Bar Chart")){
+                dt.DT2D_StackBarChart();
+            }                    
+            if(visualizeComboBox1.getSelectedItem().equals("3D Bar Chart")){
+                dt.DT3D_BarChart();
+            }
+            if(visualizeComboBox1.getSelectedItem().equals("3D Pie Chart")){
+                dt.DT3D_PieChart();
+            }
+            if(visualizeComboBox1.getSelectedItem().equals("3D Line Chart")){
+                dt.DT3D_LineChart();
+            }
+            if(visualizeComboBox1.getSelectedItem().equals("3D Stack Bar Chart")){
+                dt.DT3D_StackBarChart();
+            }            
+        }
+    }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void visualizeComboBox1ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_visualizeComboBox1ItemStateChanged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_visualizeComboBox1ItemStateChanged
+
+    private void visualizeComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_visualizeComboBox1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_visualizeComboBox1ActionPerformed
+
+    private void noOfFORLOOPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_noOfFORLOOPActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_noOfFORLOOPActionPerformed
+
+    private void noOfDOWHILELOOPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_noOfDOWHILELOOPActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_noOfDOWHILELOOPActionPerformed
+
+    private void noOfWHILELOOPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_noOfWHILELOOPActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_noOfWHILELOOPActionPerformed
+
+    private void noOfIFStatementActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_noOfIFStatementActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_noOfIFStatementActionPerformed
+
+    private void noOfSwitchStatementActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_noOfSwitchStatementActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_noOfSwitchStatementActionPerformed
+
+    private void noOfTryBlockActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_noOfTryBlockActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_noOfTryBlockActionPerformed
+
+    private void noOfElseIfStatementActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_noOfElseIfStatementActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_noOfElseIfStatementActionPerformed
+
+    private void noOfElseStatementActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_noOfElseStatementActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_noOfElseStatementActionPerformed
+
+    private void noOfCasesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_noOfCasesActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_noOfCasesActionPerformed
+
+    private void noOfCatchBlocksActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_noOfCatchBlocksActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_noOfCatchBlocksActionPerformed
+
+    private void noOfFinallyBlocksActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_noOfFinallyBlocksActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_noOfFinallyBlocksActionPerformed
+
+    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
+         if(fileNametxt.getText().isEmpty())   {
+          //  JOptionPane.showMessageDialog(null,"First Browse a File!");
+         ImageIcon icon = new ImageIcon("src/images/close.png");
+
+        JPanel panel = new JPanel();
+       Border blackline = BorderFactory.createLineBorder(Color.black);
+       panel.setBorder(blackline);
+        panel.setBackground(new Color(169,224,49));
+        panel.setSize(new Dimension(200, 64));
+        panel.setLayout(null);
+
+        JLabel label = new JLabel("Browse a File First! ");
+        label.setBounds(0, 0, 200, 64);
+        label.setFont(new Font("Arial", Font.BOLD, 12));
+        label.setHorizontalAlignment(SwingConstants.CENTER);
+        panel.add(label);
+
+        UIManager.put("OptionPane.minimumSize",new Dimension(300, 120)); 
+        UIManager.put("RootPane.DialogBorder", new LineBorder(Color.black));
+        JOptionPane.showMessageDialog(null, panel, " Alert !", JOptionPane.PLAIN_MESSAGE, icon);
+            
+         }
+        else if(!countClicked)   {
+        //    JOptionPane.showMessageDialog(null,"First Count Metrics!");
+         ImageIcon icon = new ImageIcon("src/images/close.png");
+
+        JPanel panel = new JPanel();
+       Border blackline = BorderFactory.createLineBorder(Color.black);
+       panel.setBorder(blackline);
+        panel.setBackground(new Color(169,224,49));
+        panel.setSize(new Dimension(200, 64));
+        panel.setLayout(null);
+
+        JLabel label = new JLabel("Please Count Metrics! ");
+        label.setBounds(0, 0, 200, 64);
+        label.setFont(new Font("Arial", Font.BOLD, 12));
+        label.setHorizontalAlignment(SwingConstants.CENTER);
+        panel.add(label);
+
+        UIManager.put("OptionPane.minimumSize",new Dimension(300, 120)); 
+        UIManager.put("RootPane.DialogBorder", new LineBorder(Color.black));
+        JOptionPane.showMessageDialog(null, panel, " Alert !", JOptionPane.PLAIN_MESSAGE, icon);
+            
+        }
+        else{
+            if(visualizeComboBox4.getSelectedItem().equals("...............Select...............")){
+               // JOptionPane.showMessageDialog(null,"Please select a chart!");
+                ImageIcon icon = new ImageIcon("src/images/close.png");
+
+        JPanel panel = new JPanel();
+       Border blackline = BorderFactory.createLineBorder(Color.black);
+       panel.setBorder(blackline);
+        panel.setBackground(new Color(169,224,49));
+        panel.setSize(new Dimension(200, 64));
+        panel.setLayout(null);
+
+        JLabel label = new JLabel("Please Select a Chart! ");
+        label.setBounds(0, 0, 200, 64);
+        label.setFont(new Font("Arial", Font.BOLD, 12));
+        label.setHorizontalAlignment(SwingConstants.CENTER);
+        panel.add(label);
+
+        UIManager.put("OptionPane.minimumSize",new Dimension(300, 120)); 
+        UIManager.put("RootPane.DialogBorder", new LineBorder(Color.black));
+        JOptionPane.showMessageDialog(null, panel, " Alert !", JOptionPane.PLAIN_MESSAGE, icon);
+             
+               return;
+            }           
+            JavaFileCharts dt=new JavaFileCharts();
+            if(visualizeComboBox4.getSelectedItem().equals("2D Bar Chart")){
+                dt.LOOP2D_BarChart();
+            }
+            if(visualizeComboBox4.getSelectedItem().equals("2D Pie Chart")){
+                 dt.LOOP2D_PieChart();
+            }
+            if(visualizeComboBox4.getSelectedItem().equals("2D Line Chart")){
+                dt.LOOP2D_LineChart();
+            }
+            if(visualizeComboBox4.getSelectedItem().equals("2D Waterfall Chart")){
+                dt.LOOP2D_WaterfallChart();
+            }
+            if(visualizeComboBox4.getSelectedItem().equals("2D Dual Chart")){
+                dt.LOOP2D_DualChart();
+            }
+            if(visualizeComboBox4.getSelectedItem().equals("2D Area Chart")){
+                dt.LOOP2D_AreaChart();
+            }
+            if(visualizeComboBox4.getSelectedItem().equals("2D Stack Area Chart")){
+                dt.LOOP2D_StackAreaChart();
+            }
+            if(visualizeComboBox4.getSelectedItem().equals("2D Stack Bar Chart")){
+                dt.loop2d_StackBarchart();
+            }                    
+            if(visualizeComboBox4.getSelectedItem().equals("3D Bar Chart")){
+                dt.LOOP3D_BarChart();
+            }
+            if(visualizeComboBox4.getSelectedItem().equals("3D Pie Chart")){
+                dt.LOOP3D_PieChart();
+            }
+            if(visualizeComboBox4.getSelectedItem().equals("3D Line Chart")){
+                dt.LOOP2D_LineChart();
+            }
+            if(visualizeComboBox4.getSelectedItem().equals("3D Stack Bar Chart")){
+                dt.LOOP3D_StackBarChart();
+            }            
+        }
+    }//GEN-LAST:event_jButton8ActionPerformed
+
+    private void visualizeComboBox4ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_visualizeComboBox4ItemStateChanged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_visualizeComboBox4ItemStateChanged
+
+    private void visualizeComboBox4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_visualizeComboBox4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_visualizeComboBox4ActionPerformed
+
+    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
+       if(fileNametxt.getText().isEmpty())   {
+          //  JOptionPane.showMessageDialog(null,"First Browse a File!");
+           ImageIcon icon = new ImageIcon("src/images/close.png");
+
+        JPanel panel = new JPanel();
+       Border blackline = BorderFactory.createLineBorder(Color.black);
+       panel.setBorder(blackline);
+        panel.setBackground(new Color(169,224,49));
+        panel.setSize(new Dimension(200, 64));
+        panel.setLayout(null);
+
+        JLabel label = new JLabel("First Browse a File! ");
+        label.setBounds(0, 0, 200, 64);
+        label.setFont(new Font("Arial", Font.BOLD, 12));
+        label.setHorizontalAlignment(SwingConstants.CENTER);
+        panel.add(label);
+
+        UIManager.put("OptionPane.minimumSize",new Dimension(300, 120)); 
+        UIManager.put("RootPane.DialogBorder", new LineBorder(Color.black));
+        JOptionPane.showMessageDialog(null, panel, " Alert !", JOptionPane.PLAIN_MESSAGE, icon);
+            
+        }
+        else if(!countClicked)   {
+           // JOptionPane.showMessageDialog(null,"First Count Metrics!");
+            ImageIcon icon = new ImageIcon("src/images/close.png");
+
+        JPanel panel = new JPanel();
+       Border blackline = BorderFactory.createLineBorder(Color.black);
+       panel.setBorder(blackline);
+        panel.setBackground(new Color(169,224,49));
+        panel.setSize(new Dimension(200, 64));
+        panel.setLayout(null);
+
+        JLabel label = new JLabel("Please Count Metrics! ");
+        label.setBounds(0, 0, 200, 64);
+        label.setFont(new Font("Arial", Font.BOLD, 12));
+        label.setHorizontalAlignment(SwingConstants.CENTER);
+        panel.add(label);
+
+        UIManager.put("OptionPane.minimumSize",new Dimension(300, 120)); 
+        UIManager.put("RootPane.DialogBorder", new LineBorder(Color.black));
+        JOptionPane.showMessageDialog(null, panel, " Alert !", JOptionPane.PLAIN_MESSAGE, icon);
+            
+        }
+        else{
+            if(visualizeComboBox5.getSelectedItem().equals("...............Select...............")){
+             //   JOptionPane.showMessageDialog(null,"Please select a chart!");
+              ImageIcon icon = new ImageIcon("src/images/close.png");
+
+        JPanel panel = new JPanel();
+       Border blackline = BorderFactory.createLineBorder(Color.black);
+       panel.setBorder(blackline);
+        panel.setBackground(new Color(169,224,49));
+        panel.setSize(new Dimension(200, 64));
+        panel.setLayout(null);
+
+        JLabel label = new JLabel("Please Select a Chart! ");
+        label.setBounds(0, 0, 200, 64);
+        label.setFont(new Font("Arial", Font.BOLD, 12));
+        label.setHorizontalAlignment(SwingConstants.CENTER);
+        panel.add(label);
+
+        UIManager.put("OptionPane.minimumSize",new Dimension(300, 120)); 
+        UIManager.put("RootPane.DialogBorder", new LineBorder(Color.black));
+        JOptionPane.showMessageDialog(null, panel, " Alert !", JOptionPane.PLAIN_MESSAGE, icon);
+             
+             return;
+            }           
+            JavaFileCharts dt=new JavaFileCharts();
+            if(visualizeComboBox5.getSelectedItem().equals("2D Bar Chart")){
+                dt.CST2D_BarChart();
+            }
+            if(visualizeComboBox5.getSelectedItem().equals("2D Pie Chart")){
+                 dt.CST2D_PieChart();
+            }
+            if(visualizeComboBox5.getSelectedItem().equals("2D Line Chart")){
+                dt.CST2D_LineChart();
+            }
+            if(visualizeComboBox5.getSelectedItem().equals("2D Waterfall Chart")){
+                dt.CST2D_WaterfallChart();
+            }
+            if(visualizeComboBox5.getSelectedItem().equals("2D Dual Chart")){
+                dt.CST2D_DualChart();
+            }
+            if(visualizeComboBox5.getSelectedItem().equals("2D Area Chart")){
+                dt.CST2D_AreaChart();
+            }
+            if(visualizeComboBox5.getSelectedItem().equals("2D Stack Area Chart")){
+                dt.CST2D_StackAreaChart();
+            }
+            if(visualizeComboBox5.getSelectedItem().equals("2D Stack Bar Chart")){
+                dt.CST2D_StackBarChart();
+            }                    
+            if(visualizeComboBox5.getSelectedItem().equals("3D Bar Chart")){
+                dt.CST3D_BarChart();
+            }
+            if(visualizeComboBox5.getSelectedItem().equals("3D Pie Chart")){
+                dt.CST3D_PieChart();
+            }
+            if(visualizeComboBox5.getSelectedItem().equals("3D Line Chart")){
+                dt.CST2D_LineChart();
+            }
+            if(visualizeComboBox5.getSelectedItem().equals("3D Stack Bar Chart")){
+                dt.CST3D_StackBarChart();
+            }            
+        }
+    }//GEN-LAST:event_jButton9ActionPerformed
+
+    private void visualizeComboBox5ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_visualizeComboBox5ItemStateChanged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_visualizeComboBox5ItemStateChanged
+
+    private void visualizeComboBox5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_visualizeComboBox5ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_visualizeComboBox5ActionPerformed
+
+    private void noOfINTVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_noOfINTVActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_noOfINTVActionPerformed
+
+    private void noOfShortINTVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_noOfShortINTVActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_noOfShortINTVActionPerformed
+
+    private void noOfLongINTVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_noOfLongINTVActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_noOfLongINTVActionPerformed
+
+    private void noOfSTRINGVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_noOfSTRINGVActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_noOfSTRINGVActionPerformed
+
+    private void noOfDOUBLEVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_noOfDOUBLEVActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_noOfDOUBLEVActionPerformed
+
+    private void noOfFLOATVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_noOfFLOATVActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_noOfFLOATVActionPerformed
+
+    private void noOfBOOLVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_noOfBOOLVActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_noOfBOOLVActionPerformed
+
+    private void noOfCHARVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_noOfCHARVActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_noOfCHARVActionPerformed
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+         if(fileNametxt.getText().isEmpty())   {
+         //   JOptionPane.showMessageDialog(null,"First Browse a File!");
+           ImageIcon icon = new ImageIcon("src/images/close.png");
+
+        JPanel panel = new JPanel();
+       Border blackline = BorderFactory.createLineBorder(Color.black);
+       panel.setBorder(blackline);
+        panel.setBackground(new Color(169,224,49));
+        panel.setSize(new Dimension(200, 64));
+        panel.setLayout(null);
+
+        JLabel label = new JLabel("First Browse a File! ");
+        label.setBounds(0, 0, 200, 64);
+        label.setFont(new Font("Arial", Font.BOLD, 12));
+        label.setHorizontalAlignment(SwingConstants.CENTER);
+        panel.add(label);
+
+        UIManager.put("OptionPane.minimumSize",new Dimension(300, 120)); 
+        UIManager.put("RootPane.DialogBorder", new LineBorder(Color.black));
+        JOptionPane.showMessageDialog(null, panel, " Alert !", JOptionPane.PLAIN_MESSAGE, icon);
+                
+    }
+        else if(!countClicked)   {
+        //    JOptionPane.showMessageDialog(null,"First Count Metrics!");
+         ImageIcon icon = new ImageIcon("src/images/close.png");
+
+        JPanel panel = new JPanel();
+       Border blackline = BorderFactory.createLineBorder(Color.black);
+       panel.setBorder(blackline);
+        panel.setBackground(new Color(169,224,49));
+        panel.setSize(new Dimension(200, 64));
+        panel.setLayout(null);
+
+        JLabel label = new JLabel("First Count Metrics! ");
+        label.setBounds(0, 0, 200, 64);
+        label.setFont(new Font("Arial", Font.BOLD, 12));
+        label.setHorizontalAlignment(SwingConstants.CENTER);
+        panel.add(label);
+
+        UIManager.put("OptionPane.minimumSize",new Dimension(300, 120)); 
+        UIManager.put("RootPane.DialogBorder", new LineBorder(Color.black));
+        JOptionPane.showMessageDialog(null, panel, " Alert !", JOptionPane.PLAIN_MESSAGE, icon);
+            
+        }
+        else{
+            if(visualizeComboBox2.getSelectedItem().equals("...............Select...............")){
+               // JOptionPane.showMessageDialog(null,"Please select a chart!");
+                ImageIcon icon = new ImageIcon("src/images/close.png");
+
+        JPanel panel = new JPanel();
+       Border blackline = BorderFactory.createLineBorder(Color.black);
+       panel.setBorder(blackline);
+        panel.setBackground(new Color(169,224,49));
+        panel.setSize(new Dimension(200, 64));
+        panel.setLayout(null);
+
+        JLabel label = new JLabel("Please Select a Chart! ");
+        label.setBounds(0, 0, 200, 64);
+        label.setFont(new Font("Arial", Font.BOLD, 12));
+        label.setHorizontalAlignment(SwingConstants.CENTER);
+        panel.add(label);
+
+        UIManager.put("OptionPane.minimumSize",new Dimension(300, 120)); 
+        UIManager.put("RootPane.DialogBorder", new LineBorder(Color.black));
+        JOptionPane.showMessageDialog(null, panel, " Alert !", JOptionPane.PLAIN_MESSAGE, icon);
+             
+               return;
+            }           
+            JavaFileCharts dt=new JavaFileCharts();
+            if(visualizeComboBox2.getSelectedItem().equals("2D Bar Chart")){
+                dt.DTV2D_BarChart();
+            }
+            if(visualizeComboBox2.getSelectedItem().equals("2D Pie Chart")){
+                 dt.DTV2D_PieChart();
+            }
+            if(visualizeComboBox2.getSelectedItem().equals("2D Line Chart")){
+                dt.DTV2D_LineChart();
+            }
+            if(visualizeComboBox2.getSelectedItem().equals("2D Waterfall Chart")){
+                dt.DTV2D_WaterfallChart();
+            }
+            if(visualizeComboBox2.getSelectedItem().equals("2D Dual Chart")){
+                dt.DTV2D_DualChart();
+            }
+            if(visualizeComboBox2.getSelectedItem().equals("2D Area Chart")){
+                dt.DTV2D_AreaChart();
+            }
+            if(visualizeComboBox2.getSelectedItem().equals("2D Stack Area Chart")){
+                dt.DTV2D_StackAreaChart();
+            }
+            if(visualizeComboBox2.getSelectedItem().equals("2D Stack Bar Chart")){
+                dt.DTV2D_StackBarChart();
+            }                    
+            if(visualizeComboBox2.getSelectedItem().equals("3D Bar Chart")){
+                dt.DTV3D_BarChart();
+            }
+            if(visualizeComboBox2.getSelectedItem().equals("3D Pie Chart")){
+                dt.DTV3D_PieChart();
+            }
+            if(visualizeComboBox2.getSelectedItem().equals("3D Line Chart")){
+                dt.DTV3D_LineChart();
+            }
+            if(visualizeComboBox2.getSelectedItem().equals("3D Stack Bar Chart")){
+                dt.DTV3D_StackBarChart();
+            }            
+        }
+    }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void visualizeComboBox2ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_visualizeComboBox2ItemStateChanged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_visualizeComboBox2ItemStateChanged
+
+    private void visualizeComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_visualizeComboBox2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_visualizeComboBox2ActionPerformed
+
+    public void browse_file(){
+        fname=null;
+        JFileChooser  chooser = new JFileChooser();    
+        chooser.addChoosableFileFilter(new FileNameExtensionFilter("Java files", "java"));
+        chooser.setAcceptAllFileFilterUsed(false);
+        int result = chooser.showOpenDialog(this);
+        if (result == JFileChooser.APPROVE_OPTION) {
+           File f = chooser.getSelectedFile();
+        fname = f.getAbsolutePath();
+        fileNametxt.setText(fname);
+        }
+    }
+    public  int calcComments(List<String> lines){
+		//temporary placeholder for number of comment lines
+            int commentLines = 0;
+		//temporary placeholder for line being checked
+            String line;
+            boolean MULTILINE = false;
+            Iterator itr = lines.iterator();
+		//parse entire file
+            while(itr.hasNext()){
+            line = ((String)itr.next());
+            //remove strings within quotes, do not forget about escape sequences
+            line.replaceAll("\\."," ");
+            line.replaceAll("\\\"[^\\\"]*\\\""," ");
+            //special case of multiline comments
+            if (line.matches(".*[/][*].*") || MULTILINE) {
+                    MULTILINE = true;
+                    commentLines++;
+                    //termination of multi line comments
+                    if (line.matches(".*[*][/].*")){
+                            MULTILINE = false;
+                        }
+                    continue;
+		}
+            //check using regular expression if the line contains any comments 
+            if (line.matches(".*//.*") || line.matches(".*[/][*].*[*][/].*")){
+                    commentLines++;
+                    continue;
+            }
+            }
+		return commentLines;
+	} 
+    
+    // Variables Counting
+    public static void readFileLineByLineForDTV() throws FileNotFoundException{  
+                    listOfPhyLines.clear();
+                    listOfBraceLines.clear();
+                    INT_Lines.clear();
+                    SHORT_INT_Lines.clear();
+                    LONG_INT_Lines.clear();
+                    BOOL_Lines.clear();
+                    DOUBLE_Lines.clear();
+                    CHAR_Lines.clear();
+                    FLOAT_Lines.clear();
+                    STRING_Lines.clear();
+                    INT_Count=0;
+                    SHORT_INT_Count=0;
+                    LONG_INT_Count=0;
+                    STRING_Count=0;
+                    BOOL_Count=0;
+                    FLOAT_Count=0;
+                    DOUBLE_Count=0;
+                    CHAR_Count=0;
+       try {          
+            FileReader fr = new FileReader(fname);
+            BufferedReader br=new BufferedReader(fr);
+            String str,completeLine="";
+            boolean flag=false;
+            boolean brace_flag=false;
+            int ch;
+            while((ch=br.read())!=-1){
+               // System.out.println(String.valueOf((char)ch)+" : "+ch);
+                if(ch==40 || brace_flag){
+                    if(ch==40){
+                    listOfPhyLines.add(completeLine);
+                    completeLine="";
+                    }
+                    brace_flag=true;
+                    if(ch==10 || ch==9)
+                        completeLine+=" ";
+                        else
+                    completeLine+=String.valueOf((char)ch);
+                }                
+                else{    
+                    if(ch==10 || ch==9)
+                        completeLine+=" ";
+                    else
+                    completeLine+=String.valueOf((char)ch);
+                if(ch==59){
+                    listOfPhyLines.add(completeLine);
+                    completeLine="";
+                }                
+                }
+                if(ch==41){
+                  brace_flag=false;
+                  listOfBraceLines.add(completeLine);
+                  //System.out.println(completeLine);
+                  completeLine="";
+                }
+               // System.out.println(completeLine+":"+ch);
+            }
+        } catch (IOException ex) {
+            Logger.getLogger(BrowseJavaFile.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        calculateDTVFromBrace();
+        calculateDTVFromPHY();
+//        System.out.println("int --> "+INT_Count);
+//        System.out.println("short int --> "+SHORT_INT_Count);
+//        System.out.println("long int --> "+LONG_INT_Count);
+//        System.out.println("bool --> "+BOOL_Count);
+//        System.out.println("double --> "+DOUBLE_Count);
+//        System.out.println("Float --> "+FLOAT_Count);
+    }
+    public static void calculateDTVFromPHY(){
+        for(String str:listOfPhyLines){
+            
+            if(str.contains(";"))
+            {
+                if(str.contains("String"))
+                {
+                    boolean flag=false;
+                    String line="";
+                   //  System.out.println(str);
+                 StringTokenizer tk= new StringTokenizer(str);        
+                 while(tk.hasMoreElements())
+                 {                                
+                   String token=tk.nextToken();
+                   if(token.contains("String")||flag)
+                   {
+                    line+=token+" ";
+                     flag=true;
+                   }
+                 }
+                 STRING_Lines.add(line);
+                }
+                if(str.contains("double"))
+                {
+                    boolean flag=false;
+                    String line="";
+                   //  System.out.println(str);
+                 StringTokenizer tk= new StringTokenizer(str);        
+                 while(tk.hasMoreElements())
+                 {                                
+                   String token=tk.nextToken();
+                   if(token.contains("double")||flag)
+                   {
+                    line+=token+" ";
+                     flag=true;
+                   }
+                 }
+                 DOUBLE_Lines.add(line);
+                }
+                if(str.contains("float"))
+                {
+                    boolean flag=false;
+                    String line="";
+                   //  System.out.println(str);
+                 StringTokenizer tk= new StringTokenizer(str);        
+                 while(tk.hasMoreElements())
+                 {                                
+                   String token=tk.nextToken();
+                   if(token.contains("float")||flag)
+                   {
+                    line+=token+" ";
+                     flag=true;
+                   }
+                 }
+                 FLOAT_Lines.add(line);
+                }
+                if(str.contains("boolean"))
+                {
+                    boolean flag=false;
+                    String line="";
+                   //  System.out.println(str);
+                 StringTokenizer tk= new StringTokenizer(str);        
+                 while(tk.hasMoreElements())
+                 {                                
+                   String token=tk.nextToken();
+                   if(token.contains("boolean")||flag)
+                   {
+                    line+=token+" ";
+                     flag=true;
+                   }
+                 }
+                 BOOL_Lines.add(line);
+                }
+                if(str.contains("char"))
+                {
+                    boolean flag=false;
+                    String line="";
+                   //  System.out.println(str);
+                 StringTokenizer tk= new StringTokenizer(str);        
+                 while(tk.hasMoreElements())
+                 {                                
+                   String token=tk.nextToken();
+                   if(token.contains("char")||flag)
+                   {
+                    line+=token+" ";
+                     flag=true;
+                   }
+                 }
+                 CHAR_Lines.add(line);
+                }
+                if(str.contains("long"))
+                {
+                    boolean flag=false;
+                    String line="";
+                   //  System.out.println(str);
+                 StringTokenizer tk= new StringTokenizer(str);        
+                 while(tk.hasMoreElements())
+                 {                                
+                   String token=tk.nextToken();
+                   if(token.contains("long")||flag)
+                   {
+                    line+=token+" ";
+                     flag=true;
+                   }
+                 }
+                 LONG_INT_Lines.add(line);
+                }
+                else if(str.contains("short"))
+                {
+                    boolean flag=false;
+                    String line="";
+                    StringTokenizer tk= new StringTokenizer(str);
+                    while(tk.hasMoreElements())
+                    {
+                        String token=tk.nextToken();
+                        if(token.contains("short")||flag)
+                        {
+                            line+=token+" ";
+                            flag=true;
+                        }
+                    }
+                    SHORT_INT_Lines.add(line);
+                }else
+                {
+                    boolean flag=false;
+                    String line="";
+                    StringTokenizer tk= new StringTokenizer(str);
+                    while(tk.hasMoreElements())
+                    {
+                        String token=tk.nextToken();
+                        if(token.contains("int")||flag)
+                        {
+                            line+=token+" ";
+                            flag=true;
+                        }
+                    }
+                    INT_Lines.add(line);
+                } 
+            }
+       
+        } 
+       for(String str:INT_Lines){
+        countDTVFromToken(str);
+       }
+        for(String str:SHORT_INT_Lines){
+        countDTVFromToken(str);
+       }
+        for(String str:LONG_INT_Lines){
+        countDTVFromToken(str);
+       }
+        for(String str:CHAR_Lines){
+        countDTVFromToken(str);
+       }
+        for(String str:DOUBLE_Lines){
+        countDTVFromToken(str);
+       }
+        for(String str:BOOL_Lines){
+        countDTVFromToken(str);
+       }
+        for(String str:FLOAT_Lines){
+        countDTVFromToken(str);
+       }
+        for(String str:STRING_Lines){
+        countDTVFromToken(str);
+       }
+    }  
+    public static void calculateDTVFromBrace(){
+        for(String str:listOfBraceLines){
+            if(str.contains(";"))
+            {                
+                StringTokenizer tk= new StringTokenizer(str,";");        
+                while(tk.hasMoreElements())
+                {                                   
+                   String token=tk.nextToken();
+                    countDTVFromToken(token);
+                }
+            }
+            else{
+                StringTokenizer tk= new StringTokenizer(str,",");        
+                while(tk.hasMoreElements())
+                {                    
+                   String token=tk.nextToken(); 
+                   countDTVFromToken(token);
+                }
+            }
+        }       
+    }        
+    public static void countDTVFromToken(String str){
+               
+         if(str.contains("double"))
+        {          
+              StringTokenizer tk= new StringTokenizer(str,",");            
+              DOUBLE_Count+=tk.countTokens();       
+        }
+          if(str.contains("float"))
+        {          
+              StringTokenizer tk= new StringTokenizer(str,",");            
+              FLOAT_Count+=tk.countTokens();       
+        }
+           if(str.contains("char"))
+        {          
+              StringTokenizer tk= new StringTokenizer(str,",");            
+              CHAR_Count+=tk.countTokens();       
+        }
+            if(str.contains("boolean"))
+        {          
+              StringTokenizer tk= new StringTokenizer(str,",");            
+              BOOL_Count+=tk.countTokens();       
+        }
+             if(str.contains("String"))
+        {          
+              StringTokenizer tk= new StringTokenizer(str,",");            
+              STRING_Count+=tk.countTokens();       
+        }
+              if(str.contains("int"))
+        {        
+            if(str.contains("long"))
+            { 
+              StringTokenizer tk= new StringTokenizer(str,",");            
+              LONG_INT_Count+=tk.countTokens();       
+             }
+            else if(str.contains("short"))
+            { 
+              StringTokenizer tk= new StringTokenizer(str,",");            
+              SHORT_INT_Count+=tk.countTokens();       
+             }
+            else{
+                StringTokenizer tk= new StringTokenizer(str,",");            
+                INT_Count+=tk.countTokens();    
+            }
+        } 
+    } 
+    
+    
+    
+    // Data Types Calculation
+     public int INT_calculate(String str){
+        
+       int count=0;
+        StringTokenizer tk= new StringTokenizer(str);
+        
+         while(tk.hasMoreElements()){
+            String token=tk.nextToken();       
+            if(token.contains("int")){                
+            StringTokenizer tk2= new StringTokenizer(token,";");            
+            while(tk2.hasMoreElements()){
+            String token2=tk2.nextToken();
+            
+            if(token2.contains("int")){           
+            StringTokenizer tk3= new StringTokenizer(token2,"(");            
+            while(tk3.hasMoreElements()){
+            String token3=tk3.nextToken(); 
+            
+            if(token3.contains("int")){
+            StringTokenizer tk4= new StringTokenizer(token3,"{"); 
+            while(tk4.hasMoreElements()){
+            String token4=tk4.nextToken(); 
+            
+            if(token4.contains("int")){
+            StringTokenizer tk5= new StringTokenizer(token4,"}"); 
+            while(tk5.hasMoreElements()){
+            String token5=tk5.nextToken(); 
+            
+            if(token5.contains("int")){
+            StringTokenizer tk6= new StringTokenizer(token5,","); 
+            while(tk6.hasMoreElements()){
+            String token6=tk6.nextToken(); 
+            
+            if(token6.contains("int")){
+            StringTokenizer tk7= new StringTokenizer(token6,"*/"); 
+            while(tk7.hasMoreElements()){
+            String token7=tk7.nextToken(); 
+                if(token7.matches("int"))                  
+                    count++;           
+            }
+            }            
+            }
+            }
+            } 
+            }
+            }
+            }
+            }
+            }
+            }
+            }
+        }
+          return count;
+   }
+     public int SHORT_INT_calculate(String str){
+        
+       int count=0;
+        StringTokenizer tk= new StringTokenizer(str);
+        
+         while(tk.hasMoreElements()){
+            String token=tk.nextToken();       
+            if(token.contains("short")){                
+            StringTokenizer tk2= new StringTokenizer(token,";");            
+            while(tk2.hasMoreElements()){
+            String token2=tk2.nextToken();
+            
+            if(token2.contains("short")){           
+            StringTokenizer tk3= new StringTokenizer(token2,"(");            
+            while(tk3.hasMoreElements()){
+            String token3=tk3.nextToken(); 
+            
+            if(token3.contains("short")){
+            StringTokenizer tk4= new StringTokenizer(token3,"{"); 
+            while(tk4.hasMoreElements()){
+            String token4=tk4.nextToken(); 
+            
+            if(token4.contains("short")){
+            StringTokenizer tk5= new StringTokenizer(token4,"}"); 
+            while(tk5.hasMoreElements()){
+            String token5=tk5.nextToken(); 
+            
+            if(token5.contains("short")){
+            StringTokenizer tk6= new StringTokenizer(token5,","); 
+            while(tk6.hasMoreElements()){
+            String token6=tk6.nextToken(); 
+            
+            if(token6.contains("short")){
+            StringTokenizer tk7= new StringTokenizer(token6,"*/"); 
+            while(tk7.hasMoreElements()){
+            String token7=tk7.nextToken(); 
+                if(token7.matches("short"))                  
+                    count++;           
+            }
+            }            
+            }
+            }
+            } 
+            }
+            }
+            }
+            }
+            }
+            }
+            }
+        }
+          return count;
+   }
+     public int LONG_INT_calculate(String str){
+        
+       int count=0;
+        StringTokenizer tk= new StringTokenizer(str);
+        
+         while(tk.hasMoreElements()){
+            String token=tk.nextToken();       
+            if(token.contains("long")){                
+            StringTokenizer tk2= new StringTokenizer(token,";");            
+            while(tk2.hasMoreElements()){
+            String token2=tk2.nextToken();
+            
+            if(token2.contains("long")){           
+            StringTokenizer tk3= new StringTokenizer(token2,"(");            
+            while(tk3.hasMoreElements()){
+            String token3=tk3.nextToken(); 
+            
+            if(token3.contains("long")){
+            StringTokenizer tk4= new StringTokenizer(token3,"{"); 
+            while(tk4.hasMoreElements()){
+            String token4=tk4.nextToken(); 
+            
+            if(token4.contains("long")){
+            StringTokenizer tk5= new StringTokenizer(token4,"}"); 
+            while(tk5.hasMoreElements()){
+            String token5=tk5.nextToken(); 
+            
+            if(token5.contains("long")){
+            StringTokenizer tk6= new StringTokenizer(token5,","); 
+            while(tk6.hasMoreElements()){
+            String token6=tk6.nextToken(); 
+            
+            if(token6.contains("long")){
+            StringTokenizer tk7= new StringTokenizer(token6,"*/"); 
+            while(tk7.hasMoreElements()){
+            String token7=tk7.nextToken(); 
+                if(token7.matches("long"))                  
+                    count++;           
+            }
+            }            
+            }
+            }
+            } 
+            }
+            }
+            }
+            }
+            }
+            }
+            }
+        }
+          return count;
+   }
+     public int STRING_calculate(String str){
+        
+       int count=0;
+        StringTokenizer tk= new StringTokenizer(str);
+        
+         while(tk.hasMoreElements()){
+            String token=tk.nextToken();       
+            if(token.contains("String")){                
+            StringTokenizer tk2= new StringTokenizer(token,";");            
+            while(tk2.hasMoreElements()){
+            String token2=tk2.nextToken();
+            
+            if(token2.contains("String")){           
+            StringTokenizer tk3= new StringTokenizer(token2,"(");            
+            while(tk3.hasMoreElements()){
+            String token3=tk3.nextToken(); 
+            
+            if(token3.contains("String")){
+            StringTokenizer tk4= new StringTokenizer(token3,"{"); 
+            while(tk4.hasMoreElements()){
+            String token4=tk4.nextToken(); 
+            
+            if(token4.contains("String")){
+            StringTokenizer tk5= new StringTokenizer(token4,"}"); 
+            while(tk5.hasMoreElements()){
+            String token5=tk5.nextToken(); 
+            
+            if(token5.contains("String")){
+            StringTokenizer tk6= new StringTokenizer(token5,","); 
+            while(tk6.hasMoreElements()){
+            String token6=tk6.nextToken(); 
+            
+            if(token6.contains("String")){
+            StringTokenizer tk7= new StringTokenizer(token6,"*/"); 
+            while(tk7.hasMoreElements()){
+            String token7=tk7.nextToken(); 
+                if(token7.matches("String"))                  
+                    count++;           
+            }
+            }            
+            }
+            }
+            } 
+            }
+            }
+            }
+            }
+            }
+            }
+            }
+        }
+          return count;
+   }
+     public int DOUBLE_calculate(String str){
+        
+       int count=0;
+        StringTokenizer tk= new StringTokenizer(str);
+        
+         while(tk.hasMoreElements()){
+            String token=tk.nextToken();       
+            if(token.contains("double")){                
+            StringTokenizer tk2= new StringTokenizer(token,";");            
+            while(tk2.hasMoreElements()){
+            String token2=tk2.nextToken();
+            
+            if(token2.contains("double")){           
+            StringTokenizer tk3= new StringTokenizer(token2,"(");            
+            while(tk3.hasMoreElements()){
+            String token3=tk3.nextToken(); 
+            
+            if(token3.contains("double")){
+            StringTokenizer tk4= new StringTokenizer(token3,"{"); 
+            while(tk4.hasMoreElements()){
+            String token4=tk4.nextToken(); 
+            
+            if(token4.contains("double")){
+            StringTokenizer tk5= new StringTokenizer(token4,"}"); 
+            while(tk5.hasMoreElements()){
+            String token5=tk5.nextToken(); 
+            
+            if(token5.contains("double")){
+            StringTokenizer tk6= new StringTokenizer(token5,","); 
+            while(tk6.hasMoreElements()){
+            String token6=tk6.nextToken(); 
+            
+            if(token6.contains("double")){
+            StringTokenizer tk7= new StringTokenizer(token6,"*/"); 
+            while(tk7.hasMoreElements()){
+            String token7=tk7.nextToken(); 
+                if(token7.matches("double"))                  
+                    count++;           
+            }
+            }            
+            }
+            }
+            } 
+            }
+            }
+            }
+            }
+            }
+            }
+            }
+        }
+          return count;
+   }
+     public int FLOAT_calculate(String str){
+        
+       int count=0;
+        StringTokenizer tk= new StringTokenizer(str);
+        
+         while(tk.hasMoreElements()){
+            String token=tk.nextToken();       
+            if(token.contains("float")){                
+            StringTokenizer tk2= new StringTokenizer(token,";");            
+            while(tk2.hasMoreElements()){
+            String token2=tk2.nextToken();
+            
+            if(token2.contains("float")){           
+            StringTokenizer tk3= new StringTokenizer(token2,"(");            
+            while(tk3.hasMoreElements()){
+            String token3=tk3.nextToken(); 
+            
+            if(token3.contains("float")){
+            StringTokenizer tk4= new StringTokenizer(token3,"{"); 
+            while(tk4.hasMoreElements()){
+            String token4=tk4.nextToken(); 
+            
+            if(token4.contains("float")){
+            StringTokenizer tk5= new StringTokenizer(token4,"}"); 
+            while(tk5.hasMoreElements()){
+            String token5=tk5.nextToken(); 
+            
+            if(token5.contains("float")){
+            StringTokenizer tk6= new StringTokenizer(token5,","); 
+            while(tk6.hasMoreElements()){
+            String token6=tk6.nextToken(); 
+            
+            if(token6.contains("float")){
+            StringTokenizer tk7= new StringTokenizer(token6,"*/"); 
+            while(tk7.hasMoreElements()){
+            String token7=tk7.nextToken(); 
+                if(token7.matches("float"))                  
+                    count++;           
+            }
+            }            
+            }
+            }
+            } 
+            }
+            }
+            }
+            }
+            }
+            }
+            }
+        }
+          return count;
+   }
+     public int BOOL_calculate(String str){
+        
+       int count=0;
+        StringTokenizer tk= new StringTokenizer(str);
+        
+         while(tk.hasMoreElements()){
+            String token=tk.nextToken();       
+            if(token.contains("boolean")){                
+            StringTokenizer tk2= new StringTokenizer(token,";");            
+            while(tk2.hasMoreElements()){
+            String token2=tk2.nextToken();
+            
+            if(token2.contains("boolean")){           
+            StringTokenizer tk3= new StringTokenizer(token2,"(");            
+            while(tk3.hasMoreElements()){
+            String token3=tk3.nextToken(); 
+            
+            if(token3.contains("boolean")){
+            StringTokenizer tk4= new StringTokenizer(token3,"{"); 
+            while(tk4.hasMoreElements()){
+            String token4=tk4.nextToken(); 
+            
+            if(token4.contains("boolean")){
+            StringTokenizer tk5= new StringTokenizer(token4,"}"); 
+            while(tk5.hasMoreElements()){
+            String token5=tk5.nextToken(); 
+            
+            if(token5.contains("boolean")){
+            StringTokenizer tk6= new StringTokenizer(token5,","); 
+            while(tk6.hasMoreElements()){
+            String token6=tk6.nextToken(); 
+            
+            if(token6.contains("boolean")){
+            StringTokenizer tk7= new StringTokenizer(token6,"*/"); 
+            while(tk7.hasMoreElements()){
+            String token7=tk7.nextToken(); 
+                if(token7.matches("boolean"))                  
+                    count++;           
+            }
+            }            
+            }
+            }
+            } 
+            }
+            }
+            }
+            }
+            }
+            }
+            }
+        }
+          return count;
+   }
+     public int CHAR_calculate(String str){
+        
+       int count=0;
+        StringTokenizer tk= new StringTokenizer(str);
+       
+         while(tk.hasMoreElements()){
+            String token=tk.nextToken();       
+            if(token.contains("char")){                
+            StringTokenizer tk2= new StringTokenizer(token,";");            
+            while(tk2.hasMoreElements()){
+            String token2=tk2.nextToken();
+            
+            if(token2.contains("char")){           
+            StringTokenizer tk3= new StringTokenizer(token2,"(");            
+            while(tk3.hasMoreElements()){
+            String token3=tk3.nextToken(); 
+            
+            if(token3.contains("char")){
+            StringTokenizer tk4= new StringTokenizer(token3,"{"); 
+            while(tk4.hasMoreElements()){
+            String token4=tk4.nextToken(); 
+            
+            if(token4.contains("char")){
+            StringTokenizer tk5= new StringTokenizer(token4,"}"); 
+            while(tk5.hasMoreElements()){
+            String token5=tk5.nextToken(); 
+            
+            if(token5.contains("char")){
+            StringTokenizer tk6= new StringTokenizer(token5,","); 
+            while(tk6.hasMoreElements()){
+            String token6=tk6.nextToken(); 
+            
+            if(token6.contains("char")){
+            StringTokenizer tk7= new StringTokenizer(token6,"*/"); 
+            while(tk7.hasMoreElements()){
+            String token7=tk7.nextToken(); 
+                if(token7.matches("char"))                  
+                    count++;           
+            }
+            }            
+            }
+            }
+            } 
+            }
+            }
+            }
+            }
+            }
+            }
+            }
+        }
+          return count;
+   }
+     
+   // Conditional Statements Methods
+    public int calculateIF() throws FileNotFoundException{
+            int if_no=0;          
+            FileReader fr = new FileReader(fname);          
+            BufferedReader br=new BufferedReader(fr);
+            String str,completeLine="";
+            Boolean flag=false;
+            try {
+                    while((str=br.readLine())!=null){
+ 
+                        StringTokenizer tk= new StringTokenizer(str);
+                        while(tk.hasMoreElements()){
+                            String token=tk.nextToken();
+                            if(token.contains("if")){
+                                
+                                StringTokenizer tk2= new StringTokenizer(token,"(");
+                                while(tk2.hasMoreElements()){
+                                    String token2=tk2.nextToken();
+                                    
+                                    if(token2.contains("if")){
+                                        StringTokenizer tk3= new StringTokenizer(token2,";");
+                                        while(tk3.hasMoreElements()){
+                                            String token3=tk3.nextToken();
+                                            
+                                            if(token3.contains("if")){
+                                                StringTokenizer tk4= new StringTokenizer(token3,"}");
+                                                while(tk4.hasMoreElements()){
+                                                    String token4=tk4.nextToken();
+                                                    
+                                                    if(token4.contains("if")){
+                                                        StringTokenizer tk5= new StringTokenizer(token4,"*/");
+                                                        while(tk5.hasMoreElements()){
+                                                            String token5=tk5.nextToken();
+                                                            if(token5.matches("if")){
+                                                                if_no++;
+                                                                //System.out.println(token5);
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        
+                    }   
+            } catch (IOException ex) {
+                    Logger.getLogger(BrowseJavaFile.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            return if_no;   
+    }
