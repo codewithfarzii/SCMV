@@ -7,6 +7,8 @@ package scmv;
 
 import ExternalJavaFiles.EmailValidator;
 import ExternalJavaFiles.Database;
+import ExternalJavaFiles.InternetConnectivity;
+import ExternalJavaFiles.JavaMailUtil;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -15,6 +17,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Random;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
@@ -39,35 +42,38 @@ ResultSet rs=null;
 PreparedStatement pstm=null;
     public SignInUp() {
         initComponents();
-         try{
+        
+        try{
         Database db=new Database();
         con=db.openConnection();
         }catch(HeadlessException| SQLException e){
-            //JOptionPane.showMessageDialog(null, "DB not connected");
-            ImageIcon icon = new ImageIcon("src/images/close.png");
-
-        JPanel panel = new JPanel();
-       Border blackline = BorderFactory.createLineBorder(Color.black);
-       panel.setBorder(blackline);
-        panel.setBackground(new Color(169,224,49));
-        panel.setSize(new Dimension(200, 64));
-        panel.setLayout(null);
-
-        JLabel label = new JLabel("Database Not Connected! ");
-        label.setBounds(0, 0, 200, 64);
-        label.setFont(new Font("Arial", Font.BOLD, 13));
-        label.setHorizontalAlignment(SwingConstants.CENTER);
-        panel.add(label);
-
-        UIManager.put("OptionPane.minimumSize",new Dimension(300, 120)); 
-        UIManager.put("RootPane.DialogBorder", new LineBorder(Color.black));
-        JOptionPane.showMessageDialog(null, panel, " Error !", JOptionPane.PLAIN_MESSAGE, icon);
+            AlertMessage("DB Not Connected!!!","src/images/close.png"," Alert!!!");           
         }
-        // luserName.requestFocus();
       showLoginPanel();
     }
-       
+    public void AlertMessage(String message,String path,String title){
+            ImageIcon icon = new ImageIcon(path);
+            JPanel panel = new JPanel();
+            Border blackline = BorderFactory.createLineBorder(Color.black);
+            panel.setBorder(blackline);
+            panel.setBackground(new Color(169,224,49));
+            panel.setSize(new Dimension(200, 64));
+            panel.setLayout(null);
+
+            JLabel label = new JLabel(message);
+            label.setBounds(0, 0, 200, 64);
+            label.setFont(new Font("Arial", Font.BOLD, 12));
+            label.setHorizontalAlignment(SwingConstants.CENTER);
+            panel.add(label);
+
+            UIManager.put("OptionPane.minimumSize",new Dimension(300, 120));
+            UIManager.put("RootPane.DialogBorder", new LineBorder(Color.black));
+            JOptionPane.showMessageDialog(null, panel, title, JOptionPane.PLAIN_MESSAGE, icon);
+               
+    }
+   
     public void showLoginPanel(){
+        clearFields();
           //login back labels
         jLabel_SoftZyd.setVisible(false);
         jLabel_inven.setVisible(false);
@@ -79,8 +85,10 @@ PreparedStatement pstm=null;
         // panels
         loginPanel.setVisible(true);
         signUpPanel.setVisible(false);
+        
     }
     public void showSignUpPanel(){
+        clearFields();
          //login back labels
         jLabel_SoftZyd.setVisible(true);
         jLabel_inven.setVisible(true);
@@ -121,7 +129,11 @@ PreparedStatement pstm=null;
         luserPass = new javax.swing.JPasswordField();
         jButton7 = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
         signUpBack = new javax.swing.JPanel();
+        jLabel_inven2 = new javax.swing.JLabel();
+        jLabel_SoftZyd1 = new javax.swing.JLabel();
+        jLabel_inven3 = new javax.swing.JLabel();
         signUpPanel = new javax.swing.JPanel();
         userName = new javax.swing.JTextField();
         userEmail = new javax.swing.JTextField();
@@ -134,9 +146,6 @@ PreparedStatement pstm=null;
         jButton8 = new javax.swing.JButton();
         userPass1 = new javax.swing.JPasswordField();
         userPass2 = new javax.swing.JPasswordField();
-        jLabel_inven2 = new javax.swing.JLabel();
-        jLabel_SoftZyd1 = new javax.swing.JLabel();
-        jLabel_inven3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -144,9 +153,10 @@ PreparedStatement pstm=null;
         jPanel1.setBackground(new java.awt.Color(0, 0, 0));
         jPanel1.setForeground(new java.awt.Color(169, 224, 49));
 
-        jLabel1.setFont(new java.awt.Font("Trebuchet MS", 1, 24)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Times New Roman", 0, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(169, 224, 49));
-        jLabel1.setText("SCMV");
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/metrics 64.png"))); // NOI18N
+        jLabel1.setText("  Source Code Metrics Visualizer of JAVA");
 
         jButton11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icons8_Minus_32px_1.png"))); // NOI18N
         jButton11.setToolTipText("Minimize");
@@ -187,21 +197,21 @@ PreparedStatement pstm=null;
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 430, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(62, 62, 62)
+                .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton11, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jButton11, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton10, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jButton10, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton10, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton11, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jButton11, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         loginBack.setBackground(new java.awt.Color(0, 0, 0));
@@ -210,7 +220,7 @@ PreparedStatement pstm=null;
         jLabel_inven.setFont(new java.awt.Font("Trebuchet MS", 0, 30)); // NOI18N
         jLabel_inven.setForeground(new java.awt.Color(169, 224, 49));
         jLabel_inven.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel_inven.setText("Visualizer In JAVA");
+        jLabel_inven.setText("Visualizer of JAVA");
 
         jLabel_SoftZyd.setFont(new java.awt.Font("Trebuchet MS", 1, 36)); // NOI18N
         jLabel_SoftZyd.setForeground(new java.awt.Color(169, 224, 49));
@@ -339,7 +349,25 @@ PreparedStatement pstm=null;
                 jButton1ActionPerformed(evt);
             }
         });
-        loginPanel.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 360, 200, 47));
+        loginPanel.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 370, 200, 47));
+
+        jButton2.setBackground(new java.awt.Color(169, 224, 49));
+        jButton2.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
+        jButton2.setForeground(new java.awt.Color(169, 224, 49));
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/forgetpass2.png"))); // NOI18N
+        jButton2.setText("Forget Password");
+        jButton2.setBorder(null);
+        jButton2.setBorderPainted(false);
+        jButton2.setContentAreaFilled(false);
+        jButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButton2.setRequestFocusEnabled(false);
+        jButton2.setVerifyInputWhenFocusTarget(false);
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        loginPanel.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 420, 200, 47));
 
         javax.swing.GroupLayout loginBackLayout = new javax.swing.GroupLayout(loginBack);
         loginBack.setLayout(loginBackLayout);
@@ -355,7 +383,7 @@ PreparedStatement pstm=null;
             .addGroup(loginBackLayout.createSequentialGroup()
                 .addGap(108, 108, 108)
                 .addComponent(jLabel_SoftZyd)
-                .addGap(6, 6, 6)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel_inven1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(6, 6, 6)
                 .addComponent(jLabel_inven, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -364,6 +392,22 @@ PreparedStatement pstm=null;
 
         signUpBack.setBackground(new java.awt.Color(0, 0, 0));
         signUpBack.setPreferredSize(new java.awt.Dimension(330, 535));
+
+        jLabel_inven2.setFont(new java.awt.Font("Trebuchet MS", 0, 30)); // NOI18N
+        jLabel_inven2.setForeground(new java.awt.Color(169, 224, 49));
+        jLabel_inven2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel_inven2.setText("Visualizer In JAVA");
+
+        jLabel_SoftZyd1.setFont(new java.awt.Font("Trebuchet MS", 1, 36)); // NOI18N
+        jLabel_SoftZyd1.setForeground(new java.awt.Color(169, 224, 49));
+        jLabel_SoftZyd1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel_SoftZyd1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icons8_DOT_100px.png"))); // NOI18N
+        jLabel_SoftZyd1.setText("SCMV");
+
+        jLabel_inven3.setFont(new java.awt.Font("Trebuchet MS", 0, 30)); // NOI18N
+        jLabel_inven3.setForeground(new java.awt.Color(169, 224, 49));
+        jLabel_inven3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel_inven3.setText("Source Code Metrics");
 
         signUpPanel.setBackground(new java.awt.Color(31, 36, 42));
         signUpPanel.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(51, 255, 0)));
@@ -383,6 +427,14 @@ PreparedStatement pstm=null;
                 userNameMouseMoved(evt);
             }
         });
+        userName.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                userNameFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                userNameFocusLost(evt);
+            }
+        });
         userName.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 userNameKeyPressed(evt);
@@ -398,6 +450,14 @@ PreparedStatement pstm=null;
         userEmail.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseMoved(java.awt.event.MouseEvent evt) {
                 userEmailMouseMoved(evt);
+            }
+        });
+        userEmail.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                userEmailFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                userEmailFocusLost(evt);
             }
         });
         userEmail.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -471,6 +531,14 @@ PreparedStatement pstm=null;
         userPass1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(169, 224, 49)));
         userPass1.setCaretColor(new java.awt.Color(255, 255, 255));
         userPass1.setFocusCycleRoot(true);
+        userPass1.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                userPass1FocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                userPass1FocusLost(evt);
+            }
+        });
         userPass1.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 userPass1KeyPressed(evt);
@@ -484,46 +552,47 @@ PreparedStatement pstm=null;
         userPass2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(169, 224, 49)));
         userPass2.setCaretColor(new java.awt.Color(255, 255, 255));
         userPass2.setFocusCycleRoot(true);
+        userPass2.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                userPass2FocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                userPass2FocusLost(evt);
+            }
+        });
         signUpPanel.add(userPass2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 370, 250, 35));
-
-        jLabel_inven2.setFont(new java.awt.Font("Trebuchet MS", 0, 30)); // NOI18N
-        jLabel_inven2.setForeground(new java.awt.Color(169, 224, 49));
-        jLabel_inven2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel_inven2.setText("Visualizer In JAVA");
-
-        jLabel_SoftZyd1.setFont(new java.awt.Font("Trebuchet MS", 1, 36)); // NOI18N
-        jLabel_SoftZyd1.setForeground(new java.awt.Color(169, 224, 49));
-        jLabel_SoftZyd1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel_SoftZyd1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icons8_DOT_100px.png"))); // NOI18N
-        jLabel_SoftZyd1.setText("SCMV");
-
-        jLabel_inven3.setFont(new java.awt.Font("Trebuchet MS", 0, 30)); // NOI18N
-        jLabel_inven3.setForeground(new java.awt.Color(169, 224, 49));
-        jLabel_inven3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel_inven3.setText("Source Code Metrics");
 
         javax.swing.GroupLayout signUpBackLayout = new javax.swing.GroupLayout(signUpBack);
         signUpBack.setLayout(signUpBackLayout);
         signUpBackLayout.setHorizontalGroup(
             signUpBackLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jLabel_SoftZyd1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jLabel_inven3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jLabel_inven2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jLabel_inven3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 330, Short.MAX_VALUE)
             .addGroup(signUpBackLayout.createSequentialGroup()
-                .addComponent(signUpPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addContainerGap()
+                .addComponent(jLabel_inven2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+            .addGroup(signUpBackLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(signUpBackLayout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(signUpPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
         );
         signUpBackLayout.setVerticalGroup(
             signUpBackLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(signUpBackLayout.createSequentialGroup()
-                .addComponent(signUpPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 535, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(115, 115, 115)
                 .addComponent(jLabel_SoftZyd1, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel_inven3, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel_inven2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(213, Short.MAX_VALUE))
+            .addGroup(signUpBackLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(signUpBackLayout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(signUpPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -569,51 +638,15 @@ PreparedStatement pstm=null;
     }//GEN-LAST:event_luserNameMouseMoved
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-          if(luserName.getText().isEmpty()){
-            // JOptionPane.showMessageDialog(null, "Please Enter User Name!!!"); 
-             ImageIcon icon = new ImageIcon("src/images/close.png");
-
-        JPanel panel = new JPanel();
-       Border blackline = BorderFactory.createLineBorder(Color.black);
-       panel.setBorder(blackline);
-        panel.setBackground(new Color(169,224,49));
-        panel.setSize(new Dimension(200, 64));
-        panel.setLayout(null);
-
-        JLabel label = new JLabel("Please Enter Username! ");
-        label.setBounds(0, 0, 200, 64);
-        label.setFont(new Font("Arial", Font.BOLD, 13));
-        label.setHorizontalAlignment(SwingConstants.CENTER);
-        panel.add(label);
-
-        UIManager.put("OptionPane.minimumSize",new Dimension(300, 120)); 
-        UIManager.put("RootPane.DialogBorder", new LineBorder(Color.black));
-        JOptionPane.showMessageDialog(null, panel, " Alert !", JOptionPane.PLAIN_MESSAGE, icon);
-             return;
-       }
-     if(luserPass.getText().isEmpty()){
-           // JOptionPane.showMessageDialog(null, "Please Enter Password!!!");
-             ImageIcon icon = new ImageIcon("src/images/close.png");
-
-        JPanel panel = new JPanel();
-       Border blackline = BorderFactory.createLineBorder(Color.black);
-       panel.setBorder(blackline);
-        panel.setBackground(new Color(169,224,49));
-        panel.setSize(new Dimension(200, 64));
-        panel.setLayout(null);
-
-        JLabel label = new JLabel("Please Enter Password! ");
-        label.setBounds(0, 0, 200, 64);
-        label.setFont(new Font("Arial", Font.BOLD, 13));
-        label.setHorizontalAlignment(SwingConstants.CENTER);
-        panel.add(label);
-
-        UIManager.put("OptionPane.minimumSize",new Dimension(300, 120)); 
-        UIManager.put("RootPane.DialogBorder", new LineBorder(Color.black));
-        JOptionPane.showMessageDialog(null, panel, " Alert !", JOptionPane.PLAIN_MESSAGE, icon);
             
-                  return;          
-     }
+            if(luserName.getText().isEmpty()){
+                AlertMessage("Please Enter Username!","src/images/close.png"," Alert!!!");   
+             return;
+            }
+            if(luserPass.getText().isEmpty()){
+                 AlertMessage("Please Enter Password!","src/images/close.png"," Alert!!!");          
+                  return;
+            }
        
      String str1 = luserName.getText();
      char[] p = luserPass.getPassword();
@@ -637,32 +670,13 @@ PreparedStatement pstm=null;
              new Dashboard().setVisible(true);
              } 
             else{
-        // JOptionPane.showMessageDialog(null,"Incorrect User Name or password!!!\nPlease Try Again with correct detail...");
-         ImageIcon icon = new ImageIcon("src/images/close.png");
-
-        JPanel panel = new JPanel();
-       Border blackline = BorderFactory.createLineBorder(Color.black);
-       panel.setBorder(blackline);
-        panel.setBackground(new Color(169,224,49));
-        panel.setSize(new Dimension(200, 64));
-        panel.setLayout(null);
-
-        JLabel label = new JLabel("Invalid Username or Password! \nTry Again with Correct Details! ");
-        label.setBounds(0, 0, 200, 64);
-        label.setFont(new Font("Arial", Font.BOLD, 12));
-        label.setHorizontalAlignment(SwingConstants.CENTER);
-        panel.add(label);
-
-        UIManager.put("OptionPane.minimumSize",new Dimension(300, 120)); 
-        UIManager.put("RootPane.DialogBorder", new LineBorder(Color.black));
-        JOptionPane.showMessageDialog(null, panel, " Alert !", JOptionPane.PLAIN_MESSAGE, icon);
-            
-         luserName.setText(null);
-         luserPass.setText(null);
-         }
+                AlertMessage("Invalid Username or Password!!!","src/images/close.png"," Alert!!!");  
+                luserName.setText(null);
+                luserPass.setText(null);
+            }
         }catch (Exception ex)
         {
-             JOptionPane.showMessageDialog(null,ex);
+             AlertMessage(ex.getMessage(),"src/images/close.png"," Alert!!!");  
          }
     }//GEN-LAST:event_jButton7ActionPerformed
 
@@ -683,173 +697,84 @@ PreparedStatement pstm=null;
       showLoginPanel();
     }//GEN-LAST:event_jButton14ActionPerformed
 
+    public String generateOTP(){
+        int otp= (int)(Math.random()*9000)+1000;
+       // System.out.println("code-->"+code);  
+       return String.valueOf(otp);
+    }
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
-        // TODO add your handling code here:
-       String uName=userName.getText();
-       String uEmail=userEmail.getText();
+       
+         // TODO add your handling code here:
+       String uName=userName.getText().trim();
+       String uEmail=userEmail.getText().trim();
        String uPass1=userPass1.getText();
        String uPass2=userPass2.getText();
-      if(uName.isEmpty()|| uEmail.isEmpty()||uPass1.isEmpty()||uPass2.isEmpty()){
-            // JOptionPane.showMessageDialog(null, "All Fields Must be Filled!!!");
-             ImageIcon icon = new ImageIcon("src/images/close.png");
-
-        JPanel panel = new JPanel();
-       Border blackline = BorderFactory.createLineBorder(Color.black);
-       panel.setBorder(blackline);
-        panel.setBackground(new Color(169,224,49));
-        panel.setSize(new Dimension(200, 64));
-        panel.setLayout(null);
-
-        JLabel label = new JLabel("All Fields Must be Filled! ");
-        label.setBounds(0, 0, 200, 64);
-        label.setFont(new Font("Arial", Font.BOLD, 13));
-        label.setHorizontalAlignment(SwingConstants.CENTER);
-        panel.add(label);
-
-        UIManager.put("OptionPane.minimumSize",new Dimension(300, 120)); 
-        UIManager.put("RootPane.DialogBorder", new LineBorder(Color.black));
-        JOptionPane.showMessageDialog(null, panel, " Alert !", JOptionPane.PLAIN_MESSAGE, icon);
-             
-      }else{
-       EmailValidator emailValidator = new EmailValidator();
- 
-       if(!emailValidator.validate(userEmail.getText().trim())) {
-    
-          // JOptionPane.showMessageDialog(null,"Invalid Email ID");
-            ImageIcon icon = new ImageIcon("src/images/close.png");
-
-        JPanel panel = new JPanel();
-       Border blackline = BorderFactory.createLineBorder(Color.black);
-       panel.setBorder(blackline);
-        panel.setBackground(new Color(169,224,49));
-        panel.setSize(new Dimension(200, 64));
-        panel.setLayout(null);
-
-        JLabel label = new JLabel("Invalid Email Address! ");
-        label.setBounds(0, 0, 200, 64);
-        label.setFont(new Font("Arial", Font.BOLD, 13));
-        label.setHorizontalAlignment(SwingConstants.CENTER);
-        panel.add(label);
-
-        UIManager.put("OptionPane.minimumSize",new Dimension(300, 120)); 
-        UIManager.put("RootPane.DialogBorder", new LineBorder(Color.black));
-        JOptionPane.showMessageDialog(null, panel, " Alert !", JOptionPane.PLAIN_MESSAGE, icon);
-            
-        
-    }else{
-       if (uPass1.length()>=6){
+       if(!InternetConnectivity.InternetConnectionCheck()){
+             AlertMessage("No Internet Connection Found!!!","src/images/close.png"," Alert!!!");
+            return;
+        }
+       if(uName.isEmpty()|| uEmail.isEmpty()||uPass1.isEmpty()||uPass2.isEmpty()){
+           AlertMessage("All Fields Must be Filled!!!","src/images/close.png"," Alert!!!");
+      }
+      else{
+       
+          EmailValidator emailValidator = new EmailValidator();
+       if(!emailValidator.validate(userEmail.getText().trim())){
+           
+          AlertMessage("Invalid Email Address!!!","src/images/close.png"," Alert!!!");
+       }
+       else{
+           
+           if (uPass1.length()>=6){
            
             if(!uPass1.matches(uPass2)){
-           // JOptionPane.showMessageDialog(null, "Password does not match!!!");
-             ImageIcon icon = new ImageIcon("src/images/close.png");
-
-        JPanel panel = new JPanel();
-       Border blackline = BorderFactory.createLineBorder(Color.black);
-       panel.setBorder(blackline);
-        panel.setBackground(new Color(169,224,49));
-        panel.setSize(new Dimension(200, 64));
-        panel.setLayout(null);
-
-        JLabel label = new JLabel("Password does not Match! ");
-        label.setBounds(0, 0, 200, 64);
-        label.setFont(new Font("Arial", Font.BOLD, 13));
-        label.setHorizontalAlignment(SwingConstants.CENTER);
-        panel.add(label);
-
-        UIManager.put("OptionPane.minimumSize",new Dimension(300, 120)); 
-        UIManager.put("RootPane.DialogBorder", new LineBorder(Color.black));
-        JOptionPane.showMessageDialog(null, panel, " Alert !", JOptionPane.PLAIN_MESSAGE, icon);
-            
-      }else{
-          // sign_up user here
+               AlertMessage("Password does not Match!!!","src/images/close.png"," Alert!!!");
+            }
+            else{
+                  // sign_up user here
            try{
 
-        String sql= "select * from logintbl where userName=?";    
+                String sql;
+                sql= "select * from logintbl where userName=?";    
                 pstm=con.prepareStatement(sql);
                 pstm.setString(1,userName.getText());
                 rs=pstm.executeQuery();
 
                   if(rs.next()){
-                       //  JOptionPane.showMessageDialog(null, "User Name is already in use!!!");
-                          ImageIcon icon = new ImageIcon("src/images/close.png");
-
-        JPanel panel = new JPanel();
-       Border blackline = BorderFactory.createLineBorder(Color.black);
-       panel.setBorder(blackline);
-        panel.setBackground(new Color(169,224,49));
-        panel.setSize(new Dimension(200, 64));
-        panel.setLayout(null);
-
-        JLabel label = new JLabel("Username is Already Registred!");
-        label.setBounds(0, 0, 200, 64);
-        label.setFont(new Font("Arial", Font.BOLD, 13));
-        label.setHorizontalAlignment(SwingConstants.CENTER);
-        panel.add(label);
-
-        UIManager.put("OptionPane.minimumSize",new Dimension(300, 120)); 
-        UIManager.put("RootPane.DialogBorder", new LineBorder(Color.black));
-        JOptionPane.showMessageDialog(null, panel, " Alert !", JOptionPane.PLAIN_MESSAGE, icon);
-            
+                      AlertMessage("Username is Already Registred!!! Use Another.","src/images/close.png"," Alert!!!");
                          userName.setText(null);
                   }
                   else{
-            String sqll= "insert into logintbl(`userName`, `userEmail`, `userPass`) VALUES (?,?,?);";
-             pstm=con.prepareStatement(sqll);
-             pstm.setString(1,uName);
-             pstm.setString(2,uEmail);
-             pstm.setString(3,uPass1); 
-             pstm.execute();
-             
-           //  JOptionPane.showMessageDialog(null, "Account Created Successffully!!!\nNow Login");
-             ImageIcon icon = new ImageIcon("src/images/check.png");
-
-        JPanel panel = new JPanel();
-       Border blackline = BorderFactory.createLineBorder(Color.black);
-       panel.setBorder(blackline);
-        panel.setBackground(new Color(169,224,49));
-        panel.setSize(new Dimension(200, 64));
-        panel.setLayout(null);
-
-        JLabel label = new JLabel("Account Created Successfully! ");
-        label.setBounds(0, 0, 200, 64);
-        label.setFont(new Font("Arial", Font.BOLD, 12));
-        label.setHorizontalAlignment(SwingConstants.CENTER);
-        panel.add(label);
-
-        UIManager.put("OptionPane.minimumSize",new Dimension(300, 120)); 
-        UIManager.put("RootPane.DialogBorder", new LineBorder(Color.black));
-        JOptionPane.showMessageDialog(null, panel, " Congrats !", JOptionPane.PLAIN_MESSAGE, icon);
-             
-           
-          showLoginPanel();  
-        }
-            }
-        catch(Exception e){
+                      
+                      String sysOTP=generateOTP();
+                      JavaMailUtil.sendOTP(uEmail,sysOTP);
+                      String userCode;
+                      userCode=JOptionPane.showInputDialog(this,"Enter code sent that was sent on email.");
+                      if(userCode.length()>0){
+                          
+                          if(sysOTP.matches(userCode)){
+                         String sqll;
+                         sqll= "insert into logintbl(`userName`, `userEmail`, `userPass`) VALUES (?,?,?);";
+                          pstm=con.prepareStatement(sqll);
+                          pstm.setString(1,uName);
+                          pstm.setString(2,uEmail);
+                          pstm.setString(3,uPass1); 
+                          pstm.execute();
+                          AlertMessage("Account Created Successfully!!!","src/images/check.png"," Congrats!!!");
+                          showLoginPanel();  
+                            }else{
+                               AlertMessage("Incorrect OTP!!!","src/images/close.png"," Alert!!!");
+                               return;
+                          }
+                      }
+                  }
+            }catch(Exception e){
              JOptionPane.showMessageDialog(null,e);
-        }
-       }
+            }
+            }
        }else{
-           // JOptionPane.showMessageDialog(null, "Password must cotain 6 charaters!!!");
-            ImageIcon icon = new ImageIcon("src/images/close.png");
-
-        JPanel panel = new JPanel();
-       Border blackline = BorderFactory.createLineBorder(Color.black);
-       panel.setBorder(blackline);
-        panel.setBackground(new Color(169,224,49));
-        panel.setSize(new Dimension(200, 64));
-        panel.setLayout(null);
-
-        JLabel label = new JLabel("Password must Contain Six Characters! ");
-        label.setBounds(0, 0, 200, 64);
-        label.setFont(new Font("Arial", Font.BOLD, 11));
-        label.setHorizontalAlignment(SwingConstants.CENTER);
-        panel.add(label);
-
-        UIManager.put("OptionPane.minimumSize",new Dimension(300, 120)); 
-        UIManager.put("RootPane.DialogBorder", new LineBorder(Color.black));
-        JOptionPane.showMessageDialog(null, panel, " Alert !", JOptionPane.PLAIN_MESSAGE, icon);
-            
-       }    
+                 AlertMessage("Password must Contain Six Characters!!!","src/images/close.png"," Alert!!!");
+           }
        }
       }                                      
     }//GEN-LAST:event_jButton8ActionPerformed
@@ -896,37 +821,152 @@ PreparedStatement pstm=null;
     }//GEN-LAST:event_luserNameKeyTyped
 
     private void luserNameFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_luserNameFocusGained
-        
-          if (luserName.getText().equals(" username")) {
-            luserName.setText("");
-            luserName.setForeground(Color.WHITE);
-        }
+        luserNameFocusGained();          
     }//GEN-LAST:event_luserNameFocusGained
 
+    
+   
     private void luserNameFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_luserNameFocusLost
-        // TODO add your handling code here:
-        if (luserName.getText().isEmpty()) {
-            luserName.setForeground(Color.GRAY);
-            luserName.setText(" username");
-        }
+       luserNameFocusLost();
     }//GEN-LAST:event_luserNameFocusLost
 
     private void luserPassFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_luserPassFocusGained
-        
-        if (luserPass.getText().equals("password")) {
-            luserPass.setText("");
-            luserPass.setForeground(Color.WHITE);
-        }
+        luserPassFocusGained();        
     }//GEN-LAST:event_luserPassFocusGained
 
     private void luserPassFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_luserPassFocusLost
-         if (luserPass.getText().isEmpty()) {
-            luserPass.setForeground(Color.GRAY);
-            luserPass.setText("password");
-        }
+         luserPassFocusLost();
     }//GEN-LAST:event_luserPassFocusLost
+    
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        this.dispose();
+        ForgetPassword fp=new ForgetPassword();
+        fp.setVisible(true);
+    }//GEN-LAST:event_jButton2ActionPerformed
 
-    /**
+    private void userNameFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_userNameFocusGained
+        userNameFocusGained();
+    }//GEN-LAST:event_userNameFocusGained
+
+    private void userNameFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_userNameFocusLost
+        userNameFocusLost();
+    }//GEN-LAST:event_userNameFocusLost
+
+    private void userEmailFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_userEmailFocusGained
+      userEmailFocusGained();
+    }//GEN-LAST:event_userEmailFocusGained
+
+    private void userEmailFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_userEmailFocusLost
+        userEmailFocusLost();
+    }//GEN-LAST:event_userEmailFocusLost
+
+    private void userPass1FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_userPass1FocusGained
+      userPass1FocusGained();
+    }//GEN-LAST:event_userPass1FocusGained
+
+    private void userPass1FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_userPass1FocusLost
+       userPass1FocusLost();
+    }//GEN-LAST:event_userPass1FocusLost
+
+    private void userPass2FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_userPass2FocusGained
+       userPass2FocusGained();
+    }//GEN-LAST:event_userPass2FocusGained
+
+    private void userPass2FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_userPass2FocusLost
+      userPass2FocusLost();
+    }//GEN-LAST:event_userPass2FocusLost
+
+     // Clear Fields
+    public void clearFields(){
+        luserName.setText(null);
+        luserPass.setText(null);
+        userName.setText(null);
+        userEmail.setText(null);
+        userPass1.setText(null);
+        userPass2.setText(null);
+        luserNameFocusLost();
+        luserPassFocusLost();
+        userNameFocusLost();
+        userEmailFocusLost();
+        userPass1FocusLost();
+        userPass2FocusLost();
+    }
+        // Focus Gained Methods
+        public void luserNameFocusGained(){
+         if (luserName.getText().equals(" username")) {
+                luserName.setText("");
+                luserName.setForeground(Color.WHITE);
+            }
+        }
+        public void luserPassFocusGained(){
+          if (luserPass.getText().equals("password")) {
+                luserPass.setText("");
+                luserPass.setForeground(Color.WHITE);
+            }
+        }
+        public void userNameFocusGained(){
+          if (userName.getText().equals(" username")) {
+                userName.setText("");
+                userName.setForeground(Color.WHITE);
+            }
+        }
+        public void userEmailFocusGained(){
+          if (userEmail.getText().equals(" email")) {
+                userEmail.setText("");
+                userEmail.setForeground(Color.WHITE);
+            }
+        }
+        public void userPass1FocusGained(){
+          if (userPass1.getText().equals("password")) {
+                userPass1.setText("");
+                userPass1.setForeground(Color.WHITE);
+            }
+        }
+        public void userPass2FocusGained(){
+          if (userPass2.getText().equals("password")) {
+                userPass2.setText("");
+                userPass2.setForeground(Color.WHITE);
+            }
+        }
+        // Focus Losts Methods
+        public void luserNameFocusLost(){
+        if (luserName.getText().isEmpty()) {
+              luserName.setForeground(Color.GRAY);
+              luserName.setText(" username");
+          }
+      }
+        public void luserPassFocusLost(){
+       if (luserPass.getText().isEmpty()) {
+              luserPass.setForeground(Color.GRAY);
+              luserPass.setText("password");
+          }
+      }
+        public void userNameFocusLost(){
+       if (userName.getText().isEmpty()) {
+              userName.setForeground(Color.GRAY);
+              userName.setText(" username");
+          }
+      }
+        public void userEmailFocusLost(){
+       if (userEmail.getText().isEmpty()) {
+              userEmail.setForeground(Color.GRAY);
+              userEmail.setText(" email");
+          }
+      }
+        public void userPass1FocusLost(){
+       if (userPass1.getText().isEmpty()) {
+              userPass1.setForeground(Color.GRAY);
+              userPass1.setText("password");
+          }
+      }
+        public void userPass2FocusLost(){
+     if (userPass2.getText().isEmpty()) {
+            userPass2.setForeground(Color.GRAY);
+            userPass2.setText("password");
+        }
+    }
+  
+      /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
@@ -966,6 +1006,7 @@ PreparedStatement pstm=null;
     private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton11;
     private javax.swing.JButton jButton14;
+    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton8;
     private javax.swing.JLabel jLabel1;

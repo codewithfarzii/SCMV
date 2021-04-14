@@ -6,6 +6,8 @@
 package scmv;
 
 import ExternalJavaFiles.Database;
+import ExternalJavaFiles.InternetConnectivity;
+import ExternalJavaFiles.JavaMailUtil;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -14,8 +16,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
@@ -25,45 +25,29 @@ import javax.swing.SwingConstants;
 import javax.swing.UIManager;
 import javax.swing.border.Border;
 import javax.swing.border.LineBorder;
-
 /**
  *
  * @author farzeen
  */
-public class ChangePassword extends javax.swing.JFrame {
+public class ForgetPassword extends javax.swing.JFrame {
 
     /**
-     * Creates new form ChangePassword
+     * Creates new form ForgetPassword
      */
-    Connection con=null;
-    ResultSet rs=null;
-    PreparedStatement pstm=null;
-    public ChangePassword() {
+        Connection con=null;
+        ResultSet rs=null;
+        PreparedStatement pstm=null;
+    public ForgetPassword() {
         initComponents();
-         cPassFocusLost();
-            newPassFocusLost();
-            conPassFocusLost();
+           
          try{
         Database db=new Database();
         con=db.openConnection();
-       
         }catch(HeadlessException| SQLException e){
-             AlertMessage("DB Not Connected!!!","src/images/close.png"," Alert!!!");
+            AlertMessage("DB Not Connected!!!");
         }
-    }
-    public String getCurretUserName(){
-         String uName="";
-        try {   
-            pstm=con.prepareStatement("select * from currentUsertbl");
-            rs=pstm.executeQuery();
-            if(rs.next()){
-                uName=rs.getString(2);
-            }           
-        } catch (SQLException ex) {
-            Logger.getLogger(ChangePassword.class.getName()).log(Level.SEVERE, null, ex);
-        }
-         return uName;
-    }
+       
+    }    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -82,13 +66,13 @@ public class ChangePassword extends javax.swing.JFrame {
         signUpPanel = new javax.swing.JPanel();
         jLabel13 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
-        jLabel16 = new javax.swing.JLabel();
-        jLabel17 = new javax.swing.JLabel();
         jButton14 = new javax.swing.JButton();
         jButton15 = new javax.swing.JButton();
-        cPass = new javax.swing.JPasswordField();
-        newPass = new javax.swing.JPasswordField();
-        conPass = new javax.swing.JPasswordField();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTextArea1 = new javax.swing.JTextArea();
+        jLabel2 = new javax.swing.JLabel();
+        username = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -144,30 +128,20 @@ public class ChangePassword extends javax.swing.JFrame {
         jLabel13.setFont(new java.awt.Font("Trebuchet MS", 1, 30)); // NOI18N
         jLabel13.setForeground(new java.awt.Color(169, 224, 49));
         jLabel13.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icons8_Lock_35px.png"))); // NOI18N
-        jLabel13.setText("Change Password");
+        jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/forgetpass2.png"))); // NOI18N
+        jLabel13.setText("Forget Password");
         signUpPanel.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 20, 360, 60));
 
         jLabel14.setFont(new java.awt.Font("Trebuchet MS", 0, 16)); // NOI18N
         jLabel14.setForeground(new java.awt.Color(169, 224, 49));
-        jLabel14.setText("Current Password");
-        signUpPanel.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 90, 150, 20));
-
-        jLabel16.setFont(new java.awt.Font("Trebuchet MS", 0, 16)); // NOI18N
-        jLabel16.setForeground(new java.awt.Color(169, 224, 49));
-        jLabel16.setText("New Password");
-        signUpPanel.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 160, 200, 20));
-
-        jLabel17.setFont(new java.awt.Font("Trebuchet MS", 0, 16)); // NOI18N
-        jLabel17.setForeground(new java.awt.Color(169, 224, 49));
-        jLabel17.setText("Confirm Password");
-        signUpPanel.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 230, 250, 20));
+        jLabel14.setText("User Name");
+        signUpPanel.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 110, 150, 20));
 
         jButton14.setBackground(new java.awt.Color(204, 204, 204));
         jButton14.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
         jButton14.setForeground(new java.awt.Color(169, 224, 49));
-        jButton14.setText("Change Password");
-        jButton14.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(169, 224, 49), 1, true));
+        jButton14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icon_signup.png"))); // NOI18N
+        jButton14.setText("Next");
         jButton14.setContentAreaFilled(false);
         jButton14.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton14.setRequestFocusEnabled(false);
@@ -177,7 +151,7 @@ public class ChangePassword extends javax.swing.JFrame {
                 jButton14ActionPerformed(evt);
             }
         });
-        signUpPanel.add(jButton14, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 300, 180, 30));
+        signUpPanel.add(jButton14, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 200, 180, 30));
 
         jButton15.setBackground(new java.awt.Color(169, 224, 49));
         jButton15.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
@@ -194,60 +168,63 @@ public class ChangePassword extends javax.swing.JFrame {
                 jButton15ActionPerformed(evt);
             }
         });
-        signUpPanel.add(jButton15, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 340, 180, 30));
+        signUpPanel.add(jButton15, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 240, 180, 30));
 
-        cPass.setBackground(new java.awt.Color(31, 36, 42));
-        cPass.setFont(new java.awt.Font("Trebuchet MS", 0, 24)); // NOI18N
-        cPass.setForeground(new java.awt.Color(255, 255, 255));
-        cPass.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(169, 224, 49)));
-        cPass.setCaretColor(new java.awt.Color(255, 255, 255));
-        cPass.setFocusCycleRoot(true);
-        cPass.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                cPassFocusGained(evt);
-            }
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                cPassFocusLost(evt);
+        jTextArea1.setEditable(false);
+        jTextArea1.setBackground(new java.awt.Color(31, 36, 42));
+        jTextArea1.setColumns(20);
+        jTextArea1.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
+        jTextArea1.setForeground(new java.awt.Color(169, 224, 49));
+        jTextArea1.setRows(5);
+        jTextArea1.setText(" Password of your account\n will be send to you via email\n which you have provided us at\n the time of registration.  ");
+        jTextArea1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(169, 224, 49)));
+        jScrollPane1.setViewportView(jTextArea1);
+
+        signUpPanel.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 300, 270, 90));
+
+        jLabel2.setFont(new java.awt.Font("Tempus Sans ITC", 1, 14)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 0, 51));
+        jLabel2.setText("Note!!!");
+        signUpPanel.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 280, -1, -1));
+
+        username.setBackground(new java.awt.Color(31, 36, 42));
+        username.setFont(new java.awt.Font("Trebuchet MS", 0, 24)); // NOI18N
+        username.setForeground(java.awt.Color.gray);
+        username.setText(" username");
+        username.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(169, 224, 49), 2, true));
+        username.setCaretColor(new java.awt.Color(255, 255, 255));
+        username.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                usernameMouseMoved(evt);
             }
         });
-        cPass.addActionListener(new java.awt.event.ActionListener() {
+        username.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                usernameFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                usernameFocusLost(evt);
+            }
+        });
+        username.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cPassActionPerformed(evt);
+                usernameActionPerformed(evt);
             }
         });
-        signUpPanel.add(cPass, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 110, 250, 40));
+        username.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                usernameKeyPressed(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                usernameKeyTyped(evt);
+            }
+        });
+        signUpPanel.add(username, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 130, 270, 45));
 
-        newPass.setBackground(new java.awt.Color(31, 36, 42));
-        newPass.setFont(new java.awt.Font("Trebuchet MS", 0, 24)); // NOI18N
-        newPass.setForeground(new java.awt.Color(255, 255, 255));
-        newPass.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(169, 224, 49)));
-        newPass.setCaretColor(new java.awt.Color(255, 255, 255));
-        newPass.setFocusCycleRoot(true);
-        newPass.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                newPassFocusGained(evt);
-            }
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                newPassFocusLost(evt);
-            }
-        });
-        signUpPanel.add(newPass, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 180, 250, 40));
-
-        conPass.setBackground(new java.awt.Color(31, 36, 42));
-        conPass.setFont(new java.awt.Font("Trebuchet MS", 0, 24)); // NOI18N
-        conPass.setForeground(new java.awt.Color(255, 255, 255));
-        conPass.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(169, 224, 49)));
-        conPass.setCaretColor(new java.awt.Color(255, 255, 255));
-        conPass.setFocusCycleRoot(true);
-        conPass.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                conPassFocusGained(evt);
-            }
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                conPassFocusLost(evt);
-            }
-        });
-        signUpPanel.add(conPass, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 250, 250, 40));
+        jLabel4.setFont(new java.awt.Font("Trebuchet MS", 1, 36)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(169, 224, 49));
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icons8_Male_User_35px.png"))); // NOI18N
+        signUpPanel.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 130, -1, 45));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -266,11 +243,8 @@ public class ChangePassword extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(header, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(header, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -285,7 +259,7 @@ public class ChangePassword extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
-       backToHome();
+       BackToSignInUp();
     }//GEN-LAST:event_jButton10ActionPerformed
 
     private void jButton11MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton11MouseClicked
@@ -296,126 +270,8 @@ public class ChangePassword extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jButton11ActionPerformed
 
-    private void jButton14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton14ActionPerformed
-         String uSName= getCurretUserName();
-         String uSPas="";
-          String uCPass=cPass.getText();
-          String uPass1=newPass.getText();
-          String uPass2=conPass.getText();
-         if(uCPass.isEmpty()||uPass1.isEmpty()||uPass2.isEmpty()){
-               AlertMessage("All Fields Must Be Filled!!!","src/images/close.png"," Alert!!!");
-         }else{
-            try {
-                String sql= "select * from logintbl where userName=?";
-                pstm=con.prepareStatement(sql);
-                pstm.setString(1,uSName);
-                rs=pstm.executeQuery();
-                if(rs.next()){
-                    uSPas=rs.getString(4);
-                }
-            } catch (SQLException ex) {
-            Logger.getLogger(ChangePassword.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        if(uSPas.matches(cPass.getText())){
-            if (uPass1.length()>=6){
-            if(!uPass1.matches(uPass2)){
-                 AlertMessage("New Password Does Not Match!!!","src/images/close.png"," Alert!!!");
-                 conPass.setText(null);
-            }else{
-                // update query here
-                try {                    
-                    pstm=con.prepareStatement("UPDATE logintbl SET userPass="+newPass.getText()+" WHERE userName=?");
-                    pstm.setString(1,uSName);
-                    pstm.executeUpdate();
-                       AlertMessage("New Password Does Not Match!!!","src/images/check.png"," Updated!!!");
-                       backToHome();
-                } catch (SQLException ex) {
-                    Logger.getLogger(ChangePassword.class.getName()).log(Level.SEVERE, null, ex);
-                }
-        }        
-       }else{
-                    AlertMessage("Password Must Contain Six Characters!!!","src/images/close.png"," Alert!!!");
-            }            
-        }else{
-                AlertMessage("In-Correct Current Password!!!","src/images/close.png"," Alert!!!");
-        }
-    }
-    }//GEN-LAST:event_jButton14ActionPerformed
-
-    private void jButton15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton15ActionPerformed
-       backToHome();
-    }//GEN-LAST:event_jButton15ActionPerformed
-
-    private void cPassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cPassActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cPassActionPerformed
-
-    private void cPassFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_cPassFocusGained
-        cPassFocusGained();
-    }//GEN-LAST:event_cPassFocusGained
-
-    private void cPassFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_cPassFocusLost
-        cPassFocusLost();
-    }//GEN-LAST:event_cPassFocusLost
-
-    private void newPassFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_newPassFocusGained
-       newPassFocusGained();
-    }//GEN-LAST:event_newPassFocusGained
-
-    private void newPassFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_newPassFocusLost
-       newPassFocusLost();
-    }//GEN-LAST:event_newPassFocusLost
-
-    private void conPassFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_conPassFocusGained
-        conPassFocusGained();
-    }//GEN-LAST:event_conPassFocusGained
-
-    private void conPassFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_conPassFocusLost
-      conPassFocusLost();
-    }//GEN-LAST:event_conPassFocusLost
-
-        // Focus Gained
-     public void cPassFocusGained(){
-      if (cPass.getText().equals("password")) {
-            cPass.setText("");
-            cPass.setForeground(Color.WHITE);
-        }
-    }
-     public void  newPassFocusGained(){
-      if (newPass.getText().equals("password")) {
-            newPass.setText("");
-            newPass.setForeground(Color.WHITE);
-        }
-    }
-     public void  conPassFocusGained(){
-      if (conPass.getText().equals("password")) {
-            conPass.setText("");
-            conPass.setForeground(Color.WHITE);
-        }
-    }
-     
-        // Focus Lost
-      public void cPassFocusLost(){
-     if (cPass.getText().isEmpty()) {
-            cPass.setForeground(Color.GRAY);
-            cPass.setText("password");
-        }
-    }
-      public void newPassFocusLost(){
-     if (newPass.getText().isEmpty()) {
-            newPass.setForeground(Color.GRAY);
-            newPass.setText("password");
-        }
-    }
-      public void conPassFocusLost(){
-     if (conPass.getText().isEmpty()) {
-            conPass.setForeground(Color.GRAY);
-            conPass.setText("password");
-        }
-    }
-    
-       public void AlertMessage(String message,String path,String title){
-            ImageIcon icon = new ImageIcon(path);
+    public void AlertMessage(String message){
+        ImageIcon icon = new ImageIcon("src/images/close.png");
             JPanel panel = new JPanel();
             Border blackline = BorderFactory.createLineBorder(Color.black);
             panel.setBorder(blackline);
@@ -431,16 +287,100 @@ public class ChangePassword extends javax.swing.JFrame {
 
             UIManager.put("OptionPane.minimumSize",new Dimension(300, 120));
             UIManager.put("RootPane.DialogBorder", new LineBorder(Color.black));
-            JOptionPane.showMessageDialog(null, panel, title, JOptionPane.PLAIN_MESSAGE, icon);
-               
+            JOptionPane.showMessageDialog(null, panel, " Alert !", JOptionPane.PLAIN_MESSAGE, icon);
     }
-      /**
+    
+    private void jButton14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton14ActionPerformed
+        String userName= username.getText();
+        String useremail="";
+        String userpass="";
+        
+        if(!InternetConnectivity.InternetConnectionCheck()){
+            AlertMessage("No Internet Connection Found!!!");
+            return;
+        }
+        if(!(userName.length()>0))
+        {
+            AlertMessage("Please Enter Username!!! ");
+        }else
+        {
+          try
+          {
+            PreparedStatement ps = con.prepareStatement("select * from logintbl where userName=?"); 
+            ps.setString(1, userName);
+            ps.execute();            
+            ResultSet rs = ps.executeQuery();
+            
+            if (rs.next())
+            {
+               useremail= rs.getString(3);
+               userpass= rs.getString(4);
+             //  System.out.print(useremail+" <-> "+userpass);
+                JavaMailUtil.sendMail(userName,useremail,userpass);
+                 AlertMessage("Kindly Check your Email!!!");  
+                 BackToSignInUp();
+                 
+             }else
+            {
+                 AlertMessage("Invalid Username!!!");
+                 username.setText(null);
+            }
+          }catch (Exception ex){
+             JOptionPane.showMessageDialog(null,ex);
+             }
+              
+        }
+    }//GEN-LAST:event_jButton14ActionPerformed
+
+    private void jButton15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton15ActionPerformed
+        BackToSignInUp();
+    }//GEN-LAST:event_jButton15ActionPerformed
+
+    private void usernameMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_usernameMouseMoved
+
+    }//GEN-LAST:event_usernameMouseMoved
+
+    private void usernameFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_usernameFocusGained
+
+        if (username.getText().equals(" username")) {
+            username.setText("");
+            username.setForeground(Color.WHITE);
+        }
+    }//GEN-LAST:event_usernameFocusGained
+
+    private void usernameFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_usernameFocusLost
+        // TODO add your handling code here:
+        if (username.getText().isEmpty()) {
+            username.setForeground(Color.GRAY);
+            username.setText(" username");
+        }
+    }//GEN-LAST:event_usernameFocusLost
+
+    private void usernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usernameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_usernameActionPerformed
+
+    private void usernameKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_usernameKeyPressed
+        // TODO add your handling code here:
+        int key =evt.getKeyCode();
+        if(key==10){
+            username.requestFocus();
+        }
+    }//GEN-LAST:event_usernameKeyPressed
+
+    private void usernameKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_usernameKeyTyped
+        // TODO add your handling code here:
+
+    }//GEN-LAST:event_usernameKeyTyped
+
+    public void BackToSignInUp(){
+        this.dispose();
+        SignInUp s=new SignInUp();
+        s.setVisible(true);
+    }
+    /**
      * @param args the command line arguments
      */
-    public void backToHome(){
-        this.dispose();
-        new Dashboard().setVisible(true);
-    }
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -455,27 +395,25 @@ public class ChangePassword extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ChangePassword.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ForgetPassword.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ChangePassword.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ForgetPassword.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ChangePassword.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ForgetPassword.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ChangePassword.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ForgetPassword.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ChangePassword().setVisible(true);
+                new ForgetPassword().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPasswordField cPass;
-    private javax.swing.JPasswordField conPass;
     private javax.swing.JPanel header;
     private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton11;
@@ -484,10 +422,12 @@ public class ChangePassword extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel16;
-    private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPasswordField newPass;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JPanel signUpPanel;
+    private javax.swing.JTextField username;
     // End of variables declaration//GEN-END:variables
 }
