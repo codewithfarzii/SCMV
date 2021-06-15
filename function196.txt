@@ -1,7 +1,3 @@
-    private void luserNameFocusGained(java.awt.event.FocusEvent evt) {                                      
-        
-          if (luserName.getText().equals(" username")) {
-            luserName.setText("");
-            luserName.setForeground(Color.WHITE);
-        }
-    }                                     
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton7ActionPerformed(evt);
+            }

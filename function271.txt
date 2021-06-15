@@ -1,3 +1,5 @@
-    private void noOfBOOLActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_noOfBOOLActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_noOfBOOLActionPerformed
+        noOfTryBlock.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                noOfTryBlockActionPerformed(evt);
+            }
+        });

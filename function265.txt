@@ -1,3 +1,5 @@
-    private void noOfINTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_noOfINTActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_noOfINTActionPerformed
+        visualizeComboBox4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                visualizeComboBox4ActionPerformed(evt);
+            }
+        });

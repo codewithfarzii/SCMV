@@ -1,5 +1,11 @@
-        jButton11.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton11ActionPerformed(evt);
-            }
-        });
+        timer.setForeground(new java.awt.Color(255, 0, 102));
+        timer.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        timer.setText("10");
+        jPanel1.add(timer, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 350, 60, 40));
+
+        getContentPane().add(jPanel1);
+        jPanel1.setBounds(0, 0, 620, 460);
+
+        setSize(new java.awt.Dimension(620, 460));
+        setLocationRelativeTo(null);
+    }// </editor-fold>//GEN-END:initComponents

@@ -1,33 +1,30 @@
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
+               // System.out.println(String.valueOf((char)ch)+" : "+ch);
+                if(ch==40 || brace_flag){
+                    if(ch==40){
+                    listOfPhyLines.add(completeLine);
+                    completeLine="";
+                    }
+                    brace_flag=true;
+                    if(ch==10 || ch==9)
+                        completeLine+=" ";
+                        else
+                    completeLine+=String.valueOf((char)ch);
+                }                
+                else{    
+                    if(ch==10 || ch==9)
+                        completeLine+=" ";
+                    else
+                    completeLine+=String.valueOf((char)ch);
+                if(ch==59){
+                    listOfPhyLines.add(completeLine);
+                    completeLine="";
+                }                
                 }
+                if(ch==41){
+                  brace_flag=false;
+                  listOfBraceLines.add(completeLine);
+                  //System.out.println(completeLine);
+                  completeLine="";
+                }
+               // System.out.println(completeLine+":"+ch);
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(BrowseJavaFile.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(BrowseJavaFile.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(BrowseJavaFile.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(BrowseJavaFile.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-               
-                new BrowseJavaFile().setVisible(true);
-                
-            }
-        });
-    }

@@ -1,8 +1,6 @@
-        label.setFont(new Font("Arial", Font.BOLD, 13));
-        label.setHorizontalAlignment(SwingConstants.CENTER);
-        panel.add(label);
-
-        UIManager.put("OptionPane.minimumSize",new Dimension(300, 120)); 
-        UIManager.put("RootPane.DialogBorder", new LineBorder(Color.black));
-        JOptionPane.showMessageDialog(null, panel, " Error !", JOptionPane.PLAIN_MESSAGE, icon);
-        }
+       public void actionPerformed(ActionEvent e) {
+      timer.setText(String.valueOf(k));
+           k--;
+           if(k==1)
+               System.exit(0);
+       }

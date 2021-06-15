@@ -1,0 +1,12 @@
+    public void insertToClassObjectstbl(String SelectedClass,String ObjectedClass,int noOfObj){
+    String query= "INSERT INTO `total_class_obj`(`selected_class`, `obj_class`, `no_objects`) VALUES (?,?,?);";
+    try {
+        pstm=con.prepareStatement(query);
+        pstm.setString(1,String.valueOf(SelectedClass));
+        pstm.setString(2,String.valueOf(ObjectedClass));
+        pstm.setString(3,String.valueOf(noOfObj));
+        pstm.execute();
+    } catch (SQLException ex) {
+        Logger.getLogger(BrowseJavaFile.class.getName()).log(Level.SEVERE, null, ex);
+    }             
+    }        

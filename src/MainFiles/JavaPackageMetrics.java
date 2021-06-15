@@ -44,7 +44,17 @@ import javax.swing.border.LineBorder;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.text.Document;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.view.JasperViewer;
+import scmv.ChangePassword;
+import scmv.Dashboard;
+import scmv.ForgetPassword;
 import scmv.GoodBye;
+import scmv.SignInUp;
 
 /**
  *
@@ -116,12 +126,32 @@ public class JavaPackageMetrics extends javax.swing.JFrame {
         CBO();
         
     }
+     public void AlertMessage(String message,String path,String title){
+            ImageIcon icon = new ImageIcon(path);
+            JPanel panel = new JPanel();
+            Border blackline = BorderFactory.createLineBorder(Color.black);
+            panel.setBorder(blackline);
+            panel.setBackground(new Color(169,224,49));
+            panel.setSize(new Dimension(200, 64));
+            panel.setLayout(null);
+
+            JLabel label = new JLabel(message);
+            label.setBounds(0, 0, 200, 64);
+            label.setFont(new Font("Arial", Font.BOLD, 12));
+            label.setHorizontalAlignment(SwingConstants.CENTER);
+            panel.add(label);
+
+            UIManager.put("OptionPane.minimumSize",new Dimension(300, 120));
+            UIManager.put("RootPane.DialogBorder", new LineBorder(Color.black));
+            JOptionPane.showMessageDialog(null, panel, title, JOptionPane.PLAIN_MESSAGE, icon);
+               
+    }
     public void connectWithDB(){
         try{
            Database db=new Database();
            con=db.openConnection();
-           }catch(HeadlessException| SQLException e){
-               JOptionPane.showMessageDialog(null, "DB not connected");
+           }catch(HeadlessException| SQLException e){               
+                 AlertMessage("DB not connected!!!","src/images/close.png"," Alert!!!"); 
            }
     }
         // Coupling Methods
@@ -133,7 +163,7 @@ public class JavaPackageMetrics extends javax.swing.JFrame {
                // System.out.println("class name--> "+name);
                 readFileLineByLineForPRC(selected,fileName,name);
             } catch (FileNotFoundException ex) {
-                Logger.getLogger(ClassCoupling.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(JavaPackageMetrics.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
     }
@@ -161,14 +191,14 @@ public class JavaPackageMetrics extends javax.swing.JFrame {
             }            
                 }
             } catch (IOException ex) {
-                Logger.getLogger(ClassCoupling.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(JavaPackageMetrics.class.getName()).log(Level.SEVERE, null, ex);
             }
             finally{
                 try {
                     fr.close();  
                     countCBO(SelectClassName,Cfname);
                 } catch (IOException ex) {
-                    Logger.getLogger(ClassCoupling.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(JavaPackageMetrics.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
     } 
@@ -569,6 +599,22 @@ public class JavaPackageMetrics extends javax.swing.JFrame {
             noOfCases.setText(Integer.toString(caseno));
             noOfCatchBlocks.setText(Integer.toString(catchno));
             noOfFinallyBlocks.setText(Integer.toString(finallyno));
+             if(i_no==0)
+                 INT_Count=0;    
+             if(si_no==0)
+                 SHORT_INT_Count=0;
+             if(li_no==0)
+                 LONG_INT_Count=0;
+             if(s_no==0)
+                 STRING_Count=0;
+             if(d_no==0)
+                 DOUBLE_Count=0;
+             if(f_no==0)
+                 FLOAT_Count=0;
+             if(b_no==0)
+                 BOOL_Count=0;
+             if(c_no==0)
+                 CHAR_Count=0;
              //     Varaibles Created
             noOfINTV.setText(Integer.toString(INT_Count));
             noOfShortINTV.setText(Integer.toString(SHORT_INT_Count));
@@ -626,6 +672,8 @@ public class JavaPackageMetrics extends javax.swing.JFrame {
         jPanel13 = new javax.swing.JPanel();
         couplingSelected = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
+        jPanel26 = new javax.swing.JPanel();
+        jButton15 = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         fileNametxt = new javax.swing.JTextField();
@@ -770,14 +818,13 @@ public class JavaPackageMetrics extends javax.swing.JFrame {
         jPanel23 = new javax.swing.JPanel();
         jButton13 = new javax.swing.JButton();
         visualizeComboBox6 = new javax.swing.JComboBox();
-        jButton14 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
         setPreferredSize(new java.awt.Dimension(760, 590));
         getContentPane().setLayout(null);
 
-        jPanel1.setBackground(new java.awt.Color(153, 153, 153));
+        jPanel1.setBackground(new java.awt.Color(0, 0, 0));
 
         header.setBackground(new java.awt.Color(0, 0, 0));
         header.setForeground(new java.awt.Color(169, 224, 49));
@@ -795,7 +842,7 @@ public class JavaPackageMetrics extends javax.swing.JFrame {
                 jButton10ActionPerformed(evt);
             }
         });
-        header.add(jButton10, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 0, 40, 40));
+        header.add(jButton10, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 0, 40, 40));
 
         jButton11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icons8_Minus_32px_1.png"))); // NOI18N
         jButton11.setToolTipText("Minimize");
@@ -804,40 +851,38 @@ public class JavaPackageMetrics extends javax.swing.JFrame {
         jButton11.setRequestFocusEnabled(false);
         jButton11.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icons8_Minus_30px_3.png"))); // NOI18N
         jButton11.setVerifyInputWhenFocusTarget(false);
-        jButton11.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton11MouseClicked(evt);
-            }
-        });
         jButton11.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton11ActionPerformed(evt);
             }
         });
-        header.add(jButton11, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 0, 40, 40));
+        header.add(jButton11, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 0, 40, 40));
 
-        jLabel1.setFont(new java.awt.Font("Trebuchet MS", 1, 24)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Times New Roman", 0, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(169, 224, 49));
-        jLabel1.setText(" SCMV");
-        header.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 310, 40));
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/metrics 64.png"))); // NOI18N
+        jLabel1.setText("  Source Code Metrics Visualizer of JAVA");
+        header.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 840, -1));
 
         containerPanel.setBackground(new java.awt.Color(204, 204, 204));
         containerPanel.setPreferredSize(new java.awt.Dimension(750, 550));
         containerPanel.setLayout(null);
 
-        drawer.setBackground(new java.awt.Color(102, 102, 102));
+        drawer.setBackground(new java.awt.Color(0, 0, 0));
+        drawer.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(51, 255, 0), 1, true));
         drawer.setPreferredSize(new java.awt.Dimension(190, 500));
         drawer.setRequestFocusEnabled(false);
         drawer.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel2.setBackground(new java.awt.Color(153, 153, 153));
         jLabel2.setFont(new java.awt.Font("Trebuchet MS", 1, 24)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 51, 51));
+        jLabel2.setForeground(new java.awt.Color(169, 224, 49));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("SCMV");
         jLabel2.setToolTipText("");
         jLabel2.setAlignmentX(5.0F);
-        drawer.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 0, 150, 80));
+        drawer.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(45, 0, 140, 70));
 
         jPanel3.setBackground(new java.awt.Color(42, 39, 41));
         jPanel3.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -869,7 +914,7 @@ public class JavaPackageMetrics extends javax.swing.JFrame {
         });
         jPanel3.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(13, 3, 170, 40));
 
-        drawer.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 79, 190, -1));
+        drawer.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 80, 185, -1));
 
         jPanel5.setBackground(new java.awt.Color(42, 39, 41));
         jPanel5.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -901,7 +946,7 @@ public class JavaPackageMetrics extends javax.swing.JFrame {
         });
         jPanel5.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(13, 3, 170, 40));
 
-        drawer.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 129, 190, -1));
+        drawer.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 130, 185, -1));
 
         jPanel12.setBackground(new java.awt.Color(42, 39, 41));
         jPanel12.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -933,7 +978,7 @@ public class JavaPackageMetrics extends javax.swing.JFrame {
         });
         jPanel12.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(13, 3, 170, 40));
 
-        drawer.add(jPanel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 179, 190, 50));
+        drawer.add(jPanel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 180, 185, 50));
 
         jButton2.setBackground(new java.awt.Color(102, 102, 102));
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/back.png"))); // NOI18N
@@ -943,7 +988,7 @@ public class JavaPackageMetrics extends javax.swing.JFrame {
                 jButton2ActionPerformed(evt);
             }
         });
-        drawer.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 40, 80));
+        drawer.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(1, 1, 40, 70));
 
         jPanel13.setBackground(new java.awt.Color(42, 39, 41));
         jPanel13.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -975,10 +1020,38 @@ public class JavaPackageMetrics extends javax.swing.JFrame {
         });
         jPanel13.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(13, 3, 170, 40));
 
-        drawer.add(jPanel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 229, 190, 50));
+        drawer.add(jPanel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 230, 185, 50));
+
+        jPanel26.setBackground(new java.awt.Color(42, 39, 41));
+        jPanel26.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jPanel26.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jPanel26MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jPanel26MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jPanel26MouseExited(evt);
+            }
+        });
+        jPanel26.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jButton15.setBackground(new java.awt.Color(51, 51, 51));
+        jButton15.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
+        jButton15.setForeground(new java.awt.Color(255, 255, 255));
+        jButton15.setText("Generate Report");
+        jButton15.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton15ActionPerformed(evt);
+            }
+        });
+        jPanel26.add(jButton15, new org.netbeans.lib.awtextra.AbsoluteConstraints(13, 3, 170, 40));
+
+        drawer.add(jPanel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 280, 185, 50));
 
         containerPanel.add(drawer);
-        drawer.setBounds(0, 0, 190, 617);
+        drawer.setBounds(0, 0, 190, 630);
 
         jPanel4.setBackground(new java.awt.Color(204, 204, 204));
 
@@ -986,6 +1059,7 @@ public class JavaPackageMetrics extends javax.swing.JFrame {
         jLabel3.setText("Selected Java File:");
 
         fileNametxt.setEditable(false);
+        fileNametxt.setForeground(new java.awt.Color(255, 50, 57));
         fileNametxt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 fileNametxtActionPerformed(evt);
@@ -1061,11 +1135,11 @@ public class JavaPackageMetrics extends javax.swing.JFrame {
 
         jLabel50.setText("Low");
 
-        jLabel51.setText(">=50");
+        jLabel51.setText(">=9");
 
-        jLabel52.setText("21-50");
+        jLabel52.setText("4-8");
 
-        jLabel53.setText("<=10");
+        jLabel53.setText("<=3");
 
         javax.swing.GroupLayout jPanel16Layout = new javax.swing.GroupLayout(jPanel16);
         jPanel16.setLayout(jPanel16Layout);
@@ -1103,7 +1177,7 @@ public class JavaPackageMetrics extends javax.swing.JFrame {
                 .addGroup(jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel50)
                     .addComponent(jLabel53))
-                .addContainerGap(71, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         noOfChildClasstxt.setEditable(false);
@@ -1204,8 +1278,8 @@ public class JavaPackageMetrics extends javax.swing.JFrame {
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
                                 .addContainerGap()
                                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel30, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel28))
+                                    .addComponent(jLabel28)
+                                    .addComponent(jLabel30, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(18, 18, 18)))
                         .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(jPanel6Layout.createSequentialGroup()
@@ -1227,7 +1301,7 @@ public class JavaPackageMetrics extends javax.swing.JFrame {
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
-                .addGap(30, 30, 30)
+                .addGap(80, 80, 80)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel26)
                     .addComponent(classNametxt, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1248,10 +1322,10 @@ public class JavaPackageMetrics extends javax.swing.JFrame {
                     .addComponent(jLabel30)
                     .addComponent(refactoringSuggestion, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel17, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel16, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(114, Short.MAX_VALUE))
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jPanel17, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel16, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(124, Short.MAX_VALUE))
         );
 
         jPanel7.setBackground(new java.awt.Color(153, 153, 153));
@@ -1294,7 +1368,7 @@ public class JavaPackageMetrics extends javax.swing.JFrame {
         );
 
         containerPanel.add(classInfoPanel);
-        classInfoPanel.setBounds(190, 57, 740, 560);
+        classInfoPanel.setBounds(190, 57, 740, 570);
 
         jTabbedPane1.setBackground(new java.awt.Color(204, 204, 204));
 
@@ -1372,6 +1446,7 @@ public class JavaPackageMetrics extends javax.swing.JFrame {
 
         jButton6.setFont(new java.awt.Font("Tempus Sans ITC", 1, 14)); // NOI18N
         jButton6.setText("Show");
+        jButton6.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         jButton6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton6ActionPerformed(evt);
@@ -1396,14 +1471,13 @@ public class JavaPackageMetrics extends javax.swing.JFrame {
         jPanel11Layout.setHorizontalGroup(
             jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel11Layout.createSequentialGroup()
-                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel11Layout.createSequentialGroup()
-                        .addGap(15, 15, 15)
-                        .addComponent(visualizeComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel11Layout.createSequentialGroup()
-                        .addGap(68, 68, 68)
-                        .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(26, Short.MAX_VALUE))
+                .addGap(68, 68, 68)
+                .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(73, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel11Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(visualizeComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(19, 19, 19))
         );
         jPanel11Layout.setVerticalGroup(
             jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1578,6 +1652,7 @@ public class JavaPackageMetrics extends javax.swing.JFrame {
 
         jButton7.setFont(new java.awt.Font("Tempus Sans ITC", 1, 14)); // NOI18N
         jButton7.setText("Show");
+        jButton7.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         jButton7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton7ActionPerformed(evt);
@@ -1602,14 +1677,13 @@ public class JavaPackageMetrics extends javax.swing.JFrame {
         jPanel14Layout.setHorizontalGroup(
             jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel14Layout.createSequentialGroup()
-                .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel14Layout.createSequentialGroup()
-                        .addGap(15, 15, 15)
-                        .addComponent(visualizeComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel14Layout.createSequentialGroup()
-                        .addGap(69, 69, 69)
-                        .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(26, Short.MAX_VALUE))
+                .addGap(69, 69, 69)
+                .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(72, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel14Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(visualizeComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(20, 20, 20))
         );
         jPanel14Layout.setVerticalGroup(
             jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1786,10 +1860,9 @@ public class JavaPackageMetrics extends javax.swing.JFrame {
 
         jPanel25.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(102, 102, 102)), "Visualization", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tempus Sans ITC", 1, 18)), "", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tempus Sans ITC", 1, 14))); // NOI18N
 
-        jButton12.setBackground(new java.awt.Color(255, 255, 255));
         jButton12.setFont(new java.awt.Font("Tempus Sans ITC", 1, 14)); // NOI18N
         jButton12.setText("Show");
-        jButton12.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(169, 224, 49), 4), javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0))));
+        jButton12.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         jButton12.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton12ActionPerformed(evt);
@@ -1814,13 +1887,14 @@ public class JavaPackageMetrics extends javax.swing.JFrame {
         jPanel25Layout.setHorizontalGroup(
             jPanel25Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel25Layout.createSequentialGroup()
-                .addGap(15, 15, 15)
-                .addComponent(visualizeComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(26, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel25Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton12, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(70, 70, 70))
+                .addContainerGap(21, Short.MAX_VALUE)
+                .addGroup(jPanel25Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel25Layout.createSequentialGroup()
+                        .addComponent(jButton12, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(70, 70, 70))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel25Layout.createSequentialGroup()
+                        .addComponent(visualizeComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(20, 20, 20))))
         );
         jPanel25Layout.setVerticalGroup(
             jPanel25Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1978,13 +2052,13 @@ public class JavaPackageMetrics extends javax.swing.JFrame {
             locPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, locPanelLayout.createSequentialGroup()
                 .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
                 .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 460, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
         containerPanel.add(locPanel);
-        locPanel.setBounds(190, 57, 740, 560);
+        locPanel.setBounds(190, 57, 740, 570);
 
         jPanel18.setBackground(new java.awt.Color(153, 153, 153));
 
@@ -2044,7 +2118,7 @@ public class JavaPackageMetrics extends javax.swing.JFrame {
 
         jButton8.setFont(new java.awt.Font("Tempus Sans ITC", 1, 14)); // NOI18N
         jButton8.setText("Show");
-        jButton8.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(169, 224, 49), 4), javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0))));
+        jButton8.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         jButton8.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton8ActionPerformed(evt);
@@ -2214,7 +2288,7 @@ public class JavaPackageMetrics extends javax.swing.JFrame {
 
         jButton9.setFont(new java.awt.Font("Tempus Sans ITC", 1, 14)); // NOI18N
         jButton9.setText("Show");
-        jButton9.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(169, 224, 49), 4), javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0))));
+        jButton9.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         jButton9.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton9ActionPerformed(evt);
@@ -2239,14 +2313,14 @@ public class JavaPackageMetrics extends javax.swing.JFrame {
         jPanel20Layout.setHorizontalGroup(
             jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel20Layout.createSequentialGroup()
+                .addContainerGap(21, Short.MAX_VALUE)
                 .addGroup(jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel20Layout.createSequentialGroup()
-                        .addGap(55, 55, 55)
-                        .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel20Layout.createSequentialGroup()
-                        .addGap(15, 15, 15)
-                        .addComponent(visualizeComboBox5, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(26, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel20Layout.createSequentialGroup()
+                        .addComponent(visualizeComboBox5, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(20, 20, 20))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel20Layout.createSequentialGroup()
+                        .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(69, 69, 69))))
         );
         jPanel20Layout.setVerticalGroup(
             jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -2372,7 +2446,7 @@ public class JavaPackageMetrics extends javax.swing.JFrame {
         );
 
         containerPanel.add(ccPanel);
-        ccPanel.setBounds(194, 58, 730, 580);
+        ccPanel.setBounds(194, 58, 740, 568);
 
         jPanel21.setBackground(new java.awt.Color(153, 153, 153));
 
@@ -2412,7 +2486,7 @@ public class JavaPackageMetrics extends javax.swing.JFrame {
 
         jButton13.setFont(new java.awt.Font("Tempus Sans ITC", 1, 14)); // NOI18N
         jButton13.setText("Show");
-        jButton13.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(169, 224, 49), 4), javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0))));
+        jButton13.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         jButton13.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton13ActionPerformed(evt);
@@ -2439,12 +2513,12 @@ public class JavaPackageMetrics extends javax.swing.JFrame {
             .addGroup(jPanel23Layout.createSequentialGroup()
                 .addGroup(jPanel23Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel23Layout.createSequentialGroup()
-                        .addGap(55, 55, 55)
-                        .addComponent(jButton13, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(20, 20, 20)
+                        .addComponent(visualizeComboBox6, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel23Layout.createSequentialGroup()
-                        .addGap(15, 15, 15)
-                        .addComponent(visualizeComboBox6, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(26, Short.MAX_VALUE))
+                        .addGap(68, 68, 68)
+                        .addComponent(jButton13, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(21, Short.MAX_VALUE))
         );
         jPanel23Layout.setVerticalGroup(
             jPanel23Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -2455,13 +2529,6 @@ public class JavaPackageMetrics extends javax.swing.JFrame {
                 .addComponent(jButton13, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
-
-        jButton14.setText("jButton14");
-        jButton14.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton14ActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout jPanel22Layout = new javax.swing.GroupLayout(jPanel22);
         jPanel22.setLayout(jPanel22Layout);
@@ -2474,24 +2541,17 @@ public class JavaPackageMetrics extends javax.swing.JFrame {
                         .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 660, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel22Layout.createSequentialGroup()
                         .addGap(215, 215, 215)
-                        .addComponent(jPanel23, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(60, 60, 60)
-                        .addComponent(jButton14)))
+                        .addComponent(jPanel23, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(21, Short.MAX_VALUE))
         );
         jPanel22Layout.setVerticalGroup(
             jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel22Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 246, Short.MAX_VALUE)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 266, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel22Layout.createSequentialGroup()
-                        .addComponent(jPanel23, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel22Layout.createSequentialGroup()
-                        .addComponent(jButton14)
-                        .addGap(61, 61, 61))))
+                .addComponent(jPanel23, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         jTabbedPane3.addTab("CBO", jPanel22);
@@ -2520,13 +2580,13 @@ public class JavaPackageMetrics extends javax.swing.JFrame {
         );
 
         containerPanel.add(couplingPanel);
-        couplingPanel.setBounds(190, 60, 740, 550);
+        couplingPanel.setBounds(190, 60, 740, 570);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(header, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(header, javax.swing.GroupLayout.DEFAULT_SIZE, 930, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(containerPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 930, Short.MAX_VALUE))
         );
@@ -2534,32 +2594,19 @@ public class JavaPackageMetrics extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(header, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 617, Short.MAX_VALUE))
+                .addGap(0, 0, 0))
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                    .addGap(0, 40, Short.MAX_VALUE)
-                    .addComponent(containerPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 617, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGap(0, 65, Short.MAX_VALUE)
+                    .addComponent(containerPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 625, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
 
         getContentPane().add(jPanel1);
-        jPanel1.setBounds(0, 0, 930, 657);
+        jPanel1.setBounds(0, 0, 930, 690);
 
-        setSize(new java.awt.Dimension(928, 657));
+        setSize(new java.awt.Dimension(928, 697));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
-        this.dispose();
-        new GoodBye().setVisible(true);
-    }//GEN-LAST:event_jButton10ActionPerformed
-
-    private void jButton11MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton11MouseClicked
-        this.setState(ICONIFIED);
-    }//GEN-LAST:event_jButton11MouseClicked
-
-    private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
-
-    }//GEN-LAST:event_jButton11ActionPerformed
 
     private void jPanel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel3MouseClicked
 
@@ -2689,7 +2736,7 @@ public class JavaPackageMetrics extends javax.swing.JFrame {
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         
             if(visualizeComboBox.getSelectedItem().equals("...............Select...............")){
-                JOptionPane.showMessageDialog(null,"Please select a chart!");
+                AlertMessage("Please Select a Chart!!!","src/images/close.png"," Alert!!!"); 
                 return;
             }
             JavaFileCharts dt=new JavaFileCharts();
@@ -2774,7 +2821,7 @@ public class JavaPackageMetrics extends javax.swing.JFrame {
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
        
             if(visualizeComboBox1.getSelectedItem().equals("...............Select...............")){
-                JOptionPane.showMessageDialog(null,"Please select a chart!");
+               AlertMessage("Please Select a Chart!!!","src/images/close.png"," Alert!!!"); 
                 return;
             }
             JavaFileCharts dt=new JavaFileCharts();
@@ -2839,7 +2886,7 @@ public class JavaPackageMetrics extends javax.swing.JFrame {
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
         
             if(visualizeComboBox4.getSelectedItem().equals("...............Select...............")){
-                JOptionPane.showMessageDialog(null,"Please select a chart!");
+               AlertMessage("Please Select a Chart!!!","src/images/close.png"," Alert!!!"); 
                 return;
             }
             JavaFileCharts dt=new JavaFileCharts();
@@ -2924,7 +2971,7 @@ public class JavaPackageMetrics extends javax.swing.JFrame {
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
         
             if(visualizeComboBox5.getSelectedItem().equals("...............Select...............")){
-                JOptionPane.showMessageDialog(null,"Please select a chart!");
+               AlertMessage("Please Select a Chart!!!","src/images/close.png"," Alert!!!"); 
                 return;
             }
             JavaFileCharts dt=new JavaFileCharts();
@@ -3008,28 +3055,9 @@ public class JavaPackageMetrics extends javax.swing.JFrame {
 
     private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
              if(visualizeComboBox2.getSelectedItem().equals("...............Select...............")){
-                // JOptionPane.showMessageDialog(null,"Please select a chart!");
-                ImageIcon icon = new ImageIcon("src/images/close.png");
-                JPanel panel = new JPanel();
-                Border blackline = BorderFactory.createLineBorder(Color.black);
-                panel.setBorder(blackline);
-                panel.setBackground(new Color(169,224,49));
-                panel.setSize(new Dimension(200, 64));
-                panel.setLayout(null);
-
-                JLabel label = new JLabel("Please Select a Chart! ");
-                label.setBounds(0, 0, 200, 64);
-                label.setFont(new Font("Arial", Font.BOLD, 12));
-                label.setHorizontalAlignment(SwingConstants.CENTER);
-                panel.add(label);
-
-                UIManager.put("OptionPane.minimumSize",new Dimension(300, 120));
-                UIManager.put("RootPane.DialogBorder", new LineBorder(Color.black));
-                JOptionPane.showMessageDialog(null, panel, " Alert !", JOptionPane.PLAIN_MESSAGE, icon);
-
-                return;
-            }
-            
+               AlertMessage("Please Select a Chart!!!","src/images/close.png"," Alert!!!"); 
+                  return;
+            }            
             JavaFileCharts dt=new JavaFileCharts();
             if(visualizeComboBox2.getSelectedItem().equals("2D Bar Chart")){
                 dt.DTV2D_BarChart();
@@ -3079,27 +3107,8 @@ public class JavaPackageMetrics extends javax.swing.JFrame {
 
     private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
         if(visualizeComboBox6.getSelectedItem().equals("...............Select...............")){
-               // JOptionPane.showMessageDialog(null,"Please select a chart!");
-                ImageIcon icon = new ImageIcon("src/images/close.png");
-
-        JPanel panel = new JPanel();
-       Border blackline = BorderFactory.createLineBorder(Color.black);
-       panel.setBorder(blackline);
-        panel.setBackground(new Color(169,224,49));
-        panel.setSize(new Dimension(200, 64));
-        panel.setLayout(null);
-
-        JLabel label = new JLabel("Please Select a Chart! ");
-        label.setBounds(0, 0, 200, 64);
-        label.setFont(new Font("Arial", Font.BOLD, 12));
-        label.setHorizontalAlignment(SwingConstants.CENTER);
-        panel.add(label);
-
-        UIManager.put("OptionPane.minimumSize",new Dimension(300, 120)); 
-        UIManager.put("RootPane.DialogBorder", new LineBorder(Color.black));
-        JOptionPane.showMessageDialog(null, panel, " Alert !", JOptionPane.PLAIN_MESSAGE, icon);
-             
-               return;
+               AlertMessage("Please Select a Chart!!!","src/images/close.png"," Alert!!!"); 
+             return;
             }
          JavaFileCharts dt=new JavaFileCharts();
             if(visualizeComboBox6.getSelectedItem().equals("2D Bar Chart")){
@@ -3133,16 +3142,54 @@ public class JavaPackageMetrics extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_visualizeComboBox6ActionPerformed
 
-    private void jButton14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton14ActionPerformed
-                 
-       
-    }//GEN-LAST:event_jButton14ActionPerformed
+    private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
+       GoodBye gb=new GoodBye();
+       gb.setVisible(true);
+         this.dispose();
+    }//GEN-LAST:event_jButton10ActionPerformed
+
+    private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
+      this.setState(ICONIFIED);    // TODO add your handling code here:
+    }//GEN-LAST:event_jButton11ActionPerformed
+
+    private void jPanel26MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel26MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jPanel26MouseClicked
+
+    private void jPanel26MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel26MouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jPanel26MouseEntered
+
+    private void jPanel26MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel26MouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jPanel26MouseExited
+
+    private void jButton15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton15ActionPerformed
+         // These are created to show that our CBO function is working
+        BrowseJavaFile bf1,bf2=new BrowseJavaFile();
+        BrowseJavaPackage bp1,bp2=new BrowseJavaPackage();
+        SignInUp sp=new SignInUp();
+        ForgetPassword fp=new ForgetPassword();
+        Dashboard bd1,db2=new Dashboard();
+        ChangePassword cp1,cp2=new ChangePassword();
+// TODO add your handling code here:
+         try {
+                String report="D:\\SCMV\\SCMV\\src\\Report\\newReport.jrxml";
+                JasperReport jasp_rep= JasperCompileManager.compileReport(report);
+                JasperPrint jasp_print= JasperFillManager.fillReport(jasp_rep, null, con);
+                JasperViewer.viewReport(jasp_print,false);
+
+            } catch (JRException ex) {
+                Logger.getLogger(BrowseJavaFile.class.getName()).log(Level.SEVERE, null, ex);
+            }
+    }//GEN-LAST:event_jButton15ActionPerformed
 
      public void defaultVisibilites(){   
         
          classInfoPanel.setVisible(false);
          locPanel.setVisible(false);
          ccPanel.setVisible(false);
+          couplingPanel.setVisible(false);
          
          classInfoSelected.setVisible(false);         
          locSelected.setVisible(false);
@@ -3163,6 +3210,7 @@ public class JavaPackageMetrics extends javax.swing.JFrame {
     }
      public void setCouplingVis(boolean b){
         couplingSelected.setVisible(b);
+        couplingPanel.setVisible(b);
         
     }
       
@@ -4190,22 +4238,23 @@ public class JavaPackageMetrics extends javax.swing.JFrame {
 //        System.out.println("bool --> "+BOOL_Count);
 //        System.out.println("double --> "+DOUBLE_Count);
 //        System.out.println("Float --> "+FLOAT_Count);
-    }
+    }      
+    
     public static void calculateDTVFromPHY(){
         for(String str:listOfPhyLines){
             
             if(str.contains(";"))
             {
-                if(str.contains("String"))
+                if(str.contains("String "))
                 {
                     boolean flag=false;
                     String line="";
-                   //  System.out.println(str);
+                   // System.out.println(str);
                  StringTokenizer tk= new StringTokenizer(str);        
                  while(tk.hasMoreElements())
                  {                                
                    String token=tk.nextToken();
-                   if(token.contains("String")||flag)
+                   if(token.contains("String ")||flag)
                    {
                     line+=token+" ";
                      flag=true;
@@ -4213,7 +4262,7 @@ public class JavaPackageMetrics extends javax.swing.JFrame {
                  }
                  STRING_Lines.add(line);
                 }
-                if(str.contains("double"))
+                if(str.contains("double "))
                 {
                     boolean flag=false;
                     String line="";
@@ -4222,7 +4271,7 @@ public class JavaPackageMetrics extends javax.swing.JFrame {
                  while(tk.hasMoreElements())
                  {                                
                    String token=tk.nextToken();
-                   if(token.contains("double")||flag)
+                   if(token.contains("double ")||flag)
                    {
                     line+=token+" ";
                      flag=true;
@@ -4230,7 +4279,7 @@ public class JavaPackageMetrics extends javax.swing.JFrame {
                  }
                  DOUBLE_Lines.add(line);
                 }
-                if(str.contains("float"))
+                if(str.contains("float "))
                 {
                     boolean flag=false;
                     String line="";
@@ -4239,7 +4288,7 @@ public class JavaPackageMetrics extends javax.swing.JFrame {
                  while(tk.hasMoreElements())
                  {                                
                    String token=tk.nextToken();
-                   if(token.contains("float")||flag)
+                   if(token.contains("float ")||flag)
                    {
                     line+=token+" ";
                      flag=true;
@@ -4247,7 +4296,7 @@ public class JavaPackageMetrics extends javax.swing.JFrame {
                  }
                  FLOAT_Lines.add(line);
                 }
-                if(str.contains("boolean"))
+                if(str.contains("boolean "))
                 {
                     boolean flag=false;
                     String line="";
@@ -4256,7 +4305,7 @@ public class JavaPackageMetrics extends javax.swing.JFrame {
                  while(tk.hasMoreElements())
                  {                                
                    String token=tk.nextToken();
-                   if(token.contains("boolean")||flag)
+                   if(token.contains("boolean ")||flag)
                    {
                     line+=token+" ";
                      flag=true;
@@ -4264,7 +4313,7 @@ public class JavaPackageMetrics extends javax.swing.JFrame {
                  }
                  BOOL_Lines.add(line);
                 }
-                if(str.contains("char"))
+                if(str.contains("char "))
                 {
                     boolean flag=false;
                     String line="";
@@ -4273,7 +4322,7 @@ public class JavaPackageMetrics extends javax.swing.JFrame {
                  while(tk.hasMoreElements())
                  {                                
                    String token=tk.nextToken();
-                   if(token.contains("char")||flag)
+                   if(token.contains("char ")||flag)
                    {
                     line+=token+" ";
                      flag=true;
@@ -4281,11 +4330,13 @@ public class JavaPackageMetrics extends javax.swing.JFrame {
                  }
                  CHAR_Lines.add(line);
                 }
-                if(str.contains("long"))
+                if(str.contains("int ")){                    
+                
+                if(str.contains("long int "))
                 {
                     boolean flag=false;
                     String line="";
-                   //  System.out.println(str);
+               //    System.out.println(str);
                  StringTokenizer tk= new StringTokenizer(str);        
                  while(tk.hasMoreElements())
                  {                                
@@ -4298,10 +4349,11 @@ public class JavaPackageMetrics extends javax.swing.JFrame {
                  }
                  LONG_INT_Lines.add(line);
                 }
-                else if(str.contains("short"))
+                else if(str.contains("short int "))
                 {
                     boolean flag=false;
                     String line="";
+                  //   System.out.println(str);
                     StringTokenizer tk= new StringTokenizer(str);
                     while(tk.hasMoreElements())
                     {
@@ -4309,14 +4361,15 @@ public class JavaPackageMetrics extends javax.swing.JFrame {
                         if(token.contains("short")||flag)
                         {
                             line+=token+" ";
+                           ///  System.out.println("line->"+line);
                             flag=true;
                         }
                     }
                     SHORT_INT_Lines.add(line);
-                }else
-                {
+                }else{
                     boolean flag=false;
                     String line="";
+                   //  System.out.println(str);
                     StringTokenizer tk= new StringTokenizer(str);
                     while(tk.hasMoreElements())
                     {
@@ -4328,11 +4381,14 @@ public class JavaPackageMetrics extends javax.swing.JFrame {
                         }
                     }
                     INT_Lines.add(line);
-                } 
+                }
+                }
             }
        
         } 
+       //  System.out.println("------- lines -----------");
        for(String str:INT_Lines){
+      // System.out.println(str);
         countDTVFromToken(str);
        }
         for(String str:SHORT_INT_Lines){
@@ -4354,6 +4410,7 @@ public class JavaPackageMetrics extends javax.swing.JFrame {
         countDTVFromToken(str);
        }
         for(String str:STRING_Lines){
+           System.out.println(str);
         countDTVFromToken(str);
        }
     }  
@@ -4380,50 +4437,56 @@ public class JavaPackageMetrics extends javax.swing.JFrame {
     }        
     public static void countDTVFromToken(String str){
                
-         if(str.contains("double"))
-        {          
+         if(str.contains("double "))
+        {         
+           // System.out.println(str);
               StringTokenizer tk= new StringTokenizer(str,",");            
-              DOUBLE_Count+=tk.countTokens();       
+              DOUBLE_Count+=tk.countTokens();  
+             ///  System.out.println(tk.countTokens());
         }
-          if(str.contains("float"))
+          if(str.contains("float "))
         {          
               StringTokenizer tk= new StringTokenizer(str,",");            
               FLOAT_Count+=tk.countTokens();       
         }
-           if(str.contains("char"))
+           if(str.contains("char "))
         {          
               StringTokenizer tk= new StringTokenizer(str,",");            
               CHAR_Count+=tk.countTokens();       
         }
-            if(str.contains("boolean"))
+            if(str.contains("boolean "))
         {          
               StringTokenizer tk= new StringTokenizer(str,",");            
               BOOL_Count+=tk.countTokens();       
         }
-             if(str.contains("String"))
+             if(str.contains("String "))
         {          
+             
               StringTokenizer tk= new StringTokenizer(str,",");            
-              STRING_Count+=tk.countTokens();       
+              STRING_Count+=tk.countTokens();  
+            
         }
-              if(str.contains("int"))
+              if(str.contains("int "))
         {        
-            if(str.contains("long"))
-            { 
-              StringTokenizer tk= new StringTokenizer(str,",");            
-              LONG_INT_Count+=tk.countTokens();       
+             StringTokenizer tk= new StringTokenizer(str,",");    
+              while(tk.hasMoreElements()){
+                    String token=tk.nextToken(); 
+                   // System.out.println(token);                
+                
+            if(token.contains("long int "))
+            {                     
+              LONG_INT_Count++;      
              }
-            else if(str.contains("short"))
-            { 
-              StringTokenizer tk= new StringTokenizer(str,",");            
-              SHORT_INT_Count+=tk.countTokens();       
+            else if(token.contains("short int "))
+            {                       
+              SHORT_INT_Count++;       
              }
-            else{
-                StringTokenizer tk= new StringTokenizer(str,",");            
-                INT_Count+=tk.countTokens();    
+            else{          
+                INT_Count++;  
             }
         } 
+        }
     } 
-    
     
     
    // Data Base Inserting Methods
@@ -4440,7 +4503,9 @@ public class JavaPackageMetrics extends javax.swing.JFrame {
             pstm.executeUpdate();
             pstm=con.prepareStatement("delete  from variablestbl");
             pstm.executeUpdate();
-             pstm=con.prepareStatement("delete  from total_class_obj");
+            pstm=con.prepareStatement("delete  from total_class_obj");
+            pstm.executeUpdate();
+            pstm=con.prepareStatement("delete  from classinfotbl");
             pstm.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(BrowseJavaFile.class.getName()).log(Level.SEVERE, null, ex);
@@ -4597,7 +4662,7 @@ public class JavaPackageMetrics extends javax.swing.JFrame {
     private javax.swing.JButton jButton11;
     private javax.swing.JButton jButton12;
     private javax.swing.JButton jButton13;
-    private javax.swing.JButton jButton14;
+    private javax.swing.JButton jButton15;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
@@ -4687,6 +4752,7 @@ public class JavaPackageMetrics extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel23;
     private javax.swing.JPanel jPanel24;
     private javax.swing.JPanel jPanel25;
+    private javax.swing.JPanel jPanel26;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;

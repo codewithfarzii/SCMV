@@ -1,3 +1,5 @@
-        setSize(new java.awt.Dimension(660, 576));
-        setLocationRelativeTo(null);
-    }// </editor-fold>                        
+        blankLinestxt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                blankLinestxtActionPerformed(evt);
+            }
+        });

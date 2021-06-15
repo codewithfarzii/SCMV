@@ -1,3 +1,44 @@
-    private void visualizeComboBox5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_visualizeComboBox5ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_visualizeComboBox5ActionPerformed
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+       
+            if(visualizeComboBox1.getSelectedItem().equals("...............Select...............")){
+               AlertMessage("Please Select a Chart!!!","src/images/close.png"," Alert!!!"); 
+                return;
+            }
+            JavaFileCharts dt=new JavaFileCharts();
+            if(visualizeComboBox1.getSelectedItem().equals("2D Bar Chart")){
+                dt.DT2D_BarChart();
+            }
+            if(visualizeComboBox1.getSelectedItem().equals("2D Pie Chart")){
+                dt.DT2D_PieChart();
+            }
+            if(visualizeComboBox1.getSelectedItem().equals("2D Line Chart")){
+                dt.DT2D_LineChart();
+            }
+            if(visualizeComboBox1.getSelectedItem().equals("2D Waterfall Chart")){
+                dt.DT2D_WaterfallChart();
+            }
+            if(visualizeComboBox1.getSelectedItem().equals("2D Dual Chart")){
+                dt.DT2D_DualChart();
+            }
+            if(visualizeComboBox1.getSelectedItem().equals("2D Area Chart")){
+                dt.DT2D_AreaChart();
+            }
+            if(visualizeComboBox1.getSelectedItem().equals("2D Stack Area Chart")){
+                dt.DT2D_StackAreaChart();
+            }
+            if(visualizeComboBox1.getSelectedItem().equals("2D Stack Bar Chart")){
+                dt.DT2D_StackBarChart();
+            }
+            if(visualizeComboBox1.getSelectedItem().equals("3D Bar Chart")){
+                dt.DT3D_BarChart();
+            }
+            if(visualizeComboBox1.getSelectedItem().equals("3D Pie Chart")){
+                dt.DT3D_PieChart();
+            }
+            if(visualizeComboBox1.getSelectedItem().equals("3D Line Chart")){
+                dt.DT3D_LineChart();
+            }
+            if(visualizeComboBox1.getSelectedItem().equals("3D Stack Bar Chart")){
+                dt.DT3D_StackBarChart();
+            }
+    }//GEN-LAST:event_jButton7ActionPerformed

@@ -1,3 +1,3 @@
-    private void noOfLongINTVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_noOfLongINTVActionPerformed
+    private void noOfFORLOOPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_noOfFORLOOPActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_noOfLongINTVActionPerformed
+    }//GEN-LAST:event_noOfFORLOOPActionPerformed

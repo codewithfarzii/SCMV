@@ -1,13 +1,39 @@
-    public void insertInLOOPtbl(int t_for,int t_while,int t_do_while){
-             String query= "INSERT INTO `looptbl`(`total_for`, `total_while`, `total_do_while`)  VALUES (?,?,?);";
-    try {
-        pstm=con.prepareStatement(query);
-        pstm.setString(1,String.valueOf(t_for));
-        pstm.setString(2,String.valueOf(t_while));
-        pstm.setString(3,String.valueOf(t_do_while));
-        pstm.execute();
-    } catch (SQLException ex) {
-        Logger.getLogger(BrowseJavaFile.class.getName()).log(Level.SEVERE, null, ex);
-    }
-             
-    }
+    public  int calculateFINALLY(String str){
+       int count=0;
+        StringTokenizer tk= new StringTokenizer(str);
+        
+         while(tk.hasMoreElements()){
+            String token=tk.nextToken();       
+            if(token.contains("finally")){                
+            StringTokenizer tk2= new StringTokenizer(token,"{");            
+            while(tk2.hasMoreElements()){
+            String token2=tk2.nextToken();
+            
+            if(token2.contains("finally")){           
+            StringTokenizer tk3= new StringTokenizer(token2,";");            
+            while(tk3.hasMoreElements()){
+            String token3=tk3.nextToken(); 
+            
+            if(token3.contains("finally")){
+            StringTokenizer tk4= new StringTokenizer(token3,"}"); 
+            while(tk4.hasMoreElements()){
+            String token4=tk4.nextToken(); 
+            
+            if(token4.contains("finally")){
+            StringTokenizer tk5= new StringTokenizer(token4,"*/"); 
+            while(tk5.hasMoreElements()){
+            String token5=tk5.nextToken(); 
+            if(token5.matches("finally"))
+                count++;
+               // System.out.println(token5);
+            } 
+            }
+            }
+            }
+            }
+            }
+            }
+            }
+        }
+          return count;
+   }   

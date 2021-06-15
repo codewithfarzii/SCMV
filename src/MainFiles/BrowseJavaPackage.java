@@ -6,6 +6,9 @@
 package MainFiles;
 
 import ExternalJavaFiles.Database;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.HeadlessException;
 import java.io.BufferedReader;
 import java.io.File;
@@ -22,11 +25,21 @@ import java.util.List;
 import java.util.StringTokenizer;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.BorderFactory;
 import javax.swing.DefaultListModel;
+import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.SwingConstants;
+import javax.swing.UIManager;
+import javax.swing.border.Border;
+import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableModel;
+import scmv.ChangePassword;
 import scmv.Dashboard;
+import scmv.ForgetPassword;
 import scmv.GoodBye;
 import scmv.SignInUp;
 
@@ -67,6 +80,27 @@ public class BrowseJavaPackage extends javax.swing.JFrame {
         selectJavaPackage();
         
     }
+     public void AlertMessage(String message,String path,String title){
+            ImageIcon icon = new ImageIcon(path);
+            JPanel panel = new JPanel();
+            Border blackline = BorderFactory.createLineBorder(Color.black);
+            panel.setBorder(blackline);
+            panel.setBackground(new Color(169,224,49));
+            panel.setSize(new Dimension(200, 64));
+            panel.setLayout(null);
+
+            JLabel label = new JLabel(message);
+            label.setBounds(0, 0, 200, 64);
+            label.setFont(new Font("Arial", Font.BOLD, 12));
+            label.setHorizontalAlignment(SwingConstants.CENTER);
+            panel.add(label);
+
+            UIManager.put("OptionPane.minimumSize",new Dimension(300, 120));
+            UIManager.put("RootPane.DialogBorder", new LineBorder(Color.black));
+            JOptionPane.showMessageDialog(null, panel, title, JOptionPane.PLAIN_MESSAGE, icon);
+               
+    }
+  
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -76,8 +110,8 @@ public class BrowseJavaPackage extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        header = new javax.swing.JPanel();
-        jButton10 = new javax.swing.JButton();
+        header1 = new javax.swing.JPanel();
+        jButton12 = new javax.swing.JButton();
         jButton11 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
@@ -93,25 +127,27 @@ public class BrowseJavaPackage extends javax.swing.JFrame {
         jButton3 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(0, 0, 0));
+        setForeground(new java.awt.Color(0, 0, 0));
         setUndecorated(true);
 
-        header.setBackground(new java.awt.Color(0, 0, 0));
-        header.setForeground(new java.awt.Color(169, 224, 49));
-        header.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        header1.setBackground(new java.awt.Color(0, 0, 0));
+        header1.setForeground(new java.awt.Color(169, 224, 49));
+        header1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jButton10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icons8_Cancel_32px.png"))); // NOI18N
-        jButton10.setToolTipText("Close");
-        jButton10.setBorderPainted(false);
-        jButton10.setContentAreaFilled(false);
-        jButton10.setRequestFocusEnabled(false);
-        jButton10.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icons8_Cancel_30px_3.png"))); // NOI18N
-        jButton10.setVerifyInputWhenFocusTarget(false);
-        jButton10.addActionListener(new java.awt.event.ActionListener() {
+        jButton12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icons8_Cancel_32px.png"))); // NOI18N
+        jButton12.setToolTipText("Close");
+        jButton12.setBorderPainted(false);
+        jButton12.setContentAreaFilled(false);
+        jButton12.setRequestFocusEnabled(false);
+        jButton12.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icons8_Cancel_30px_3.png"))); // NOI18N
+        jButton12.setVerifyInputWhenFocusTarget(false);
+        jButton12.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton10ActionPerformed(evt);
+                jButton12ActionPerformed(evt);
             }
         });
-        header.add(jButton10, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 0, 40, 40));
+        header1.add(jButton12, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 0, 40, 40));
 
         jButton11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icons8_Minus_32px_1.png"))); // NOI18N
         jButton11.setToolTipText("Minimize");
@@ -130,15 +166,18 @@ public class BrowseJavaPackage extends javax.swing.JFrame {
                 jButton11ActionPerformed(evt);
             }
         });
-        header.add(jButton11, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 0, 40, 40));
+        header1.add(jButton11, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 0, 40, 40));
 
-        jLabel1.setFont(new java.awt.Font("Trebuchet MS", 1, 24)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Times New Roman", 0, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(169, 224, 49));
-        jLabel1.setText(" SCMV");
-        header.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 310, 40));
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/metrics 64.png"))); // NOI18N
+        jLabel1.setText("  Source Code Metrics Visualizer of JAVA");
+        header1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 0, -1, -1));
 
+        jPanel1.setBorder(javax.swing.BorderFactory.createCompoundBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 1, true), new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true)));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        packageNameTxt.setEditable(false);
         packageNameTxt.setColumns(20);
         packageNameTxt.setRows(5);
         jScrollPane3.setViewportView(packageNameTxt);
@@ -148,7 +187,7 @@ public class BrowseJavaPackage extends javax.swing.JFrame {
         jButton1.setBackground(new java.awt.Color(255, 255, 255));
         jButton1.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
         jButton1.setText("Browse Package");
-        jButton1.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(169, 224, 49), 4), javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0))));
+        jButton1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -164,7 +203,7 @@ public class BrowseJavaPackage extends javax.swing.JFrame {
                 jButton2ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 40, 40));
+        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(5, 5, 40, 40));
 
         listOfFiles.setMaximumSize(new java.awt.Dimension(33, 500));
         listOfFiles.setMinimumSize(new java.awt.Dimension(33, 500));
@@ -193,7 +232,7 @@ public class BrowseJavaPackage extends javax.swing.JFrame {
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 100, 130, 45));
 
         noOfFiles.setEditable(false);
-        noOfFiles.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 4, true));
+        noOfFiles.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
         noOfFiles.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 noOfFilesActionPerformed(evt);
@@ -204,7 +243,7 @@ public class BrowseJavaPackage extends javax.swing.JFrame {
         jButton3.setBackground(new java.awt.Color(255, 255, 255));
         jButton3.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
         jButton3.setText("Count Metrics");
-        jButton3.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(169, 224, 49), 4), javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0))));
+        jButton3.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
@@ -216,36 +255,24 @@ public class BrowseJavaPackage extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(header, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 750, Short.MAX_VALUE)
+            .addComponent(header1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(header, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 494, Short.MAX_VALUE))
+                .addComponent(header1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 512, Short.MAX_VALUE))
         );
 
-        setSize(new java.awt.Dimension(750, 540));
+        setSize(new java.awt.Dimension(750, 576));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
-       this.dispose();
-        new GoodBye().setVisible(true);
-    }//GEN-LAST:event_jButton10ActionPerformed
-
-    private void jButton11MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton11MouseClicked
-        this.setState(ICONIFIED);
-    }//GEN-LAST:event_jButton11MouseClicked
-
-    private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
-
-    }//GEN-LAST:event_jButton11ActionPerformed
    
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-         ClearTables();
+         
+        ClearTables();
          m.removeAllElements();
          listOfFiles.removeAll();
          packageNameTxt.setText(null);
@@ -264,7 +291,13 @@ public class BrowseJavaPackage extends javax.swing.JFrame {
           selectJavaPackage();
           insertClassNameToDB();
           }
-         
+         // These are created to show that our CBO function is working
+        BrowseJavaFile bf1,bf2=new BrowseJavaFile();
+        JavaPackageMetrics jpm1,jpm2,jpm3=new JavaPackageMetrics();
+        SignInUp sp=new SignInUp();
+        ForgetPassword fp=new ForgetPassword();
+        Dashboard bd1,db2=new Dashboard();
+        ChangePassword cp1,cp2=new ChangePassword();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -288,13 +321,27 @@ public class BrowseJavaPackage extends javax.swing.JFrame {
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
         if(selected==null){
-             JOptionPane.showMessageDialog(null, "Please Select a File For Counting Metrics!!!");
+             AlertMessage("Please Select a File For Counting Metrics!!!","src/images/close.png"," Alert!!!");
         }else{
          JavaPackageMetrics c=new JavaPackageMetrics(selected,fileName,alist,selectedPackageName); 
          c.setVisible(true);
          this.dispose();
         }
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
+         GoodBye gb=new GoodBye();
+        gb.setVisible(true);
+         this.dispose();
+    }//GEN-LAST:event_jButton12ActionPerformed
+
+    private void jButton11MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton11MouseClicked
+        this.setState(ICONIFIED);
+    }//GEN-LAST:event_jButton11MouseClicked
+
+    private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
+
+    }//GEN-LAST:event_jButton11ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -416,10 +463,10 @@ public class BrowseJavaPackage extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel header;
+    private javax.swing.JPanel header1;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton11;
+    private javax.swing.JButton jButton12;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;

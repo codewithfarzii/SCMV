@@ -1,3 +1,5 @@
-    private void noOfParentClasstxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_noOfParentClasstxtActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_noOfParentClasstxtActionPerformed
+        noOfCases.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                noOfCasesActionPerformed(evt);
+            }
+        });

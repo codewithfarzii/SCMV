@@ -1,14 +1,3 @@
-        panel.setSize(new Dimension(200, 64));
-        panel.setLayout(null);
-
-        JLabel label = new JLabel("All Fields Must be Filled! ");
-        label.setBounds(0, 0, 200, 64);
-        label.setFont(new Font("Arial", Font.BOLD, 13));
-        label.setHorizontalAlignment(SwingConstants.CENTER);
-        panel.add(label);
-
-        UIManager.put("OptionPane.minimumSize",new Dimension(300, 120)); 
-        UIManager.put("RootPane.DialogBorder", new LineBorder(Color.black));
-        JOptionPane.showMessageDialog(null, panel, " Alert !", JOptionPane.PLAIN_MESSAGE, icon);
-             
-      }else{
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                visualizeComboBoxItemStateChanged(evt);
+            }

@@ -1,6 +1,5 @@
-    private void luserPassFocusLost(java.awt.event.FocusEvent evt) {                                    
-         if (luserPass.getText().isEmpty()) {
-            luserPass.setForeground(Color.GRAY);
-            luserPass.setText("password");
-        }
-    }                                   
+        visualizeComboBox1.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                visualizeComboBox1ItemStateChanged(evt);
+            }
+        });

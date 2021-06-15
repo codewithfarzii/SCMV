@@ -1,4 +1,5 @@
-    private void luserNameKeyTyped(java.awt.event.KeyEvent evt) {                                   
-        // TODO add your handling code here:
-      
-    }                                  
+        jButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton7ActionPerformed(evt);
+            }
+        });

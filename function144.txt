@@ -1,3 +1,5 @@
-    private void luserNameMouseMoved(java.awt.event.MouseEvent evt) {                                     
-
-    }                                    
+        physicalLinestxt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                physicalLinestxtActionPerformed(evt);
+            }
+        });

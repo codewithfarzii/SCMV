@@ -1,4 +1,3 @@
-                            (token.contains(">") && !token.contains("Hashtable") && !token.contains("HashSet") && !token.contains("Array") && !token.contains("Abstract"))|
-                openbrace=closebrace;
-                reader.reset();
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                noOfFORLOOPActionPerformed(evt);
             }

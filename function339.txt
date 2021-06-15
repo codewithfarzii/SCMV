@@ -1,6 +1,3 @@
-        UIManager.put("OptionPane.minimumSize",new Dimension(300, 120)); 
-        UIManager.put("RootPane.DialogBorder", new LineBorder(Color.black));
-        JOptionPane.showMessageDialog(null, panel, " Alert !", JOptionPane.PLAIN_MESSAGE, icon);
-             
-               return;
-            }           
+    private void blankLinestxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_blankLinestxtActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_blankLinestxtActionPerformed

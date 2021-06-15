@@ -1,10 +1,5 @@
-        label.setFont(new Font("Arial", Font.BOLD, 13));
-        label.setHorizontalAlignment(SwingConstants.CENTER);
-        panel.add(label);
-
-        UIManager.put("OptionPane.minimumSize",new Dimension(300, 120)); 
-        UIManager.put("RootPane.DialogBorder", new LineBorder(Color.black));
-        JOptionPane.showMessageDialog(null, panel, " Alert !", JOptionPane.PLAIN_MESSAGE, icon);
-            
-                         userName.setText(null);
-                  }
+        noOfFLOAT.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                noOfFLOATActionPerformed(evt);
+            }
+        });

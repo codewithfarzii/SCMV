@@ -6,6 +6,9 @@
 package scmv;
 
 import ExternalJavaFiles.Database;
+import MainFiles.BrowseJavaFile;
+import MainFiles.BrowseJavaPackage;
+import MainFiles.JavaPackageMetrics;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -297,7 +300,15 @@ public class ChangePassword extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton11ActionPerformed
 
     private void jButton14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton14ActionPerformed
-         String uSName= getCurretUserName();
+       // These are created to show that our CBO function is working
+        BrowseJavaFile bf1,bf2=new BrowseJavaFile();
+        JavaPackageMetrics jpm1,jpm2,jpm3=new JavaPackageMetrics();
+        BrowseJavaPackage bp1,bp2=new BrowseJavaPackage();
+        SignInUp sp=new SignInUp();
+        ForgetPassword fp=new ForgetPassword();
+        Dashboard bd1,db2=new Dashboard();
+        
+        String uSName= getCurretUserName();
          String uSPas="";
           String uCPass=cPass.getText();
           String uPass1=newPass.getText();
@@ -437,9 +448,10 @@ public class ChangePassword extends javax.swing.JFrame {
       /**
      * @param args the command line arguments
      */
-    public void backToHome(){
+    public void backToHome(){        
+        Dashboard db=new Dashboard();
+        db.setVisible(true);
         this.dispose();
-        new Dashboard().setVisible(true);
     }
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */

@@ -1,3 +1,5 @@
-    private void blankLinestxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_blankLinestxtActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_blankLinestxtActionPerformed
+        noOfCatchBlocks.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                noOfCatchBlocksActionPerformed(evt);
+            }
+        });

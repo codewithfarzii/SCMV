@@ -66,11 +66,13 @@ public class SCMV {
             if(rs.next()){
                  S.setVisible(false);
                     S.dispose();
-                    new Dashboard().setVisible(true);
+                    Dashboard db=new Dashboard();
+                    db.setVisible(true);
             }else{                
                     S.setVisible(false);
                     S.dispose();
-                    new SignInUp().setVisible(true);
+                    SignInUp sp=new SignInUp();
+                    sp.setVisible(true);
             }
 
            }

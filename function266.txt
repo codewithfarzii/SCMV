@@ -1,3 +1,3 @@
-    private void noOfShortINTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_noOfShortINTActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_noOfShortINTActionPerformed
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                visualizeComboBox4ActionPerformed(evt);
+            }

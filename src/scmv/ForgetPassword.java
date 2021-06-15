@@ -8,6 +8,9 @@ package scmv;
 import ExternalJavaFiles.Database;
 import ExternalJavaFiles.InternetConnectivity;
 import ExternalJavaFiles.JavaMailUtil;
+import MainFiles.BrowseJavaFile;
+import MainFiles.BrowseJavaPackage;
+import MainFiles.JavaPackageMetrics;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -121,7 +124,7 @@ public class ForgetPassword extends javax.swing.JFrame {
         header.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 220, 40));
 
         signUpPanel.setBackground(new java.awt.Color(31, 36, 42));
-        signUpPanel.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(51, 255, 0)));
+        signUpPanel.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 2, 1, 2, new java.awt.Color(51, 255, 0)));
         signUpPanel.setPreferredSize(new java.awt.Dimension(330, 535));
         signUpPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -291,6 +294,14 @@ public class ForgetPassword extends javax.swing.JFrame {
     }
     
     private void jButton14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton14ActionPerformed
+ // These are created to show that our CBO function is working
+        BrowseJavaFile bf1,bf2=new BrowseJavaFile();
+        JavaPackageMetrics jpm1,jpm2,jpm3=new JavaPackageMetrics();
+        BrowseJavaPackage bp1,bp2=new BrowseJavaPackage();
+        SignInUp sp=new SignInUp();
+        ForgetPassword fp=new ForgetPassword();
+        Dashboard bd1,db2=new Dashboard();
+        
         String userName= username.getText();
         String useremail="";
         String userpass="";
@@ -299,7 +310,7 @@ public class ForgetPassword extends javax.swing.JFrame {
             AlertMessage("No Internet Connection Found!!!");
             return;
         }
-        if(!(userName.length()>0))
+        if(!(userName.length()>0) || userName.matches(" username"))
         {
             AlertMessage("Please Enter Username!!! ");
         }else
@@ -323,7 +334,7 @@ public class ForgetPassword extends javax.swing.JFrame {
              }else
             {
                  AlertMessage("Invalid Username!!!");
-                 username.setText(null);
+                 foucslost();
             }
           }catch (Exception ex){
              JOptionPane.showMessageDialog(null,ex);
@@ -350,12 +361,16 @@ public class ForgetPassword extends javax.swing.JFrame {
 
     private void usernameFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_usernameFocusLost
         // TODO add your handling code here:
-        if (username.getText().isEmpty()) {
-            username.setForeground(Color.GRAY);
-            username.setText(" username");
-        }
+        foucslost();
     }//GEN-LAST:event_usernameFocusLost
 
+    void foucslost(){
+     if (username.getText().isEmpty()) {
+            username.setForeground(Color.GRAY);
+            username.setText(" username");
+        }   
+    }
+    
     private void usernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usernameActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_usernameActionPerformed

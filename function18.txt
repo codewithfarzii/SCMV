@@ -1,3 +1,5 @@
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton10ActionPerformed(evt);
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new GoodBye().setVisible(true);                             
             }
+        });

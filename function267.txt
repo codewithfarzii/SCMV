@@ -1,3 +1,5 @@
-    private void noOfLongINTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_noOfLongINTActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_noOfLongINTActionPerformed
+        noOfIFStatement.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                noOfIFStatementActionPerformed(evt);
+            }
+        });

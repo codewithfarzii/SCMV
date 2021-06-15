@@ -1,5 +1,28 @@
-//        System.out.println("long int --> "+LONG_INT_Count);
-//        System.out.println("bool --> "+BOOL_Count);
-//        System.out.println("double --> "+DOUBLE_Count);
-//        System.out.println("Float --> "+FLOAT_Count);
-    }
+    private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
+        if(visualizeComboBox6.getSelectedItem().equals("...............Select...............")){
+               AlertMessage("Please Select a Chart!!!","src/images/close.png"," Alert!!!"); 
+             return;
+            }
+         JavaFileCharts dt=new JavaFileCharts();
+            if(visualizeComboBox6.getSelectedItem().equals("2D Bar Chart")){
+                dt.CC2D_BarChart();
+            }
+            if(visualizeComboBox6.getSelectedItem().equals("2D Pie Chart")){
+                dt.CC2D_PieChart();
+            }
+            if(visualizeComboBox6.getSelectedItem().equals("2D Line Chart")){
+                dt.CC2D_LineChart();
+            }
+            if(visualizeComboBox6.getSelectedItem().equals("2D Area Chart")){
+                dt.CC2D_AreaChart();
+            }
+            if(visualizeComboBox6.getSelectedItem().equals("3D Bar Chart")){
+                dt.CC3D_BarChart();
+            }
+            if(visualizeComboBox6.getSelectedItem().equals("3D Pie Chart")){
+                dt.CC3D_PieChart();
+            }
+            if(visualizeComboBox6.getSelectedItem().equals("3D Line Chart")){
+                dt.CC3D_LineChart();
+            }      
+    }//GEN-LAST:event_jButton13ActionPerformed

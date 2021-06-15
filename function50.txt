@@ -1,8 +1,3 @@
-        luserName.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                luserNameKeyPressed(evt);
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jPanel3MouseEntered(evt);
             }
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                luserNameKeyTyped(evt);
-            }
-        });

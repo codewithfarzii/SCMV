@@ -1,6 +1,3 @@
-//        System.out.println("short int --> "+SHORT_INT_Count);
-//        System.out.println("long int --> "+LONG_INT_Count);
-//        System.out.println("bool --> "+BOOL_Count);
-//        System.out.println("double --> "+DOUBLE_Count);
-//        System.out.println("Float --> "+FLOAT_Count);
-    }
+    private void visualizeComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_visualizeComboBox2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_visualizeComboBox2ActionPerformed

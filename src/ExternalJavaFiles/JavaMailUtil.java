@@ -77,8 +77,8 @@ public class JavaMailUtil {
             Message message = new MimeMessage(session);
             message.setFrom(new InternetAddress(sysEmail));
             message.setRecipient(Message.RecipientType.TO, new InternetAddress(recepient));
-            message.setSubject("Password of your account");
-            message.setText("Your User Name is -->"+userName+"\nYour password is --> "+pass+"\nKindly change your password after Signing-in to your account to maintain security of your account!!!"); 
+            message.setSubject("Password of Your Account");
+            message.setText("Dear Valuable User!\nYour User Name is -->"+userName+"\nYour password is --> "+pass+"\nKindly change your password after Signing-in to your account to maintain security of your account!!!\nRegards,\nSCMV Team"); 
            return message;
         } catch (Exception ex) {
             Logger.getLogger(JavaMailUtil.class.getName()).log(Level.SEVERE, null, ex);
@@ -90,12 +90,13 @@ public class JavaMailUtil {
             Message message = new MimeMessage(session);
             message.setFrom(new InternetAddress(sysEmail));
             message.setRecipient(Message.RecipientType.TO, new InternetAddress(recepient));
-            message.setSubject("OTP for SCMV Tool Registration");
-            message.setText("Your One-Time-Password is -->"+OTP); 
+            message.setSubject("OTP for SCMV Tool Account Registration");
+            message.setText("Dear Valuable User!\nThank You for registering on SCMV Tool.\nPlease enter the OTP on your requested system and get start using the Tool Freely.\nYour One-Time-Password is -->"+OTP+"\nRegards,\nSCMV Team"); 
            return message;
         } catch (Exception ex) {
             Logger.getLogger(JavaMailUtil.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;
     }
+
 }

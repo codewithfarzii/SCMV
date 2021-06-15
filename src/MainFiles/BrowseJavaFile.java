@@ -48,8 +48,11 @@ import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperReport;
 import net.sf.jasperreports.view.JasperViewer;
+import scmv.ChangePassword;
 import scmv.Dashboard;
+import scmv.ForgetPassword;
 import scmv.GoodBye;
+import scmv.SignInUp;
 
 /**
  *
@@ -71,31 +74,33 @@ PreparedStatement pstm=null;
         countClicked=false;
         
     }    
+    public void AlertMessage(String message,String path,String title){
+            ImageIcon icon = new ImageIcon(path);
+            JPanel panel = new JPanel();
+            Border blackline = BorderFactory.createLineBorder(Color.black);
+            panel.setBorder(blackline);
+            panel.setBackground(new Color(169,224,49));
+            panel.setSize(new Dimension(200, 64));
+            panel.setLayout(null);
+
+            JLabel label = new JLabel(message);
+            label.setBounds(0, 0, 200, 64);
+            label.setFont(new Font("Arial", Font.BOLD, 12));
+            label.setHorizontalAlignment(SwingConstants.CENTER);
+            panel.add(label);
+
+            UIManager.put("OptionPane.minimumSize",new Dimension(300, 120));
+            UIManager.put("RootPane.DialogBorder", new LineBorder(Color.black));
+            JOptionPane.showMessageDialog(null, panel, title, JOptionPane.PLAIN_MESSAGE, icon);
+               
+    }
+  
     public void connectWithDB(){
         try{
            Database db=new Database();
            con=db.openConnection();
            }catch(HeadlessException| SQLException e){
-              // JOptionPane.showMessageDialog(null, "DB not connected");
-               ImageIcon icon = new ImageIcon("src/images/close.png");
-
-        JPanel panel = new JPanel();
-       Border blackline = BorderFactory.createLineBorder(Color.black);
-       panel.setBorder(blackline);
-        panel.setBackground(new Color(169,224,49));
-        panel.setSize(new Dimension(200, 64));
-        panel.setLayout(null);
-
-        JLabel label = new JLabel("Database Not Connected! ");
-        label.setBounds(0, 0, 200, 64);
-        label.setFont(new Font("Arial", Font.BOLD, 12));
-        label.setHorizontalAlignment(SwingConstants.CENTER);
-        panel.add(label);
-
-        UIManager.put("OptionPane.minimumSize",new Dimension(300, 120)); 
-        UIManager.put("RootPane.DialogBorder", new LineBorder(Color.black));
-        JOptionPane.showMessageDialog(null, panel, " Alert !", JOptionPane.PLAIN_MESSAGE, icon);
-            
+                AlertMessage("Database Not Connected!!!","src/images/close.png"," Alert!!!");            
            }
     }
     
@@ -138,6 +143,10 @@ PreparedStatement pstm=null;
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        header = new javax.swing.JPanel();
+        jButton10 = new javax.swing.JButton();
+        jButton11 = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
         fileNametxt = new javax.swing.JTextArea();
@@ -267,24 +276,69 @@ PreparedStatement pstm=null;
         visualizeComboBox5 = new javax.swing.JComboBox();
         jButton3 = new javax.swing.JButton();
         jButton12 = new javax.swing.JButton();
-        header = new javax.swing.JPanel();
-        jButton10 = new javax.swing.JButton();
-        jButton11 = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
+        getContentPane().setLayout(null);
+
+        header.setBackground(new java.awt.Color(0, 0, 0));
+        header.setForeground(new java.awt.Color(169, 224, 49));
+        header.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jButton10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icons8_Cancel_32px.png"))); // NOI18N
+        jButton10.setToolTipText("Close");
+        jButton10.setBorderPainted(false);
+        jButton10.setContentAreaFilled(false);
+        jButton10.setRequestFocusEnabled(false);
+        jButton10.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icons8_Cancel_30px_3.png"))); // NOI18N
+        jButton10.setVerifyInputWhenFocusTarget(false);
+        jButton10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton10ActionPerformed(evt);
+            }
+        });
+        header.add(jButton10, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 0, 40, 40));
+
+        jButton11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icons8_Minus_32px_1.png"))); // NOI18N
+        jButton11.setToolTipText("Minimize");
+        jButton11.setBorderPainted(false);
+        jButton11.setContentAreaFilled(false);
+        jButton11.setRequestFocusEnabled(false);
+        jButton11.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icons8_Minus_30px_3.png"))); // NOI18N
+        jButton11.setVerifyInputWhenFocusTarget(false);
+        jButton11.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton11MouseClicked(evt);
+            }
+        });
+        jButton11.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton11ActionPerformed(evt);
+            }
+        });
+        header.add(jButton11, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 0, 40, 40));
+
+        jLabel1.setFont(new java.awt.Font("Times New Roman", 0, 24)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(169, 224, 49));
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/metrics 64.png"))); // NOI18N
+        jLabel1.setText("  Source Code Metrics Visualizer of JAVA");
+        header.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 0, -1, -1));
+
+        getContentPane().add(header);
+        header.setBounds(0, 0, 749, 64);
 
         jPanel1.setBackground(new java.awt.Color(204, 204, 255));
+        jPanel1.setBorder(javax.swing.BorderFactory.createCompoundBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 1, true), new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true)));
 
+        fileNametxt.setEditable(false);
         fileNametxt.setColumns(20);
-        fileNametxt.setRows(5);
+        fileNametxt.setRows(2);
         jScrollPane3.setViewportView(fileNametxt);
 
         jButton1.setBackground(new java.awt.Color(255, 255, 255));
         jButton1.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
         jButton1.setText("Count Metrics");
-        jButton1.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(169, 224, 49), 4), javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2)));
+        jButton1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -351,11 +405,11 @@ PreparedStatement pstm=null;
 
         jLabel50.setText("Low");
 
-        jLabel51.setText(">=50");
+        jLabel51.setText(">=9");
 
-        jLabel52.setText("21-50");
+        jLabel52.setText("4 - 8");
 
-        jLabel53.setText("<=10");
+        jLabel53.setText("<=3");
 
         javax.swing.GroupLayout jPanel16Layout = new javax.swing.GroupLayout(jPanel16);
         jPanel16.setLayout(jPanel16Layout);
@@ -425,9 +479,9 @@ PreparedStatement pstm=null;
 
         jLabel56.setText("Small Class");
 
-        jLabel57.setText(">=200");
+        jLabel57.setText(">=201");
 
-        jLabel58.setText("100-200");
+        jLabel58.setText("101-200");
 
         jLabel59.setText("<=100");
 
@@ -503,7 +557,7 @@ PreparedStatement pstm=null;
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addGap(100, 100, 100)
                 .addComponent(jPanel16, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 69, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 75, Short.MAX_VALUE)
                 .addComponent(jPanel17, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(100, 100, 100))
         );
@@ -622,7 +676,7 @@ PreparedStatement pstm=null;
         jButton4.setBackground(new java.awt.Color(255, 255, 255));
         jButton4.setFont(new java.awt.Font("Tempus Sans ITC", 1, 14)); // NOI18N
         jButton4.setText("Show");
-        jButton4.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(169, 224, 49), 4), javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0))));
+        jButton4.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton4ActionPerformed(evt);
@@ -649,12 +703,12 @@ PreparedStatement pstm=null;
             .addGroup(jPanel11Layout.createSequentialGroup()
                 .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel11Layout.createSequentialGroup()
-                        .addGap(55, 55, 55)
-                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(19, 19, 19)
+                        .addComponent(visualizeComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel11Layout.createSequentialGroup()
-                        .addGap(15, 15, 15)
-                        .addComponent(visualizeComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(26, Short.MAX_VALUE))
+                        .addGap(69, 69, 69)
+                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(22, Short.MAX_VALUE))
         );
         jPanel11Layout.setVerticalGroup(
             jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -823,7 +877,7 @@ PreparedStatement pstm=null;
         jButton5.setBackground(new java.awt.Color(255, 255, 255));
         jButton5.setFont(new java.awt.Font("Tempus Sans ITC", 1, 14)); // NOI18N
         jButton5.setText("Show");
-        jButton5.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(169, 224, 49), 4), javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0))));
+        jButton5.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         jButton5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton5ActionPerformed(evt);
@@ -848,14 +902,14 @@ PreparedStatement pstm=null;
         jPanel12Layout.setHorizontalGroup(
             jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel12Layout.createSequentialGroup()
+                .addContainerGap(22, Short.MAX_VALUE)
                 .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel12Layout.createSequentialGroup()
-                        .addGap(55, 55, 55)
-                        .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel12Layout.createSequentialGroup()
-                        .addGap(15, 15, 15)
-                        .addComponent(visualizeComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(26, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel12Layout.createSequentialGroup()
+                        .addComponent(visualizeComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(19, 19, 19))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel12Layout.createSequentialGroup()
+                        .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(61, 61, 61))))
         );
         jPanel12Layout.setVerticalGroup(
             jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1049,7 +1103,7 @@ PreparedStatement pstm=null;
         jButton6.setBackground(new java.awt.Color(255, 255, 255));
         jButton6.setFont(new java.awt.Font("Tempus Sans ITC", 1, 14)); // NOI18N
         jButton6.setText("Show");
-        jButton6.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(169, 224, 49), 4), javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0))));
+        jButton6.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         jButton6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton6ActionPerformed(evt);
@@ -1074,14 +1128,14 @@ PreparedStatement pstm=null;
         jPanel14Layout.setHorizontalGroup(
             jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel14Layout.createSequentialGroup()
+                .addContainerGap(22, Short.MAX_VALUE)
                 .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel14Layout.createSequentialGroup()
-                        .addGap(55, 55, 55)
-                        .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel14Layout.createSequentialGroup()
-                        .addGap(15, 15, 15)
-                        .addComponent(visualizeComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(26, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel14Layout.createSequentialGroup()
+                        .addComponent(visualizeComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(19, 19, 19))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel14Layout.createSequentialGroup()
+                        .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(66, 66, 66))))
         );
         jPanel14Layout.setVerticalGroup(
             jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1236,7 +1290,7 @@ PreparedStatement pstm=null;
         jButton8.setBackground(new java.awt.Color(255, 255, 255));
         jButton8.setFont(new java.awt.Font("Tempus Sans ITC", 1, 14)); // NOI18N
         jButton8.setText("Show");
-        jButton8.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(169, 224, 49), 4), javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0))));
+        jButton8.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         jButton8.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton8ActionPerformed(evt);
@@ -1261,14 +1315,14 @@ PreparedStatement pstm=null;
         jPanel15Layout.setHorizontalGroup(
             jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel15Layout.createSequentialGroup()
+                .addContainerGap(23, Short.MAX_VALUE)
                 .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel15Layout.createSequentialGroup()
-                        .addGap(55, 55, 55)
-                        .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel15Layout.createSequentialGroup()
-                        .addGap(15, 15, 15)
-                        .addComponent(visualizeComboBox4, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(26, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel15Layout.createSequentialGroup()
+                        .addComponent(visualizeComboBox4, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel15Layout.createSequentialGroup()
+                        .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(69, 69, 69))))
         );
         jPanel15Layout.setVerticalGroup(
             jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1410,7 +1464,7 @@ PreparedStatement pstm=null;
         jButton9.setBackground(new java.awt.Color(255, 255, 255));
         jButton9.setFont(new java.awt.Font("Tempus Sans ITC", 1, 14)); // NOI18N
         jButton9.setText("Show");
-        jButton9.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(169, 224, 49), 4), javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0))));
+        jButton9.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         jButton9.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton9ActionPerformed(evt);
@@ -1437,21 +1491,20 @@ PreparedStatement pstm=null;
             .addGroup(jPanel18Layout.createSequentialGroup()
                 .addGroup(jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel18Layout.createSequentialGroup()
-                        .addGap(55, 55, 55)
-                        .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap()
+                        .addComponent(visualizeComboBox5, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel18Layout.createSequentialGroup()
-                        .addGap(15, 15, 15)
-                        .addComponent(visualizeComboBox5, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(60, 60, 60)
+                        .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(15, Short.MAX_VALUE))
         );
         jPanel18Layout.setVerticalGroup(
             jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel18Layout.createSequentialGroup()
-                .addContainerGap()
                 .addComponent(visualizeComboBox5, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addContainerGap(17, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
@@ -1535,10 +1588,10 @@ PreparedStatement pstm=null;
                         .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(noOfCases, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel21))
-                        .addContainerGap(33, Short.MAX_VALUE))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel10Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jPanel18, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jPanel18, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap())))
         );
 
@@ -1547,7 +1600,7 @@ PreparedStatement pstm=null;
         jButton3.setBackground(new java.awt.Color(255, 255, 255));
         jButton3.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
         jButton3.setText("Browse File");
-        jButton3.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(169, 224, 49), 4), javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2)));
+        jButton3.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
@@ -1557,7 +1610,7 @@ PreparedStatement pstm=null;
         jButton12.setBackground(new java.awt.Color(255, 255, 255));
         jButton12.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
         jButton12.setText("Generate Report");
-        jButton12.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(169, 224, 49), 4), javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2)));
+        jButton12.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jButton12.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton12ActionPerformed(evt);
@@ -1569,15 +1622,14 @@ PreparedStatement pstm=null;
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 726, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 726, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jScrollPane3)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(39, 39, 39)
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 591, Short.MAX_VALUE)
+                        .addGap(63, 63, 63)))
+                .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1592,78 +1644,23 @@ PreparedStatement pstm=null;
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton12, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(19, 19, 19)
                 .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 351, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(20, Short.MAX_VALUE))
+                .addContainerGap(17, Short.MAX_VALUE))
         );
 
-        header.setBackground(new java.awt.Color(0, 0, 0));
-        header.setForeground(new java.awt.Color(169, 224, 49));
-        header.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        getContentPane().add(jPanel1);
+        jPanel1.setBounds(0, 65, 749, 490);
 
-        jButton10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icons8_Cancel_32px.png"))); // NOI18N
-        jButton10.setToolTipText("Close");
-        jButton10.setBorderPainted(false);
-        jButton10.setContentAreaFilled(false);
-        jButton10.setRequestFocusEnabled(false);
-        jButton10.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icons8_Cancel_30px_3.png"))); // NOI18N
-        jButton10.setVerifyInputWhenFocusTarget(false);
-        jButton10.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton10ActionPerformed(evt);
-            }
-        });
-        header.add(jButton10, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 0, 40, 40));
-
-        jButton11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icons8_Minus_32px_1.png"))); // NOI18N
-        jButton11.setToolTipText("Minimize");
-        jButton11.setBorderPainted(false);
-        jButton11.setContentAreaFilled(false);
-        jButton11.setRequestFocusEnabled(false);
-        jButton11.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icons8_Minus_30px_3.png"))); // NOI18N
-        jButton11.setVerifyInputWhenFocusTarget(false);
-        jButton11.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton11MouseClicked(evt);
-            }
-        });
-        jButton11.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton11ActionPerformed(evt);
-            }
-        });
-        header.add(jButton11, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 0, 40, 40));
-
-        jLabel1.setFont(new java.awt.Font("Trebuchet MS", 1, 24)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(169, 224, 49));
-        jLabel1.setText(" SCMV");
-        header.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 310, 40));
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(header, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 745, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addComponent(header, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
-
-        setSize(new java.awt.Dimension(750, 529));
+        setSize(new java.awt.Dimension(749, 557));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -1671,25 +1668,7 @@ PreparedStatement pstm=null;
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
                                                                                  
         if(fileNametxt.getText().isEmpty()){
-                //  JOptionPane.showMessageDialog(null,"First Browse a File!");
-                 ImageIcon icon = new ImageIcon("src/images/close.png");
-        JPanel panel = new JPanel();
-        Border blackline = BorderFactory.createLineBorder(Color.black);
-        panel.setBorder(blackline);
-        panel.setBackground(new Color(169,224,49));
-        panel.setSize(new Dimension(200, 64));
-        panel.setLayout(null);
-
-        JLabel label = new JLabel("Browse a File First! ");
-        label.setBounds(0, 0, 200, 64);
-        label.setFont(new Font("Arial", Font.BOLD, 12));
-        label.setHorizontalAlignment(SwingConstants.CENTER);
-        panel.add(label);
-
-        UIManager.put("OptionPane.minimumSize",new Dimension(300, 120)); 
-        UIManager.put("RootPane.DialogBorder", new LineBorder(Color.black));
-        JOptionPane.showMessageDialog(null, panel, " Alert !", JOptionPane.PLAIN_MESSAGE, icon);
-              
+             AlertMessage("Browse a File First!!!","src/images/close.png"," Alert!!!");              
         }else{
                     listOfPhyLines.clear();
                     listOfBraceLines.clear();
@@ -1764,6 +1743,7 @@ PreparedStatement pstm=null;
             int pc=0;
             int child=0;
             
+            // Callig for to calculate no of variables
             readFileLineByLineForDTV();
             
             ifno= calculateIF();
@@ -2026,7 +2006,7 @@ PreparedStatement pstm=null;
            refactoringSuggestion.setText("Class is Fine!");
            }
            else
-           {  cc="low";
+           {  cc="Low";
            refactoringSuggestion.setText("Adjustable Class!");
            }
            
@@ -2049,15 +2029,7 @@ PreparedStatement pstm=null;
             logicalLinestxt.setText(Integer.toString(lloc));//l
             openBracestxt.setText(Integer.toString(openbrace));
             closeBracestxt.setText(Integer.toString(closebrace));
-            // DATA TYPES INFO
-            noOfINT.setText(Integer.toString(i_no));
-            noOfShortINT.setText(Integer.toString(si_no));
-            noOfLongINT.setText(Integer.toString(li_no));            
-            noOfSTRING.setText(Integer.toString(s_no));
-            noOfDOUBLE.setText(Integer.toString(d_no));
-            noOfFLOAT.setText(Integer.toString(f_no));
-            noOfBOOL.setText(Integer.toString(b_no));
-            noOfCHAR.setText(Integer.toString(c_no));            
+                       
             // Class_INFO
             classNametxt.setText(classname);
             classStatustxt.setText(s1);
@@ -2077,7 +2049,32 @@ PreparedStatement pstm=null;
             noOfCases.setText(Integer.toString(caseno));
             noOfCatchBlocks.setText(Integer.toString(catchno));
             noOfFinallyBlocks.setText(Integer.toString(finallyno));
-             //     Varaibles Created
+              if(i_no==0)
+                 INT_Count=0;    
+             if(si_no==0)
+                 SHORT_INT_Count=0;
+             if(li_no==0)
+                 LONG_INT_Count=0;
+             if(s_no==0)
+                 STRING_Count=0;
+             if(d_no==0)
+                 DOUBLE_Count=0;
+             if(f_no==0)
+                 FLOAT_Count=0;
+             if(b_no==0)
+                 BOOL_Count=0;
+             if(c_no==0)
+                 CHAR_Count=0;
+            // DATA TYPES INFO
+            noOfINT.setText(Integer.toString(i_no));
+            noOfShortINT.setText(Integer.toString(si_no));
+            noOfLongINT.setText(Integer.toString(li_no));            
+            noOfSTRING.setText(Integer.toString(s_no));
+            noOfDOUBLE.setText(Integer.toString(d_no));
+            noOfFLOAT.setText(Integer.toString(f_no));
+            noOfBOOL.setText(Integer.toString(b_no));
+            noOfCHAR.setText(Integer.toString(c_no)); 
+            //     Varaibles Created          
             noOfINTV.setText(Integer.toString(INT_Count));
             noOfShortINTV.setText(Integer.toString(SHORT_INT_Count));
             noOfLongINTV.setText(Integer.toString(LONG_INT_Count));
@@ -2086,14 +2083,15 @@ PreparedStatement pstm=null;
             noOfFLOATV.setText(Integer.toString(FLOAT_Count));
             noOfBOOLV.setText(Integer.toString(BOOL_Count));
             noOfCHARV.setText(Integer.toString(CHAR_Count));     
-                     
+                  
+            insertInClassInfotbl(classname,s1,cc,refactoringSuggestion.getText().toString(),pc,child);
             insertInLOCtbl(loc,elineno,commentno,ploc,lloc,openbrace,closebrace);
             insertInDATATYPEtbl(i_no,si_no,li_no,s_no,d_no,f_no,b_no,c_no);
             insertInLOOPtbl(frno,dono,whlno);
             insertInCoditionalStatetbl(ifno,elseno,elseifno,swhno,caseno,tryno,catchno,finallyno);
             insertInVariablestbl(INT_Count,SHORT_INT_Count,LONG_INT_Count,STRING_Count,DOUBLE_Count,FLOAT_Count,BOOL_Count,CHAR_Count);
            
-       } catch (Exception e) {
+       } catch (IOException e) {
            System.out.print(e);
        }         
         }catch (FileNotFoundException ex){
@@ -2103,19 +2101,6 @@ PreparedStatement pstm=null;
             }
         }                                
     }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
-     this.dispose();
-        new GoodBye().setVisible(true);
-    }//GEN-LAST:event_jButton10ActionPerformed
-
-    private void jButton11MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton11MouseClicked
-        this.setState(ICONIFIED);
-    }//GEN-LAST:event_jButton11MouseClicked
-
-    private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
-
-    }//GEN-LAST:event_jButton11ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
        this.dispose();
@@ -2249,71 +2234,14 @@ PreparedStatement pstm=null;
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         if(fileNametxt.getText().isEmpty())   {
-         //   JOptionPane.showMessageDialog(null,"First Browse a File!");
-          ImageIcon icon = new ImageIcon("src/images/close.png");
-
-        JPanel panel = new JPanel();
-       Border blackline = BorderFactory.createLineBorder(Color.black);
-       panel.setBorder(blackline);
-        panel.setBackground(new Color(169,224,49));
-        panel.setSize(new Dimension(200, 64));
-        panel.setLayout(null);
-
-        JLabel label = new JLabel("Browse a File First! ");
-        label.setBounds(0, 0, 200, 64);
-        label.setFont(new Font("Arial", Font.BOLD, 12));
-        label.setHorizontalAlignment(SwingConstants.CENTER);
-        panel.add(label);
-
-        UIManager.put("OptionPane.minimumSize",new Dimension(300, 120)); 
-        UIManager.put("RootPane.DialogBorder", new LineBorder(Color.black));
-        JOptionPane.showMessageDialog(null, panel, " Alert !", JOptionPane.PLAIN_MESSAGE, icon);
-               
+            AlertMessage("Browse a File First!!!","src/images/close.png"," Alert!!!");                  
         }
         else if(!countClicked)   {
-          //  JOptionPane.showMessageDialog(null,"First Count Metrics!");
-           ImageIcon icon = new ImageIcon("src/images/close.png");
-
-        JPanel panel = new JPanel();
-       Border blackline = BorderFactory.createLineBorder(Color.black);
-       panel.setBorder(blackline);
-        panel.setBackground(new Color(169,224,49));
-        panel.setSize(new Dimension(200, 64));
-        panel.setLayout(null);
-
-        JLabel label = new JLabel("First Count Metrics!");
-        label.setBounds(0, 0, 200, 64);
-        label.setFont(new Font("Arial", Font.BOLD, 12));
-        label.setHorizontalAlignment(SwingConstants.CENTER);
-        panel.add(label);
-
-        UIManager.put("OptionPane.minimumSize",new Dimension(300, 120)); 
-        UIManager.put("RootPane.DialogBorder", new LineBorder(Color.black));
-        JOptionPane.showMessageDialog(null, panel, " Alert !", JOptionPane.PLAIN_MESSAGE, icon);
-            
+            AlertMessage("First Count Metrics!!!","src/images/close.png"," Alert!!!");    
         }
         else{
             if(visualizeComboBox.getSelectedItem().equals("...............Select...............")){
-              //  JOptionPane.showMessageDialog(null,"Please select a chart!");
-               ImageIcon icon = new ImageIcon("src/images/close.png");
-
-        JPanel panel = new JPanel();
-       Border blackline = BorderFactory.createLineBorder(Color.black);
-       panel.setBorder(blackline);
-        panel.setBackground(new Color(169,224,49));
-        panel.setSize(new Dimension(200, 64));
-        panel.setLayout(null);
-
-        JLabel label = new JLabel("Please Select a Chart!");
-        label.setBounds(0, 0, 200, 64);
-        label.setFont(new Font("Arial", Font.BOLD, 12));
-        label.setHorizontalAlignment(SwingConstants.CENTER);
-        panel.add(label);
-
-        UIManager.put("OptionPane.minimumSize",new Dimension(300, 120)); 
-        UIManager.put("RootPane.DialogBorder", new LineBorder(Color.black));
-        JOptionPane.showMessageDialog(null, panel, " Alert !", JOptionPane.PLAIN_MESSAGE, icon);
-             
+                   AlertMessage("Please Select a Chart!!!","src/images/close.png"," Alert!!!"); 
               return;
             }           
             JavaFileCharts dt=new JavaFileCharts();
@@ -2367,71 +2295,14 @@ PreparedStatement pstm=null;
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
     if(fileNametxt.getText().isEmpty())   {
-         //   JOptionPane.showMessageDialog(null,"First Browse a File!");
-           ImageIcon icon = new ImageIcon("src/images/close.png");
-
-        JPanel panel = new JPanel();
-       Border blackline = BorderFactory.createLineBorder(Color.black);
-       panel.setBorder(blackline);
-        panel.setBackground(new Color(169,224,49));
-        panel.setSize(new Dimension(200, 64));
-        panel.setLayout(null);
-
-        JLabel label = new JLabel("First Browse a File! ");
-        label.setBounds(0, 0, 200, 64);
-        label.setFont(new Font("Arial", Font.BOLD, 12));
-        label.setHorizontalAlignment(SwingConstants.CENTER);
-        panel.add(label);
-
-        UIManager.put("OptionPane.minimumSize",new Dimension(300, 120)); 
-        UIManager.put("RootPane.DialogBorder", new LineBorder(Color.black));
-        JOptionPane.showMessageDialog(null, panel, " Alert !", JOptionPane.PLAIN_MESSAGE, icon);
-                
+                           AlertMessage("First Browse a File!!!","src/images/close.png"," Alert!!!");
     }
         else if(!countClicked)   {
-        //    JOptionPane.showMessageDialog(null,"First Count Metrics!");
-         ImageIcon icon = new ImageIcon("src/images/close.png");
-
-        JPanel panel = new JPanel();
-       Border blackline = BorderFactory.createLineBorder(Color.black);
-       panel.setBorder(blackline);
-        panel.setBackground(new Color(169,224,49));
-        panel.setSize(new Dimension(200, 64));
-        panel.setLayout(null);
-
-        JLabel label = new JLabel("First Count Metrics! ");
-        label.setBounds(0, 0, 200, 64);
-        label.setFont(new Font("Arial", Font.BOLD, 12));
-        label.setHorizontalAlignment(SwingConstants.CENTER);
-        panel.add(label);
-
-        UIManager.put("OptionPane.minimumSize",new Dimension(300, 120)); 
-        UIManager.put("RootPane.DialogBorder", new LineBorder(Color.black));
-        JOptionPane.showMessageDialog(null, panel, " Alert !", JOptionPane.PLAIN_MESSAGE, icon);
-            
+                           AlertMessage("First Count Metrics!!!","src/images/close.png"," Alert!!!"); 
         }
         else{
             if(visualizeComboBox1.getSelectedItem().equals("...............Select...............")){
-               // JOptionPane.showMessageDialog(null,"Please select a chart!");
-                ImageIcon icon = new ImageIcon("src/images/close.png");
-
-        JPanel panel = new JPanel();
-       Border blackline = BorderFactory.createLineBorder(Color.black);
-       panel.setBorder(blackline);
-        panel.setBackground(new Color(169,224,49));
-        panel.setSize(new Dimension(200, 64));
-        panel.setLayout(null);
-
-        JLabel label = new JLabel("Please Select a Chart! ");
-        label.setBounds(0, 0, 200, 64);
-        label.setFont(new Font("Arial", Font.BOLD, 12));
-        label.setHorizontalAlignment(SwingConstants.CENTER);
-        panel.add(label);
-
-        UIManager.put("OptionPane.minimumSize",new Dimension(300, 120)); 
-        UIManager.put("RootPane.DialogBorder", new LineBorder(Color.black));
-        JOptionPane.showMessageDialog(null, panel, " Alert !", JOptionPane.PLAIN_MESSAGE, icon);
-             
+                 AlertMessage("Please Select a Chart!!!","src/images/close.png"," Alert!!!"); 
                return;
             }           
             JavaFileCharts dt=new JavaFileCharts();
@@ -2528,71 +2399,14 @@ PreparedStatement pstm=null;
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
          if(fileNametxt.getText().isEmpty())   {
-          //  JOptionPane.showMessageDialog(null,"First Browse a File!");
-         ImageIcon icon = new ImageIcon("src/images/close.png");
-
-        JPanel panel = new JPanel();
-       Border blackline = BorderFactory.createLineBorder(Color.black);
-       panel.setBorder(blackline);
-        panel.setBackground(new Color(169,224,49));
-        panel.setSize(new Dimension(200, 64));
-        panel.setLayout(null);
-
-        JLabel label = new JLabel("Browse a File First! ");
-        label.setBounds(0, 0, 200, 64);
-        label.setFont(new Font("Arial", Font.BOLD, 12));
-        label.setHorizontalAlignment(SwingConstants.CENTER);
-        panel.add(label);
-
-        UIManager.put("OptionPane.minimumSize",new Dimension(300, 120)); 
-        UIManager.put("RootPane.DialogBorder", new LineBorder(Color.black));
-        JOptionPane.showMessageDialog(null, panel, " Alert !", JOptionPane.PLAIN_MESSAGE, icon);
-            
+               AlertMessage("Browse a File First!!!","src/images/close.png"," Alert!!!");             
          }
         else if(!countClicked)   {
-        //    JOptionPane.showMessageDialog(null,"First Count Metrics!");
-         ImageIcon icon = new ImageIcon("src/images/close.png");
-
-        JPanel panel = new JPanel();
-       Border blackline = BorderFactory.createLineBorder(Color.black);
-       panel.setBorder(blackline);
-        panel.setBackground(new Color(169,224,49));
-        panel.setSize(new Dimension(200, 64));
-        panel.setLayout(null);
-
-        JLabel label = new JLabel("Please Count Metrics! ");
-        label.setBounds(0, 0, 200, 64);
-        label.setFont(new Font("Arial", Font.BOLD, 12));
-        label.setHorizontalAlignment(SwingConstants.CENTER);
-        panel.add(label);
-
-        UIManager.put("OptionPane.minimumSize",new Dimension(300, 120)); 
-        UIManager.put("RootPane.DialogBorder", new LineBorder(Color.black));
-        JOptionPane.showMessageDialog(null, panel, " Alert !", JOptionPane.PLAIN_MESSAGE, icon);
-            
+              AlertMessage("Please Count Metrics!!!","src/images/close.png"," Alert!!!"); 
         }
         else{
             if(visualizeComboBox4.getSelectedItem().equals("...............Select...............")){
-               // JOptionPane.showMessageDialog(null,"Please select a chart!");
-                ImageIcon icon = new ImageIcon("src/images/close.png");
-
-        JPanel panel = new JPanel();
-       Border blackline = BorderFactory.createLineBorder(Color.black);
-       panel.setBorder(blackline);
-        panel.setBackground(new Color(169,224,49));
-        panel.setSize(new Dimension(200, 64));
-        panel.setLayout(null);
-
-        JLabel label = new JLabel("Please Select a Chart! ");
-        label.setBounds(0, 0, 200, 64);
-        label.setFont(new Font("Arial", Font.BOLD, 12));
-        label.setHorizontalAlignment(SwingConstants.CENTER);
-        panel.add(label);
-
-        UIManager.put("OptionPane.minimumSize",new Dimension(300, 120)); 
-        UIManager.put("RootPane.DialogBorder", new LineBorder(Color.black));
-        JOptionPane.showMessageDialog(null, panel, " Alert !", JOptionPane.PLAIN_MESSAGE, icon);
-             
+                  AlertMessage("Please Select a Chart!!!","src/images/close.png"," Alert!!!"); 
                return;
             }           
             JavaFileCharts dt=new JavaFileCharts();
@@ -2645,72 +2459,15 @@ PreparedStatement pstm=null;
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
        if(fileNametxt.getText().isEmpty())   {
-          //  JOptionPane.showMessageDialog(null,"First Browse a File!");
-           ImageIcon icon = new ImageIcon("src/images/close.png");
-
-        JPanel panel = new JPanel();
-       Border blackline = BorderFactory.createLineBorder(Color.black);
-       panel.setBorder(blackline);
-        panel.setBackground(new Color(169,224,49));
-        panel.setSize(new Dimension(200, 64));
-        panel.setLayout(null);
-
-        JLabel label = new JLabel("First Browse a File! ");
-        label.setBounds(0, 0, 200, 64);
-        label.setFont(new Font("Arial", Font.BOLD, 12));
-        label.setHorizontalAlignment(SwingConstants.CENTER);
-        panel.add(label);
-
-        UIManager.put("OptionPane.minimumSize",new Dimension(300, 120)); 
-        UIManager.put("RootPane.DialogBorder", new LineBorder(Color.black));
-        JOptionPane.showMessageDialog(null, panel, " Alert !", JOptionPane.PLAIN_MESSAGE, icon);
-            
+            AlertMessage("First Browse a File!!!","src/images/close.png"," Alert!!!");          
         }
         else if(!countClicked)   {
-           // JOptionPane.showMessageDialog(null,"First Count Metrics!");
-            ImageIcon icon = new ImageIcon("src/images/close.png");
-
-        JPanel panel = new JPanel();
-       Border blackline = BorderFactory.createLineBorder(Color.black);
-       panel.setBorder(blackline);
-        panel.setBackground(new Color(169,224,49));
-        panel.setSize(new Dimension(200, 64));
-        panel.setLayout(null);
-
-        JLabel label = new JLabel("Please Count Metrics! ");
-        label.setBounds(0, 0, 200, 64);
-        label.setFont(new Font("Arial", Font.BOLD, 12));
-        label.setHorizontalAlignment(SwingConstants.CENTER);
-        panel.add(label);
-
-        UIManager.put("OptionPane.minimumSize",new Dimension(300, 120)); 
-        UIManager.put("RootPane.DialogBorder", new LineBorder(Color.black));
-        JOptionPane.showMessageDialog(null, panel, " Alert !", JOptionPane.PLAIN_MESSAGE, icon);
-            
+             AlertMessage("Please Count Metrics!!!","src/images/close.png"," Alert!!!");
         }
         else{
             if(visualizeComboBox5.getSelectedItem().equals("...............Select...............")){
-             //   JOptionPane.showMessageDialog(null,"Please select a chart!");
-              ImageIcon icon = new ImageIcon("src/images/close.png");
-
-        JPanel panel = new JPanel();
-       Border blackline = BorderFactory.createLineBorder(Color.black);
-       panel.setBorder(blackline);
-        panel.setBackground(new Color(169,224,49));
-        panel.setSize(new Dimension(200, 64));
-        panel.setLayout(null);
-
-        JLabel label = new JLabel("Please Select a Chart! ");
-        label.setBounds(0, 0, 200, 64);
-        label.setFont(new Font("Arial", Font.BOLD, 12));
-        label.setHorizontalAlignment(SwingConstants.CENTER);
-        panel.add(label);
-
-        UIManager.put("OptionPane.minimumSize",new Dimension(300, 120)); 
-        UIManager.put("RootPane.DialogBorder", new LineBorder(Color.black));
-        JOptionPane.showMessageDialog(null, panel, " Alert !", JOptionPane.PLAIN_MESSAGE, icon);
-             
-             return;
+                 AlertMessage("Please Select a Chart!!!","src/images/close.png"," Alert!!!");
+               return;
             }           
             JavaFileCharts dt=new JavaFileCharts();
             if(visualizeComboBox5.getSelectedItem().equals("2D Bar Chart")){
@@ -2794,71 +2551,14 @@ PreparedStatement pstm=null;
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
          if(fileNametxt.getText().isEmpty())   {
-         //   JOptionPane.showMessageDialog(null,"First Browse a File!");
-           ImageIcon icon = new ImageIcon("src/images/close.png");
-
-        JPanel panel = new JPanel();
-       Border blackline = BorderFactory.createLineBorder(Color.black);
-       panel.setBorder(blackline);
-        panel.setBackground(new Color(169,224,49));
-        panel.setSize(new Dimension(200, 64));
-        panel.setLayout(null);
-
-        JLabel label = new JLabel("First Browse a File! ");
-        label.setBounds(0, 0, 200, 64);
-        label.setFont(new Font("Arial", Font.BOLD, 12));
-        label.setHorizontalAlignment(SwingConstants.CENTER);
-        panel.add(label);
-
-        UIManager.put("OptionPane.minimumSize",new Dimension(300, 120)); 
-        UIManager.put("RootPane.DialogBorder", new LineBorder(Color.black));
-        JOptionPane.showMessageDialog(null, panel, " Alert !", JOptionPane.PLAIN_MESSAGE, icon);
-                
+               AlertMessage("First Browse a File!!!","src/images/close.png"," Alert!!!");
     }
         else if(!countClicked)   {
-        //    JOptionPane.showMessageDialog(null,"First Count Metrics!");
-         ImageIcon icon = new ImageIcon("src/images/close.png");
-
-        JPanel panel = new JPanel();
-       Border blackline = BorderFactory.createLineBorder(Color.black);
-       panel.setBorder(blackline);
-        panel.setBackground(new Color(169,224,49));
-        panel.setSize(new Dimension(200, 64));
-        panel.setLayout(null);
-
-        JLabel label = new JLabel("First Count Metrics! ");
-        label.setBounds(0, 0, 200, 64);
-        label.setFont(new Font("Arial", Font.BOLD, 12));
-        label.setHorizontalAlignment(SwingConstants.CENTER);
-        panel.add(label);
-
-        UIManager.put("OptionPane.minimumSize",new Dimension(300, 120)); 
-        UIManager.put("RootPane.DialogBorder", new LineBorder(Color.black));
-        JOptionPane.showMessageDialog(null, panel, " Alert !", JOptionPane.PLAIN_MESSAGE, icon);
-            
+             AlertMessage("First Count Metrics!!!","src/images/close.png"," Alert!!!");       
         }
         else{
             if(visualizeComboBox2.getSelectedItem().equals("...............Select...............")){
-               // JOptionPane.showMessageDialog(null,"Please select a chart!");
-                ImageIcon icon = new ImageIcon("src/images/close.png");
-
-        JPanel panel = new JPanel();
-       Border blackline = BorderFactory.createLineBorder(Color.black);
-       panel.setBorder(blackline);
-        panel.setBackground(new Color(169,224,49));
-        panel.setSize(new Dimension(200, 64));
-        panel.setLayout(null);
-
-        JLabel label = new JLabel("Please Select a Chart! ");
-        label.setBounds(0, 0, 200, 64);
-        label.setFont(new Font("Arial", Font.BOLD, 12));
-        label.setHorizontalAlignment(SwingConstants.CENTER);
-        panel.add(label);
-
-        UIManager.put("OptionPane.minimumSize",new Dimension(300, 120)); 
-        UIManager.put("RootPane.DialogBorder", new LineBorder(Color.black));
-        JOptionPane.showMessageDialog(null, panel, " Alert !", JOptionPane.PLAIN_MESSAGE, icon);
-             
+                 AlertMessage("Please Select a Chart!!!","src/images/close.png"," Alert!!!");            
                return;
             }           
             JavaFileCharts dt=new JavaFileCharts();
@@ -2910,49 +2610,20 @@ PreparedStatement pstm=null;
     }//GEN-LAST:event_visualizeComboBox2ActionPerformed
 
     private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
- if(fileNametxt.getText().isEmpty())   {
-         //   JOptionPane.showMessageDialog(null,"First Browse a File!");
-          ImageIcon icon = new ImageIcon("src/images/close.png");
 
-        JPanel panel = new JPanel();
-       Border blackline = BorderFactory.createLineBorder(Color.black);
-       panel.setBorder(blackline);
-        panel.setBackground(new Color(169,224,49));
-        panel.setSize(new Dimension(200, 64));
-        panel.setLayout(null);
-
-        JLabel label = new JLabel("Browse a File First! ");
-        label.setBounds(0, 0, 200, 64);
-        label.setFont(new Font("Arial", Font.BOLD, 12));
-        label.setHorizontalAlignment(SwingConstants.CENTER);
-        panel.add(label);
-
-        UIManager.put("OptionPane.minimumSize",new Dimension(300, 120)); 
-        UIManager.put("RootPane.DialogBorder", new LineBorder(Color.black));
-        JOptionPane.showMessageDialog(null, panel, " Alert !", JOptionPane.PLAIN_MESSAGE, icon);
-               
+        // These are created to show that our CBO function is working
+        JavaPackageMetrics jpm1,jpm2,jpm3=new JavaPackageMetrics();
+        BrowseJavaPackage bp1,bp2=new BrowseJavaPackage();
+        SignInUp sp=new SignInUp();
+        ForgetPassword fp=new ForgetPassword();
+        Dashboard bd1,db2=new Dashboard();
+        ChangePassword cp1,cp2=new ChangePassword();
+        
+        if(fileNametxt.getText().isEmpty())   {
+       AlertMessage("Browse a File First!!!","src/images/close.png"," Alert!!!");        
         }
         else if(!countClicked)   {
-          //  JOptionPane.showMessageDialog(null,"First Count Metrics!");
-           ImageIcon icon = new ImageIcon("src/images/close.png");
-
-        JPanel panel = new JPanel();
-       Border blackline = BorderFactory.createLineBorder(Color.black);
-       panel.setBorder(blackline);
-        panel.setBackground(new Color(169,224,49));
-        panel.setSize(new Dimension(200, 64));
-        panel.setLayout(null);
-
-        JLabel label = new JLabel("First Count Metrics!");
-        label.setBounds(0, 0, 200, 64);
-        label.setFont(new Font("Arial", Font.BOLD, 12));
-        label.setHorizontalAlignment(SwingConstants.CENTER);
-        panel.add(label);
-
-        UIManager.put("OptionPane.minimumSize",new Dimension(300, 120)); 
-        UIManager.put("RootPane.DialogBorder", new LineBorder(Color.black));
-        JOptionPane.showMessageDialog(null, panel, " Alert !", JOptionPane.PLAIN_MESSAGE, icon);
-            
+              AlertMessage("First Count Metrics!!!","src/images/close.png"," Alert!!!");
         }
         else{           
             try {
@@ -2967,6 +2638,20 @@ PreparedStatement pstm=null;
         }
  
     }//GEN-LAST:event_jButton12ActionPerformed
+
+    private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
+        GoodBye gb=new GoodBye();
+       gb.setVisible(true);
+         this.dispose();
+    }//GEN-LAST:event_jButton10ActionPerformed
+
+    private void jButton11MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton11MouseClicked
+        this.setState(ICONIFIED);
+    }//GEN-LAST:event_jButton11MouseClicked
+
+    private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
+
+    }//GEN-LAST:event_jButton11ActionPerformed
 
     public void browse_file(){
         fname=null;
@@ -3035,11 +2720,14 @@ PreparedStatement pstm=null;
        try {          
             FileReader fr = new FileReader(fname);
             BufferedReader br=new BufferedReader(fr);
-            String str,completeLine="";
-            boolean flag=false;
+            String completeLine="";
             boolean brace_flag=false;
             int ch;
-            while((ch=br.read())!=-1){
+            
+            //  ASCII Values
+             // 40-> '(' 41-> ')' 10-> new line 9-> tab 59-> ';'
+            
+             while((ch=br.read())!=-1){
                // System.out.println(String.valueOf((char)ch)+" : "+ch);
                 if(ch==40 || brace_flag){
                     if(ch==40){
@@ -3082,21 +2770,22 @@ PreparedStatement pstm=null;
 //        System.out.println("double --> "+DOUBLE_Count);
 //        System.out.println("Float --> "+FLOAT_Count);
     }
+        
     public static void calculateDTVFromPHY(){
         for(String str:listOfPhyLines){
             
             if(str.contains(";"))
             {
-                if(str.contains("String"))
+                if(str.contains("String "))
                 {
                     boolean flag=false;
                     String line="";
-                   //  System.out.println(str);
+                   // System.out.println(str);
                  StringTokenizer tk= new StringTokenizer(str);        
                  while(tk.hasMoreElements())
                  {                                
                    String token=tk.nextToken();
-                   if(token.contains("String")||flag)
+                   if(token.contains("String ")||flag)
                    {
                     line+=token+" ";
                      flag=true;
@@ -3104,7 +2793,7 @@ PreparedStatement pstm=null;
                  }
                  STRING_Lines.add(line);
                 }
-                if(str.contains("double"))
+                if(str.contains("double "))
                 {
                     boolean flag=false;
                     String line="";
@@ -3113,7 +2802,7 @@ PreparedStatement pstm=null;
                  while(tk.hasMoreElements())
                  {                                
                    String token=tk.nextToken();
-                   if(token.contains("double")||flag)
+                   if(token.contains("double ")||flag)
                    {
                     line+=token+" ";
                      flag=true;
@@ -3121,7 +2810,7 @@ PreparedStatement pstm=null;
                  }
                  DOUBLE_Lines.add(line);
                 }
-                if(str.contains("float"))
+                if(str.contains("float "))
                 {
                     boolean flag=false;
                     String line="";
@@ -3130,7 +2819,7 @@ PreparedStatement pstm=null;
                  while(tk.hasMoreElements())
                  {                                
                    String token=tk.nextToken();
-                   if(token.contains("float")||flag)
+                   if(token.contains("float ")||flag)
                    {
                     line+=token+" ";
                      flag=true;
@@ -3138,7 +2827,7 @@ PreparedStatement pstm=null;
                  }
                  FLOAT_Lines.add(line);
                 }
-                if(str.contains("boolean"))
+                if(str.contains("boolean "))
                 {
                     boolean flag=false;
                     String line="";
@@ -3147,7 +2836,7 @@ PreparedStatement pstm=null;
                  while(tk.hasMoreElements())
                  {                                
                    String token=tk.nextToken();
-                   if(token.contains("boolean")||flag)
+                   if(token.contains("boolean ")||flag)
                    {
                     line+=token+" ";
                      flag=true;
@@ -3155,7 +2844,7 @@ PreparedStatement pstm=null;
                  }
                  BOOL_Lines.add(line);
                 }
-                if(str.contains("char"))
+                if(str.contains("char "))
                 {
                     boolean flag=false;
                     String line="";
@@ -3164,7 +2853,7 @@ PreparedStatement pstm=null;
                  while(tk.hasMoreElements())
                  {                                
                    String token=tk.nextToken();
-                   if(token.contains("char")||flag)
+                   if(token.contains("char ")||flag)
                    {
                     line+=token+" ";
                      flag=true;
@@ -3172,11 +2861,13 @@ PreparedStatement pstm=null;
                  }
                  CHAR_Lines.add(line);
                 }
-                if(str.contains("long"))
+                if(str.contains("int ")){                    
+                
+                if(str.contains("long int "))
                 {
                     boolean flag=false;
                     String line="";
-                   //  System.out.println(str);
+               //    System.out.println(str);
                  StringTokenizer tk= new StringTokenizer(str);        
                  while(tk.hasMoreElements())
                  {                                
@@ -3189,10 +2880,11 @@ PreparedStatement pstm=null;
                  }
                  LONG_INT_Lines.add(line);
                 }
-                else if(str.contains("short"))
+                else if(str.contains("short int "))
                 {
                     boolean flag=false;
                     String line="";
+                  //   System.out.println(str);
                     StringTokenizer tk= new StringTokenizer(str);
                     while(tk.hasMoreElements())
                     {
@@ -3200,14 +2892,15 @@ PreparedStatement pstm=null;
                         if(token.contains("short")||flag)
                         {
                             line+=token+" ";
+                           ///  System.out.println("line->"+line);
                             flag=true;
                         }
                     }
                     SHORT_INT_Lines.add(line);
-                }else
-                {
+                }else{
                     boolean flag=false;
                     String line="";
+                   //  System.out.println(str);
                     StringTokenizer tk= new StringTokenizer(str);
                     while(tk.hasMoreElements())
                     {
@@ -3219,11 +2912,14 @@ PreparedStatement pstm=null;
                         }
                     }
                     INT_Lines.add(line);
-                } 
+                }
+                }
             }
        
         } 
+       //  System.out.println("------- lines -----------");
        for(String str:INT_Lines){
+      // System.out.println(str);
         countDTVFromToken(str);
        }
         for(String str:SHORT_INT_Lines){
@@ -3245,6 +2941,7 @@ PreparedStatement pstm=null;
         countDTVFromToken(str);
        }
         for(String str:STRING_Lines){
+           System.out.println(str);
         countDTVFromToken(str);
        }
     }  
@@ -3271,50 +2968,56 @@ PreparedStatement pstm=null;
     }        
     public static void countDTVFromToken(String str){
                
-         if(str.contains("double"))
-        {          
+         if(str.contains("double "))
+        {         
+           // System.out.println(str);
               StringTokenizer tk= new StringTokenizer(str,",");            
-              DOUBLE_Count+=tk.countTokens();       
+              DOUBLE_Count+=tk.countTokens();  
+             ///  System.out.println(tk.countTokens());
         }
-          if(str.contains("float"))
+          if(str.contains("float "))
         {          
               StringTokenizer tk= new StringTokenizer(str,",");            
               FLOAT_Count+=tk.countTokens();       
         }
-           if(str.contains("char"))
+           if(str.contains("char "))
         {          
               StringTokenizer tk= new StringTokenizer(str,",");            
               CHAR_Count+=tk.countTokens();       
         }
-            if(str.contains("boolean"))
+            if(str.contains("boolean "))
         {          
               StringTokenizer tk= new StringTokenizer(str,",");            
               BOOL_Count+=tk.countTokens();       
         }
-             if(str.contains("String"))
+             if(str.contains("String "))
         {          
+             
               StringTokenizer tk= new StringTokenizer(str,",");            
-              STRING_Count+=tk.countTokens();       
+              STRING_Count+=tk.countTokens();  
+            
         }
-              if(str.contains("int"))
+              if(str.contains("int "))
         {        
-            if(str.contains("long"))
-            { 
-              StringTokenizer tk= new StringTokenizer(str,",");            
-              LONG_INT_Count+=tk.countTokens();       
+             StringTokenizer tk= new StringTokenizer(str,",");    
+              while(tk.hasMoreElements()){
+                    String token=tk.nextToken(); 
+                   // System.out.println(token);                
+                
+            if(token.contains("long int "))
+            {                     
+              LONG_INT_Count++;      
              }
-            else if(str.contains("short"))
-            { 
-              StringTokenizer tk= new StringTokenizer(str,",");            
-              SHORT_INT_Count+=tk.countTokens();       
+            else if(token.contains("short int "))
+            {                       
+              SHORT_INT_Count++;       
              }
-            else{
-                StringTokenizer tk= new StringTokenizer(str,",");            
-                INT_Count+=tk.countTokens();    
+            else{          
+                INT_Count++;  
             }
         } 
+        }
     } 
-    
     
     
     // Data Types Calculation
@@ -4250,8 +3953,10 @@ PreparedStatement pstm=null;
             pstm=con.prepareStatement("delete  from looptbl");
             pstm.executeUpdate();
             pstm=con.prepareStatement("delete  from conditionalstatetbl");
-            pstm.executeUpdate();
+            pstm.executeUpdate();            
             pstm=con.prepareStatement("delete  from variablestbl");
+            pstm.executeUpdate();
+            pstm=con.prepareStatement("delete  from classinfotbl");
             pstm.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(BrowseJavaFile.class.getName()).log(Level.SEVERE, null, ex);
@@ -4333,6 +4038,21 @@ PreparedStatement pstm=null;
         pstm.setString(6,String.valueOf(t_try));
         pstm.setString(7,String.valueOf(t_catch));
         pstm.setString(8,String.valueOf(t_finally));
+        pstm.execute();
+    } catch (SQLException ex) {
+        Logger.getLogger(BrowseJavaFile.class.getName()).log(Level.SEVERE, null, ex);
+    }             
+    }  
+    public void insertInClassInfotbl(String cname,String cstatus,String classcc,String classrefsug,int pc,int cc){
+    String query= "INSERT INTO `classinfotbl`(`classname`, `classstatus`, `classcc`, `nopc`, `nocc`, `refsug`) VALUES (?,?,?,?,?,?);";
+    try {
+        pstm=con.prepareStatement(query);
+        pstm.setString(1,String.valueOf(cname));
+        pstm.setString(2,String.valueOf(cstatus));
+        pstm.setString(3,String.valueOf(classcc));
+        pstm.setString(4,String.valueOf(pc));
+        pstm.setString(5,String.valueOf(cc));
+        pstm.setString(6,String.valueOf(classrefsug));
         pstm.execute();
     } catch (SQLException ex) {
         Logger.getLogger(BrowseJavaFile.class.getName()).log(Level.SEVERE, null, ex);

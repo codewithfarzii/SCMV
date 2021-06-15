@@ -1,2 +1,5 @@
-//        System.out.println("Float --> "+FLOAT_Count);
-    }
+    private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
+       GoodBye gb=new GoodBye();
+       gb.setVisible(true);
+         this.dispose();
+    }//GEN-LAST:event_jButton10ActionPerformed

@@ -1,30 +1,43 @@
-               // System.out.println(String.valueOf((char)ch)+" : "+ch);
-                if(ch==40 || brace_flag){
-                    if(ch==40){
-                    listOfPhyLines.add(completeLine);
-                    completeLine="";
-                    }
-                    brace_flag=true;
-                    if(ch==10 || ch==9)
-                        completeLine+=" ";
-                        else
-                    completeLine+=String.valueOf((char)ch);
-                }                
-                else{    
-                    if(ch==10 || ch==9)
-                        completeLine+=" ";
-                    else
-                    completeLine+=String.valueOf((char)ch);
-                if(ch==59){
-                    listOfPhyLines.add(completeLine);
-                    completeLine="";
-                }                
-                }
-                if(ch==41){
-                  brace_flag=false;
-                  listOfBraceLines.add(completeLine);
-                  //System.out.println(completeLine);
-                  completeLine="";
-                }
-               // System.out.println(completeLine+":"+ch);
+    private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
+             if(visualizeComboBox2.getSelectedItem().equals("...............Select...............")){
+               AlertMessage("Please Select a Chart!!!","src/images/close.png"," Alert!!!"); 
+                  return;
+            }            
+            JavaFileCharts dt=new JavaFileCharts();
+            if(visualizeComboBox2.getSelectedItem().equals("2D Bar Chart")){
+                dt.DTV2D_BarChart();
             }
+            if(visualizeComboBox2.getSelectedItem().equals("2D Pie Chart")){
+                dt.DTV2D_PieChart();
+            }
+            if(visualizeComboBox2.getSelectedItem().equals("2D Line Chart")){
+                dt.DTV2D_LineChart();
+            }
+            if(visualizeComboBox2.getSelectedItem().equals("2D Waterfall Chart")){
+                dt.DTV2D_WaterfallChart();
+            }
+            if(visualizeComboBox2.getSelectedItem().equals("2D Dual Chart")){
+                dt.DTV2D_DualChart();
+            }
+            if(visualizeComboBox2.getSelectedItem().equals("2D Area Chart")){
+                dt.DTV2D_AreaChart();
+            }
+            if(visualizeComboBox2.getSelectedItem().equals("2D Stack Area Chart")){
+                dt.DTV2D_StackAreaChart();
+            }
+            if(visualizeComboBox2.getSelectedItem().equals("2D Stack Bar Chart")){
+                dt.DTV2D_StackBarChart();
+            }
+            if(visualizeComboBox2.getSelectedItem().equals("3D Bar Chart")){
+                dt.DTV3D_BarChart();
+            }
+            if(visualizeComboBox2.getSelectedItem().equals("3D Pie Chart")){
+                dt.DTV3D_PieChart();
+            }
+            if(visualizeComboBox2.getSelectedItem().equals("3D Line Chart")){
+                dt.DTV3D_LineChart();
+            }
+            if(visualizeComboBox2.getSelectedItem().equals("3D Stack Bar Chart")){
+                dt.DTV3D_StackBarChart();
+            }        
+    }//GEN-LAST:event_jButton12ActionPerformed

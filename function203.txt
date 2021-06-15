@@ -1,5 +1,5 @@
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new SignInUp().setVisible(true);
+        noOfINTV.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                noOfINTVActionPerformed(evt);
             }
         });

@@ -1,3 +1,5 @@
-    private void noOfDOUBLEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_noOfDOUBLEActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_noOfDOUBLEActionPerformed
+        noOfSwitchStatement.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                noOfSwitchStatementActionPerformed(evt);
+            }
+        });

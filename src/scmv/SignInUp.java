@@ -9,6 +9,9 @@ import ExternalJavaFiles.EmailValidator;
 import ExternalJavaFiles.Database;
 import ExternalJavaFiles.InternetConnectivity;
 import ExternalJavaFiles.JavaMailUtil;
+import MainFiles.BrowseJavaFile;
+import MainFiles.BrowseJavaPackage;
+import MainFiles.JavaPackageMetrics;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -215,6 +218,7 @@ PreparedStatement pstm=null;
         );
 
         loginBack.setBackground(new java.awt.Color(0, 0, 0));
+        loginBack.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 0, 0, 1, new java.awt.Color(51, 255, 0)));
         loginBack.setPreferredSize(new java.awt.Dimension(330, 535));
 
         jLabel_inven.setFont(new java.awt.Font("Trebuchet MS", 0, 30)); // NOI18N
@@ -244,7 +248,7 @@ PreparedStatement pstm=null;
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icons8_User_Shield_100px.png"))); // NOI18N
         jLabel2.setText("Log In");
-        loginPanel.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 30, 360, -1));
+        loginPanel.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 30, 320, -1));
 
         jLabel19.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
         jLabel19.setForeground(new java.awt.Color(169, 224, 49));
@@ -320,7 +324,7 @@ PreparedStatement pstm=null;
         loginPanel.add(luserPass, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 260, 250, 35));
 
         jButton7.setBackground(new java.awt.Color(152, 201, 45));
-        jButton7.setFont(new java.awt.Font("Trebuchet MS", 0, 18)); // NOI18N
+        jButton7.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
         jButton7.setForeground(new java.awt.Color(21, 25, 28));
         jButton7.setText("Sign In");
         jButton7.setBorder(null);
@@ -334,7 +338,7 @@ PreparedStatement pstm=null;
         loginPanel.add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 313, 250, 35));
 
         jButton1.setBackground(new java.awt.Color(169, 224, 49));
-        jButton1.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
+        jButton1.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
         jButton1.setForeground(new java.awt.Color(169, 224, 49));
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icon_signup.png"))); // NOI18N
         jButton1.setText("Create New User?");
@@ -352,7 +356,7 @@ PreparedStatement pstm=null;
         loginPanel.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 370, 200, 47));
 
         jButton2.setBackground(new java.awt.Color(169, 224, 49));
-        jButton2.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
+        jButton2.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
         jButton2.setForeground(new java.awt.Color(169, 224, 49));
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/forgetpass2.png"))); // NOI18N
         jButton2.setText("Forget Password");
@@ -386,17 +390,21 @@ PreparedStatement pstm=null;
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel_inven1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(6, 6, 6)
-                .addComponent(jLabel_inven, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addComponent(loginPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jLabel_inven, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(loginBackLayout.createSequentialGroup()
+                .addComponent(loginPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         signUpBack.setBackground(new java.awt.Color(0, 0, 0));
+        signUpBack.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 0, 1, 0, new java.awt.Color(51, 255, 0)));
         signUpBack.setPreferredSize(new java.awt.Dimension(330, 535));
 
         jLabel_inven2.setFont(new java.awt.Font("Trebuchet MS", 0, 30)); // NOI18N
         jLabel_inven2.setForeground(new java.awt.Color(169, 224, 49));
         jLabel_inven2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel_inven2.setText("Visualizer In JAVA");
+        jLabel_inven2.setText("Visualizer of JAVA");
 
         jLabel_SoftZyd1.setFont(new java.awt.Font("Trebuchet MS", 1, 36)); // NOI18N
         jLabel_SoftZyd1.setForeground(new java.awt.Color(169, 224, 49));
@@ -477,7 +485,7 @@ PreparedStatement pstm=null;
         jLabel13.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icons8_Male_User_100px.png"))); // NOI18N
         jLabel13.setText("Sign Up");
-        signUpPanel.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 30, 320, 80));
+        signUpPanel.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 30, 330, 80));
 
         jLabel18.setFont(new java.awt.Font("Trebuchet MS", 0, 16)); // NOI18N
         jLabel18.setForeground(new java.awt.Color(169, 224, 49));
@@ -512,7 +520,7 @@ PreparedStatement pstm=null;
         signUpPanel.add(jButton14, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 480, 180, -1));
 
         jButton8.setBackground(new java.awt.Color(152, 201, 45));
-        jButton8.setFont(new java.awt.Font("Trebuchet MS", 0, 18)); // NOI18N
+        jButton8.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
         jButton8.setForeground(new java.awt.Color(21, 25, 28));
         jButton8.setText("Sign up");
         jButton8.setBorder(null);
@@ -574,7 +582,6 @@ PreparedStatement pstm=null;
                 .addContainerGap())
             .addGroup(signUpBackLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(signUpBackLayout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
                     .addComponent(signUpPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(0, 0, Short.MAX_VALUE)))
         );
@@ -587,12 +594,11 @@ PreparedStatement pstm=null;
                 .addComponent(jLabel_inven3, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel_inven2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(213, Short.MAX_VALUE))
+                .addContainerGap(229, Short.MAX_VALUE))
             .addGroup(signUpBackLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(signUpBackLayout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
                     .addComponent(signUpPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
+                    .addGap(0, 16, Short.MAX_VALUE)))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -610,13 +616,12 @@ PreparedStatement pstm=null;
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(signUpBack, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(loginBack, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(signUpBack, javax.swing.GroupLayout.DEFAULT_SIZE, 553, Short.MAX_VALUE)
+                    .addComponent(loginBack, javax.swing.GroupLayout.DEFAULT_SIZE, 553, Short.MAX_VALUE)))
         );
 
-        setSize(new java.awt.Dimension(660, 576));
+        setSize(new java.awt.Dimension(660, 599));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -629,8 +634,9 @@ PreparedStatement pstm=null;
     }//GEN-LAST:event_jButton11ActionPerformed
 
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
-      this.dispose();
-        new GoodBye().setVisible(true);
+      GoodBye gb=new GoodBye();
+        gb.setVisible(true);
+         this.dispose();
     }//GEN-LAST:event_jButton10ActionPerformed
 
     private void luserNameMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_luserNameMouseMoved
@@ -638,12 +644,18 @@ PreparedStatement pstm=null;
     }//GEN-LAST:event_luserNameMouseMoved
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-            
-            if(luserName.getText().isEmpty()){
+             // These are created to show that our CBO function is working
+        BrowseJavaFile bf1,bf2=new BrowseJavaFile();
+        JavaPackageMetrics jpm1,jpm2,jpm3=new JavaPackageMetrics();
+        BrowseJavaPackage bp1,bp2=new BrowseJavaPackage();
+        ForgetPassword fp=new ForgetPassword();
+        Dashboard bd1,db2=new Dashboard();
+        ChangePassword cp1,cp2=new ChangePassword();
+            if(luserName.getText().isEmpty()||luserName.getText().matches(" username")){
                 AlertMessage("Please Enter Username!","src/images/close.png"," Alert!!!");   
              return;
             }
-            if(luserPass.getText().isEmpty()){
+            if(luserPass.getText().isEmpty()||luserPass.getText().matches("password")){
                  AlertMessage("Please Enter Password!","src/images/close.png"," Alert!!!");          
                   return;
             }
@@ -667,12 +679,12 @@ PreparedStatement pstm=null;
              pstm.execute();
 
              this.dispose();
-             new Dashboard().setVisible(true);
+             Dashboard db=new Dashboard();
+             db.setVisible(true);
              } 
             else{
                 AlertMessage("Invalid Username or Password!!!","src/images/close.png"," Alert!!!");  
-                luserName.setText(null);
-                luserPass.setText(null);
+               clearFields();
             }
         }catch (Exception ex)
         {
@@ -713,7 +725,7 @@ PreparedStatement pstm=null;
              AlertMessage("No Internet Connection Found!!!","src/images/close.png"," Alert!!!");
             return;
         }
-       if(uName.isEmpty()|| uEmail.isEmpty()||uPass1.isEmpty()||uPass2.isEmpty()){
+       if(uName.isEmpty()||uName.matches(" username") || uEmail.isEmpty()||uEmail.matches(" email") ||uPass1.isEmpty()||uPass1.matches("password") ||uPass2.isEmpty()||uPass2.matches("password")){
            AlertMessage("All Fields Must be Filled!!!","src/images/close.png"," Alert!!!");
       }
       else{
@@ -741,16 +753,17 @@ PreparedStatement pstm=null;
                 rs=pstm.executeQuery();
 
                   if(rs.next()){
-                      AlertMessage("Username is Already Registred!!! Use Another.","src/images/close.png"," Alert!!!");
+                      AlertMessage("Username is Already Registred!!!","src/images/close.png"," Alert!!!");
                          userName.setText(null);
                   }
                   else{
                       
                       String sysOTP=generateOTP();
                       JavaMailUtil.sendOTP(uEmail,sysOTP);
-                      String userCode;
-                      userCode=JOptionPane.showInputDialog(this,"Enter code sent that was sent on email.");
-                      if(userCode.length()>0){
+                      String userCode="";                     
+                      userCode=JOptionPane.showInputDialog("Enter OTP!")+"";
+                     
+                      if(userCode.trim().length()>0){
                           
                           if(sysOTP.matches(userCode)){
                          String sqll;
@@ -763,13 +776,16 @@ PreparedStatement pstm=null;
                           AlertMessage("Account Created Successfully!!!","src/images/check.png"," Congrats!!!");
                           showLoginPanel();  
                             }else{
-                               AlertMessage("Incorrect OTP!!!","src/images/close.png"," Alert!!!");
-                               return;
+                               AlertMessage("Cancelled / Incorrect OTP!!!","src/images/close.png"," Alert!!!");                             
                           }
-                      }
+                      
+                      }else{
+                               AlertMessage("OTP Missing!!!","src/images/close.png"," Alert!!!");                             
+                          }
+                      
                   }
-            }catch(Exception e){
-             JOptionPane.showMessageDialog(null,e);
+            }catch(HeadlessException | SQLException e){
+             JOptionPane.showMessageDialog(null,e.getMessage());
             }
             }
        }else{

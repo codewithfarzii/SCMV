@@ -1,4 +1,3 @@
-    private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {                                          
-      this.dispose();
-        new GoodBye().setVisible(true);
-    }                                         
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                commentedLinestxtActionPerformed(evt);
+            }
