@@ -1,17 +1,12 @@
-    String query= "INSERT INTO `conditionalstatetbl`(`total_if`, `total_else`, `total_else_if`, `total_switch`, `total_case`, `total_try`, `total_catch`, `total_finally`) VALUES (?,?,?,?,?,?,?,?);";
-    String query= " INSERT INTO `variablestbl`(`total_intv`, `total_short_intv`, `total_long_intv`, `total_stringv`, `total_doublev`, `total_floatv`, `total_boolv`, `total_charv`) VALUES (?,?,?,?,?,?,?,?);";
+             String query= "INSERT INTO `looptbl`(`total_for`, `total_while`, `total_do_while`)  VALUES (?,?,?);";
     try {
         pstm=con.prepareStatement(query);
-        pstm.setString(1,String.valueOf(t_int));
-        pstm.setString(2,String.valueOf(t_shortint));
-        pstm.setString(3,String.valueOf(t_longint));
-        pstm.setString(4,String.valueOf(t_string));
-        pstm.setString(5,String.valueOf(t_double));
-        pstm.setString(6,String.valueOf(t_float));
-        pstm.setString(7,String.valueOf(t_bool));
-        pstm.setString(8,String.valueOf(t_char));
+        pstm.setString(1,String.valueOf(t_for));
+        pstm.setString(2,String.valueOf(t_while));
+        pstm.setString(3,String.valueOf(t_do_while));
         pstm.execute();
     } catch (SQLException ex) {
         Logger.getLogger(BrowseJavaFile.class.getName()).log(Level.SEVERE, null, ex);
-    }             
-    }  
+    }
+             
+    }

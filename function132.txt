@@ -1,3 +1,9 @@
+        jLabel32.setFont(new java.awt.Font("Tempus Sans ITC", 1, 14)); // NOI18N
+        jLabel32.setText("No of Parent Class");
+
+        jLabel33.setFont(new java.awt.Font("Tempus Sans ITC", 1, 14)); // NOI18N
+        jLabel33.setText("No of Child Class");
+
         jPanel17.setBackground(new java.awt.Color(255, 255, 255));
         jPanel17.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createEtchedBorder(), javax.swing.BorderFactory.createTitledBorder(null, "Class Complexity Threshold Index", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Times New Roman", 3, 12)))); // NOI18N
 
@@ -863,7 +869,7 @@
         jLabel31.setBackground(new java.awt.Color(153, 153, 153));
         jLabel31.setFont(new java.awt.Font("Tempus Sans ITC", 1, 36)); // NOI18N
         jLabel31.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel31.setText("Cyclometic Complexity Metrics");
+        jLabel31.setText("Cyclomatic Complexity Metrics");
 
         javax.swing.GroupLayout jPanel18Layout = new javax.swing.GroupLayout(jPanel18);
         jPanel18.setLayout(jPanel18Layout);

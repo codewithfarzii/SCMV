@@ -1,5 +1,5 @@
-        noOfDOUBLEV.addActionListener(new java.awt.event.ActionListener() {
+        noOfSTRINGV.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                noOfDOUBLEVActionPerformed(evt);
+                noOfSTRINGVActionPerformed(evt);
             }
         });

@@ -1,3 +1,9 @@
+        jLabel36.setFont(new java.awt.Font("Tempus Sans ITC", 1, 14)); // NOI18N
+        jLabel36.setText("No. of cases");
+
+        jLabel37.setFont(new java.awt.Font("Tempus Sans ITC", 1, 14)); // NOI18N
+        jLabel37.setText("No. of catch Blocks");
+
         jLabel38.setFont(new java.awt.Font("Tempus Sans ITC", 1, 14)); // NOI18N
         jLabel38.setText("No. of finally Blocks");
 

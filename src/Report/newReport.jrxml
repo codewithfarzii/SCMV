@@ -178,7 +178,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="16" isBold="true" isPdfEmbedded="false"/>
 				</textElement>
-				<text><![CDATA[Source Code Metrics Visualization of JAVA]]></text>
+				<text><![CDATA[Source Code Metrics Visualizer of JAVA]]></text>
 			</staticText>
 			<line>
 				<reportElement x="0" y="0" width="1" height="60" uuid="4868f2a7-f666-4290-99f5-9bf43ac6b4a2"/>
@@ -494,7 +494,7 @@
 				<textElement verticalAlignment="Middle">
 					<font size="12" isBold="true"/>
 				</textElement>
-				<text><![CDATA[Source Code Metrics Visualization of JAVA Report]]></text>
+				<text><![CDATA[Source Code Metrics Visualizer of JAVA Report]]></text>
 			</staticText>
 			<image>
 				<reportElement x="233" y="0" width="55" height="46" uuid="ef2e187a-98ac-4020-b0da-3112d9d57042"/>
@@ -1831,7 +1831,7 @@
 				<textElement verticalAlignment="Middle">
 					<font size="12" isBold="true"/>
 				</textElement>
-				<text><![CDATA[Source Code Metrics Visualization of JAVA Report]]></text>
+				<text><![CDATA[Source Code Metrics Visualizer of JAVA Report]]></text>
 			</staticText>
 		</band>
 	</detail>

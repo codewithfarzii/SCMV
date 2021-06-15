@@ -1,3 +1,3 @@
-    private void noOfDOWHILELOOPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_noOfDOWHILELOOPActionPerformed
+    private void visualizeComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_visualizeComboBox1ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_noOfDOWHILELOOPActionPerformed
+    }//GEN-LAST:event_visualizeComboBox1ActionPerformed

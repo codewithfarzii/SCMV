@@ -1,5 +1,5 @@
-        noOfCatchBlocks.addActionListener(new java.awt.event.ActionListener() {
+        noOfCases.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                noOfCatchBlocksActionPerformed(evt);
+                noOfCasesActionPerformed(evt);
             }
         });

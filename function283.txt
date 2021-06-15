@@ -1,3 +1,9 @@
+        jLabel18.setFont(new java.awt.Font("Tempus Sans ITC", 1, 14)); // NOI18N
+        jLabel18.setText("No. of if Statement");
+
+        jLabel19.setFont(new java.awt.Font("Tempus Sans ITC", 1, 14)); // NOI18N
+        jLabel19.setText("No. of switch Statement");
+
         jLabel20.setFont(new java.awt.Font("Tempus Sans ITC", 1, 14)); // NOI18N
         jLabel20.setText("No. of try Blocks");
 

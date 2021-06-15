@@ -1,5 +1,5 @@
-        blankLinestxt.addActionListener(new java.awt.event.ActionListener() {
+        totalLOCtxt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                blankLinestxtActionPerformed(evt);
+                totalLOCtxtActionPerformed(evt);
             }
         });

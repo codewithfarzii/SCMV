@@ -103,6 +103,34 @@ PreparedStatement pstm=null;
                 AlertMessage("Database Not Connected!!!","src/images/close.png"," Alert!!!");            
            }
     }
+      public int calculateLevelOfCC()throws FileNotFoundException{
+           int levelofCurlyBrace=0;
+           int deepLevel=0;
+          try {          
+            FileReader fr = new FileReader(fname);
+            BufferedReader br=new BufferedReader(fr);
+          
+            int ch;
+            while((ch=br.read())!=-1){
+              
+                if(ch==123 ){
+                    levelofCurlyBrace++;
+                    
+                }
+                 if(deepLevel<levelofCurlyBrace){
+                  deepLevel= levelofCurlyBrace;
+               }
+                if(ch==125){
+               levelofCurlyBrace--;
+            }
+            }
+          
+            // System.out.println("level --> "+deepLevel);
+        } catch (IOException ex) {
+            Logger.getLogger(BrowseJavaFile.class.getName()).log(Level.SEVERE, null, ex);
+        }
+            return deepLevel;
+    }
     
     DefaultTableModel model;
     
@@ -1987,26 +2015,26 @@ PreparedStatement pstm=null;
             }
        try {
         String s1;
-           if(loc >=200)
-               s1="Large Class";
-           else if(loc >=100 && loc<200)
-               s1="Average Class";
+           if(loc >200)
+               s1="Large Class!";
+           else if(loc >100 && loc<=200)
+               s1="Average Class!";
            else
-               s1="Small Class";
+               s1="Small Class!";
         String cc;
        // System.out.println("trno --> "+trno);
         if(whlno>0)
             whlno=whlno-dono;
-          int coc=ifno+elseno+elseifno+caseno+swhno+tryno+catchno+trno+dono+whlno+frno;
-           if(coc>50){
-               cc="High";
+          int coc=calculateLevelOfCC();
+           if(coc>=9){
+               cc="High Complexity";
                refactoringSuggestion.setText("Should Derive New Class!");}
-           else if(coc>=20 && coc<50){
-               cc="Medium";
+           else if(coc>=4 && coc<=8){
+               cc="Medium Complexity";
            refactoringSuggestion.setText("Class is Fine!");
            }
            else
-           {  cc="Low";
+           {  cc="Low Complexity";
            refactoringSuggestion.setText("Adjustable Class!");
            }
            

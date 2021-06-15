@@ -1,3 +1,3 @@
-    private void commentedLinestxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_commentedLinestxtActionPerformed
+    private void totalLOCtxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_totalLOCtxtActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_commentedLinestxtActionPerformed
+    }//GEN-LAST:event_totalLOCtxtActionPerformed

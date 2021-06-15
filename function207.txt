@@ -1,5 +1,5 @@
-        noOfLongINTV.addActionListener(new java.awt.event.ActionListener() {
+        noOfShortINTV.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                noOfLongINTVActionPerformed(evt);
+                noOfShortINTVActionPerformed(evt);
             }
         });

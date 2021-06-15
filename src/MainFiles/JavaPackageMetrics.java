@@ -126,6 +126,34 @@ public class JavaPackageMetrics extends javax.swing.JFrame {
         CBO();
         
     }
+     public int calculateLevelOfCC()throws FileNotFoundException{
+           int levelofCurlyBrace=0;
+           int deepLevel=0;
+          try {          
+            FileReader fr = new FileReader(fname);
+            BufferedReader br=new BufferedReader(fr);
+          
+            int ch;
+            while((ch=br.read())!=-1){
+              
+                if(ch==123 ){
+                    levelofCurlyBrace++;
+                    
+                }
+                 if(deepLevel<levelofCurlyBrace){
+                  deepLevel= levelofCurlyBrace;
+               }
+                if(ch==125){
+               levelofCurlyBrace--;
+            }
+            }
+          
+            // System.out.println("level --> "+deepLevel);
+        } catch (IOException ex) {
+            Logger.getLogger(JavaPackageMetrics.class.getName()).log(Level.SEVERE, null, ex);
+        }
+            return deepLevel;
+    }
      public void AlertMessage(String message,String path,String title){
             ImageIcon icon = new ImageIcon(path);
             JPanel panel = new JPanel();
@@ -146,7 +174,7 @@ public class JavaPackageMetrics extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, panel, title, JOptionPane.PLAIN_MESSAGE, icon);
                
     }
-    public void connectWithDB(){
+     public void connectWithDB(){
         try{
            Database db=new Database();
            con=db.openConnection();
@@ -536,22 +564,22 @@ public class JavaPackageMetrics extends javax.swing.JFrame {
        try {
         String s1;
            if(loc >=200)
-               s1="Large Class";
+               s1="Large Class!";
            else if(loc >=100 && loc<200)
-               s1="Average Class";
+               s1="Average Class!";
            else
-               s1="Small Class";
+               s1="Small Class!";
         String cc;
-          int coc=ifno+elseno+elseifno+caseno+swhno+tryno+catchno+trno+dono+whlno+frno;
-           if(coc>50){
-               cc="High";
-               refactoringSuggestion.setText("Derive New Class!");}
-           else if(coc>=20 && coc<50){
-               cc="Medium";
+          int coc=calculateLevelOfCC();
+           if(coc>=9){
+               cc="High Complexity";
+               refactoringSuggestion.setText("Should Derive New Class!");}
+           else if(coc>=4 && coc<=8){
+               cc="Medium Complexity";
            refactoringSuggestion.setText("Class is Fine!");
            }
            else
-           {  cc="low";
+           {  cc="Low Complexity";
            refactoringSuggestion.setText("Adjustable Class!");
            }
            
@@ -2065,7 +2093,7 @@ public class JavaPackageMetrics extends javax.swing.JFrame {
         jLabel31.setBackground(new java.awt.Color(153, 153, 153));
         jLabel31.setFont(new java.awt.Font("Tempus Sans ITC", 1, 36)); // NOI18N
         jLabel31.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel31.setText("Cyclometic Complexity Metrics");
+        jLabel31.setText("Cyclomatic Complexity Metrics");
 
         javax.swing.GroupLayout jPanel18Layout = new javax.swing.GroupLayout(jPanel18);
         jPanel18.setLayout(jPanel18Layout);
@@ -3174,7 +3202,7 @@ public class JavaPackageMetrics extends javax.swing.JFrame {
         ChangePassword cp1,cp2=new ChangePassword();
 // TODO add your handling code here:
          try {
-                String report="D:\\SCMV\\SCMV\\src\\Report\\newReport.jrxml";
+                 String report="D:\\SCMV\\SCMV\\src\\Report\\newReport.jrxml";
                 JasperReport jasp_rep= JasperCompileManager.compileReport(report);
                 JasperPrint jasp_print= JasperFillManager.fillReport(jasp_rep, null, con);
                 JasperViewer.viewReport(jasp_print,false);

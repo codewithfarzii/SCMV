@@ -1,3 +1,6 @@
+        jPanel7.setBackground(new java.awt.Color(153, 153, 153));
+
+        jLabel22.setBackground(new java.awt.Color(153, 153, 153));
         jLabel22.setFont(new java.awt.Font("Tempus Sans ITC", 1, 36)); // NOI18N
         jLabel22.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel22.setText("Class Information");
@@ -732,7 +735,7 @@
         jLabel31.setBackground(new java.awt.Color(153, 153, 153));
         jLabel31.setFont(new java.awt.Font("Tempus Sans ITC", 1, 36)); // NOI18N
         jLabel31.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel31.setText("Cyclometic Complexity Metrics");
+        jLabel31.setText("Cyclomatic Complexity Metrics");
 
         javax.swing.GroupLayout jPanel18Layout = new javax.swing.GroupLayout(jPanel18);
         jPanel18.setLayout(jPanel18Layout);

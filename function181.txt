@@ -1,5 +1,5 @@
-        noOfBOOL.addActionListener(new java.awt.event.ActionListener() {
+        noOfFLOAT.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                noOfBOOLActionPerformed(evt);
+                noOfFLOATActionPerformed(evt);
             }
         });

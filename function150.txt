@@ -1,5 +1,5 @@
-        closeBracestxt.addActionListener(new java.awt.event.ActionListener() {
+        openBracestxt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                closeBracestxtActionPerformed(evt);
+                openBracestxtActionPerformed(evt);
             }
         });

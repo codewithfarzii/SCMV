@@ -1,3 +1,9 @@
+        jLabel21.setFont(new java.awt.Font("Tempus Sans ITC", 1, 14)); // NOI18N
+        jLabel21.setText("No. of else if Statement");
+
+        jLabel35.setFont(new java.awt.Font("Tempus Sans ITC", 1, 14)); // NOI18N
+        jLabel35.setText("No. of else Statement");
+
         jLabel36.setFont(new java.awt.Font("Tempus Sans ITC", 1, 14)); // NOI18N
         jLabel36.setText("No. of cases");
 

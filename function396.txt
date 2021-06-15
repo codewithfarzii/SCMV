@@ -1,4 +1,3 @@
-     public void setClassInfoVis(boolean b){
-        classInfoSelected.setVisible(b);
-        classInfoPanel.setVisible(b);
-    }
+    private void jPanel26MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel26MouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jPanel26MouseExited

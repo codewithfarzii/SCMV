@@ -1,5 +1,6 @@
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
-            }
-        });
+             //  System.out.print(useremail+" <-> "+userpass);
+                JavaMailUtil.sendMail(userName,useremail,userpass);
+                 AlertMessage("Kindly Check your Email!!!");  
+                 BackToSignInUp();
+                 
+             }else

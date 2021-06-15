@@ -1,3 +1,3 @@
-    private void noOfBOOLVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_noOfBOOLVActionPerformed
+    private void noOfDOUBLEVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_noOfDOUBLEVActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_noOfBOOLVActionPerformed
+    }//GEN-LAST:event_noOfDOUBLEVActionPerformed

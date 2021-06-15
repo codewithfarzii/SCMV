@@ -1,4 +1,19 @@
-     public void setlocVis(boolean b){
-        locSelected.setVisible(b);
-       locPanel.setVisible(b);
-    }
+    private void jButton15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton15ActionPerformed
+         // These are created to show that our CBO function is working
+        BrowseJavaFile bf1,bf2=new BrowseJavaFile();
+        BrowseJavaPackage bp1,bp2=new BrowseJavaPackage();
+        SignInUp sp=new SignInUp();
+        ForgetPassword fp=new ForgetPassword();
+        Dashboard bd1,db2=new Dashboard();
+        ChangePassword cp1,cp2=new ChangePassword();
+// TODO add your handling code here:
+         try {
+                String report="D:\\SCMV\\SCMV\\src\\Report\\newReport.jrxml";
+                JasperReport jasp_rep= JasperCompileManager.compileReport(report);
+                JasperPrint jasp_print= JasperFillManager.fillReport(jasp_rep, null, con);
+                JasperViewer.viewReport(jasp_print,false);
+
+            } catch (JRException ex) {
+                Logger.getLogger(BrowseJavaFile.class.getName()).log(Level.SEVERE, null, ex);
+            }
+    }//GEN-LAST:event_jButton15ActionPerformed

@@ -1,3 +1,6 @@
+        jPanel21.setBackground(new java.awt.Color(153, 153, 153));
+
+        jLabel39.setBackground(new java.awt.Color(153, 153, 153));
         jLabel39.setFont(new java.awt.Font("Tempus Sans ITC", 1, 36)); // NOI18N
         jLabel39.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel39.setText("Class Coupling");

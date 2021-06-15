@@ -338,7 +338,7 @@ public class ChangePassword extends javax.swing.JFrame {
                     pstm=con.prepareStatement("UPDATE logintbl SET userPass="+newPass.getText()+" WHERE userName=?");
                     pstm.setString(1,uSName);
                     pstm.executeUpdate();
-                       AlertMessage("New Password Does Not Match!!!","src/images/check.png"," Updated!!!");
+                       AlertMessage("Password Changed Successfully!!!","src/images/check.png"," Updated!!!");
                        backToHome();
                 } catch (SQLException ex) {
                     Logger.getLogger(ChangePassword.class.getName()).log(Level.SEVERE, null, ex);

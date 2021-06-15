@@ -1,3 +1,3 @@
-    private void noOfParentClasstxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_noOfParentClasstxtActionPerformed
+    private void classCCtxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_classCCtxtActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_noOfParentClasstxtActionPerformed
+    }//GEN-LAST:event_classCCtxtActionPerformed

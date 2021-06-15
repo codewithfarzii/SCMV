@@ -1,5 +1,5 @@
-        noOfIFStatement.addActionListener(new java.awt.event.ActionListener() {
+        visualizeComboBox4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                noOfIFStatementActionPerformed(evt);
+                visualizeComboBox4ActionPerformed(evt);
             }
         });

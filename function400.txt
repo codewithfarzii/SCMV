@@ -1,31 +1,4 @@
-    public  int calcComments(List<String> lines){
-		//temporary placeholder for number of comment lines
-            int commentLines = 0;
-		//temporary placeholder for line being checked
-            String line;
-            boolean MULTILINE = false;
-            Iterator itr = lines.iterator();
-		//parse entire file
-            while(itr.hasNext()){
-            line = ((String)itr.next());
-            //remove strings within quotes, do not forget about escape sequences
-            line.replaceAll("\\."," ");
-            line.replaceAll("\\\"[^\\\"]*\\\""," ");
-            //special case of multiline comments
-            if (line.matches(".*[/][*].*") || MULTILINE) {
-                    MULTILINE = true;
-                    commentLines++;
-                    //termination of multi line comments
-                    if (line.matches(".*[*][/].*")){
-                            MULTILINE = false;
-                        }
-                    continue;
-		}
-            //check using regular expression if the line contains any comments 
-            if (line.matches(".*//.*") || line.matches(".*[/][*].*[*][/].*")){
-                    commentLines++;
-                    continue;
-            }
-            }
-		return commentLines;
-	} 
+     public void setCCVis(boolean b){
+        ccSelected.setVisible(b);
+       ccPanel.setVisible(b);
+    }

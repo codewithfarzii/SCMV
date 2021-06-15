@@ -1,6 +1,30 @@
-//        System.out.println("short int --> "+SHORT_INT_Count);
-//        System.out.println("long int --> "+LONG_INT_Count);
-//        System.out.println("bool --> "+BOOL_Count);
-//        System.out.println("double --> "+DOUBLE_Count);
-//        System.out.println("Float --> "+FLOAT_Count);
-    }
+               // System.out.println(String.valueOf((char)ch)+" : "+ch);
+                if(ch==40 || brace_flag){
+                    if(ch==40){
+                    listOfPhyLines.add(completeLine);
+                    completeLine="";
+                    }
+                    brace_flag=true;
+                    if(ch==10 || ch==9)
+                        completeLine+=" ";
+                        else
+                    completeLine+=String.valueOf((char)ch);
+                }                
+                else{    
+                    if(ch==10 || ch==9)
+                        completeLine+=" ";
+                    else
+                    completeLine+=String.valueOf((char)ch);
+                if(ch==59){
+                    listOfPhyLines.add(completeLine);
+                    completeLine="";
+                }                
+                }
+                if(ch==41){
+                  brace_flag=false;
+                  listOfBraceLines.add(completeLine);
+                  //System.out.println(completeLine);
+                  completeLine="";
+                }
+               // System.out.println(completeLine+":"+ch);
+            }

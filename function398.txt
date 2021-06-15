@@ -1,4 +1,4 @@
-     public void setCCVis(boolean b){
-        ccSelected.setVisible(b);
-       ccPanel.setVisible(b);
+     public void setClassInfoVis(boolean b){
+        classInfoSelected.setVisible(b);
+        classInfoPanel.setVisible(b);
     }

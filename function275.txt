@@ -1,5 +1,5 @@
-        noOfElseStatement.addActionListener(new java.awt.event.ActionListener() {
+        noOfElseIfStatement.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                noOfElseStatementActionPerformed(evt);
+                noOfElseIfStatementActionPerformed(evt);
             }
         });

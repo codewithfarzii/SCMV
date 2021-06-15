@@ -1,3 +1,5 @@
-    private void jPanel26MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel26MouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jPanel26MouseClicked
+    private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
+       GoodBye gb=new GoodBye();
+       gb.setVisible(true);
+         this.dispose();
+    }//GEN-LAST:event_jButton10ActionPerformed

@@ -1,5 +1,5 @@
-        noOfFLOATV.addActionListener(new java.awt.event.ActionListener() {
+        noOfDOUBLEV.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                noOfFLOATVActionPerformed(evt);
+                noOfDOUBLEVActionPerformed(evt);
             }
         });

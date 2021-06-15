@@ -1,3 +1,4 @@
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                jPanel12MouseEntered(evt);
-            }
+    private void usernameFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_usernameFocusLost
+        // TODO add your handling code here:
+        foucslost();
+    }//GEN-LAST:event_usernameFocusLost

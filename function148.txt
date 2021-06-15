@@ -1,5 +1,5 @@
-        openBracestxt.addActionListener(new java.awt.event.ActionListener() {
+        logicalLinestxt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                openBracestxtActionPerformed(evt);
+                logicalLinestxtActionPerformed(evt);
             }
         });

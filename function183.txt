@@ -1,5 +1,5 @@
-        noOfCHAR.addActionListener(new java.awt.event.ActionListener() {
+        noOfBOOL.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                noOfCHARActionPerformed(evt);
+                noOfBOOLActionPerformed(evt);
             }
         });

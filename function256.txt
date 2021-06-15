@@ -1,3 +1,9 @@
+        jLabel24.setFont(new java.awt.Font("Tempus Sans ITC", 1, 14)); // NOI18N
+        jLabel24.setText("No. of for Loop");
+
+        jLabel25.setFont(new java.awt.Font("Tempus Sans ITC", 1, 14)); // NOI18N
+        jLabel25.setText("No. of do while Loop");
+
         jLabel29.setFont(new java.awt.Font("Tempus Sans ITC", 1, 14)); // NOI18N
         jLabel29.setText("No. of while Loop");
 

@@ -1,5 +1,5 @@
-        noOfElseIfStatement.addActionListener(new java.awt.event.ActionListener() {
+        noOfTryBlock.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                noOfElseIfStatementActionPerformed(evt);
+                noOfTryBlockActionPerformed(evt);
             }
         });

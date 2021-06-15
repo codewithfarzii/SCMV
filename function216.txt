@@ -1,3 +1,3 @@
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                noOfBOOLVActionPerformed(evt);
+                noOfFLOATVActionPerformed(evt);
             }

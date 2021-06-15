@@ -1,17 +1,52 @@
-    public void insertInLOCtbl(int loc,int bline,int cline,int pline,int lline,int obrace,int cbrace){
-             String query= "INSERT INTO `loctbl`(`loc`, `bLines`, `cLines`, `pLines`, `lLines`, `oBraces`, `cBraces`) VALUES (?,?,?,?,?,?,?);";
-    try {
-        pstm=con.prepareStatement(query);
-        pstm.setString(1,String.valueOf(loc));
-        pstm.setString(2,String.valueOf(bline));
-        pstm.setString(3,String.valueOf(cline));
-        pstm.setString(4,String.valueOf(pline));
-        pstm.setString(5,String.valueOf(lline));
-        pstm.setString(6,String.valueOf(obrace));
-        pstm.setString(7,String.valueOf(cbrace));
-        pstm.execute();
-    } catch (SQLException ex) {
-        Logger.getLogger(BrowseJavaFile.class.getName()).log(Level.SEVERE, null, ex);
-    }
+    public static void countDTVFromToken(String str){
+               
+         if(str.contains("double "))
+        {         
+           // System.out.println(str);
+              StringTokenizer tk= new StringTokenizer(str,",");            
+              DOUBLE_Count+=tk.countTokens();  
+             ///  System.out.println(tk.countTokens());
+        }
+          if(str.contains("float "))
+        {          
+              StringTokenizer tk= new StringTokenizer(str,",");            
+              FLOAT_Count+=tk.countTokens();       
+        }
+           if(str.contains("char "))
+        {          
+              StringTokenizer tk= new StringTokenizer(str,",");            
+              CHAR_Count+=tk.countTokens();       
+        }
+            if(str.contains("boolean "))
+        {          
+              StringTokenizer tk= new StringTokenizer(str,",");            
+              BOOL_Count+=tk.countTokens();       
+        }
+             if(str.contains("String "))
+        {          
              
-    }
+              StringTokenizer tk= new StringTokenizer(str,",");            
+              STRING_Count+=tk.countTokens();  
+            
+        }
+              if(str.contains("int "))
+        {        
+             StringTokenizer tk= new StringTokenizer(str,",");    
+              while(tk.hasMoreElements()){
+                    String token=tk.nextToken(); 
+                   // System.out.println(token);                
+                
+            if(token.contains("long int "))
+            {                     
+              LONG_INT_Count++;      
+             }
+            else if(token.contains("short int "))
+            {                       
+              SHORT_INT_Count++;       
+             }
+            else{          
+                INT_Count++;  
+            }
+        } 
+        }
+    } 
