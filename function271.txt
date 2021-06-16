@@ -1,5 +1,5 @@
-        noOfSwitchStatement.addActionListener(new java.awt.event.ActionListener() {
+        noOfCatchBlocks.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                noOfSwitchStatementActionPerformed(evt);
+                noOfCatchBlocksActionPerformed(evt);
             }
         });

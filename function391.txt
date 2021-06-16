@@ -1,3 +1,5 @@
-    private void visualizeComboBox6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_visualizeComboBox6ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_visualizeComboBox6ActionPerformed
+     public void setCouplingVis(boolean b){
+        couplingSelected.setVisible(b);
+        couplingPanel.setVisible(b);
+        
+    }

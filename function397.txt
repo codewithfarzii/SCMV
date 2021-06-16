@@ -1,19 +1,53 @@
-    private void jButton15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton15ActionPerformed
-         // These are created to show that our CBO function is working
-        BrowseJavaFile bf1,bf2=new BrowseJavaFile();
-        BrowseJavaPackage bp1,bp2=new BrowseJavaPackage();
-        SignInUp sp=new SignInUp();
-        ForgetPassword fp=new ForgetPassword();
-        Dashboard bd1,db2=new Dashboard();
-        ChangePassword cp1,cp2=new ChangePassword();
-// TODO add your handling code here:
-         try {
-                String report="D:\\SCMV\\SCMV\\src\\Report\\newReport.jrxml";
-                JasperReport jasp_rep= JasperCompileManager.compileReport(report);
-                JasperPrint jasp_print= JasperFillManager.fillReport(jasp_rep, null, con);
-                JasperViewer.viewReport(jasp_print,false);
-
-            } catch (JRException ex) {
-                Logger.getLogger(BrowseJavaFile.class.getName()).log(Level.SEVERE, null, ex);
+     public int FLOAT_calculate(String str){
+        
+       int count=0;
+        StringTokenizer tk= new StringTokenizer(str);
+        
+         while(tk.hasMoreElements()){
+            String token=tk.nextToken();       
+            if(token.contains("float")){                
+            StringTokenizer tk2= new StringTokenizer(token,";");            
+            while(tk2.hasMoreElements()){
+            String token2=tk2.nextToken();
+            
+            if(token2.contains("float")){           
+            StringTokenizer tk3= new StringTokenizer(token2,"(");            
+            while(tk3.hasMoreElements()){
+            String token3=tk3.nextToken(); 
+            
+            if(token3.contains("float")){
+            StringTokenizer tk4= new StringTokenizer(token3,"{"); 
+            while(tk4.hasMoreElements()){
+            String token4=tk4.nextToken(); 
+            
+            if(token4.contains("float")){
+            StringTokenizer tk5= new StringTokenizer(token4,"}"); 
+            while(tk5.hasMoreElements()){
+            String token5=tk5.nextToken(); 
+            
+            if(token5.contains("float")){
+            StringTokenizer tk6= new StringTokenizer(token5,","); 
+            while(tk6.hasMoreElements()){
+            String token6=tk6.nextToken(); 
+            
+            if(token6.contains("float")){
+            StringTokenizer tk7= new StringTokenizer(token6,"*"); 
+            while(tk7.hasMoreElements()){
+            String token7=tk7.nextToken(); 
+                if(token7.matches("float"))                  
+                    count++;           
             }
-    }//GEN-LAST:event_jButton15ActionPerformed
+            }            
+            }
+            }
+            } 
+            }
+            }
+            }
+            }
+            }
+            }
+            }
+        }
+          return count;
+   }

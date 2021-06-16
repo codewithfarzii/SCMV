@@ -1,5 +1,5 @@
-        classStatustxt.addActionListener(new java.awt.event.ActionListener() {
+        noOfChildClasstxt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                classStatustxtActionPerformed(evt);
+                noOfChildClasstxtActionPerformed(evt);
             }
         });

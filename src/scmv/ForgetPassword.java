@@ -327,7 +327,7 @@ public class ForgetPassword extends javax.swing.JFrame {
                useremail= rs.getString(3);
                userpass= rs.getString(4);
              //  System.out.print(useremail+" <-> "+userpass);
-                JavaMailUtil.sendMail(userName,useremail,userpass);
+                 JavaMailUtil.sendMail(userName,useremail,userpass);
                  AlertMessage("Kindly Check your Email!!!");  
                  BackToSignInUp();
                  

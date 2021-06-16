@@ -398,7 +398,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="12" isBold="true"/>
 				</textElement>
-				<text><![CDATA[Class Complexity Threshold Index]]></text>
+				<text><![CDATA[Class Complexity Threshold Index (LOC)]]></text>
 			</staticText>
 			<staticText>
 				<reportElement style="table_TD" x="450" y="240" width="125" height="25" uuid="29f149c0-2919-41ba-a707-1994532f457f"/>
@@ -468,7 +468,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="12" isBold="true"/>
 				</textElement>
-				<text><![CDATA[> = 9]]></text>
+				<text><![CDATA[> = 7]]></text>
 			</staticText>
 			<staticText>
 				<reportElement style="table_TD" x="575" y="385" width="125" height="25" uuid="caa40243-c918-43b1-a202-c20b8e72041c"/>
@@ -482,7 +482,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="12" isBold="true"/>
 				</textElement>
-				<text><![CDATA[4 - 8]]></text>
+				<text><![CDATA[4 - 6]]></text>
 			</staticText>
 		</band>
 	</title>

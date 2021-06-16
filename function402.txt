@@ -1,31 +1,61 @@
-    public  int calcComments(List<String> lines){
-		//temporary placeholder for number of comment lines
-            int commentLines = 0;
-		//temporary placeholder for line being checked
-            String line;
-            boolean MULTILINE = false;
-            Iterator itr = lines.iterator();
-		//parse entire file
-            while(itr.hasNext()){
-            line = ((String)itr.next());
-            //remove strings within quotes, do not forget about escape sequences
-            line.replaceAll("\\."," ");
-            line.replaceAll("\\\"[^\\\"]*\\\""," ");
-            //special case of multiline comments
-            if (line.matches(".*[/][*].*") || MULTILINE) {
-                    MULTILINE = true;
-                    commentLines++;
-                    //termination of multi line comments
-                    if (line.matches(".*[*][/].*")){
-                            MULTILINE = false;
-                        }
-                    continue;
-		}
-            //check using regular expression if the line contains any comments 
-            if (line.matches(".*//.*") || line.matches(".*[/][*].*[*][/].*")){
-                    commentLines++;
-                    continue;
+    public int calculateELSEIF() throws FileNotFoundException{            
+        int  else_if_no=0; 
+            FileReader fr = new FileReader(fname);          
+            BufferedReader br=new BufferedReader(fr);
+            String str,completeLine="";
+            Boolean flag=false;
+            try {
+            while((str=br.readLine())!=null){
+            if(str.contains("else") || flag){
+                completeLine+=str;
+                if(str.contains ("{")){
+                                    
+                StringTokenizer tk= new StringTokenizer(completeLine,"}");
+                while(tk.hasMoreElements()){
+                String token=tk.nextToken();       
+                 
+                if(token.contains("else")){
+                StringTokenizer tk2= new StringTokenizer(token,"(");
+                while(tk2.hasMoreElements()){
+                String token2=tk2.nextToken();
+                
+                if(token2.contains("else")){
+                StringTokenizer tk3= new StringTokenizer(token2,"*");
+                while(tk3.hasMoreElements()){
+                String token3=tk3.nextToken();
+                
+                if(token3.contains("else")){
+                StringTokenizer tk4= new StringTokenizer(token3);
+                while(tk4.hasMoreElements()){
+                String token4=tk4.nextToken();
+                if(token4.matches("else"))
+                    if(tk4.nextToken().matches("if")){
+                   else_if_no++;
+                        
+                   break;
+               }
+                }
+                }
+                }
+                }
+                completeLine="";
+                }
+                }
+                }
+                }else
+                    flag=true;
+            }            
+                }
+                       
+            } catch (IOException ex) {
+                Logger.getLogger(BrowseJavaFile.class.getName()).log(Level.SEVERE, null, ex);
             }
+            finally{
+                try {
+                    fr.close();                    
+                } catch (IOException ex) {
+                    Logger.getLogger(BrowseJavaFile.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
-		return commentLines;
-	} 
+            return else_if_no;
+  }

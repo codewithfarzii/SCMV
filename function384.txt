@@ -1,3 +1,3 @@
-    private void noOfBOOLVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_noOfBOOLVActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_noOfBOOLVActionPerformed
+    private void jPanel26MouseClicked(java.awt.event.MouseEvent evt) {
+        
+    }

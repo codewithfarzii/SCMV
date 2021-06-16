@@ -1,5 +1,5 @@
-        noOfShortINTV.addActionListener(new java.awt.event.ActionListener() {
+        noOfBOOLV.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                noOfShortINTVActionPerformed(evt);
+                noOfBOOLVActionPerformed(evt);
             }
         });

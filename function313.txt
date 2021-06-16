@@ -1,3 +1,3 @@
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                visualizeComboBox6ItemStateChanged(evt);
-            }
+    private void jPanel12MouseClicked(java.awt.event.MouseEvent evt) {
+        
+    }

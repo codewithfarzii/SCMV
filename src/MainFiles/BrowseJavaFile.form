@@ -304,7 +304,7 @@
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="100" max="-2" attributes="0"/>
                           <Component id="jPanel16" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace pref="75" max="32767" attributes="0"/>
+                          <EmptySpace pref="66" max="32767" attributes="0"/>
                           <Component id="jPanel17" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="100" max="-2" attributes="0"/>
                       </Group>
@@ -520,17 +520,17 @@
                     </Component>
                     <Component class="javax.swing.JLabel" name="jLabel51">
                       <Properties>
-                        <Property name="text" type="java.lang.String" value="&gt;=9"/>
+                        <Property name="text" type="java.lang.String" value="&gt;= 7"/>
                       </Properties>
                     </Component>
                     <Component class="javax.swing.JLabel" name="jLabel52">
                       <Properties>
-                        <Property name="text" type="java.lang.String" value="4 - 8"/>
+                        <Property name="text" type="java.lang.String" value="4 - 6"/>
                       </Properties>
                     </Component>
                     <Component class="javax.swing.JLabel" name="jLabel53">
                       <Properties>
-                        <Property name="text" type="java.lang.String" value="&lt;=3"/>
+                        <Property name="text" type="java.lang.String" value="&lt;= 3"/>
                       </Properties>
                     </Component>
                   </SubComponents>
@@ -579,7 +579,7 @@
                             <EtchetBorder/>
                           </Border>
                           <Border PropertyName="inside" info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-                            <TitledBorder justification="2" title="Class Complexity Threshold Index">
+                            <TitledBorder justification="2" title="Class Complexity Threshold Index (LOC)">
                               <Font PropertyName="font" name="Times New Roman" size="12" style="3"/>
                             </TitledBorder>
                           </Border>
@@ -587,6 +587,9 @@
                       </Border>
                     </Property>
                   </Properties>
+                  <AccessibilityProperties>
+                    <Property name="AccessibleContext.accessibleName" type="java.lang.String" value="Class Complexity Threshold Index (LOC)"/>
+                  </AccessibilityProperties>
 
                   <Layout>
                     <DimensionLayout dim="0">
@@ -659,17 +662,17 @@
                     </Component>
                     <Component class="javax.swing.JLabel" name="jLabel57">
                       <Properties>
-                        <Property name="text" type="java.lang.String" value="&gt;=201"/>
+                        <Property name="text" type="java.lang.String" value="&gt;= 201"/>
                       </Properties>
                     </Component>
                     <Component class="javax.swing.JLabel" name="jLabel58">
                       <Properties>
-                        <Property name="text" type="java.lang.String" value="101-200"/>
+                        <Property name="text" type="java.lang.String" value="101 - 200"/>
                       </Properties>
                     </Component>
                     <Component class="javax.swing.JLabel" name="jLabel59">
                       <Properties>
-                        <Property name="text" type="java.lang.String" value="&lt;=100"/>
+                        <Property name="text" type="java.lang.String" value="&lt;= 100"/>
                       </Properties>
                     </Component>
                   </SubComponents>

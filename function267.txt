@@ -1,5 +1,5 @@
-        visualizeComboBox4.addActionListener(new java.awt.event.ActionListener() {
+        noOfElseStatement.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                visualizeComboBox4ActionPerformed(evt);
+                noOfElseStatementActionPerformed(evt);
             }
         });

@@ -1,3 +1,4 @@
-    private void visualizeComboBox6ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_visualizeComboBox6ItemStateChanged
-        // TODO add your handling code here:
-    }//GEN-LAST:event_visualizeComboBox6ItemStateChanged
+     public void setCCVis(boolean b){
+        ccSelected.setVisible(b);
+       ccPanel.setVisible(b);
+    }

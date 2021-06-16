@@ -1,3 +1,3 @@
-    private void jPanel13MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel13MouseEntered
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jPanel13MouseEntered
+    private void noOfChildClasstxtActionPerformed(java.awt.event.ActionEvent evt) {
+        
+    }

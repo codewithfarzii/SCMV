@@ -1,5 +1,21 @@
-        jButton11.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton11MouseClicked(evt);
-            }
-        });
+        jLabel4.setFont(new java.awt.Font("Tempus Sans ITC", 1, 14)); 
+        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel4.setText("Source Code Metrics Visualizer of Java (SCMV) c All Rights Reserved");
+        jLabel4.setToolTipText("");
+        jLabel4.setIconTextGap(0);
+        jPanel4.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 620, 40));
+
+        jPanel1.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 420, 620, 40));
+
+        timer.setFont(new java.awt.Font("Tempus Sans ITC", 1, 48)); 
+        timer.setForeground(new java.awt.Color(255, 0, 102));
+        timer.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        timer.setText("10");
+        jPanel1.add(timer, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 350, 60, 40));
+
+        getContentPane().add(jPanel1);
+        jPanel1.setBounds(0, 0, 620, 460);
+
+        setSize(new java.awt.Dimension(620, 460));
+        setLocationRelativeTo(null);
+    }

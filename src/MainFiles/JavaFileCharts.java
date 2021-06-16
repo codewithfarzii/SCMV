@@ -273,7 +273,7 @@ public JavaFileCharts(){
 
                     dfg.setValue(objClassName,noOfObj);
                 }
-        JFreeChart jfc= ChartFactory.createPieChart("2D Pie Char of '"+selectedClassName+"' Coupling with other Classes", dfg, true, true, false);
+        JFreeChart jfc= ChartFactory.createPieChart("2D Pie Chart of '"+selectedClassName+"' Coupling with other Classes", dfg, true, true, false);
         PiePlot plot = (PiePlot)jfc.getPlot();
         PieSectionLabelGenerator gen = new StandardPieSectionLabelGenerator(
                 "{0}: {1} ({2})", new DecimalFormat("0"), new DecimalFormat("0%"));

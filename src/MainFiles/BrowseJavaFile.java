@@ -7,6 +7,7 @@ package MainFiles;
 
 import ExternalJavaFiles.Database;
 import ExternalJavaFiles.JavaMailUtil;
+import com.sun.javafx.collections.MappingChange.Map;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -17,12 +18,14 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
@@ -66,7 +69,9 @@ public class BrowseJavaFile extends javax.swing.JFrame {
 Connection con=null;
 ResultSet rs=null;
 PreparedStatement pstm=null;
-    public static String fname;
+    final String fname="temporary//temp.txt";
+    public static String Originalfname;
+    boolean ClassNameExtracted=false;
     
     public BrowseJavaFile() {
         initComponents();
@@ -102,6 +107,53 @@ PreparedStatement pstm=null;
            }catch(HeadlessException| SQLException e){
                 AlertMessage("Database Not Connected!!!","src/images/close.png"," Alert!!!");            
            }
+    }
+    public  void LOC(){
+         FileReader fr = null;
+          String str = null;
+          int loc=0;
+          int elineno=0;
+        try {
+            fr = new FileReader(Originalfname);
+            BufferedReader reader = new BufferedReader(fr);
+             while ((str = reader.readLine()) != null) {
+                loc++;                           // Lines of Code ++
+                
+                if (str.isEmpty()) {            
+                        elineno++;               // emptyLine ++
+                    }else{
+                boolean flag=true;
+                 for(int a=0;a<str.length();a++){                     
+                 char ch=str.charAt(a);
+                 int c=ch;
+                
+                if(c==9 || c==32 )  
+                     continue;
+                else{
+                 flag=false;
+                 break;                 
+                }
+            }
+                 if(flag)
+                      elineno++; 
+            }
+             }
+             
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(BrowseJavaFile.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(BrowseJavaFile.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                fr.close();
+                 totalLOCtxt.setText(Integer.toString(loc));
+            blankLinestxt.setText(Integer.toString(elineno));
+//                 System.out.println("loc --> "+loc);
+//                 System.out.println("emptyline --> "+elineno);
+            } catch (IOException ex) {
+                Logger.getLogger(BrowseJavaFile.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
     }
       public int calculateLevelOfCC()throws FileNotFoundException{
            int levelofCurlyBrace=0;
@@ -161,6 +213,31 @@ PreparedStatement pstm=null;
         public static List<String> FLOAT_Lines=new ArrayList();
         public static List<String> DOUBLE_Lines=new ArrayList();
         public static List<String> STRING_Lines=new ArrayList();
+        
+      public void calculateCurlyBrace()throws FileNotFoundException{
+         
+         int openBrace=0,closeBrace=0; 
+         try {          
+            FileReader fr = new FileReader(fname);
+            BufferedReader br=new BufferedReader(fr);           
+            int ch;
+            while((ch=br.read())!=-1){              
+                if(ch==123 ){
+                    openBrace++;
+                }                 
+                if(ch==125){
+               closeBrace++;
+            }
+            }
+            openBracestxt.setText(Integer.toString(openBrace));
+            closeBracestxt.setText(Integer.toString(closeBrace));
+            // System.out.println("Open --> "+openBrace);
+           //  System.out.println("close --> "+closeBrace);
+        } catch (IOException ex) {
+            Logger.getLogger(BrowseJavaFile.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+   
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -433,11 +510,11 @@ PreparedStatement pstm=null;
 
         jLabel50.setText("Low");
 
-        jLabel51.setText(">=9");
+        jLabel51.setText(">= 7");
 
-        jLabel52.setText("4 - 8");
+        jLabel52.setText("4 - 6");
 
-        jLabel53.setText("<=3");
+        jLabel53.setText("<= 3");
 
         javax.swing.GroupLayout jPanel16Layout = new javax.swing.GroupLayout(jPanel16);
         jPanel16.setLayout(jPanel16Layout);
@@ -499,7 +576,7 @@ PreparedStatement pstm=null;
         jLabel33.setText("No of Child Class");
 
         jPanel17.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel17.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createEtchedBorder(), javax.swing.BorderFactory.createTitledBorder(null, "Class Complexity Threshold Index", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Times New Roman", 3, 12)))); // NOI18N
+        jPanel17.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createEtchedBorder(), javax.swing.BorderFactory.createTitledBorder(null, "Class Complexity Threshold Index (LOC)", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Times New Roman", 3, 12)))); // NOI18N
 
         jLabel54.setText("Large Class");
 
@@ -507,11 +584,11 @@ PreparedStatement pstm=null;
 
         jLabel56.setText("Small Class");
 
-        jLabel57.setText(">=201");
+        jLabel57.setText(">= 201");
 
-        jLabel58.setText("101-200");
+        jLabel58.setText("101 - 200");
 
-        jLabel59.setText("<=100");
+        jLabel59.setText("<= 100");
 
         javax.swing.GroupLayout jPanel17Layout = new javax.swing.GroupLayout(jPanel17);
         jPanel17.setLayout(jPanel17Layout);
@@ -585,7 +662,7 @@ PreparedStatement pstm=null;
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addGap(100, 100, 100)
                 .addComponent(jPanel16, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 75, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 66, Short.MAX_VALUE)
                 .addComponent(jPanel17, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(100, 100, 100))
         );
@@ -623,6 +700,7 @@ PreparedStatement pstm=null;
         );
 
         jPanel16.getAccessibleContext().setAccessibleName("Class Complexity Threshold Index");
+        jPanel17.getAccessibleContext().setAccessibleName("Class Complexity Threshold Index (LOC)");
 
         jTabbedPane1.addTab("Class Info", jPanel5);
 
@@ -1708,7 +1786,14 @@ PreparedStatement pstm=null;
                     CHAR_Lines.clear();
                     FLOAT_Lines.clear();
                     STRING_Lines.clear();
-            clearDBtbl();           
+                    ClassNameExtracted=false;
+            clearDBtbl();  
+             try {
+                eliminateCommentedLines();
+                //   fname = ""
+            } catch (FileNotFoundException ex) {
+                Logger.getLogger(BrowseJavaFile.class.getName()).log(Level.SEVERE, null, ex);
+            }
             countClicked=true;
             String[] allKeywords = {
             "abstract", "continue", "for", "new", "switch", "assert", "default",
@@ -1773,6 +1858,8 @@ PreparedStatement pstm=null;
             
             // Callig for to calculate no of variables
             readFileLineByLineForDTV();
+            calculateCurlyBrace();
+            LOC();
             
             ifno= calculateIF();
             elseno = calculateELSE();
@@ -1785,27 +1872,9 @@ PreparedStatement pstm=null;
            
              while ((str = reader.readLine()) != null) {
                 reader.mark(100000000);
-                loc++;                           // Lines of Code ++
+                                  
                 lines.add(str);
-                
-                if (str.isEmpty()) {            
-                        elineno++;               // emptyLine ++
-                    }else{
-                boolean flag=true;
-                 for(int a=0;a<str.length();a++){                     
-                 char ch=str.charAt(a);
-                 int c=ch;
-                
-                if(c==9 || c==32 )  
-                     continue;
-                else{
-                 flag=false;
-                 break;                 
-                }
-            }
-                 if(flag)
-                      elineno++; 
-            }
+                                
                 if(str.contains("int")){               
               i_no=i_no+INT_calculate(str);
              // System.out.println("int--> "+i_no);
@@ -1871,32 +1940,15 @@ PreparedStatement pstm=null;
                         }
                     }
                     
-                    if (token.equalsIgnoreCase("class")) {
+                    
+                    if (token.equalsIgnoreCase("class") && !ClassNameExtracted) {
                         
                         int index = str.indexOf("class");
                         index += 6;
                         int lastinx = str.indexOf(" ", index);
-                        classname = str.substring(index, lastinx);
-                        
+                        classname = str.substring(index, lastinx);                        
                         classno++;
-                    }
-                      if (str.contains("class")&&token.contains("public")) {
-                        
-                       // int index = str.indexOf("class");
-                       // index += 6;
-                        //int lastinx = str.indexOf(" ", index);
-                        //classname = str.substring(index, lastinx);
-                        //classno++;
-                        pc++;
-                    }
-                     if (str.contains("extends")&&token.contains("public")) {
-                        
-                        int index = str.indexOf("extends");
-                        index += 8;
-                        int lastinx = str.indexOf(" ", index);
-                       // classname = str.substring(index, lastinx);
-                        //classno++;
-                        child++;
+                        ClassNameExtracted=true;
                     } 
                      if (token.equalsIgnoreCase("?:")
                             ) {
@@ -1929,117 +1981,102 @@ PreparedStatement pstm=null;
                     }
                     if (flag1 && strTokens.hasMoreTokens()) {
                         
-                        try {
-                            StringTokenizer newTokenizer = strTokens;
-                            String newToken = newTokenizer.nextToken();
-                            for (int j = 0; (j < allKeywords.length)
-                                    && !newToken.isEmpty(); j++) {
-                                if (newToken
-                                        .equalsIgnoreCase(allKeywords[j])) {
-                                    flag2 = false;
-                                    break;
-                                }
-                                
+                        StringTokenizer newTokenizer = strTokens;
+                        String newToken = newTokenizer.nextToken();
+                        for (int j = 0; (j < allKeywords.length)
+                                && !newToken.isEmpty(); j++) {
+                            if (newToken
+                                    .equalsIgnoreCase(allKeywords[j])) {
+                                flag2 = false;
+                                break;
                             }
                             
-                            if (newTokenizer.hasMoreTokens()) {
-                                if (flag2 && (newToken.contains("(") || newTokenizer
-                                        .nextToken()
-                                        .startsWith("(") )) {
-                                   // System.out.println("function name is  "+ newToken);
-                                    int gft=1;
-                                   if(str.contains(newToken)&&str.contains(";")){
-                                        gft++;}
-                                    int parameters;
-                                    String newString = str.substring(str.indexOf(newToken));
-                                    if (newString.contains("()") || newString.contains("( )") || newString.contains("(  )")) {
-                                        parameters = 0;
-                                    } else {
-                                        parameters = (newString.split(",")).length;
-                                        
-                                    }
-                                    //System.out.println("no of arguments are ... " + parameters);
-                                    funno++;
-              
-                                    readerInner = reader;
-                                    boolean open = true;
-                                    String funLine;
-                                    int lineOfFunction = 0, openBraceCounter = 1;
-                                    try (FileWriter fw = new FileWriter("function" + funno + ".txt")) {
-                                        fw.write(str + "\r\n");
-                                        while ((funLine = readerInner.readLine()) != null && open) {
-                                            
-                                            int k = 0;
-                                            while (k < funLine.length()) {
-                                                if (funLine.charAt(k) == '{') {
-                                                    openBraceCounter++;
-                                                }
-                                                if (funLine.charAt(k) == '}') {
-                                                    openBraceCounter--;
-                                                }
-                                                if (openBraceCounter < 1) {
-                                                    open = false;
-                                                    break;
-                                                }
-                                                k++;
-                                            }
-                                            fw.write(funLine + "\r\n");
-                                            lineOfFunction++;
-                                            
-                                        }
-                                    }
-                                    }
+                        }
+                        if (newTokenizer.hasMoreTokens()) {
+                            if (flag2 && (newToken.contains("(") || newTokenizer
+                                    .nextToken()
+                                    .startsWith("(") )) {
+                                // System.out.println("function name is  "+ newToken);
+                                int gft=1;
+                                if(str.contains(newToken)&&str.contains(";")){
+                                    gft++;}
+                                int parameters;
+                                String newString = str.substring(str.indexOf(newToken));
+                                if (newString.contains("()") || newString.contains("( )") || newString.contains("(  )")) {
+                                    parameters = 0;
+                                } else {
+                                    parameters = (newString.split(",")).length;
+                                    
+                                }
+                                //System.out.println("no of arguments are ... " + parameters);
+                                funno++;
+                                
+                                readerInner = reader;
+                                boolean open = true;
+                                String funLine;
+                                int lineOfFunction = 0, openBraceCounter = 1;
+//                                    try (FileWriter fw = new FileWriter("function" + funno + ".txt")) {
+//                                        fw.write(str + "\r\n");
+//                                        while ((funLine = readerInner.readLine()) != null && open) {
+//                                            
+//                                            int k = 0;
+//                                            while (k < funLine.length()) {
+//                                                if (funLine.charAt(k) == '{') {
+//                                                    openBraceCounter++;
+//                                                }
+//                                                if (funLine.charAt(k) == '}') {
+//                                                    openBraceCounter--;
+//                                                }
+//                                                if (openBraceCounter < 1) {
+//                                                    open = false;
+//                                                    break;
+//                                                }
+//                                                k++;
+//                                            }
+//                                            fw.write(funLine + "\r\n");
+//                                            lineOfFunction++;
+//                                            
+//                                        }
+//                                    }
                             }
-                        } catch (IOException e) {
-                            e.printStackTrace();
                         }
                     }
-                    if(token.isEmpty()){
-                 elineno= elineno+1;
-              }
-                for( int i=0; i<token.length(); i++ ) {
-                if( token.charAt(i) == '{' ) {
-                    openbrace=openbrace+1; 
-
-                } 
-                  else  if(token.charAt(i)=='}'){
-                              closebrace=closebrace+1;
-                        }
-               
-             
-              }
+                    
+                
                 }// end of inner while(tokens)
-                // System.out.println(str);
-                openbrace=closebrace;
+                // System.out.println(str);               
                 reader.reset();
             }
        try {
         String s1;
-           if(loc >200)
+        loc=Integer.parseInt(totalLOCtxt.getText());
+           if(loc >200){
                s1="Large Class!";
-           else if(loc >100 && loc<=200)
+               refactoringSuggestion.setText("Team Should Extract New Class!");
+           }else if(loc >100 && loc<=200){
                s1="Average Class!";
-           else
+               refactoringSuggestion.setText("Class is Fine!");
+           }else{
                s1="Small Class!";
+               refactoringSuggestion.setText("Class is Perfect!");
+           }
         String cc;
        // System.out.println("trno --> "+trno);
         if(whlno>0)
             whlno=whlno-dono;
           int coc=calculateLevelOfCC();
-           if(coc>=9){
+           if(coc>=7){
                cc="High Complexity";
-               refactoringSuggestion.setText("Should Derive New Class!");}
-           else if(coc>=4 && coc<=8){
-               cc="Medium Complexity";
-           refactoringSuggestion.setText("Class is Fine!");
+               }
+           else if(coc>=4 && coc<=6){
+               cc="Medium Complexity";          
            }
            else
-           {  cc="Low Complexity";
-           refactoringSuggestion.setText("Adjustable Class!");
+           {  cc="Low Complexity";           
            }
            
-           commentno= calcComments(lines);
-           int ploc=loc-(commentno+elineno);
+           commentno= calcComments();
+           int ploc=Integer.parseInt(totalLOCtxt.getText())-(commentno+Integer.parseInt(blankLinestxt.getText()));
            //tryno=catchno;
             str = reader.readLine();
             Scanner scan = new Scanner(fr);
@@ -2048,15 +2085,15 @@ PreparedStatement pstm=null;
             i_no= i_no-si_no;
              if(i_no>0)
             i_no= i_no-li_no;
+             
+           pc=countParentsChild(classname);
+           child= countChild(classname);
             
-           // LOC INFO
-            totalLOCtxt.setText(Integer.toString(loc));
-            blankLinestxt.setText(Integer.toString(elineno));
+           // LOC INFO           
             commentedLinestxt.setText(Integer.toString(commentno));
             physicalLinestxt.setText(Integer.toString(ploc));//p
             logicalLinestxt.setText(Integer.toString(lloc));//l
-            openBracestxt.setText(Integer.toString(openbrace));
-            closeBracestxt.setText(Integer.toString(closebrace));
+            
                        
             // Class_INFO
             classNametxt.setText(classname);
@@ -2111,9 +2148,9 @@ PreparedStatement pstm=null;
             noOfFLOATV.setText(Integer.toString(FLOAT_Count));
             noOfBOOLV.setText(Integer.toString(BOOL_Count));
             noOfCHARV.setText(Integer.toString(CHAR_Count));     
-                  
+                   
             insertInClassInfotbl(classname,s1,cc,refactoringSuggestion.getText().toString(),pc,child);
-            insertInLOCtbl(loc,elineno,commentno,ploc,lloc,openbrace,closebrace);
+            insertInLOCtbl(Integer.parseInt(totalLOCtxt.getText()),Integer.parseInt(blankLinestxt.getText()),commentno,ploc,lloc,Integer.parseInt(openBracestxt.getText()),Integer.parseInt(closeBracestxt.getText()));
             insertInDATATYPEtbl(i_no,si_no,li_no,s_no,d_no,f_no,b_no,c_no);
             insertInLOOPtbl(frno,dono,whlno);
             insertInCoditionalStatetbl(ifno,elseno,elseifno,swhno,caseno,tryno,catchno,finallyno);
@@ -2659,6 +2696,7 @@ PreparedStatement pstm=null;
                 JasperReport jasp_rep= JasperCompileManager.compileReport(report);
                 JasperPrint jasp_print= JasperFillManager.fillReport(jasp_rep, null, con);
                 JasperViewer.viewReport(jasp_print,false);
+           
 
             } catch (JRException ex) {
                 Logger.getLogger(BrowseJavaFile.class.getName()).log(Level.SEVERE, null, ex);
@@ -2681,17 +2719,38 @@ PreparedStatement pstm=null;
 
     }//GEN-LAST:event_jButton11ActionPerformed
 
-    public void browse_file(){
-        fname=null;
+    public void browse_file(){  
+        Originalfname=null;
         JFileChooser  chooser = new JFileChooser();    
         chooser.addChoosableFileFilter(new FileNameExtensionFilter("Java files", "java"));
         chooser.setAcceptAllFileFilterUsed(false);
         int result = chooser.showOpenDialog(this);
         if (result == JFileChooser.APPROVE_OPTION) {
-           File f = chooser.getSelectedFile();
-        fname = f.getAbsolutePath();
-        fileNametxt.setText(fname);
+           File f = chooser.getSelectedFile();       
+        Originalfname=f.getAbsolutePath();        
+        fileNametxt.setText(Originalfname);
+           
         }
+    }
+    public int calcComments(){
+         FileReader fr = null;
+        String str = null;
+        int count=0;
+         List<String> lines =  new LinkedList<String>() {};
+    try {       
+        fr = new FileReader(Originalfname);
+        BufferedReader reader = new BufferedReader(fr);
+        while ((str = reader.readLine()) != null) {
+            lines.add(str);
+        }
+          count=calcComments(lines);
+       
+    } catch (FileNotFoundException ex) {
+        Logger.getLogger(BrowseJavaFile.class.getName()).log(Level.SEVERE, null, ex);
+    } catch (IOException ex) {
+        Logger.getLogger(BrowseJavaFile.class.getName()).log(Level.SEVERE, null, ex);
+    }
+     return count;
     }
     public  int calcComments(List<String> lines){
 		//temporary placeholder for number of comment lines
@@ -2726,7 +2785,7 @@ PreparedStatement pstm=null;
 	} 
     
     // Variables Counting
-    public static void readFileLineByLineForDTV() throws FileNotFoundException{  
+    public  void readFileLineByLineForDTV() throws FileNotFoundException{  
                     listOfPhyLines.clear();
                     listOfBraceLines.clear();
                     INT_Lines.clear();
@@ -3969,7 +4028,185 @@ PreparedStatement pstm=null;
         }
         return count;
    }
-    
+    //   eliminating commented lines
+      public  void eliminateCommentedLines()throws FileNotFoundException{
+         
+        String lines="";
+         try {          
+            FileReader fr = new FileReader(Originalfname);
+            BufferedReader br=new BufferedReader(fr);
+          
+            int ch;
+            boolean multiComSlash=false;
+            boolean multiCom=false;
+            boolean multiComclose=false;
+            
+            //  47-> '/'  42-> '*'
+            
+            while((ch=br.read())!=-1){
+                
+               
+                if(ch==47 && multiComclose){
+                    multiCom=false;
+                }
+                if(multiCom){
+                  if(ch==42){
+                      multiComclose=true;
+                  }else{
+                      multiComclose=false;
+                  }
+              }
+                
+                if(ch==42 && multiComSlash){
+                      multiCom=true;
+                  } 
+              if(ch==47){
+                  multiComSlash=true;                 
+              }else{
+                   multiComSlash=false;      
+              }
+              
+              
+               if(!multiCom ){
+                  lines+=String.valueOf((char)ch);                
+          
+              }                
+            }
+            createTemporaryFile(lines);
+            eliminateSingleCommentedLines();
+         //   System.out.println(lines);
+           //eliminateSingleCommentedLines();
+          //   System.out.println("level --> "+deepLevel);
+          
+        } catch (IOException ex) {
+            Logger.getLogger(BrowseJavaFile.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+      public  void eliminateSingleCommentedLines()throws FileNotFoundException{
+         
+        String lines="";
+         try {          
+            FileReader fr = new FileReader(fname);
+            BufferedReader br=new BufferedReader(fr);
+          
+            int ch;
+            boolean ComSlash=false;
+            boolean Comment=false;
+            
+            //  47-> '/'  42-> '*'
+            
+            while((ch=br.read())!=-1){
+              
+                if(Comment){
+                  if(ch==10){
+                      Comment=false;
+                  }else{
+                      Comment=true;
+                  }
+              }
+                
+                if(ch==47 && ComSlash){
+                      Comment=true;
+                  } 
+              if(ch==47){
+                  ComSlash=true;                 
+              }else{
+                   ComSlash=false;      
+              }             
+              
+               if(!Comment && !ComSlash ){
+                  lines+=String.valueOf((char)ch);               
+          
+              }                
+            }
+            createTemporaryFile(lines);         
+           // System.out.println(lines);
+           
+          //   System.out.println("level --> "+deepLevel);
+          
+        } catch (IOException ex) {
+            Logger.getLogger(BrowseJavaFile.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+      public  void createTemporaryFile(String str){
+        try {
+            
+            File file =new File(fname);               
+                file.createNewFile();
+                PrintWriter pw=new PrintWriter(file); 
+                pw.println(str);
+                pw.close();                 
+             } catch (IOException ex) {              
+            }
+    }
+      public int countParentsChild(String s){
+        FileReader fr = null;
+         String str = "";
+         String Line = "";
+         boolean doWrite=false;
+         int parent=0;
+         String className="class "+s+" ";
+          
+        try {
+            fr = new FileReader(fname);
+            BufferedReader reader = new BufferedReader(fr);
+            
+            while ((str = reader.readLine()) != null){
+                 
+                 if(str.contains(className) ){
+                 doWrite=true;
+                 }
+                 if(doWrite)
+                     Line+=str;
+                 if(str.contains("{")){
+                         doWrite=false;
+                     }
+                 }
+                 
+        } catch (IOException ex) {
+            Logger.getLogger(BrowseJavaFile.class.getName()).log(Level.SEVERE, null, ex);
+        }    
+        if(Line.contains("extends")){
+            parent++;
+        }
+           // System.out.println(Line); 
+            
+            if(Line.contains("implements"))
+            {
+                int indexofImp = Line.indexOf("implements ");
+                int indexofbrace = Line.indexOf("{");
+                String interfaceString=Line.substring(indexofImp, indexofbrace);
+               // System.out.println(interfaceString); 
+               StringTokenizer tk1= new StringTokenizer(interfaceString,","); 
+               parent+=tk1.countTokens();
+            }
+           // System.out.println(parent); 
+            return parent;
+    }
+        public int countChild(String s){
+        FileReader fr = null;
+         String str = null;
+         String Line = null;
+         int child=0;
+         String className=" extends "+s;
+          
+        try {
+            fr = new FileReader(fname);
+            BufferedReader reader = new BufferedReader(fr);
+            
+            while ((str = reader.readLine()) != null){
+                 
+                 if(str.contains(className) ){
+                child++;
+                 }
+                
+            }   
+        } catch (IOException ex) {
+            Logger.getLogger(BrowseJavaFile.class.getName()).log(Level.SEVERE, null, ex);
+        }           
+               // System.out.println(child); 
+              return child;           
+    }
    // Data Base Inserting Methods
     public void clearDBtbl(){
         try {

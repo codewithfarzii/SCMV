@@ -9,6 +9,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
@@ -20,12 +22,12 @@ import javax.swing.border.Border;
 import javax.swing.border.LineBorder;
 
 public class SCMV {
-
+         static Connection con=null;
+        static ResultSet rs=null;
+         static PreparedStatement pstm=null;
  
     public static void main(String[] args) throws SQLException {
-         Connection con=null;
-         ResultSet rs=null;
-         PreparedStatement pstm=null;
+        
          try{
              Database d1,d2;
         Database db=new Database();
@@ -60,7 +62,8 @@ public class SCMV {
                 Thread.sleep(40);
                 S.loadingnumber.setText(Integer.toString(i)+"%");
                 S.loadingbar.setValue(i);
-                if(i==100){                   
+                if(i==100){        
+                    clearDBtbl();
             pstm=con.prepareStatement("select * from currentUsertbl");
             rs=pstm.executeQuery();
             if(rs.next()){
@@ -83,6 +86,26 @@ public class SCMV {
                System.out.println("Connection Failed Again!"+e.getMessage());
         }
        
+    }
+    public static void clearDBtbl(){
+        try {
+            // TODO add your handling code here:
+            pstm=con.prepareStatement("delete  from loctbl");
+            pstm.executeUpdate();
+            pstm=con.prepareStatement("delete  from datatypetbl");
+            pstm.executeUpdate();
+            pstm=con.prepareStatement("delete  from looptbl");
+            pstm.executeUpdate();
+            pstm=con.prepareStatement("delete  from conditionalstatetbl");
+            pstm.executeUpdate();            
+            pstm=con.prepareStatement("delete  from variablestbl");
+            pstm.executeUpdate();
+            pstm=con.prepareStatement("delete  from classinfotbl");
+            pstm.executeUpdate();
+             System.out.println("DB cleared!!!");
+        } catch (SQLException ex) {
+             System.out.println("DB not cleared!!!");
+        }
     }
    
 }

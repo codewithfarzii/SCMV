@@ -1,5 +1,5 @@
-        visualizeComboBox4.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                visualizeComboBox4ItemStateChanged(evt);
+        noOfElseIfStatement.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                noOfElseIfStatementActionPerformed(evt);
             }
         });

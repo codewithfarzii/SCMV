@@ -21,6 +21,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Random;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
@@ -642,9 +644,10 @@ PreparedStatement pstm=null;
     private void luserNameMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_luserNameMouseMoved
 
     }//GEN-LAST:event_luserNameMouseMoved
-
+ 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
              // These are created to show that our CBO function is working
+              
         BrowseJavaFile bf1,bf2=new BrowseJavaFile();
         JavaPackageMetrics jpm1,jpm2,jpm3=new JavaPackageMetrics();
         BrowseJavaPackage bp1,bp2=new BrowseJavaPackage();

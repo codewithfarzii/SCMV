@@ -1,5 +1,5 @@
-        noOfParentClasstxt.addActionListener(new java.awt.event.ActionListener() {
+        totalLOCtxt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                noOfParentClasstxtActionPerformed(evt);
+                totalLOCtxtActionPerformed(evt);
             }
         });

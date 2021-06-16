@@ -1,3 +1,5 @@
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                visualizeComboBox2ItemStateChanged(evt);
+        noOfFORLOOP.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                noOfFORLOOPActionPerformed(evt);
             }
+        });

@@ -39,6 +39,12 @@ import javax.swing.SwingConstants;
 import javax.swing.UIManager;
 import javax.swing.border.Border;
 import javax.swing.border.LineBorder;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.view.JasperViewer;
 
 /**
  *
@@ -211,6 +217,7 @@ PreparedStatement pstm=null;
         jButton6 = new javax.swing.JButton();
         jPanel10 = new javax.swing.JPanel();
         jLabel24 = new javax.swing.JLabel();
+        jButton18 = new javax.swing.JButton();
         aboutPanel = new javax.swing.JPanel();
         jPanel15 = new javax.swing.JPanel();
         jLabel26 = new javax.swing.JLabel();
@@ -374,7 +381,6 @@ PreparedStatement pstm=null;
         jButton9.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
         jButton9.setForeground(new java.awt.Color(255, 255, 255));
         jButton9.setText("Home");
-        jButton9.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         jButton9.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton9ActionPerformed(evt);
@@ -836,7 +842,7 @@ PreparedStatement pstm=null;
                 jButton5ActionPerformed(evt);
             }
         });
-        homePanel.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 140, 370, 130));
+        homePanel.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 90, 370, 120));
 
         jButton6.setFont(new java.awt.Font("Tempus Sans ITC", 1, 24)); // NOI18N
         jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/browsePack.gif"))); // NOI18N
@@ -848,7 +854,7 @@ PreparedStatement pstm=null;
                 jButton6ActionPerformed(evt);
             }
         });
-        homePanel.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 300, 370, 130));
+        homePanel.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 240, 370, 120));
 
         jLabel24.setFont(new java.awt.Font("Tempus Sans ITC", 1, 36)); // NOI18N
         jLabel24.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -867,6 +873,19 @@ PreparedStatement pstm=null;
         );
 
         homePanel.add(jPanel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 0, 350, -1));
+
+        jButton18.setFont(new java.awt.Font("Tempus Sans ITC", 1, 24)); // NOI18N
+        jButton18.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/report.png"))); // NOI18N
+        jButton18.setText("Generate Report");
+        jButton18.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
+        jButton18.setIconTextGap(25);
+        jButton18.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/rolover report.png"))); // NOI18N
+        jButton18.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton18ActionPerformed(evt);
+            }
+        });
+        homePanel.add(jButton18, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 390, 370, 120));
 
         jPanel2.add(homePanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 570, 600));
 
@@ -1263,6 +1282,59 @@ PreparedStatement pstm=null;
         // TODO add your handling code here:
     }//GEN-LAST:event_showDrawer1ActionPerformed
 
+    private void jButton18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton18ActionPerformed
+
+            try {                                          
+                
+                // These are created to show that our CBO function is working
+                JavaPackageMetrics jpm1,jpm2,jpm3=new JavaPackageMetrics();
+                BrowseJavaPackage bp1,bp2=new BrowseJavaPackage();
+                SignInUp sp=new SignInUp();
+                ForgetPassword fp=new ForgetPassword();
+                ChangePassword cp1,cp2=new ChangePassword();
+                    
+                String sql;
+                sql= "select * from loctbl;";
+                pstm=con.prepareStatement(sql);
+                rs=pstm.executeQuery();
+
+                if(rs.next()){
+                     String report="D:\\SCMV\\SCMV\\src\\Report\\newReport.jrxml";
+                        JasperReport jasp_rep= JasperCompileManager.compileReport(report);
+                        JasperPrint jasp_print= JasperFillManager.fillReport(jasp_rep, null, con);
+                        JasperViewer.viewReport(jasp_print,false);
+                }
+                else{
+                      AlertMessage("Metrics not Calculated Yet!!!","src/images/close.png"," Alert!!!");
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(Dashboard.class.getName()).log(Level.SEVERE, null, ex);
+            }
+             catch (JRException ex) {
+                Logger.getLogger(BrowseJavaFile.class.getName()).log(Level.SEVERE, null, ex);
+            }
+    }//GEN-LAST:event_jButton18ActionPerformed
+ public void AlertMessage(String message,String path,String title){
+            ImageIcon icon = new ImageIcon(path);
+            JPanel panel = new JPanel();
+            Border blackline = BorderFactory.createLineBorder(Color.black);
+            panel.setBorder(blackline);
+            panel.setBackground(new Color(169,224,49));
+            panel.setSize(new Dimension(200, 64));
+            panel.setLayout(null);
+
+            JLabel label = new JLabel(message);
+            label.setBounds(0, 0, 200, 64);
+            label.setFont(new Font("Arial", Font.BOLD, 12));
+            label.setHorizontalAlignment(SwingConstants.CENTER);
+            panel.add(label);
+
+            UIManager.put("OptionPane.minimumSize",new Dimension(300, 120));
+            UIManager.put("RootPane.DialogBorder", new LineBorder(Color.black));
+            JOptionPane.showMessageDialog(null, panel, title, JOptionPane.PLAIN_MESSAGE, icon);
+               
+    }
+  
     /**
      * @param args the command line arguments
      */
@@ -1348,6 +1420,7 @@ PreparedStatement pstm=null;
     private javax.swing.JButton jButton15;
     private javax.swing.JButton jButton16;
     private javax.swing.JButton jButton17;
+    private javax.swing.JButton jButton18;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;

@@ -1,0 +1,1482 @@
+
+package scmv;
+
+import ExternalJavaFiles.Database;
+import MainFiles.BrowseJavaFile;
+import MainFiles.BrowseJavaPackage;
+import MainFiles.JavaPackageMetrics;
+import com.sun.glass.events.KeyEvent;
+import java.awt.Color;
+import java.awt.Desktop;
+import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.HeadlessException;
+import java.awt.event.ActionEvent;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.AbstractAction;
+import javax.swing.Action;
+import javax.swing.JComponent;
+import javax.swing.JOptionPane;
+import java.awt.event.KeyListener;
+import java.io.File;
+import java.io.IOException;
+import javafx.scene.Scene;
+import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.KeyStroke;
+import javax.swing.SwingConstants;
+import javax.swing.UIManager;
+import javax.swing.border.Border;
+import javax.swing.border.LineBorder;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.view.JasperViewer;
+
+
+public class Dashboard extends javax.swing.JFrame implements KeyListener{
+
+    
+    Connection con=null;
+ResultSet rs=null;
+PreparedStatement pstm=null;
+
+    public Dashboard() {
+        initComponents();
+         try{
+        Database db=new Database();
+        con=db.openConnection();
+        }catch(HeadlessException| SQLException e){
+            JOptionPane.showMessageDialog(null, "DB not connected");
+        }
+        defaultVisibilites();
+        setHomePanelVis(true);  
+       containerPanel.setFocusable(true);
+   
+    }
+    
+    public String getCurretUserName(){
+         String uName="";
+        try {   
+            pstm=con.prepareStatement("select * from currentUsertbl");
+            rs=pstm.executeQuery();
+            if(rs.next()){
+                uName=rs.getString(2);
+            }           
+        } catch (SQLException ex) {
+            Logger.getLogger(Dashboard.class.getName()).log(Level.SEVERE, null, ex);
+        }
+         return uName;
+    }
+    public void setUserIdentity(){
+        String uName=getCurretUserName();
+        String uEmail="";
+        try {   
+            String sql= "select * from logintbl where userName=?";    
+                pstm=con.prepareStatement(sql);
+                pstm.setString(1,uName);
+                rs=pstm.executeQuery();
+                  if(rs.next()){
+                      uEmail=rs.getString(3);
+                  }  
+        } catch (SQLException ex) {
+            Logger.getLogger(Dashboard.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        userName.setText(uName);
+        userEmail.setText(uEmail);
+    }
+    public void defaultVisibilites(){   
+           ap_set=false;
+          
+           userInfoPanel.setVisible(false);
+           helpPanel.setVisible(false);
+           accountPanel.setVisible(false);
+           aboutPanel.setVisible(false);
+           homePanel.setVisible(false);
+               
+         homeSelected.setVisible(false);
+         aboutSelected.setVisible(false);
+         accountSelected.setVisible(false);
+         helpSelected.setVisible(false);
+         profileSelected.setVisible(false);
+         logoutSelected.setVisible(false);
+         exitSelected.setVisible(false);
+         
+    }
+    public void setAboutVis(boolean b){
+        aboutSelected.setVisible(b);
+        aboutPanel.setVisible(b);
+    }
+    public void setUserInfoVis(boolean b){  
+        userInfoPanel.setVisible(b);
+          profileSelected.setVisible(b);
+    }
+ public void sethelpPanelVis(boolean b){  
+        helpSelected.setVisible(b);
+        helpPanel.setVisible(b);
+    }
+ public void setAccountPanelVis(boolean b){  
+        accountSelected.setVisible(b);
+        accountPanel.setVisible(b);
+    }
+ public void setHomePanelVis(boolean b){  
+        homeSelected.setVisible(b);
+        homePanel.setVisible(b);
+    }
+    
+    @SuppressWarnings("unchecked")
+    
+    private void initComponents() {
+
+        jPanel1 = new javax.swing.JPanel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel19 = new javax.swing.JLabel();
+        jLabel20 = new javax.swing.JLabel();
+        aboutHead = new javax.swing.JPanel();
+        jLabel23 = new javax.swing.JLabel();
+        showDrawer = new javax.swing.JButton();
+        aboutPic1 = new javax.swing.JLabel();
+        aboutPic2 = new javax.swing.JLabel();
+        showDrawer1 = new javax.swing.JButton();
+        containerPanel = new javax.swing.JPanel();
+        drawer = new javax.swing.JPanel();
+        jPanel3 = new javax.swing.JPanel();
+        jLabel4 = new javax.swing.JLabel();
+        homeSelected = new javax.swing.JLabel();
+        jButton9 = new javax.swing.JButton();
+        jPanel5 = new javax.swing.JPanel();
+        jLabel7 = new javax.swing.JLabel();
+        accountSelected = new javax.swing.JLabel();
+        jButton12 = new javax.swing.JButton();
+        jPanel6 = new javax.swing.JPanel();
+        jLabel10 = new javax.swing.JLabel();
+        aboutSelected = new javax.swing.JLabel();
+        jButton13 = new javax.swing.JButton();
+        jPanel7 = new javax.swing.JPanel();
+        jLabel11 = new javax.swing.JLabel();
+        helpSelected = new javax.swing.JLabel();
+        jButton14 = new javax.swing.JButton();
+        jPanel12 = new javax.swing.JPanel();
+        jLabel12 = new javax.swing.JLabel();
+        profileSelected = new javax.swing.JLabel();
+        jButton15 = new javax.swing.JButton();
+        jPanel13 = new javax.swing.JPanel();
+        jLabel18 = new javax.swing.JLabel();
+        logoutSelected = new javax.swing.JLabel();
+        jButton16 = new javax.swing.JButton();
+        jPanel14 = new javax.swing.JPanel();
+        jLabel27 = new javax.swing.JLabel();
+        exitSelected = new javax.swing.JLabel();
+        jButton17 = new javax.swing.JButton();
+        jPanel2 = new javax.swing.JPanel();
+        userInfoPanel = new javax.swing.JPanel();
+        signUpPanel = new javax.swing.JPanel();
+        userName = new javax.swing.JTextField();
+        userEmail = new javax.swing.JTextField();
+        jLabel14 = new javax.swing.JLabel();
+        jLabel16 = new javax.swing.JLabel();
+        jLabel17 = new javax.swing.JLabel();
+        jPanel11 = new javax.swing.JPanel();
+        jLabel25 = new javax.swing.JLabel();
+        helpPanel = new javax.swing.JPanel();
+        jPanel8 = new javax.swing.JPanel();
+        jLabel22 = new javax.swing.JLabel();
+        jButton7 = new javax.swing.JButton();
+        jButton8 = new javax.swing.JButton();
+        accountPanel = new javax.swing.JPanel();
+        jButton3 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
+        jPanel4 = new javax.swing.JPanel();
+        jLabel21 = new javax.swing.JLabel();
+        homePanel = new javax.swing.JPanel();
+        jButton5 = new javax.swing.JButton();
+        jButton6 = new javax.swing.JButton();
+        jPanel10 = new javax.swing.JPanel();
+        jLabel24 = new javax.swing.JLabel();
+        jButton18 = new javax.swing.JButton();
+        aboutPanel = new javax.swing.JPanel();
+        jPanel15 = new javax.swing.JPanel();
+        jLabel26 = new javax.swing.JLabel();
+        aboutPic3 = new javax.swing.JLabel();
+        header = new javax.swing.JPanel();
+        jButton10 = new javax.swing.JButton();
+        jButton11 = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+
+        jPanel1.setBackground(new java.awt.Color(204, 204, 204));
+        jPanel1.setBorder(javax.swing.BorderFactory.createCompoundBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(51, 51, 51), new java.awt.Color(0, 102, 102), new java.awt.Color(204, 255, 204), new java.awt.Color(51, 255, 204)), javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(255, 204, 204), new java.awt.Color(204, 204, 255)), "Keys Accelerators", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Times New Roman", 2, 18), new java.awt.Color(0, 0, 51)))); 
+        jPanel1.setForeground(new java.awt.Color(204, 255, 51));
+        jPanel1.setToolTipText("");
+
+        jLabel3.setFont(new java.awt.Font("Trebuchet MS", 1, 24)); 
+        jLabel3.setText("Open Java File -----> Press CTRL+O");
+
+        jLabel5.setFont(new java.awt.Font("Trebuchet MS", 1, 24)); 
+        jLabel5.setText("Open Package  -----> Press SHIFT+P");
+
+        jLabel8.setFont(new java.awt.Font("Trebuchet MS", 1, 24)); 
+        jLabel8.setText("Logout             -----> Press CTRL+L");
+
+        jLabel19.setFont(new java.awt.Font("Trebuchet MS", 1, 24)); 
+        jLabel19.setText("View Report    -----> Press CTRL+R");
+
+        jLabel20.setFont(new java.awt.Font("Trebuchet MS", 1, 24)); 
+        jLabel20.setText("Shortcut Key   -----> Press CTRL+S");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel20, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel19, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addGap(396, 396, 396))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel5)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel8)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel19)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel20)
+                .addContainerGap(61, Short.MAX_VALUE))
+        );
+
+        jLabel23.setFont(new java.awt.Font("Tempus Sans ITC", 1, 36)); 
+        jLabel23.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel23.setText("About ");
+
+        showDrawer.setBackground(new java.awt.Color(255, 255, 255));
+        showDrawer.setForeground(new java.awt.Color(255, 255, 255));
+        showDrawer.setIcon(new javax.swing.ImageIcon(getClass().getResource("Imagesdrawer.png"))); 
+        showDrawer.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(169, 224, 49)));
+        showDrawer.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        showDrawer.setRequestFocusEnabled(false);
+        showDrawer.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("ImagesdrawerRollOver.png"))); 
+        showDrawer.setVerifyInputWhenFocusTarget(false);
+        showDrawer.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                showDrawerActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout aboutHeadLayout = new javax.swing.GroupLayout(aboutHead);
+        aboutHead.setLayout(aboutHeadLayout);
+        aboutHeadLayout.setHorizontalGroup(
+            aboutHeadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, aboutHeadLayout.createSequentialGroup()
+                .addComponent(showDrawer, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, Short.MAX_VALUE)
+                .addComponent(jLabel23, javax.swing.GroupLayout.PREFERRED_SIZE, 715, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+        aboutHeadLayout.setVerticalGroup(
+            aboutHeadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(aboutHeadLayout.createSequentialGroup()
+                .addGroup(aboutHeadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(showDrawer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel23, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+
+        aboutPic1.setBackground(new java.awt.Color(255, 255, 255));
+        aboutPic1.setIcon(new javax.swing.ImageIcon(getClass().getResource("ImagesaboutDetails.png"))); 
+        aboutPic1.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+
+        aboutPic2.setBackground(new java.awt.Color(255, 255, 255));
+        aboutPic2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        aboutPic2.setIcon(new javax.swing.ImageIcon(getClass().getResource("Imagesspec.png"))); 
+
+        showDrawer1.setBackground(new java.awt.Color(255, 255, 255));
+        showDrawer1.setForeground(new java.awt.Color(255, 255, 255));
+        showDrawer1.setIcon(new javax.swing.ImageIcon(getClass().getResource("Imagesdrawer.png"))); 
+        showDrawer1.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(169, 224, 49)));
+        showDrawer1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        showDrawer1.setRequestFocusEnabled(false);
+        showDrawer1.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("ImagesdrawerRollOver.png"))); 
+        showDrawer1.setVerifyInputWhenFocusTarget(false);
+        showDrawer1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                showDrawer1ActionPerformed(evt);
+            }
+        });
+
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
+        addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                formKeyPressed(evt);
+            }
+        });
+
+        containerPanel.setBackground(new java.awt.Color(204, 204, 255));
+        containerPanel.setPreferredSize(new java.awt.Dimension(750, 550));
+        containerPanel.setLayout(null);
+
+        drawer.setBackground(new java.awt.Color(42, 39, 41));
+        drawer.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 0, 0, 2, new java.awt.Color(51, 255, 0)));
+        drawer.setPreferredSize(new java.awt.Dimension(190, 500));
+        drawer.setRequestFocusEnabled(false);
+
+        jPanel3.setBackground(new java.awt.Color(42, 39, 41));
+        jPanel3.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jPanel3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jPanel3MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jPanel3MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jPanel3MouseExited(evt);
+            }
+        });
+        jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("Imageshome.png"))); 
+        jPanel3.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(15, 5, 40, 45));
+
+        homeSelected.setBackground(new java.awt.Color(204, 255, 51));
+        homeSelected.setOpaque(true);
+        jPanel3.add(homeSelected, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 5, 10, 45));
+
+        jButton9.setBackground(new java.awt.Color(51, 51, 51));
+        jButton9.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); 
+        jButton9.setForeground(new java.awt.Color(255, 255, 255));
+        jButton9.setText("Home");
+        jButton9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton9ActionPerformed(evt);
+            }
+        });
+        jPanel3.add(jButton9, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 5, 110, 45));
+
+        jPanel5.setBackground(new java.awt.Color(42, 39, 41));
+        jPanel5.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jPanel5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jPanel5MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jPanel5MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jPanel5MouseExited(evt);
+            }
+        });
+        jPanel5.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("Imagesaccounnt_setting.png"))); 
+        jPanel5.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(15, 5, 40, 45));
+
+        accountSelected.setBackground(new java.awt.Color(204, 255, 51));
+        accountSelected.setOpaque(true);
+        jPanel5.add(accountSelected, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 5, 10, 45));
+
+        jButton12.setBackground(new java.awt.Color(51, 51, 51));
+        jButton12.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); 
+        jButton12.setForeground(new java.awt.Color(255, 255, 255));
+        jButton12.setText("Account");
+        jButton12.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton12ActionPerformed(evt);
+            }
+        });
+        jPanel5.add(jButton12, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 3, 110, 45));
+
+        jPanel6.setBackground(new java.awt.Color(42, 39, 41));
+        jPanel6.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jPanel6.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jPanel6MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jPanel6MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jPanel6MouseExited(evt);
+            }
+        });
+        jPanel6.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("Imagesabout.png"))); 
+        jPanel6.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(15, 5, 40, 45));
+
+        aboutSelected.setBackground(new java.awt.Color(204, 255, 51));
+        aboutSelected.setOpaque(true);
+        jPanel6.add(aboutSelected, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 5, 10, 45));
+
+        jButton13.setBackground(new java.awt.Color(51, 51, 51));
+        jButton13.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); 
+        jButton13.setForeground(new java.awt.Color(255, 255, 255));
+        jButton13.setText("About");
+        jButton13.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton13ActionPerformed(evt);
+            }
+        });
+        jPanel6.add(jButton13, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 3, 110, 45));
+
+        jPanel7.setBackground(new java.awt.Color(42, 39, 41));
+        jPanel7.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jPanel7.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jPanel7MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jPanel7MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jPanel7MouseExited(evt);
+            }
+        });
+        jPanel7.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("Imageshelp.png"))); 
+        jPanel7.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(15, 5, 40, 45));
+
+        helpSelected.setBackground(new java.awt.Color(204, 255, 51));
+        helpSelected.setOpaque(true);
+        jPanel7.add(helpSelected, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 5, 10, 45));
+
+        jButton14.setBackground(new java.awt.Color(51, 51, 51));
+        jButton14.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); 
+        jButton14.setForeground(new java.awt.Color(255, 255, 255));
+        jButton14.setText("Help");
+        jButton14.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton14ActionPerformed(evt);
+            }
+        });
+        jPanel7.add(jButton14, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 3, 110, 45));
+
+        jPanel12.setBackground(new java.awt.Color(42, 39, 41));
+        jPanel12.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jPanel12.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jPanel12MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jPanel12MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jPanel12MouseExited(evt);
+            }
+        });
+        jPanel12.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("Imagesuser_info.png"))); 
+        jPanel12.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(15, 5, 40, 45));
+
+        profileSelected.setBackground(new java.awt.Color(204, 255, 51));
+        profileSelected.setOpaque(true);
+        jPanel12.add(profileSelected, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 5, 10, 45));
+
+        jButton15.setBackground(new java.awt.Color(51, 51, 51));
+        jButton15.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); 
+        jButton15.setForeground(new java.awt.Color(255, 255, 255));
+        jButton15.setText("Profile");
+        jButton15.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton15ActionPerformed(evt);
+            }
+        });
+        jPanel12.add(jButton15, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 3, 110, 45));
+
+        jPanel13.setBackground(new java.awt.Color(42, 39, 41));
+        jPanel13.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jPanel13.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jPanel13MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jPanel13MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jPanel13MouseExited(evt);
+            }
+        });
+        jPanel13.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel18.setIcon(new javax.swing.ImageIcon(getClass().getResource("Imageslogout.png"))); 
+        jPanel13.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(15, 5, 40, 45));
+
+        logoutSelected.setBackground(new java.awt.Color(204, 255, 51));
+        logoutSelected.setOpaque(true);
+        jPanel13.add(logoutSelected, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 5, 10, 45));
+
+        jButton16.setBackground(new java.awt.Color(51, 51, 51));
+        jButton16.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); 
+        jButton16.setForeground(new java.awt.Color(255, 255, 255));
+        jButton16.setText("Logout");
+        jButton16.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton16ActionPerformed(evt);
+            }
+        });
+        jPanel13.add(jButton16, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 3, 110, 45));
+
+        jPanel14.setBackground(new java.awt.Color(42, 39, 41));
+        jPanel14.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jPanel14.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jPanel14MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jPanel14MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jPanel14MouseExited(evt);
+            }
+        });
+        jPanel14.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel27.setIcon(new javax.swing.ImageIcon(getClass().getResource("Imagesclosing.png"))); 
+        jPanel14.add(jLabel27, new org.netbeans.lib.awtextra.AbsoluteConstraints(15, 5, 40, 45));
+
+        exitSelected.setBackground(new java.awt.Color(204, 255, 51));
+        exitSelected.setOpaque(true);
+        jPanel14.add(exitSelected, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 5, 10, 45));
+
+        jButton17.setBackground(new java.awt.Color(51, 51, 51));
+        jButton17.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); 
+        jButton17.setForeground(new java.awt.Color(255, 255, 255));
+        jButton17.setText("Exit");
+        jButton17.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton17ActionPerformed(evt);
+            }
+        });
+        jPanel14.add(jButton17, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 3, 110, 45));
+
+        javax.swing.GroupLayout drawerLayout = new javax.swing.GroupLayout(drawer);
+        drawer.setLayout(drawerLayout);
+        drawerLayout.setHorizontalGroup(
+            drawerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(drawerLayout.createSequentialGroup()
+                .addGroup(drawerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel13, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel12, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel14, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(20, 20, 20))
+        );
+        drawerLayout.setVerticalGroup(
+            drawerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(drawerLayout.createSequentialGroup()
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(jPanel12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(jPanel13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(jPanel14, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(148, Short.MAX_VALUE))
+        );
+
+        containerPanel.add(drawer);
+        drawer.setBounds(0, 0, 180, 550);
+
+        jPanel2.setBackground(new java.awt.Color(204, 204, 255));
+        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        userInfoPanel.setBackground(new java.awt.Color(204, 204, 255));
+        userInfoPanel.setPreferredSize(new java.awt.Dimension(740, 550));
+
+        signUpPanel.setBackground(new java.awt.Color(31, 36, 42));
+        signUpPanel.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(153, 255, 51), 2, true));
+        signUpPanel.setPreferredSize(new java.awt.Dimension(330, 320));
+        signUpPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        userName.setEditable(false);
+        userName.setBackground(new java.awt.Color(31, 36, 42));
+        userName.setFont(new java.awt.Font("Trebuchet MS", 0, 18)); 
+        userName.setForeground(new java.awt.Color(255, 255, 255));
+        userName.setText("user12");
+        userName.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(169, 224, 49)));
+        userName.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                userNameMouseMoved(evt);
+            }
+        });
+        signUpPanel.add(userName, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 160, 250, 35));
+
+        userEmail.setEditable(false);
+        userEmail.setBackground(new java.awt.Color(31, 36, 42));
+        userEmail.setFont(new java.awt.Font("Trebuchet MS", 0, 18)); 
+        userEmail.setForeground(new java.awt.Color(255, 255, 255));
+        userEmail.setText("user@gmail.com");
+        userEmail.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(169, 224, 49)));
+        userEmail.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                userEmailMouseMoved(evt);
+            }
+        });
+        signUpPanel.add(userEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 230, 250, 35));
+
+        jLabel14.setFont(new java.awt.Font("Trebuchet MS", 1, 36)); 
+        jLabel14.setForeground(new java.awt.Color(169, 224, 49));
+        jLabel14.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("Imagesicons8_Male_User_100px.png"))); 
+        jLabel14.setText("Profile");
+        signUpPanel.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 30, 320, 80));
+
+        jLabel16.setFont(new java.awt.Font("Trebuchet MS", 0, 16)); 
+        jLabel16.setForeground(new java.awt.Color(169, 224, 49));
+        jLabel16.setText("User Name");
+        signUpPanel.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 140, 90, 20));
+
+        jLabel17.setFont(new java.awt.Font("Trebuchet MS", 0, 16)); 
+        jLabel17.setForeground(new java.awt.Color(169, 224, 49));
+        jLabel17.setText("Email");
+        signUpPanel.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 210, 314, -1));
+
+        jLabel25.setFont(new java.awt.Font("Tempus Sans ITC", 1, 36)); 
+        jLabel25.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel25.setText("User Profile");
+        jLabel25.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+
+        javax.swing.GroupLayout jPanel11Layout = new javax.swing.GroupLayout(jPanel11);
+        jPanel11.setLayout(jPanel11Layout);
+        jPanel11Layout.setHorizontalGroup(
+            jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel25, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        jPanel11Layout.setVerticalGroup(
+            jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel25)
+        );
+
+        javax.swing.GroupLayout userInfoPanelLayout = new javax.swing.GroupLayout(userInfoPanel);
+        userInfoPanel.setLayout(userInfoPanelLayout);
+        userInfoPanelLayout.setHorizontalGroup(
+            userInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, userInfoPanelLayout.createSequentialGroup()
+                .addContainerGap(290, Short.MAX_VALUE)
+                .addGroup(userInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(signUpPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 354, Short.MAX_VALUE)
+                    .addComponent(jPanel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(96, 96, 96))
+        );
+        userInfoPanelLayout.setVerticalGroup(
+            userInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(userInfoPanelLayout.createSequentialGroup()
+                .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(51, 51, 51)
+                .addComponent(signUpPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(129, Short.MAX_VALUE))
+        );
+
+        jPanel2.add(userInfoPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 570, 549));
+
+        helpPanel.setBackground(new java.awt.Color(204, 204, 255));
+
+        jLabel22.setFont(new java.awt.Font("Tempus Sans ITC", 1, 36)); 
+        jLabel22.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel22.setText("Help");
+        jLabel22.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+
+        javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
+        jPanel8.setLayout(jPanel8Layout);
+        jPanel8Layout.setHorizontalGroup(
+            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel22, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 350, Short.MAX_VALUE)
+        );
+        jPanel8Layout.setVerticalGroup(
+            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel22, javax.swing.GroupLayout.Alignment.TRAILING)
+        );
+
+        jButton7.setFont(new java.awt.Font("Tempus Sans ITC", 1, 36)); 
+        jButton7.setIcon(new javax.swing.ImageIcon(getClass().getResource("Imagesdocument.png"))); 
+        jButton7.setText("Documentation");
+        jButton7.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
+        jButton7.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("ImagesdocumentOver.png"))); 
+        jButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton7ActionPerformed(evt);
+            }
+        });
+
+        jButton8.setFont(new java.awt.Font("Tempus Sans ITC", 1, 36)); 
+        jButton8.setIcon(new javax.swing.ImageIcon(getClass().getResource("Imagesplay.png"))); 
+        jButton8.setText("How it works   ");
+        jButton8.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
+        jButton8.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("ImagesplayOver.png"))); 
+        jButton8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton8ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout helpPanelLayout = new javax.swing.GroupLayout(helpPanel);
+        helpPanel.setLayout(helpPanelLayout);
+        helpPanelLayout.setHorizontalGroup(
+            helpPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(helpPanelLayout.createSequentialGroup()
+                .addGroup(helpPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(helpPanelLayout.createSequentialGroup()
+                        .addGap(120, 120, 120)
+                        .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(helpPanelLayout.createSequentialGroup()
+                        .addGap(80, 80, 80)
+                        .addGroup(helpPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 420, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 420, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(70, Short.MAX_VALUE))
+        );
+        helpPanelLayout.setVerticalGroup(
+            helpPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(helpPanelLayout.createSequentialGroup()
+                .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(61, 61, 61)
+                .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(41, 41, 41)
+                .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(102, Short.MAX_VALUE))
+        );
+
+        jPanel2.add(helpPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+
+        accountPanel.setBackground(new java.awt.Color(204, 204, 255));
+        accountPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jButton3.setFont(new java.awt.Font("Tempus Sans ITC", 1, 24)); 
+        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("ImageschangePas.png"))); 
+        jButton3.setText("Change Password");
+        jButton3.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+        accountPanel.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 140, 370, 130));
+
+        jButton4.setFont(new java.awt.Font("Tempus Sans ITC", 1, 24)); 
+        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("Imagesdelete.png"))); 
+        jButton4.setText("Delete Account");
+        jButton4.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+        accountPanel.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 300, 370, 130));
+
+        jLabel21.setFont(new java.awt.Font("Tempus Sans ITC", 1, 36)); 
+        jLabel21.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel21.setText("Account Setting");
+        jLabel21.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel21, javax.swing.GroupLayout.DEFAULT_SIZE, 350, Short.MAX_VALUE)
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel21)
+        );
+
+        accountPanel.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 0, 350, -1));
+
+        jPanel2.add(accountPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 570, 604));
+
+        homePanel.setBackground(new java.awt.Color(204, 204, 255));
+        homePanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jButton5.setFont(new java.awt.Font("Tempus Sans ITC", 1, 24)); 
+        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("ImagesbrowseFile.gif"))); 
+        jButton5.setText("Browse File          ");
+        jButton5.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
+        jButton5.setIconTextGap(25);
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
+        homePanel.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 90, 370, 120));
+
+        jButton6.setFont(new java.awt.Font("Tempus Sans ITC", 1, 24)); 
+        jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("ImagesbrowsePack.gif"))); 
+        jButton6.setText("Browse Package    ");
+        jButton6.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
+        jButton6.setIconTextGap(25);
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
+        homePanel.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 240, 370, 120));
+
+        jLabel24.setFont(new java.awt.Font("Tempus Sans ITC", 1, 36)); 
+        jLabel24.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel24.setText("Home");
+        jLabel24.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+
+        javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
+        jPanel10.setLayout(jPanel10Layout);
+        jPanel10Layout.setHorizontalGroup(
+            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel24, javax.swing.GroupLayout.DEFAULT_SIZE, 350, Short.MAX_VALUE)
+        );
+        jPanel10Layout.setVerticalGroup(
+            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel24)
+        );
+
+        homePanel.add(jPanel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 0, 350, -1));
+
+        jButton18.setFont(new java.awt.Font("Tempus Sans ITC", 1, 24)); 
+        jButton18.setIcon(new javax.swing.ImageIcon(getClass().getResource("Imagesreport.png"))); 
+        jButton18.setText("Generate Report");
+        jButton18.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
+        jButton18.setIconTextGap(25);
+        jButton18.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("Imagesrolover report.png"))); 
+        jButton18.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton18ActionPerformed(evt);
+            }
+        });
+        homePanel.add(jButton18, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 390, 370, 120));
+
+        jPanel2.add(homePanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 570, 600));
+
+        aboutPanel.setBackground(new java.awt.Color(255, 255, 255));
+        aboutPanel.setPreferredSize(new java.awt.Dimension(288, 550));
+
+        jLabel26.setFont(new java.awt.Font("Tempus Sans ITC", 1, 36)); 
+        jLabel26.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel26.setText("About");
+        jLabel26.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+
+        javax.swing.GroupLayout jPanel15Layout = new javax.swing.GroupLayout(jPanel15);
+        jPanel15.setLayout(jPanel15Layout);
+        jPanel15Layout.setHorizontalGroup(
+            jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel26, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 350, Short.MAX_VALUE)
+        );
+        jPanel15Layout.setVerticalGroup(
+            jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel26)
+        );
+
+        aboutPic3.setBackground(new java.awt.Color(255, 255, 255));
+        aboutPic3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        aboutPic3.setIcon(new javax.swing.ImageIcon(getClass().getResource("ImagesaboutDetails.png"))); 
+        aboutPic3.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+
+        javax.swing.GroupLayout aboutPanelLayout = new javax.swing.GroupLayout(aboutPanel);
+        aboutPanel.setLayout(aboutPanelLayout);
+        aboutPanelLayout.setHorizontalGroup(
+            aboutPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(aboutPanelLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel15, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(113, 113, 113))
+            .addComponent(aboutPic3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        aboutPanelLayout.setVerticalGroup(
+            aboutPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(aboutPanelLayout.createSequentialGroup()
+                .addComponent(jPanel15, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(aboutPic3, javax.swing.GroupLayout.PREFERRED_SIZE, 491, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+
+        jPanel2.add(aboutPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(2, 0, 560, 697));
+
+        containerPanel.add(jPanel2);
+        jPanel2.setBounds(182, 0, 580, 610);
+
+        header.setBackground(new java.awt.Color(0, 0, 0));
+        header.setForeground(new java.awt.Color(169, 224, 49));
+        header.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jButton10.setIcon(new javax.swing.ImageIcon(getClass().getResource("Imagesicons8_Cancel_32px.png"))); 
+        jButton10.setToolTipText("Close");
+        jButton10.setBorderPainted(false);
+        jButton10.setContentAreaFilled(false);
+        jButton10.setRequestFocusEnabled(false);
+        jButton10.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("Imagesicons8_Cancel_30px_3.png"))); 
+        jButton10.setVerifyInputWhenFocusTarget(false);
+        jButton10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton10ActionPerformed(evt);
+            }
+        });
+        header.add(jButton10, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 0, 40, 40));
+
+        jButton11.setIcon(new javax.swing.ImageIcon(getClass().getResource("Imagesicons8_Minus_32px_1.png"))); 
+        jButton11.setToolTipText("Minimize");
+        jButton11.setBorderPainted(false);
+        jButton11.setContentAreaFilled(false);
+        jButton11.setRequestFocusEnabled(false);
+        jButton11.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("Imagesicons8_Minus_30px_3.png"))); 
+        jButton11.setVerifyInputWhenFocusTarget(false);
+        jButton11.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton11MouseClicked(evt);
+            }
+        });
+        jButton11.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton11ActionPerformed(evt);
+            }
+        });
+        header.add(jButton11, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 0, 40, 40));
+
+        jLabel1.setFont(new java.awt.Font("Times New Roman", 0, 24)); 
+        jLabel1.setForeground(new java.awt.Color(169, 224, 49));
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("Imagesmetrics 64.png"))); 
+        jLabel1.setText("  Source Code Metrics Visualizer of JAVA");
+        header.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 0, -1, -1));
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(header, javax.swing.GroupLayout.DEFAULT_SIZE, 750, Short.MAX_VALUE)
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addComponent(containerPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(header, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(525, Short.MAX_VALUE))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                    .addGap(0, 64, Short.MAX_VALUE)
+                    .addComponent(containerPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 525, javax.swing.GroupLayout.PREFERRED_SIZE)))
+        );
+
+        setSize(new java.awt.Dimension(750, 589));
+        setLocationRelativeTo(null);
+    }
+
+    private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {
+      GoodBye gb=new GoodBye();
+        gb.setVisible(true);
+         this.dispose();
+    }
+
+    private void jButton11MouseClicked(java.awt.event.MouseEvent evt) {
+        this.setState(ICONIFIED);
+    }
+
+    private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {
+
+    }
+
+    private void jPanel3MouseClicked(java.awt.event.MouseEvent evt) {
+
+    }
+
+    private void jPanel3MouseEntered(java.awt.event.MouseEvent evt) {
+
+    }
+
+    private void jPanel3MouseExited(java.awt.event.MouseEvent evt) {
+
+    }
+
+    private void jPanel5MouseClicked(java.awt.event.MouseEvent evt) {
+        
+    }
+
+    private void jPanel5MouseEntered(java.awt.event.MouseEvent evt) {
+        
+    }
+
+    private void jPanel5MouseExited(java.awt.event.MouseEvent evt) {
+        
+    }
+
+    int x=190;
+    private void jPanel6MouseClicked(java.awt.event.MouseEvent evt) {
+        
+    }
+
+    private void jPanel6MouseEntered(java.awt.event.MouseEvent evt) {
+        
+    }
+
+    private void jPanel6MouseExited(java.awt.event.MouseEvent evt) {
+        
+    }
+ boolean ap_set=false;
+    private void userNameMouseMoved(java.awt.event.MouseEvent evt) {
+        
+    }
+
+    private void userEmailMouseMoved(java.awt.event.MouseEvent evt) {
+        
+    }
+
+    private void jPanel7MouseClicked(java.awt.event.MouseEvent evt) {
+        
+    }
+
+    private void jPanel7MouseEntered(java.awt.event.MouseEvent evt) {
+        
+    }
+
+    private void jPanel7MouseExited(java.awt.event.MouseEvent evt) {
+        
+    }
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {
+        
+       ChangePassword cp=new ChangePassword();        
+       cp.setVisible(true);
+       this.dispose();
+    }
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {
+  
+     ImageIcon icon = new ImageIcon("srcimagesclose.png");
+
+        JPanel panel = new JPanel();
+       Border blackline = BorderFactory.createLineBorder(Color.black);
+       panel.setBorder(blackline);
+        panel.setBackground(new Color(169,224,49));
+        panel.setSize(new Dimension(200, 64));
+        panel.setLayout(null);
+
+        JLabel label = new JLabel("Are you Sure You Delete this Account! ");
+        label.setBounds(0, 0, 200, 64);
+        label.setFont(new Font("Arial", Font.BOLD, 11));
+        label.setHorizontalAlignment(SwingConstants.CENTER);
+        panel.add(label);
+
+        UIManager.put("OptionPane.minimumSize",new Dimension(300, 120)); 
+        UIManager.put("RootPane.DialogBorder", new LineBorder(Color.black));
+       int a= JOptionPane.showConfirmDialog(null, panel, " Alert !", JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE);
+     if(a==JOptionPane.YES_OPTION)  
+     deleteAcc();
+    }
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {
+       BrowseJavaFile bf=new BrowseJavaFile();        
+       bf.setVisible(true);
+       this.dispose();
+    }
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {
+      BrowseJavaPackage bjp=new BrowseJavaPackage();
+       bjp.setVisible(true);
+        this.dispose();
+    }
+
+    private void formKeyPressed(java.awt.event.KeyEvent evt) {
+        
+          System.out.println(evt.getKeyCode());
+    }
+
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {
+       try {
+            Desktop.getDesktop().open(new File("Resourcedocumentation.pdf"));
+        } catch (IOException ex) {
+            Logger.getLogger(Dashboard.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {
+        try {
+            Desktop.getDesktop().open(new File("Resourceproject final.mp4"));
+        } catch (IOException ex) {
+            Logger.getLogger(Dashboard.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    private void showDrawerActionPerformed(java.awt.event.ActionEvent evt) {
+        if(x==0){
+            
+            Thread th=new Thread(){
+                @Override
+                public void run(){
+                    try{
+                        int i=0;
+                        for(;i<=x;i=i+50){
+                            Thread.sleep(i);
+                            
+                            drawer.setSize(i,550);
+                        }
+                        if(i>=190){
+                            drawer.setSize(190,550);
+                            
+                            
+                        }
+                    }catch (InterruptedException ex) {
+                        Logger.getLogger(Dashboard.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+            };
+            th.start();
+            x=190;
+        }
+       
+    }
+
+    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {
+     
+        BrowseJavaFile bf1,bf2=new BrowseJavaFile();
+        JavaPackageMetrics jpm1,jpm2,jpm3=new JavaPackageMetrics();
+        BrowseJavaPackage bp1,bp2=new BrowseJavaPackage();
+        SignInUp sp=new SignInUp();
+        ForgetPassword fp=new ForgetPassword();
+        ChangePassword cp1,cp2=new ChangePassword();
+        defaultVisibilites();
+         setHomePanelVis(true);  
+    }
+
+    private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {
+       defaultVisibilites();
+        setAccountPanelVis(true);
+    }
+
+    private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {
+
+         defaultVisibilites();
+         setAboutVis(true);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    }
+
+    public void aboutVis(boolean b){
+        showDrawer.setVisible(b);
+        jLabel23.setVisible(b);
+        aboutPic1.setVisible(b);
+        aboutPic2.setVisible(b);
+    }
+    private void jButton14ActionPerformed(java.awt.event.ActionEvent evt) {
+        defaultVisibilites();
+        sethelpPanelVis(true);
+    }
+
+    private void jButton15ActionPerformed(java.awt.event.ActionEvent evt) {
+        defaultVisibilites();
+       
+        setUserIdentity();
+        setUserInfoVis(true);
+    }
+
+    private void jPanel12MouseClicked(java.awt.event.MouseEvent evt) {
+        
+    }
+
+    private void jPanel12MouseEntered(java.awt.event.MouseEvent evt) {
+        
+    }
+
+    private void jPanel12MouseExited(java.awt.event.MouseEvent evt) {
+        
+    }
+
+    private void jButton16ActionPerformed(java.awt.event.ActionEvent evt) {
+        logoutUser();
+    }
+
+    private void jPanel13MouseClicked(java.awt.event.MouseEvent evt) {
+        
+    }
+
+    private void jPanel13MouseEntered(java.awt.event.MouseEvent evt) {
+        
+    }
+
+    private void jPanel13MouseExited(java.awt.event.MouseEvent evt) {
+        
+    }
+
+    private void jButton17ActionPerformed(java.awt.event.ActionEvent evt) {
+        this.dispose();
+        new GoodBye().setVisible(true);
+    }
+
+    private void jPanel14MouseClicked(java.awt.event.MouseEvent evt) {
+        
+    }
+
+    private void jPanel14MouseEntered(java.awt.event.MouseEvent evt) {
+        
+    }
+
+    private void jPanel14MouseExited(java.awt.event.MouseEvent evt) {
+        
+    }
+
+    private void showDrawer1ActionPerformed(java.awt.event.ActionEvent evt) {
+        
+    }
+
+    private void jButton18ActionPerformed(java.awt.event.ActionEvent evt) {
+
+            try {                                          
+                
+                
+                JavaPackageMetrics jpm1,jpm2,jpm3=new JavaPackageMetrics();
+                BrowseJavaPackage bp1,bp2=new BrowseJavaPackage();
+                SignInUp sp=new SignInUp();
+                ForgetPassword fp=new ForgetPassword();
+                ChangePassword cp1,cp2=new ChangePassword();
+                    
+                String sql;
+                sql= "select * from loctbl;";
+                pstm=con.prepareStatement(sql);
+                rs=pstm.executeQuery();
+
+                if(rs.next()){
+                     String report="D:\\SCMV\\SCMV\\src\\Report\\newReport.jrxml";
+                        JasperReport jasp_rep= JasperCompileManager.compileReport(report);
+                        JasperPrint jasp_print= JasperFillManager.fillReport(jasp_rep, null, con);
+                        JasperViewer.viewReport(jasp_print,false);
+                }
+                else{
+                      AlertMessage("Metrics not Calculated Yet!!!","srcimagesclose.png"," Alert!!!");
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(Dashboard.class.getName()).log(Level.SEVERE, null, ex);
+            }
+             catch (JRException ex) {
+                Logger.getLogger(BrowseJavaFile.class.getName()).log(Level.SEVERE, null, ex);
+            }
+    }
+ public void AlertMessage(String message,String path,String title){
+            ImageIcon icon = new ImageIcon(path);
+            JPanel panel = new JPanel();
+            Border blackline = BorderFactory.createLineBorder(Color.black);
+            panel.setBorder(blackline);
+            panel.setBackground(new Color(169,224,49));
+            panel.setSize(new Dimension(200, 64));
+            panel.setLayout(null);
+
+            JLabel label = new JLabel(message);
+            label.setBounds(0, 0, 200, 64);
+            label.setFont(new Font("Arial", Font.BOLD, 12));
+            label.setHorizontalAlignment(SwingConstants.CENTER);
+            panel.add(label);
+
+            UIManager.put("OptionPane.minimumSize",new Dimension(300, 120));
+            UIManager.put("RootPane.DialogBorder", new LineBorder(Color.black));
+            JOptionPane.showMessageDialog(null, panel, title, JOptionPane.PLAIN_MESSAGE, icon);
+               
+    }
+  
+    
+    public void deleteAcc(){
+       String uName=getCurretUserName();
+        try {
+            
+            pstm=con.prepareStatement("DELETE FROM `logintbl` WHERE userName=?");
+                pstm.setString(1,uName);
+               pstm.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(Dashboard.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        logoutUser();
+    }
+    public void logoutUser(){
+         try {
+            
+            pstm=con.prepareStatement("delete  from currentUsertbl");
+            pstm.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(Dashboard.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        this.dispose();
+        new SignInUp().setVisible(true);
+    }
+    
+    public static void main(String args[]) {
+        
+        
+        
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(Dashboard.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(Dashboard.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(Dashboard.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(Dashboard.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        
+
+        
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new Dashboard().setVisible(true);
+            }
+        });
+    }
+
+    
+    private javax.swing.JPanel aboutHead;
+    private javax.swing.JPanel aboutPanel;
+    private javax.swing.JLabel aboutPic1;
+    private javax.swing.JLabel aboutPic2;
+    private javax.swing.JLabel aboutPic3;
+    private javax.swing.JLabel aboutSelected;
+    private javax.swing.JPanel accountPanel;
+    private javax.swing.JLabel accountSelected;
+    public javax.swing.JPanel containerPanel;
+    private javax.swing.JPanel drawer;
+    private javax.swing.JLabel exitSelected;
+    private javax.swing.JPanel header;
+    private javax.swing.JPanel helpPanel;
+    private javax.swing.JLabel helpSelected;
+    private javax.swing.JPanel homePanel;
+    private javax.swing.JLabel homeSelected;
+    private javax.swing.JButton jButton10;
+    private javax.swing.JButton jButton11;
+    private javax.swing.JButton jButton12;
+    private javax.swing.JButton jButton13;
+    private javax.swing.JButton jButton14;
+    private javax.swing.JButton jButton15;
+    private javax.swing.JButton jButton16;
+    private javax.swing.JButton jButton17;
+    private javax.swing.JButton jButton18;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
+    private javax.swing.JButton jButton6;
+    private javax.swing.JButton jButton7;
+    private javax.swing.JButton jButton8;
+    private javax.swing.JButton jButton9;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
+    private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel22;
+    private javax.swing.JLabel jLabel23;
+    private javax.swing.JLabel jLabel24;
+    private javax.swing.JLabel jLabel25;
+    private javax.swing.JLabel jLabel26;
+    private javax.swing.JLabel jLabel27;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel10;
+    private javax.swing.JPanel jPanel11;
+    private javax.swing.JPanel jPanel12;
+    private javax.swing.JPanel jPanel13;
+    private javax.swing.JPanel jPanel14;
+    private javax.swing.JPanel jPanel15;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel6;
+    private javax.swing.JPanel jPanel7;
+    private javax.swing.JPanel jPanel8;
+    private javax.swing.JLabel logoutSelected;
+    private javax.swing.JLabel profileSelected;
+    private javax.swing.JButton showDrawer;
+    private javax.swing.JButton showDrawer1;
+    private javax.swing.JPanel signUpPanel;
+    private javax.swing.JTextField userEmail;
+    private javax.swing.JPanel userInfoPanel;
+    private javax.swing.JTextField userName;
+    
+
+    @Override
+    public void keyTyped(java.awt.event.KeyEvent e) {
+         System.out.println("A was clicked!");
+     }
+
+    @Override
+    public void keyPressed(java.awt.event.KeyEvent e) {
+
+
+            System.out.println("A was pressed!");
+            
+     
+     }
+
+    @Override
+    public void keyReleased(java.awt.event.KeyEvent e) {
+         System.out.println("A was rel!");
+     }
+
+    
+}
+
+

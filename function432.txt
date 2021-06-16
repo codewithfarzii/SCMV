@@ -1,52 +1,15 @@
-    public static void countDTVFromToken(String str){
-               
-         if(str.contains("double "))
-        {         
-           // System.out.println(str);
-              StringTokenizer tk= new StringTokenizer(str,",");            
-              DOUBLE_Count+=tk.countTokens();  
-             ///  System.out.println(tk.countTokens());
-        }
-          if(str.contains("float "))
-        {          
-              StringTokenizer tk= new StringTokenizer(str,",");            
-              FLOAT_Count+=tk.countTokens();       
-        }
-           if(str.contains("char "))
-        {          
-              StringTokenizer tk= new StringTokenizer(str,",");            
-              CHAR_Count+=tk.countTokens();       
-        }
-            if(str.contains("boolean "))
-        {          
-              StringTokenizer tk= new StringTokenizer(str,",");            
-              BOOL_Count+=tk.countTokens();       
-        }
-             if(str.contains("String "))
-        {          
-             
-              StringTokenizer tk= new StringTokenizer(str,",");            
-              STRING_Count+=tk.countTokens();  
-            
-        }
-              if(str.contains("int "))
-        {        
-             StringTokenizer tk= new StringTokenizer(str,",");    
-              while(tk.hasMoreElements()){
-                    String token=tk.nextToken(); 
-                   // System.out.println(token);                
-                
-            if(token.contains("long int "))
-            {                     
-              LONG_INT_Count++;      
-             }
-            else if(token.contains("short int "))
-            {                       
-              SHORT_INT_Count++;       
-             }
-            else{          
-                INT_Count++;  
-            }
-        } 
-        }
-    } 
+   public void insertInClassInfotbl(String cname,String cstatus,String classcc,String classrefsug,int pc,int cc){
+    String query= "INSERT INTO `classinfotbl`(`classname`, `classstatus`, `classcc`, `nopc`, `nocc`, `refsug`) VALUES (?,?,?,?,?,?);";
+    try {
+        pstm=con.prepareStatement(query);
+        pstm.setString(1,String.valueOf(cname));
+        pstm.setString(2,String.valueOf(cstatus));
+        pstm.setString(3,String.valueOf(classcc));
+        pstm.setString(4,String.valueOf(pc));
+        pstm.setString(5,String.valueOf(cc));
+        pstm.setString(6,String.valueOf(classrefsug));
+        pstm.execute();
+    } catch (SQLException ex) {
+        Logger.getLogger(BrowseJavaFile.class.getName()).log(Level.SEVERE, null, ex);
+    }             
+    }  

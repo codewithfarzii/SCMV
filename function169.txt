@@ -1,5 +1,5 @@
-        visualizeComboBox.addActionListener(new java.awt.event.ActionListener() {
+        noOfDOUBLE.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                visualizeComboBoxActionPerformed(evt);
+                noOfDOUBLEActionPerformed(evt);
             }
         });

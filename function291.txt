@@ -1,5 +1,5 @@
-        noOfFinallyBlocks.addActionListener(new java.awt.event.ActionListener() {
+        visualizeComboBox5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                noOfFinallyBlocksActionPerformed(evt);
+                visualizeComboBox5ActionPerformed(evt);
             }
         });

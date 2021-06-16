@@ -1,5 +1,3 @@
-        visualizeComboBox6.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                visualizeComboBox6ActionPerformed(evt);
-            }
-        });
+    private void jPanel12MouseEntered(java.awt.event.MouseEvent evt) {
+        
+    }

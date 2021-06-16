@@ -1,16 +1,29 @@
-    String query= "    INSERT INTO `datatypetbl`(`total_int`, `total_short_int`, `total_long_int`, `total_string`, `total_double`, `total_float`, `total_bool`, `total_char`) VALUES (?,?,?,?,?,?,?,?);";
-    try {
-        pstm=con.prepareStatement(query);
-        pstm.setString(1,String.valueOf(t_int));
-        pstm.setString(2,String.valueOf(t_shortint));
-        pstm.setString(3,String.valueOf(t_longint));
-        pstm.setString(4,String.valueOf(t_string));
-        pstm.setString(5,String.valueOf(t_double));
-        pstm.setString(6,String.valueOf(t_float));
-        pstm.setString(7,String.valueOf(t_bool));
-        pstm.setString(8,String.valueOf(t_char));
-        pstm.execute();
-    } catch (SQLException ex) {
-        Logger.getLogger(BrowseJavaFile.class.getName()).log(Level.SEVERE, null, ex);
-    }             
-    }  
+    public static void main(String args[]) {
+        
+        
+        
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(JavaPackageMetrics.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(JavaPackageMetrics.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(JavaPackageMetrics.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(JavaPackageMetrics.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        
+
+        
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new JavaPackageMetrics().setVisible(true);
+            }
+        });
+    }

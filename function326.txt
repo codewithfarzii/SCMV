@@ -1,4 +1,3 @@
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        this.dispose();
-        new BrowseJavaPackage(selectedPackageName).setVisible(true);
-    }//GEN-LAST:event_jButton2ActionPerformed
+    private void classStatustxtActionPerformed(java.awt.event.ActionEvent evt) {
+        
+    }

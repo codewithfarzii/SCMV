@@ -1,3 +1,4 @@
-        setSize(new java.awt.Dimension(928, 697));
-        setLocationRelativeTo(null);
-    }// </editor-fold>//GEN-END:initComponents
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {
+        this.dispose();
+        new BrowseJavaPackage(selectedPackageName).setVisible(true);
+    }

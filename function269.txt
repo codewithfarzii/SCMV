@@ -1,5 +1,5 @@
-        noOfIFStatement.addActionListener(new java.awt.event.ActionListener() {
+        noOfCases.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                noOfIFStatementActionPerformed(evt);
+                noOfCasesActionPerformed(evt);
             }
         });
