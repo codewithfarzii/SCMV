@@ -76,6 +76,7 @@ PreparedStatement pstm=null;
     public BrowseJavaFile() {
         initComponents();
         connectWithDB();
+        BarPanel.setVisible(false);
         countClicked=false;
         
     }    
@@ -252,6 +253,8 @@ PreparedStatement pstm=null;
         jButton10 = new javax.swing.JButton();
         jButton11 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        BarPanel = new javax.swing.JPanel();
+        ProgressBar = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
         fileNametxt = new javax.swing.JTextArea();
@@ -429,8 +432,35 @@ PreparedStatement pstm=null;
         jLabel1.setText("  Source Code Metrics Visualizer of JAVA");
         header.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 0, -1, -1));
 
+        BarPanel.setBackground(new java.awt.Color(0, 0, 0));
+
+        ProgressBar.setBackground(new java.awt.Color(0, 0, 0));
+        ProgressBar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        ProgressBar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/loadingBar.gif"))); // NOI18N
+
+        javax.swing.GroupLayout BarPanelLayout = new javax.swing.GroupLayout(BarPanel);
+        BarPanel.setLayout(BarPanelLayout);
+        BarPanelLayout.setHorizontalGroup(
+            BarPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 70, Short.MAX_VALUE)
+            .addGroup(BarPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(BarPanelLayout.createSequentialGroup()
+                    .addComponent(ProgressBar, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+        );
+        BarPanelLayout.setVerticalGroup(
+            BarPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 70, Short.MAX_VALUE)
+            .addGroup(BarPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(BarPanelLayout.createSequentialGroup()
+                    .addComponent(ProgressBar, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+        );
+
+        header.add(BarPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+
         getContentPane().add(header);
-        header.setBounds(0, 0, 749, 64);
+        header.setBounds(0, 0, 749, 70);
 
         jPanel1.setBackground(new java.awt.Color(204, 204, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createCompoundBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 1, true), new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true)));
@@ -440,7 +470,6 @@ PreparedStatement pstm=null;
         fileNametxt.setRows(2);
         jScrollPane3.setViewportView(fileNametxt);
 
-        jButton1.setBackground(new java.awt.Color(255, 255, 255));
         jButton1.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
         jButton1.setText("Count Metrics");
         jButton1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
@@ -700,7 +729,6 @@ PreparedStatement pstm=null;
         );
 
         jPanel16.getAccessibleContext().setAccessibleName("Class Complexity Threshold Index");
-        jPanel17.getAccessibleContext().setAccessibleName("Class Complexity Threshold Index (LOC)");
 
         jTabbedPane1.addTab("Class Info", jPanel5);
 
@@ -779,7 +807,6 @@ PreparedStatement pstm=null;
         jPanel11.setBackground(new java.awt.Color(255, 255, 255));
         jPanel11.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(102, 102, 102)), "Visualization", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tempus Sans ITC", 1, 18)), "", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tempus Sans ITC", 1, 14))); // NOI18N
 
-        jButton4.setBackground(new java.awt.Color(255, 255, 255));
         jButton4.setFont(new java.awt.Font("Tempus Sans ITC", 1, 14)); // NOI18N
         jButton4.setText("Show");
         jButton4.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
@@ -980,7 +1007,6 @@ PreparedStatement pstm=null;
         jPanel12.setBackground(new java.awt.Color(255, 255, 255));
         jPanel12.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(102, 102, 102)), "Visualization", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tempus Sans ITC", 1, 18)), "", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tempus Sans ITC", 1, 14))); // NOI18N
 
-        jButton5.setBackground(new java.awt.Color(255, 255, 255));
         jButton5.setFont(new java.awt.Font("Tempus Sans ITC", 1, 14)); // NOI18N
         jButton5.setText("Show");
         jButton5.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
@@ -1206,7 +1232,6 @@ PreparedStatement pstm=null;
         jPanel14.setBackground(new java.awt.Color(255, 255, 255));
         jPanel14.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(102, 102, 102)), "Visualization", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tempus Sans ITC", 1, 18)), "", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tempus Sans ITC", 1, 14))); // NOI18N
 
-        jButton6.setBackground(new java.awt.Color(255, 255, 255));
         jButton6.setFont(new java.awt.Font("Tempus Sans ITC", 1, 14)); // NOI18N
         jButton6.setText("Show");
         jButton6.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
@@ -1393,7 +1418,6 @@ PreparedStatement pstm=null;
         jPanel15.setBackground(new java.awt.Color(255, 255, 255));
         jPanel15.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(102, 102, 102)), "Visualization", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tempus Sans ITC", 1, 18)), "", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tempus Sans ITC", 1, 14))); // NOI18N
 
-        jButton8.setBackground(new java.awt.Color(255, 255, 255));
         jButton8.setFont(new java.awt.Font("Tempus Sans ITC", 1, 14)); // NOI18N
         jButton8.setText("Show");
         jButton8.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
@@ -1567,7 +1591,6 @@ PreparedStatement pstm=null;
         jPanel18.setBackground(new java.awt.Color(255, 255, 255));
         jPanel18.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(102, 102, 102)), "Visualization", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tempus Sans ITC", 1, 18)), "", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tempus Sans ITC", 1, 14))); // NOI18N
 
-        jButton9.setBackground(new java.awt.Color(255, 255, 255));
         jButton9.setFont(new java.awt.Font("Tempus Sans ITC", 1, 14)); // NOI18N
         jButton9.setText("Show");
         jButton9.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
@@ -1703,7 +1726,6 @@ PreparedStatement pstm=null;
 
         jTabbedPane1.addTab("Conditional Statements", jPanel10);
 
-        jButton3.setBackground(new java.awt.Color(255, 255, 255));
         jButton3.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
         jButton3.setText("Browse File");
         jButton3.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
@@ -1713,7 +1735,6 @@ PreparedStatement pstm=null;
             }
         });
 
-        jButton12.setBackground(new java.awt.Color(255, 255, 255));
         jButton12.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
         jButton12.setText("Generate Report");
         jButton12.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -1758,9 +1779,9 @@ PreparedStatement pstm=null;
                     .addComponent(jButton12, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(19, 19, 19)
+                .addGap(13, 13, 13)
                 .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 351, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(17, Short.MAX_VALUE))
+                .addContainerGap(23, Short.MAX_VALUE))
         );
 
         getContentPane().add(jPanel1);
@@ -1772,10 +1793,11 @@ PreparedStatement pstm=null;
 
     boolean countClicked=false;
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-                                                                                 
+           BarPanel.setVisible(true);                                                                                        
         if(fileNametxt.getText().isEmpty()){
              AlertMessage("Browse a File First!!!","src/images/close.png"," Alert!!!");              
         }else{
+       
                     listOfPhyLines.clear();
                     listOfBraceLines.clear();
                     INT_Lines.clear();
@@ -2164,7 +2186,9 @@ PreparedStatement pstm=null;
             } catch (IOException ex) {
                 Logger.getLogger(BrowseJavaFile.class.getName()).log(Level.SEVERE, null, ex);
             }
-        }                                
+            
+        } 
+        BarPanel.setVisible(false);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -2253,7 +2277,8 @@ PreparedStatement pstm=null;
     }//GEN-LAST:event_closeBracestxtActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-                     countClicked=false;
+               
+        countClicked=false;
                      totalLOCtxt.setText(null);
                      blankLinestxt.setText(null);
                      commentedLinestxt.setText(null);
@@ -4362,6 +4387,8 @@ PreparedStatement pstm=null;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel BarPanel;
+    private javax.swing.JLabel ProgressBar;
     private javax.swing.JTextField blankLinestxt;
     private javax.swing.JTextField classCCtxt;
     private javax.swing.JTextField classNametxt;

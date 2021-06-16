@@ -737,7 +737,7 @@ PreparedStatement pstm=null;
         jButton7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/document.png"))); // NOI18N
         jButton7.setText("Documentation");
         jButton7.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
-        jButton7.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/documentOver.png"))); // NOI18N
+        jButton7.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/documentHover.png"))); // NOI18N
         jButton7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton7ActionPerformed(evt);
@@ -748,7 +748,7 @@ PreparedStatement pstm=null;
         jButton8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/play.png"))); // NOI18N
         jButton8.setText("How it works   ");
         jButton8.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
-        jButton8.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/playOver.png"))); // NOI18N
+        jButton8.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/playHover.png"))); // NOI18N
         jButton8.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton8ActionPerformed(evt);
@@ -791,6 +791,7 @@ PreparedStatement pstm=null;
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/changePas.png"))); // NOI18N
         jButton3.setText("Change Password");
         jButton3.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
+        jButton3.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/changePassHover.png"))); // NOI18N
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
@@ -802,6 +803,7 @@ PreparedStatement pstm=null;
         jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/delete.png"))); // NOI18N
         jButton4.setText("Delete Account");
         jButton4.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
+        jButton4.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/deleteHover.png"))); // NOI18N
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton4ActionPerformed(evt);
@@ -837,6 +839,7 @@ PreparedStatement pstm=null;
         jButton5.setText("Browse File          ");
         jButton5.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
         jButton5.setIconTextGap(25);
+        jButton5.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/browseFileHover.png"))); // NOI18N
         jButton5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton5ActionPerformed(evt);
@@ -849,6 +852,7 @@ PreparedStatement pstm=null;
         jButton6.setText("Browse Package    ");
         jButton6.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
         jButton6.setIconTextGap(25);
+        jButton6.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/browsePackHover.png"))); // NOI18N
         jButton6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton6ActionPerformed(evt);
@@ -879,7 +883,7 @@ PreparedStatement pstm=null;
         jButton18.setText("Generate Report");
         jButton18.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
         jButton18.setIconTextGap(25);
-        jButton18.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/rolover report.png"))); // NOI18N
+        jButton18.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/reportHover.png"))); // NOI18N
         jButton18.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton18ActionPerformed(evt);

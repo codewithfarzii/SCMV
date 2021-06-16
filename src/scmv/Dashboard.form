@@ -1169,7 +1169,7 @@
                       </Border>
                     </Property>
                     <Property name="rolloverIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="3" name="/Images/documentOver.png"/>
+                      <Image iconType="3" name="/Images/documentHover.png"/>
                     </Property>
                   </Properties>
                   <Events>
@@ -1191,7 +1191,7 @@
                       </Border>
                     </Property>
                     <Property name="rolloverIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="3" name="/Images/playOver.png"/>
+                      <Image iconType="3" name="/Images/playHover.png"/>
                     </Property>
                   </Properties>
                   <Events>
@@ -1230,6 +1230,9 @@
                         <LineBorder roundedCorners="true" thickness="2"/>
                       </Border>
                     </Property>
+                    <Property name="rolloverIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                      <Image iconType="3" name="/Images/changePassHover.png"/>
+                    </Property>
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton3ActionPerformed"/>
@@ -1253,6 +1256,9 @@
                       <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
                         <LineBorder roundedCorners="true" thickness="2"/>
                       </Border>
+                    </Property>
+                    <Property name="rolloverIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                      <Image iconType="3" name="/Images/deleteHover.png"/>
                     </Property>
                   </Properties>
                   <Events>
@@ -1333,6 +1339,9 @@
                       </Border>
                     </Property>
                     <Property name="iconTextGap" type="int" value="25"/>
+                    <Property name="rolloverIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                      <Image iconType="3" name="/Images/browseFileHover.png"/>
+                    </Property>
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton5ActionPerformed"/>
@@ -1358,6 +1367,9 @@
                       </Border>
                     </Property>
                     <Property name="iconTextGap" type="int" value="25"/>
+                    <Property name="rolloverIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                      <Image iconType="3" name="/Images/browsePackHover.png"/>
+                    </Property>
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton6ActionPerformed"/>
@@ -1420,7 +1432,7 @@
                     </Property>
                     <Property name="iconTextGap" type="int" value="25"/>
                     <Property name="rolloverIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="3" name="/Images/rolover report.png"/>
+                      <Image iconType="3" name="/Images/reportHover.png"/>
                     </Property>
                   </Properties>
                   <Events>

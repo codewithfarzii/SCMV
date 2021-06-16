@@ -182,9 +182,8 @@ public class BrowseJavaPackage extends javax.swing.JFrame {
         packageNameTxt.setRows(5);
         jScrollPane3.setViewportView(packageNameTxt);
 
-        jPanel1.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(41, 46, 490, 40));
+        jPanel1.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 55, 490, 40));
 
-        jButton1.setBackground(new java.awt.Color(255, 255, 255));
         jButton1.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
         jButton1.setText("Browse Package");
         jButton1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
@@ -193,7 +192,7 @@ public class BrowseJavaPackage extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(549, 46, 180, 40));
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 55, 180, 40));
 
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/back.png"))); // NOI18N
         jButton2.setBorder(null);
@@ -229,18 +228,19 @@ public class BrowseJavaPackage extends javax.swing.JFrame {
 
         jLabel3.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
         jLabel3.setText("No. Of Files :");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 100, 130, 45));
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 115, 130, 45));
 
         noOfFiles.setEditable(false);
+        noOfFiles.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
+        noOfFiles.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         noOfFiles.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
         noOfFiles.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 noOfFilesActionPerformed(evt);
             }
         });
-        jPanel1.add(noOfFiles, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 100, 45, 45));
+        jPanel1.add(noOfFiles, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 115, 45, 45));
 
-        jButton3.setBackground(new java.awt.Color(255, 255, 255));
         jButton3.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
         jButton3.setText("Count Metrics");
         jButton3.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
@@ -249,7 +249,7 @@ public class BrowseJavaPackage extends javax.swing.JFrame {
                 jButton3ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 250, 180, -1));
+        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 250, 180, 40));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
