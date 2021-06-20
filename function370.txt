@@ -1,3 +1,0 @@
-    private void noOfLongINTVActionPerformed(java.awt.event.ActionEvent evt) {
-        
-    }

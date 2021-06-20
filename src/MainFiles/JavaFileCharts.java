@@ -6,6 +6,7 @@
 package MainFiles;
 
 import ExternalJavaFiles.Database;
+import static com.lowagie.text.pdf.PdfName.X;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.HeadlessException;
@@ -41,6 +42,9 @@ import org.jfree.chart.renderer.xy.XYItemRenderer;
 import org.jfree.data.category.DefaultCategoryDataset;
 import org.jfree.data.general.DefaultPieDataset;
 import org.jfree.data.xy.DefaultXYZDataset;
+import org.jfree.data.xy.XYDataset;
+import org.jfree.data.xy.XYSeries;
+import org.jfree.data.xy.XYSeriesCollection;
 
 /**
  *
@@ -89,6 +93,44 @@ public JavaFileCharts(){
         Logger.getLogger(JavaFileCharts.class.getName()).log(Level.SEVERE, null, ex);
     }
 }
+    private XYDataset createDataset(){
+        
+
+       XYSeriesCollection dataset = new XYSeriesCollection();
+       
+     XYSeries series1 = new XYSeries("LOC");
+     series1.add(1,72.9);
+      series1.add(1,90.9);
+       series1.add(1,52.9);
+        series1.add(1,32.9);
+        
+        dataset.addSeries(series1);
+        
+        XYSeries series2 = new XYSeries("COMMENTED LINES");
+        series2.add(7,72.9);
+      series2.add(5,90.9);
+       series2.add(4,52.9);
+        series2.add(1,32.9);
+        
+        dataset.addSeries(series2);
+        
+        return dataset;
+    }
+        
+        
+        
+        
+                
+            
+     public void getscatter_chart(){
+   XYDataset dataset = createDataset();
+         JFreeChart chart= ChartFactory.createScatterPlot("Scatter Plot","X-axis", "Y-axis", dataset);
+     XYPlot plot = (XYPlot)chart.getPlot();
+     
+         plot.setBackgroundPaint(new Color(255,228,196));
+    
+    }
+   
     public void getValuesFromDATATYPEtbl(){
     try {
         String query= "SELECT * FROM `datatypetbl`";

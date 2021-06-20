@@ -1,3 +1,0 @@
-    private void noOfCatchBlocksActionPerformed(java.awt.event.ActionEvent evt) {
-        
-    }

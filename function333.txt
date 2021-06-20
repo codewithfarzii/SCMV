@@ -1,3 +1,0 @@
-    private void physicalLinestxtActionPerformed(java.awt.event.ActionEvent evt) {
-        
-    }

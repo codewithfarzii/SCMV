@@ -69,6 +69,7 @@ public class BrowseJavaPackage extends javax.swing.JFrame {
         selected=null;
         fileName=null;
         selectedPackageName=null;
+          BarPanel.setVisible(false);    
         
     }
    public BrowseJavaPackage(String PCKName) {
@@ -78,6 +79,7 @@ public class BrowseJavaPackage extends javax.swing.JFrame {
         fileName=null;
         openDBConnection(); 
         selectJavaPackage();
+          BarPanel.setVisible(false);    
         
     }
      public void AlertMessage(String message,String path,String title){
@@ -114,6 +116,8 @@ public class BrowseJavaPackage extends javax.swing.JFrame {
         jButton12 = new javax.swing.JButton();
         jButton11 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        BarPanel = new javax.swing.JPanel();
+        ProgressBar = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
         packageNameTxt = new javax.swing.JTextArea();
@@ -173,6 +177,33 @@ public class BrowseJavaPackage extends javax.swing.JFrame {
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/metrics 64.png"))); // NOI18N
         jLabel1.setText("  Source Code Metrics Visualizer of JAVA");
         header1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 0, -1, -1));
+
+        BarPanel.setBackground(new java.awt.Color(0, 0, 0));
+
+        ProgressBar.setBackground(new java.awt.Color(0, 0, 0));
+        ProgressBar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        ProgressBar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/loadingBar.gif"))); // NOI18N
+
+        javax.swing.GroupLayout BarPanelLayout = new javax.swing.GroupLayout(BarPanel);
+        BarPanel.setLayout(BarPanelLayout);
+        BarPanelLayout.setHorizontalGroup(
+            BarPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 70, Short.MAX_VALUE)
+            .addGroup(BarPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(BarPanelLayout.createSequentialGroup()
+                    .addComponent(ProgressBar, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+        );
+        BarPanelLayout.setVerticalGroup(
+            BarPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 70, Short.MAX_VALUE)
+            .addGroup(BarPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(BarPanelLayout.createSequentialGroup()
+                    .addComponent(ProgressBar, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+        );
+
+        header1.add(BarPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         jPanel1.setBorder(javax.swing.BorderFactory.createCompoundBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 1, true), new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true)));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -263,7 +294,7 @@ public class BrowseJavaPackage extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(header1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 512, Short.MAX_VALUE))
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 506, Short.MAX_VALUE))
         );
 
         setSize(new java.awt.Dimension(750, 576));
@@ -319,14 +350,17 @@ public class BrowseJavaPackage extends javax.swing.JFrame {
     }//GEN-LAST:event_noOfFilesActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+   BarPanel.setVisible(true);    
         // TODO add your handling code here:
         if(selected==null){
              AlertMessage("Please Select a File For Counting Metrics!!!","src/images/close.png"," Alert!!!");
         }else{
          JavaPackageMetrics c=new JavaPackageMetrics(selected,fileName,alist,selectedPackageName); 
          c.setVisible(true);
+           BarPanel.setVisible(false);    
          this.dispose();
         }
+          BarPanel.setVisible(false);    
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
@@ -463,6 +497,8 @@ public class BrowseJavaPackage extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel BarPanel;
+    private javax.swing.JLabel ProgressBar;
     private javax.swing.JPanel header1;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton11;

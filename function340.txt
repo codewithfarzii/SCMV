@@ -1,3 +1,0 @@
-    private void noOfINTActionPerformed(java.awt.event.ActionEvent evt) {
-        
-    }

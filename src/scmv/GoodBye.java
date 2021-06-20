@@ -23,8 +23,8 @@ public class GoodBye extends javax.swing.JFrame {
     Timer t;
     public GoodBye() {
         initComponents();
-System.exit(0);    
-//exit();
+//System.exit(0);    
+exit();
            
     }
     int k=10;
@@ -33,8 +33,8 @@ public void exit(){
        @Override
        public void actionPerformed(ActionEvent e) {
       timer.setText(String.valueOf(k));
-           k--;
-           if(k==1)
+           k=k-1;
+           if(k<=0)
                System.exit(0);
        }
    });

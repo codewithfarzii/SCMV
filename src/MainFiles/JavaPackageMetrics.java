@@ -3162,7 +3162,7 @@ public class JavaPackageMetrics extends javax.swing.JFrame {
         ChangePassword cp1,cp2=new ChangePassword();
 // TODO add your handling code here:
          try {
-                 String report="D:\\SCMV\\SCMV\\src\\Report\\newReport.jrxml";
+                 String report="src/Report/newReport.jrxml";
                 JasperReport jasp_rep= JasperCompileManager.compileReport(report);
                 JasperPrint jasp_print= JasperFillManager.fillReport(jasp_rep, null, con);
                 JasperViewer.viewReport(jasp_print,false);

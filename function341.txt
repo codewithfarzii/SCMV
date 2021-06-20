@@ -1,3 +1,0 @@
-    private void noOfShortINTActionPerformed(java.awt.event.ActionEvent evt) {
-        
-    }

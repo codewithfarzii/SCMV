@@ -1,3 +1,0 @@
-    private void openBracestxtActionPerformed(java.awt.event.ActionEvent evt) {
-        
-    }

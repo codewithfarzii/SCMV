@@ -1,9 +1,0 @@
-   t=new Timer(1000, new ActionListener() {
-       @Override
-       public void actionPerformed(ActionEvent e) {
-      timer.setText(String.valueOf(k));
-           k--;
-           if(k==1)
-               System.exit(0);
-       }
-   });

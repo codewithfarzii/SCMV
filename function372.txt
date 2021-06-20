@@ -1,3 +1,0 @@
-    private void noOfDOUBLEVActionPerformed(java.awt.event.ActionEvent evt) {
-        
-    }

@@ -1,3 +1,0 @@
-    private void noOfSTRINGVActionPerformed(java.awt.event.ActionEvent evt) {
-        
-    }

@@ -1,3 +1,0 @@
-    private void noOfWHILELOOPActionPerformed(java.awt.event.ActionEvent evt) {
-        
-    }

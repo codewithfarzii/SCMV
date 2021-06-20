@@ -1,4 +1,0 @@
-                if( token.charAt(i) == '{' ) {
-                    openbrace=openbrace+1; 
-
-                } 

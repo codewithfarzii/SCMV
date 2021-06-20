@@ -1,4 +1,0 @@
-     public void setCCVis(boolean b){
-        ccSelected.setVisible(b);
-       ccPanel.setVisible(b);
-    }

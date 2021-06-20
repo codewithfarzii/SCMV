@@ -1303,7 +1303,7 @@ PreparedStatement pstm=null;
                 rs=pstm.executeQuery();
 
                 if(rs.next()){
-                     String report="D:\\SCMV\\SCMV\\src\\Report\\newReport.jrxml";
+                     String report="src/Report/newReport.jrxml";
                         JasperReport jasp_rep= JasperCompileManager.compileReport(report);
                         JasperPrint jasp_print= JasperFillManager.fillReport(jasp_rep, null, con);
                         JasperViewer.viewReport(jasp_print,false);

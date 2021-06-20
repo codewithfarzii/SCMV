@@ -1,3 +1,0 @@
-        setSize(new java.awt.Dimension(928, 697));
-        setLocationRelativeTo(null);
-    }

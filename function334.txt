@@ -1,3 +1,0 @@
-    private void logicalLinestxtActionPerformed(java.awt.event.ActionEvent evt) {
-        
-    }

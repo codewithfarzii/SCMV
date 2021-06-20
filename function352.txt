@@ -1,3 +1,0 @@
-    private void noOfDOWHILELOOPActionPerformed(java.awt.event.ActionEvent evt) {
-        
-    }

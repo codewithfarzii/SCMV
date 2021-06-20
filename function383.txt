@@ -1,3 +1,0 @@
-    private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {
-      this.setState(ICONIFIED);    
-    }

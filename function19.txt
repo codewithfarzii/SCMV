@@ -1,4 +1,0 @@
-           }else if(loc >100 && loc<=200){
-               s1="Average Class!";
-               refactoringSuggestion.setText("Class is Fine!");
-           }else{

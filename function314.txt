@@ -1,3 +1,0 @@
-    private void jPanel12MouseEntered(java.awt.event.MouseEvent evt) {
-        
-    }

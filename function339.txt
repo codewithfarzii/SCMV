@@ -1,3 +1,0 @@
-    private void visualizeComboBoxActionPerformed(java.awt.event.ActionEvent evt) {
-        
-    }

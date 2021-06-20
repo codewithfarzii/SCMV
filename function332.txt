@@ -1,3 +1,0 @@
-    private void commentedLinestxtActionPerformed(java.awt.event.ActionEvent evt) {
-        
-    }

@@ -1,3 +1,0 @@
-    private void visualizeComboBoxItemStateChanged(java.awt.event.ItemEvent evt) {
-        
-    }

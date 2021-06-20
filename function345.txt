@@ -1,3 +1,0 @@
-    private void noOfFLOATActionPerformed(java.awt.event.ActionEvent evt) {
-        
-    }

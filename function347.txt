@@ -1,3 +1,0 @@
-    private void noOfCHARActionPerformed(java.awt.event.ActionEvent evt) {
-        
-    }

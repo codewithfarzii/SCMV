@@ -1,6 +1,0 @@
-       public void actionPerformed(ActionEvent e) {
-      timer.setText(String.valueOf(k));
-           k--;
-           if(k==1)
-               System.exit(0);
-       }

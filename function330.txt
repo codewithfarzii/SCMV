@@ -1,3 +1,0 @@
-    private void totalLOCtxtActionPerformed(java.awt.event.ActionEvent evt) {
-        
-    }

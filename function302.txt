@@ -1,5 +1,0 @@
-        visualizeComboBox6.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                visualizeComboBox6ItemStateChanged(evt);
-            }
-        });

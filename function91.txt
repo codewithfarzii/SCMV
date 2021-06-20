@@ -1,3 +1,0 @@
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                jPanel26MouseEntered(evt);
-            }

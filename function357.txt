@@ -1,3 +1,0 @@
-    private void noOfIFStatementActionPerformed(java.awt.event.ActionEvent evt) {
-        
-    }

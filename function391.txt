@@ -1,5 +1,0 @@
-     public void setCouplingVis(boolean b){
-        couplingSelected.setVisible(b);
-        couplingPanel.setVisible(b);
-        
-    }

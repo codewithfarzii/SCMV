@@ -817,7 +817,7 @@ PreparedStatement pstm=null;
         });
 
         visualizeComboBox.setFont(new java.awt.Font("Tempus Sans ITC", 1, 14)); // NOI18N
-        visualizeComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "...............Select...............", "2D Bar Chart", "2D Pie Chart", "2D Line Chart", "2D Waterfall Chart", "2D Dual Chart", "2D Area Chart", "2D Stack Area Chart", "2D Stack Bar Chart", "3D Bar Chart", "3D Pie Chart", "3D Line Chart", "3D Stack Bar Chart" }));
+        visualizeComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "...............Select...............", "2D Bar Chart", "2D Pie Chart", "2D Line Chart", "2D Waterfall Chart", "2D Dual Chart", "2D Area Chart", "2D Stack Area Chart", "2D Stack Bar Chart", "3D Bar Chart", "3D Pie Chart", "3D Line Chart", "3D Stack Bar Chart", "Scatter_Plot" }));
         visualizeComboBox.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 visualizeComboBoxItemStateChanged(evt);
@@ -1769,19 +1769,18 @@ PreparedStatement pstm=null;
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(5, 5, 5)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton12, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(13, 13, 13)
                 .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 351, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(23, Short.MAX_VALUE))
+                .addContainerGap(24, Short.MAX_VALUE))
         );
 
         getContentPane().add(jPanel1);
@@ -2323,6 +2322,7 @@ PreparedStatement pstm=null;
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+BarPanel.setVisible(true);   
         if(fileNametxt.getText().isEmpty())   {
             AlertMessage("Browse a File First!!!","src/images/close.png"," Alert!!!");                  
         }
@@ -2370,8 +2370,13 @@ PreparedStatement pstm=null;
             }
             if(visualizeComboBox.getSelectedItem().equals("3D Stack Bar Chart")){
                 dt.LOC3D_StackBarChart();
-            }            
+            }   
+            if(visualizeComboBox.getSelectedItem().equals("Scatter_Plot")){
+                dt.getscatter_chart();
+            }  
+          
         }
+        BarPanel.setVisible(false);   
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton4ActionPerformed
 
@@ -2384,7 +2389,8 @@ PreparedStatement pstm=null;
     }//GEN-LAST:event_visualizeComboBoxActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-    if(fileNametxt.getText().isEmpty())   {
+BarPanel.setVisible(true);   
+        if(fileNametxt.getText().isEmpty())   {
                            AlertMessage("First Browse a File!!!","src/images/close.png"," Alert!!!");
     }
         else if(!countClicked)   {
@@ -2433,6 +2439,7 @@ PreparedStatement pstm=null;
                 dt.DT3D_StackBarChart();
             }            
         }
+        BarPanel.setVisible(false);   
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void visualizeComboBox1ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_visualizeComboBox1ItemStateChanged
@@ -2488,7 +2495,8 @@ PreparedStatement pstm=null;
     }//GEN-LAST:event_noOfFinallyBlocksActionPerformed
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
-         if(fileNametxt.getText().isEmpty())   {
+BarPanel.setVisible(true);   
+        if(fileNametxt.getText().isEmpty())   {
                AlertMessage("Browse a File First!!!","src/images/close.png"," Alert!!!");             
          }
         else if(!countClicked)   {
@@ -2537,6 +2545,7 @@ PreparedStatement pstm=null;
                 dt.LOOP3D_StackBarChart();
             }            
         }
+        BarPanel.setVisible(false);   
     }//GEN-LAST:event_jButton8ActionPerformed
 
     private void visualizeComboBox4ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_visualizeComboBox4ItemStateChanged
@@ -2548,7 +2557,8 @@ PreparedStatement pstm=null;
     }//GEN-LAST:event_visualizeComboBox4ActionPerformed
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
-       if(fileNametxt.getText().isEmpty())   {
+BarPanel.setVisible(true);   
+        if(fileNametxt.getText().isEmpty())   {
             AlertMessage("First Browse a File!!!","src/images/close.png"," Alert!!!");          
         }
         else if(!countClicked)   {
@@ -2597,6 +2607,7 @@ PreparedStatement pstm=null;
                 dt.CST3D_StackBarChart();
             }            
         }
+        BarPanel.setVisible(false);   
     }//GEN-LAST:event_jButton9ActionPerformed
 
     private void visualizeComboBox5ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_visualizeComboBox5ItemStateChanged
@@ -2640,7 +2651,8 @@ PreparedStatement pstm=null;
     }//GEN-LAST:event_noOfCHARVActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-         if(fileNametxt.getText().isEmpty())   {
+BarPanel.setVisible(true);   
+        if(fileNametxt.getText().isEmpty())   {
                AlertMessage("First Browse a File!!!","src/images/close.png"," Alert!!!");
     }
         else if(!countClicked)   {
@@ -2689,6 +2701,7 @@ PreparedStatement pstm=null;
                 dt.DTV3D_StackBarChart();
             }            
         }
+        BarPanel.setVisible(false);   
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void visualizeComboBox2ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_visualizeComboBox2ItemStateChanged
@@ -2700,7 +2713,7 @@ PreparedStatement pstm=null;
     }//GEN-LAST:event_visualizeComboBox2ActionPerformed
 
     private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
-
+BarPanel.setVisible(true);   
         // These are created to show that our CBO function is working
         JavaPackageMetrics jpm1,jpm2,jpm3=new JavaPackageMetrics();
         BrowseJavaPackage bp1,bp2=new BrowseJavaPackage();
@@ -2717,9 +2730,10 @@ PreparedStatement pstm=null;
         }
         else{           
             try {
-                String report="D:\\SCMV\\SCMV\\src\\Report\\newReport.jrxml";
+                String report="src/Report/newReport.jrxml";
                 JasperReport jasp_rep= JasperCompileManager.compileReport(report);
                 JasperPrint jasp_print= JasperFillManager.fillReport(jasp_rep, null, con);
+                jasp_print.setName("SCMV Report");
                 JasperViewer.viewReport(jasp_print,false);
            
 
@@ -2727,7 +2741,7 @@ PreparedStatement pstm=null;
                 Logger.getLogger(BrowseJavaFile.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
- 
+ BarPanel.setVisible(false);   
     }//GEN-LAST:event_jButton12ActionPerformed
 
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
